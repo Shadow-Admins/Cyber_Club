@@ -20,7 +20,7 @@ A virtual machine, commonly shortened to just VM, is no different than any other
 <H2>Virtulization Software</H2>
 <p>
   <H3>What is Virtulization Software?</H3>
-  Virtulization Software is the software that allows you to run an OS within a container on your normal OS (think of it as a box in a box). It allows the virtulized OS to utilise the hardware (think CPU, GPU, NIC) of your computer while isolating it from the system. Depending on whether you use Windows or Mac will depend on the software you use. Click the <kdb>arrows</kdb> next to your OS for a list of virtulization software.
+  Virtulization Software is the software that allows you to run an OS within a container on your normal OS (think of it as a box in a box). It allows the virtulized OS to utilise the hardware (think CPU, GPU, NIC) of your computer while isolating it from the system. Depending on whether you use Windows or Mac will depend on the software you use. Click the <kbd>arrows</kbd> next to your OS for a list of virtulization software.
 </p>
 <p>
   <details>
