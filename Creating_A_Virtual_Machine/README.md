@@ -1,10 +1,12 @@
 <H1>Creating A Virtual Machine</H1>
 <br>
 <H2><b><u>What is a VM and why use one?</u></b></H2>
+
 <p>
 <H3>What is a VM?</H3>
 A virtual machine, commonly shortened to just VM, is no different than any other physical computer like a laptop, smart phone, or server. It has a CPU, memory, disks to store your files, and can connect to the internet if needed. While the parts that make up your computer (called hardware) are physical and tangible, VMs are often thought of as virtual computers or software-defined computers within physical servers, existing only as code.
 </p>
+
 <p>
 <H3>Why use a VM?</H3>
 - A VM allows you to run multiple OS (Operating System) on the one computer without needing to dedicate one computer to a specific OS (also known as 'on the metal').
@@ -12,6 +14,38 @@ A virtual machine, commonly shortened to just VM, is no different than any other
 - It is likely when starting out, and even later on you will break the system (its going to happen)... this will happen because dependancies will break or something will just go wrong. If you have your OS running in a VM you can revert it back to before it broke saving a lot of time.
 <br>
 - A VM can also be isolated from the rest of your system, so if you are working on a malicious piece of code it won't destroy the rest of your system.
+</p>
+<hr>
+
+<H2>Virtulization Software</H2>
+<p>
+  <H3>What is Virtulization Software?</H3>
+  Virtulization Software is the software that allows you to run an OS within a container on your normal OS (think of it as a box in a box). It allows the virtulized OS to utilise the hardware (think CPU, GPU, NIC) of your computer while isolating it from the system. Depending on whether you use Windows or Mac will depend on the software you use.
+</p>
+<p>
+  <details>
+    <summary>Windows</summary>
+			<H4>Virtual Box</H4>
+				Oracle VM VirtualBox is a cross-platform virtualization application. What does that mean? For one thing, it installs on your existing Intel or AMD-based computers, whether they are running Windows, Mac OS X, Linux, or Oracle Solaris operating systems (OSes). Secondly, it extends the capabilities of your existing computer so that it can run multiple OSes, inside multiple virtual machines, at the same time. As an example, you can run Windows and Linux on your Mac, run Windows Server 2016 on your Linux server, run Linux on your Windows PC, and so on, all alongside your existing applications. You can install and run as many virtual machines as you like. The only practical limits are disk space and memory. 
+		<br>
+		https://www.virtualbox.org/wiki/VirtualBox
+			<H4>VMware Workstation Player</H4>
+					VMware Workstation Player allows you to run a second, isolated operating system on a single PC.
+		<br>
+		https://www.vmware.com/au/products/workstation-player.html
+  </details>
+
+  <details>
+    <summary>Mac</summary>
+			<H4>Virtual Box</H4>
+				Oracle VM VirtualBox is a cross-platform virtualization application. What does that mean? For one thing, it installs on your existing Intel or AMD-based computers, whether they are running Windows, Mac OS X, Linux, or Oracle Solaris operating systems (OSes). Secondly, it extends the capabilities of your existing computer so that it can run multiple OSes, inside multiple virtual machines, at the same time. As an example, you can run Windows and Linux on your Mac, run Windows Server 2016 on your Linux server, run Linux on your Windows PC, and so on, all alongside your existing applications. You can install and run as many virtual machines as you like. The only practical limits are disk space and memory. 
+		<br>
+		https://www.virtualbox.org/wiki/VirtualBox
+			<H4>VMware Fusion</H4>
+				VMware Fusion Pro and VMware Fusion Player Desktop Hypervisors give Mac users the power to run Windows on Mac along with hundreds of other operating systems, containers or Kubernetes clusters, side by side with Mac applications, without rebooting.
+		<br>
+		https://www.vmware.com/au/products/fusion.html
+  </details>
 </p>
 <hr>
 
