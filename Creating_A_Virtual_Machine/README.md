@@ -1,4 +1,4 @@
-<H1>Creating A Virtual Machine</H1>
+<H1>Creating a Virtual Machine</H1>
 <br>
 <H2><b><u>What is a VM and why use one?</u></b></H2>
 
