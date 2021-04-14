@@ -29,10 +29,16 @@ A virtual machine, commonly shortened to just VM, is no different than any other
 				Oracle VM VirtualBox is a cross-platform virtualization application. What does that mean? For one thing, it installs on your existing Intel or AMD-based computers, whether they are running Windows, Mac OS X, Linux, or Oracle Solaris operating systems (OSes). Secondly, it extends the capabilities of your existing computer so that it can run multiple OSes, inside multiple virtual machines, at the same time. As an example, you can run Windows and Linux on your Mac, run Windows Server 2016 on your Linux server, run Linux on your Windows PC, and so on, all alongside your existing applications. You can install and run as many virtual machines as you like. The only practical limits are disk space and memory. 
 		<br>
 		https://www.virtualbox.org/wiki/VirtualBox
+<div align="center">
+<img src="https://github.com/Shadow-Admins/Cyber_Club/blob/main/Creating_A_Virtual_Machine/images/virtualbox.png" width="600"><br>
+</div>
 			<H4>VMware Workstation Player</H4>
 					VMware Workstation Player allows you to run a second, isolated operating system on a single PC.
 		<br>
 		https://www.vmware.com/au/products/workstation-player.html
+<div align="center">
+<img src="https://github.com/Shadow-Admins/Cyber_Club/blob/main/Creating_A_Virtual_Machine/images/vmwareworkstationplayer.png" width="600"><br>
+</div>
   </details>
 
   <details>
@@ -41,10 +47,16 @@ A virtual machine, commonly shortened to just VM, is no different than any other
 				Oracle VM VirtualBox is a cross-platform virtualization application. What does that mean? For one thing, it installs on your existing Intel or AMD-based computers, whether they are running Windows, Mac OS X, Linux, or Oracle Solaris operating systems (OSes). Secondly, it extends the capabilities of your existing computer so that it can run multiple OSes, inside multiple virtual machines, at the same time. As an example, you can run Windows and Linux on your Mac, run Windows Server 2016 on your Linux server, run Linux on your Windows PC, and so on, all alongside your existing applications. You can install and run as many virtual machines as you like. The only practical limits are disk space and memory. 
 		<br>
 		https://www.virtualbox.org/wiki/VirtualBox
+<div align="center">
+<img src="https://github.com/Shadow-Admins/Cyber_Club/blob/main/Creating_A_Virtual_Machine/images/virtualbox.png" width="600"><br>
+</div>
 			<H4>VMware Fusion</H4>
 				VMware Fusion Pro and VMware Fusion Player Desktop Hypervisors give Mac users the power to run Windows on Mac along with hundreds of other operating systems, containers or Kubernetes clusters, side by side with Mac applications, without rebooting.
 		<br>
 		https://www.vmware.com/au/products/fusion.html
+<div align="center">
+<img src="https://github.com/Shadow-Admins/Cyber_Club/blob/main/Creating_A_Virtual_Machine/images/vmwarefusion.png" width="600"><br>
+</div>
   </details>
 </p>
 <hr>
