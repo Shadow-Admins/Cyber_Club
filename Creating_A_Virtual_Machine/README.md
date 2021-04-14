@@ -33,3 +33,7 @@ The SIFT Workstation is a group of free open-source incident response and forens
 <br>
 https://digital-forensics.sans.org/community/downloads
 <hr>
+
+<H3>Make Your Own</H3>
+You can start with a barebones distro such as debian, ubuntu or arch and install the tools you require on them as you need them. The above distros are basically done for you with tools already installed.
+<hr>
