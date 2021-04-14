@@ -14,7 +14,9 @@ Kali Linux is an open-source, Debian-based Linux distribution geared towards var
 <br>
 https://www.kali.org/
 <br>
+<div align="center">
 <img src="https://github.com/Shadow-Admins/Cyber_Club/blob/main/Creating_A_Virtual_Machine/images/kali.png" width="600"><br>
+</div>
 <hr>
 
 <H3>Parrot</H3>
@@ -22,7 +24,9 @@ Parrot OS, the flagship product of Parrot Security is a GNU/Linux distribution b
 <br>
 https://www.parrotsec.org/
 <br>
+<div align="center">
 <img src="https://github.com/Shadow-Admins/Cyber_Club/blob/main/Creating_A_Virtual_Machine/images/Parrot.jpg" width="600"><br>
+</div>
 <hr>
 
 <H3>Tsurugi</H3>
@@ -30,7 +34,9 @@ Tsurugi Linux is a DFIR (Digital Forensics & Incident Response) Linux distro. It
 <br>
 https://tsurugi-linux.org/index.php
 <br>
+<div align="center">
 <img src="https://github.com/Shadow-Admins/Cyber_Club/blob/main/Creating_A_Virtual_Machine/images/Tsurugi.png" width="600"><br>
+</div>
 <hr>
 
 <H3>Black Arch</H3>
@@ -38,7 +44,9 @@ BlackArch Linux is an Arch Linux-based penetration testing distribution for pene
 <br>
 https://blackarch.org/
 <br>
+<div align="center">
 <img src="https://github.com/Shadow-Admins/Cyber_Club/blob/main/Creating_A_Virtual_Machine/images/black_arch.png" width="600"><br>
+</div>
 <hr>
 
 <H3>SIFT</H3>
@@ -46,7 +54,9 @@ The SIFT Workstation is a group of free open-source incident response and forens
 <br>
 https://digital-forensics.sans.org/community/downloads
 <br>
+<div align="center">
 <img src="https://github.com/Shadow-Admins/Cyber_Club/blob/main/Creating_A_Virtual_Machine/images/sift.png" width="600"><br>
+</div>
 <hr>
 
 <H3>Make Your Own</H3>
