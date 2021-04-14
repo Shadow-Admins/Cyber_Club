@@ -1,8 +1,17 @@
-<H1>Creating A VM</H1>
+<H1>Creating A Virtual Machine</H1>
 <br>
+<H2><b><u>What is a VM and why use one?</u></b></H2>
+<p>
+  <H3>What is a VM?</H3>
+A virtual machine, commonly shortened to just VM, is no different than any other physical computer like a laptop, smart phone, or server. It has a CPU, memory, disks to store your files, and can connect to the internet if needed. While the parts that make up your computer (called hardware) are physical and tangible, VMs are often thought of as virtual computers or software-defined computers within physical servers, existing only as code.
+</p>
+<p>
+
+</p>
 <H2><b><u>Distros... Which one?</u></b></H2>
 <p>
 The first thing you need to do is pick a distribution (distro) that you like and that suites you, they are nearly all the same bar some nuances. You will naturally gravitate towards one or use different ones for different tasks. I would start with Kali or Parrot as they are well known and functional. The other distros on the list are either more task specific or CLI (Command Line Input) only (note this list isnt exhaustive and there are hundreds of distros out there, these are just the well known ones). Try them all and see which you prefer.
+</p>
 <hr>
 
 <details>
