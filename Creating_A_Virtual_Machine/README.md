@@ -13,6 +13,7 @@ production environment.
 
 <hr>
 <H2>Tsurugi</H2>
+Tsurugi Linux is a DFIR (Digital Forensics & Incident Response) Linux distro. It comes out of the box with many DFIR tools with the enviroment for them to work in harmony without breaking. It allows forensics on all system file types which you often cant do without difficulty on other distros.
 <hr>
 
 <H2>Black Arch</H2>
