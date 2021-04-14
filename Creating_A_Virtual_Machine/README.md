@@ -141,4 +141,4 @@ The best thing to do is watch a YouTube video of someone doing it step by step.
 Once you have installed your new VM the first thing you should do is take a snapshot of the VM (right click save snapshot) so if you break it you can revert it to default without needing to re-install all over again.
 </p>
 <br>
-Now thats done its time to get in and start practicing.
+Now that's done its time to get in and start practicing.
