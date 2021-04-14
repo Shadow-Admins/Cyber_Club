@@ -1,8 +1,8 @@
 <H1>Creating A VM</H1>
 <br>
-<H2><b><u>Distros</u></b></H2>
+<H2><b><u>Distros... Which one?</u></b></H2>
 <p>
-The first thing you need to do is pick a distribution (distro) that you like and that suites you, they are nearly all the same and you will naturally gravitate towards one or use different ones for different tasks. Try them all and see which you prefer.
+The first thing you need to do is pick a distribution (distro) that you like and that suites you, they are nearly all the same bar some nuances. You will naturally gravitate towards one or use different ones for different tasks. I would start with Kali or Parrot as they are well known and functional. The other distros on the list are either more task specific or CLI (Command Line Input) only (note this list isnt exhaustive and there are hundreds of distros out there, these are just the well known ones). Try them all and see which you prefer.
 <hr>
 
 <H3>Kali</H3>
