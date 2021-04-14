@@ -1,5 +1,5 @@
 <H1>Places to Learn Things</H1>
-
+<hr>
 <H2>Begginer</H2>
 <br>
 <H3>Over The Wire</H3>
