@@ -7,7 +7,11 @@ A virtual machine, commonly shortened to just VM, is no different than any other
 </p>
 <p>
 <H3>Why use a VM?</H3>
-
+- A VM allows you to run multiple OS (Operating System) on the one computer without needing to dedicate one computer to a specific OS (also known as 'on the metal').
+<br>
+- It is likely when starting out, and even later on you will break the system (its going to happen)... this will happen because dependancies will break or something will just go wrong. If you have your OS running in a VM you can revert it back to before it broke saving a lot of time.
+<br>
+- A VM can also be isolated from the rest of your system, so if you are working on a malicious piece of code it won't destroy the rest of your system.
 </p>
 <hr>
 
