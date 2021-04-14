@@ -130,5 +130,9 @@ You can start with a barebones distro such as debian, ubuntu or arch and install
 <H2>I have my software and picked my distro now what?</H2>
 <br>
 The first thing you will need to do is download a .iso of the distro you have chosen (there other types '.vmdk' etc.).
-Once you have downloaded it installing it will be software dependant but usually follows the steps of:
-1. 
+Once you have downloaded it installing the VM will be software dependant, heres Vitual boxes manual (man) page on how to https://www.virtualbox.org/manual/ch01.html
+The best thing to do is watch a YouTube video of someone doing it step by step.
+<br>
+Once you have installed your new VM the first thing you should do is take a snapshot of the VM (right click save snapshot) so if you break it you can revert it to default without needing to re-install all over again.
+<br>
+Now thats done its time to get in and start practicing.
