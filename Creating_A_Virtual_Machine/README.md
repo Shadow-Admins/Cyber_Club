@@ -5,7 +5,7 @@
 <hr>
 
 <H3>Kali</H3>
-</p>
+![image](https://user-images.githubusercontent.com/57050623/114642927-3f08da80-9cc4-11eb-90b0-e9c7283086ed.png)
 Kali Linux is an open-source, Debian-based Linux distribution geared towards various information security tasks, such as Penetration Testing, Security Research, Computer Forensics and Reverse Engineering.
 <br>
 https://www.kali.org/
