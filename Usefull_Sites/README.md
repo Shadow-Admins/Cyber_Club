@@ -24,4 +24,8 @@ TTP's for pentesting
 </p>
 https://book.hacktricks.xyz/
 <br>
-<H3></H3>
+<H3>PayloadsAllTheThings</H3>
+<p>
+A list of useful payloads and bypasses for Web Application Security.
+</p>
+https://github.com/swisskyrepo/PayloadsAllTheThings
