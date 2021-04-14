@@ -126,3 +126,9 @@ You can start with a barebones distro such as debian, ubuntu or arch and install
 <hr>
 
 </details>
+
+<H2>I have my software and picked my distro now what?</H2>
+<br>
+The first thing you will need to do is download a .iso of the distro you have chosen (there other types '.vmdk' etc.).
+Once you have downloaded it installing it will be software dependant but usually follows the steps of:
+1. 
