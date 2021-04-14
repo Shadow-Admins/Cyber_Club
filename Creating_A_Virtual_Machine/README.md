@@ -126,6 +126,7 @@ You can start with a barebones distro such as debian, ubuntu or arch and install
 <hr>
 
 </details>
+<hr>
 
 <H2>I have my software and picked my distro now what?</H2>
 <br>
