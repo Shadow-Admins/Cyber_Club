@@ -28,3 +28,9 @@ BlackArch Linux is an Arch Linux-based penetration testing distribution for pene
 <br>
 https://blackarch.org/
 <hr>
+
+<H3>SIFT</H3>
+The SIFT Workstation is a group of free open-source incident response and forensic tools designed to perform detailed digital forensic examinations in a variety of settings. It can match any current incident response and forensic tool suite. SIFT demonstrates that advanced incident response capabilities and deep dive digital forensic techniques to intrusions can be accomplished using cutting-edge open-source tools that are freely available and frequently updated.
+<br>
+https://digital-forensics.sans.org/community/downloads
+<hr>
