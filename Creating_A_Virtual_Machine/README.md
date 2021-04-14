@@ -2,6 +2,7 @@
 <br>
 <H2><b><u>Distros</u></b></H2>
 <p>
+The first thing you need to do is pick a distribution (distro) that you like and that suites you, they are nearly all the same and you will naturally gravitate towards one or use different ones for different tasks. Try them all and see which you prefer.
 <hr>
 
 <H3>Kali</H3>
