@@ -6,7 +6,7 @@ The first thing you need to do is pick a distribution (distro) that you like and
 <hr>
 
 <details>
-  <summary>Click the arrow for a list of distros and descriptions.</summary>
+  <summary>Click the <kbd>arrow</kbd> for a list of distros and descriptions.</summary>
 
 <H3>Kali</H3>
 Kali Linux is an open-source, Debian-based Linux distribution geared towards various information security tasks, such as Penetration Testing, Security Research, Computer Forensics and Reverse Engineering.
