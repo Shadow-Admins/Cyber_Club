@@ -5,6 +5,8 @@
 The first thing you need to do is pick a distribution (distro) that you like and that suites you, they are nearly all the same bar some nuances. You will naturally gravitate towards one or use different ones for different tasks. I would start with Kali or Parrot as they are well known and functional. The other distros on the list are either more task specific or CLI (Command Line Input) only (note this list isnt exhaustive and there are hundreds of distros out there, these are just the well known ones). Try them all and see which you prefer.
 <hr>
 
+<details>
+
 <H3>Kali</H3>
 Kali Linux is an open-source, Debian-based Linux distribution geared towards various information security tasks, such as Penetration Testing, Security Research, Computer Forensics and Reverse Engineering.
 <br>
@@ -38,3 +40,5 @@ https://digital-forensics.sans.org/community/downloads
 <H3>Make Your Own</H3>
 You can start with a barebones distro such as debian, ubuntu or arch and install the tools you require on them as you need them. The above distros are basically done for you with tools already installed.
 <hr>
+
+</details>
