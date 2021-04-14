@@ -65,7 +65,7 @@ A virtual machine, commonly shortened to just VM, is no different than any other
 <p>
 The first thing you need to do is pick a distribution (distro) that you like and that suites you, they are nearly all the same bar some nuances. You will naturally gravitate towards one or use different ones for different tasks. I would start with Kali or Parrot as they are well known and functional. The other distros on the list are either more task specific or CLI (Command Line Input) only (note this list isnt exhaustive and there are hundreds of distros out there, these are just the well known ones). Try them all and see which you prefer.
 </p>
-<hr>
+
 
 <details>
   <summary>Click the <kbd>arrow</kbd> for a list of distros and descriptions.</summary>
