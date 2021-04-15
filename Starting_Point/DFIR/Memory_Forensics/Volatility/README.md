@@ -733,9 +733,28 @@ Virtual            Physical           Name
 0xfffff8a001ef2010 0x000000000f7b7010 \??\C:\Users\Bob\ntuser.dat
 0xfffff8a001f02010 0x0000000009907010 \??\C:\Users\Bob\AppData\Local\Microsoft\Windows\UsrClass.dat
 0xfffff8a004342010 0x000000001fbbf010 \SystemRoot\System32\Config\DEFAULT
-
 ```
 
+<p></p>
+This gives us some important information we need for our next command being the virtual addresses of the SYSTEM and SAM hives. Now that we have this information we can dump the NTLM hashes IOT get the password.
+<p></p>
+
+```
+Virtual            Physical           Name
+------------------ ------------------ ----
+0xfffff8a000024010 0x000000002714c010 \REGISTRY\MACHINE\SYSTEM
+```
+
+<p></p>
+
+```
+Virtual            Physical           Name
+------------------ ------------------ ----
+0xfffff8a0017fb010 0x000000001e2fb010 \SystemRoot\System32\Config\SAM
+```
+
+<p></p>
+The next command we will run is
 </details>
 
 </details>
