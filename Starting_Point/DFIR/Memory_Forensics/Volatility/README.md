@@ -233,13 +233,15 @@ FLAG{192.168.128.130}
 </details>
 <details>
     <summary>A Bob's Life 2</summary>
+<p></p>
 The second challenge we are given is:
-<br>
+<P></P>
 So much for being air gapped. Maybe someone did use his machine after
 <br>
 all? Bob keeps notes in his "Blog", Can you make sure no one has found it?
 <hr>
 So what information can we pull from the hint?
+<p></p>
 <details>
     <summary>Spoilers</summary>
 - We are looking for a file called "Blog"
