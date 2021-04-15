@@ -31,7 +31,7 @@ Looking at this command we will unpack it and go through the basic syntax.
 <details>
     <summary>Click the <kbd>arrow</kbd> for the answer.</summary>
 
-    ```
+```
     ❯ sudo volatility -f bob.vmem imageinfo
     Volatility Foundation Volatility Framework 2.6
     INFO    : volatility.debug    : Determining profile based on KDBG search...
@@ -48,5 +48,5 @@ Looking at this command we will unpack it and go through the basic syntax.
                Image date and time : 2020-08-20 03:34:17 UTC+0000
          Image local date and time : 2020-08-20 13:34:17 +1000
     
-    ```
+```
 </details>
