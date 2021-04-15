@@ -675,16 +675,28 @@ Hint: Hashtags crack me up.
 So what can we pull from the hint?
 <details>
     <summary>Spoilers</summary>
+<p></p>
 - We need to find the current password.
+<br>
 - Windows passwords are stored as NTLM hashes within the SAM file in System32.
 </details>
 <hr>
 <p></p>
 Now that we know what we are looking for what options can we use?
+<p></p>
 <details>
     <summary>Spoilers</summary>
 <p></p>
+From our last challenge we can now use the hashdump option but we need to use one other option first.
+<p></p>
 
+Options | Description
+--------|-------------
+hivelist | To locate the virtual addresses of registry hives in memory, and the full paths to the corresponding hive on disk, use the hivelist command. If you want to print values from a certain hive, run this command first so you can see the address of the hives.
+hashdump | To extract and decrypt cached domain credentials stored in the registry, use the hashdump command. To use hashdump, pass the virtual address of the SYSTEM hive as <kbd>-y</kbd> and the virtual address of the SAM hive as <kbd>-s</kbd>.
+
+<p></p>
+Now that we know the commands we need to use we can start our analysis.
 </details>
 </details>
 
