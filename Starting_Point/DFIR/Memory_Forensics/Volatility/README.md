@@ -96,6 +96,8 @@ We now have a foothold and can begin analysis on the file.
 <p></p>
 For the challenges I recommend you attempt them yourself and only go through the walk throughs when you are stuck. This way you will get used to searching for the commands and try a lot of different commands.
 <p></p>
+<hr>
+<p></p>
 <H3>A Bob's Life Challenges</H3>
 <p></p>
 These challenges will use the file bob.vmem
@@ -873,5 +875,10 @@ The password is Hunter2 so the flag is: FLAG{Hunter2}
 </details>
 </details>
 </details>
-test
+<p></p>
+<hr>
+<p></p>
+<H3>Memory is RAM</H2>
+<p></p>
+
 </details>
