@@ -95,6 +95,8 @@ For the challenges I recommend you attempt them yourself and only go through the
 <p></p>
 <H3>A Bob's Life Challenges</H3>
 <p></p>
+These challenges will use the file bob.vmem
+<p></p>
 <details>
     <summary>A Bob's Life 1</summary>
 <p></p>
