@@ -550,6 +550,7 @@ Not much information but if we look at the file in our file explorer we can see 
 Giving us the flag: FLAG{my_name_gif}
 </details>
 </details>
+</details>
 
 <hr>
 <p></p>
@@ -563,6 +564,23 @@ How did the attacker get Bob's password? He insists he has ALWAYS had very
 secure passwords. Let's find out. Can you check what was the default password 
 <br>
 Bob used when he set up his computer?
+<hr>
+<p></p>
+So what information can we pull from the hint?
+<details>
+    <summary>Spoilers</summary>
+<p></p>
+- We need to find the systems 'default password' from initial set up.
+<p></p>
+With that information we can start our analysis.
+</details>
+<hr>
+<p></p>
+Now that we know what we are looking for what options can we use?
+<details>
+    <summary>Spoilers</summary>
+<p></p>
+
 </details>
 
 
