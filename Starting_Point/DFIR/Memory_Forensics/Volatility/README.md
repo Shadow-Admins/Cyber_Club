@@ -107,6 +107,10 @@ The first challenge we are given is:
     The flag format is  FLAG{IP.Address.Here}
 </p>
 <hr>
+
+<details>
+    <summary>Walkthrough</summary>
+
 <p>
     So what information can we pull from the hint?
 <P>
@@ -232,6 +236,8 @@ Giving us the answer of: <kbd>192.168.128.130</kbd>
 FLAG{192.168.128.130}
 </details>
 </details>
+</details>
+
 </details>
 
 <hr>
