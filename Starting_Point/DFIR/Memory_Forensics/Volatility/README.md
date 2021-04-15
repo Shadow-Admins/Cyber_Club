@@ -220,6 +220,8 @@ Offset(P)          Proto    Local Address                  Foreign Address      
 From this we see Bob has an internal IPv4 address of <kbd>192.168.128.130</kbd> the <kbd>:139</kbd> is the port that the connection is on.
 <br>
 Giving us the answer of: <kbd>192.168.128.130</kbd>
+<br>
+FLAG{192.168.128.130}
 </details>
 </details>
 
