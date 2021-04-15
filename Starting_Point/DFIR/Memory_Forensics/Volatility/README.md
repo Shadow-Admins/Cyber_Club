@@ -656,5 +656,11 @@ Giving us the flag: FLAG{Welcome2}
 </details>
 </details>
 
+<hr>
+<p></p>
+<details>
+    <summary>A Bob's Life 5</summary>
+
+</details>
 
 </details>
