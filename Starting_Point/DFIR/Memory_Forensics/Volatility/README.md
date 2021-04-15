@@ -118,7 +118,7 @@ The first challenge we are given is:
 </p>
 <hr>
 <p>
-So now that we know what we are looking for what are the possible options we can use?
+Now that we know what we are looking for what are the possible options we can use?
 </p>
 <details>
     <summary>Spoilers</summary>
@@ -142,7 +142,7 @@ Looking at our 5 options we see that netscan is the only one that will work beca
 <hr>
 <br>
 
-So we can now run that command.
+We can now run that command.
 
 <details>
     <summary>Spoilers</summary>
@@ -234,6 +234,9 @@ FLAG{192.168.128.130}
 </details>
 </details>
 <details>
+
+<hr>
+
     <summary>A Bob's Life 2</summary>
 <p></p>
 The second challenge we are given is:
