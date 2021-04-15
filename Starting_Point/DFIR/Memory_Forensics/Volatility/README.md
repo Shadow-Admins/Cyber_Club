@@ -12,6 +12,8 @@ Volatility is one of the best open source software programs for analyzing RAM in
 <H2>Where do I Start?</H2>
 Volatility has a ton of options (flags) that can be used and can be overwhelming at the start.
 But once you work out a general road-map you can work through an analysis methodically. Once you have your initial foothold you can start searching for the information you need.
+If at any stage you dont know what command to run you can use the <kbd>-h</kbd> flag to print a list of commands you can use.
+We will use a series of challenges from the CSC to work through IOT practice the use of volatility.
 <hr>
 
 <H2>Getting your Foothold</H2>
@@ -72,3 +74,7 @@ sudo volatility -f bob.vmem --profile=Win7SP1x64 'Option to use'
 ```
 <br>
 The <kbd>--profile=</kbd> flag will always be present now so that volatility knows what OS it is running commands against. I find it easiest to have the <kbd>Options to use</kbd> at the end of the command so that you can easily run different command by pressing the <kbd>up arrow</kbd>.
+<br>
+We now have a foothold and can begin analysis on the file.
+
+<H2>First Challenge</H2>
