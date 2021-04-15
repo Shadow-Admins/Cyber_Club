@@ -233,10 +233,10 @@ FLAG{192.168.128.130}
 </details>
 </details>
 </details>
-<details>
 
 <hr>
 
+<details>
     <summary>A Bob's Life 2</summary>
 <p></p>
 The second challenge we are given is:
