@@ -408,6 +408,7 @@ However we are presented with a ton of output, we could look through line by lin
 ```
 sudo volatility -f bob.vmem --profile=Win7SP1x64 filescan | grep -i '\desktop'
 ```
+
 <p></p>
 
 </details>
