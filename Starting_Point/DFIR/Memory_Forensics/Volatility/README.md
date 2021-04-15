@@ -119,7 +119,7 @@ So now that we know what we are looking for what are the possible options we can
 Option | Description
 ------ | -----------------------------------------------------------------
 connections | To view TCP connections that were active at the time of the memory acquisition, use the connections command. This walks the singly-linked list of connection structures pointed to by a non-exported symbol in the tcpip.sys module.<br><b><u>This command is for x86 and x64 Windows XP and Windows 2003 Server only.</u></b>
-connscan | Pool scanner for tcp connections
+connscan | To find _TCPT_OBJECT structures using pool tag scanning, use the connscan command. This can find artifacts from previous connections that have since been terminated, in addition to the active ones. For example, a Pid field may be 0 (not valid), but all other fields are still in tact. Thus, while it may find false positives sometimes, you also get the benefit of detecting as much information as possible.<br><b><u>This command is for x86 and x64 Windows XP and Windows 2003 Server only.</u></b>
 sockets | Print list of open sockets
 sockscan | Pool scanner for tcp socket objects
 netscan | 
