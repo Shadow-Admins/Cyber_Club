@@ -118,8 +118,12 @@ So now that we know what we are looking for what are the possible options we can
     
 Option | Description
 ------ | -----------------------------------------------------------------
-connections | Print list of open connections [Windows XP and 2003 Only]
-connscan | Pool scanner for tcp connections</li>
+connections | To view TCP connections that were active at the time of the memory acquisition, use the connections command. This walks the singly-linked list of connection structures pointed to by a non-exported symbol in the tcpip.sys module.<br>This command is for x86 and x64 Windows XP and Windows 2003 Server only.
+connscan | Pool scanner for tcp connections
+sockets | Print list of open sockets
+sockscan | Pool scanner for tcp socket objects
+netscan | 
+
 
 </details>
 </details>
