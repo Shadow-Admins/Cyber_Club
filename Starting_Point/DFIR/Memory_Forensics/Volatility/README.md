@@ -70,4 +70,5 @@ This single command is what gives us our foothold to start analysis of the memor
 ```
 sudo volatility -f bob.vmem --profile=Win7SP1x64 'Option to use'
 ```
-
+<br>
+The <kbd>--profile=</kbd> flag will always be present now so that volatility knows what OS it is running commands against. I find it easiest to have the <kbd>Options to use</kbd> at the end of the command so that you can easily run different command by pressing the <kbd>up arrow</kbd>.
