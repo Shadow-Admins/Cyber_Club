@@ -402,7 +402,7 @@ sudo volatility -f bob.vmem --profile=Win7SP1x64 filescan
 ```
 
 <p></p>
-However we are presented with a ton of output, we could look through line by line or we can use a built in linux tool <kbd>grep<kbd> to narrow down our results.
+However we are presented with a ton of output, we could look through line by line or we can use a built in linux tool <kbd>grep</kbd> to narrow down our results.
 <p></p>
 
 ```
