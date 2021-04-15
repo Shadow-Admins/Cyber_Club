@@ -365,7 +365,7 @@ Now that we know what we are looking for what options can we use?
 <p></p>
 
 <details>
-    <summary>Spoilers<summary>
+    <summary>Spoilers</summary>
 <p></p>
 Looking at our options there are a few steps we need to go through.
 <br>
