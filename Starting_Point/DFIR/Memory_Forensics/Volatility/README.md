@@ -112,7 +112,9 @@ The first challenge we are given is:
             <li>We are going to have to look for network related analysis options</li>
     </details>
 </p>
+<p>
 So now that we know what we are looking for what are the possible options we can use?
+</p>
 <details>
     <summary>Spoilers</summary>
     
