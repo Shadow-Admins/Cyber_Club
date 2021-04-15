@@ -132,8 +132,91 @@ Looking at our 5 options we see that netscan is the only one that will work beca
 </p>
 </details>
 
+<br>
+
+So we can now run that command.
+
+<details>
+    <summary>Spoilers</summary>
+<br>
+The command we will run is:
+
 ```
+sudo volatility -f bob.vmem --profile=Win7SP1x64 netscan
+```
+
+<br>
+Which gives us:
+<br>
+
+```
+❯ sudo volatility -f bob.vmem --profile=Win7SP1x64 netscan                                                                                                                                    
+[sudo] password for parrot:                                                                                                                                                                   
+Volatility Foundation Volatility Framework 2.6                                                                                                                                                
+Offset(P)          Proto    Local Address                  Foreign Address      State            Pid      Owner          Created                                                              
+0x3e07f530         UDPv4    0.0.0.0:52906                  *:*                                   952      svchost.exe    2020-08-20 03:34:17 UTC+0000                                         
+0x3e07f530         UDPv6    :::52906                       *:*                                   952      svchost.exe    2020-08-20 03:34:17 UTC+0000                                         
+0x3e0f2ec0         UDPv6    fe80::4919:a193:81e5:6027:546  *:*                                   740      svchost.exe    2020-08-20 03:34:06 UTC+0000                                         
+0x3e10a5e0         UDPv4    127.0.0.1:59815                *:*                                   2808     iexplore.exe   2020-08-20 03:30:31 UTC+0000                                         
+0x3e10da00         UDPv4    127.0.0.1:64777                *:*                                   2728     iexplore.exe   2020-08-20 03:30:31 UTC+0000                                         
+0x3e21e550         UDPv4    192.168.128.130:138            *:*                                   4        System         2020-08-20 03:34:10 UTC+0000                                         
+0x3e4cd2e0         UDPv4    127.0.0.1:58862                *:*                                   1700     iexplore.exe   2020-08-20 03:31:27 UTC+0000                                         
+0x3e5e6960         UDPv4    0.0.0.0:5355                   *:*                                   952      svchost.exe    2020-08-20 03:34:17 UTC+0000                                         
+0x3e6676a0         UDPv4    0.0.0.0:5355                   *:*                                   952      svchost.exe    2020-08-20 03:34:17 UTC+0000                                         
+0x3e6676a0         UDPv6    :::5355                        *:*                                   952      svchost.exe    2020-08-20 03:34:17 UTC+0000                                         
+0x3e702010         UDPv4    0.0.0.0:68                     *:*                                   740      svchost.exe    2020-08-20 03:34:06 UTC+0000                                         
+0x3e7256b0         UDPv4    0.0.0.0:65018                  *:*                                   952      svchost.exe    2020-08-20 03:34:17 UTC+0000                                         
+0x3e270160         TCPv4    0.0.0.0:49156                  0.0.0.0:0            LISTENING        500      lsass.exe                                                                           
+0x3e3806a0         TCPv4    192.168.128.130:139            0.0.0.0:0            LISTENING        4        System                                                                              
+0x3e4d46d0         TCPv4    0.0.0.0:49155                  0.0.0.0:0            LISTENING        484      services.exe                                                                        
+0x3e4d46d0         TCPv6    :::49155                       :::0                 LISTENING        484      services.exe   
+0x3e4d52b0         TCPv4    0.0.0.0:49155                  0.0.0.0:0            LISTENING        484      services.exe   
+0x3e60c440         TCPv4    0.0.0.0:49153                  0.0.0.0:0            LISTENING        740      svchost.exe    
+0x3e60d010         TCPv4    0.0.0.0:49153                  0.0.0.0:0            LISTENING        740      svchost.exe    
+0x3e60d010         TCPv6    :::49153                       :::0                 LISTENING        740      svchost.exe    
+0x3e72d6f0         TCPv4    0.0.0.0:445                    0.0.0.0:0            LISTENING        4        System         
+0x3e72d6f0         TCPv6    :::445                         :::0                 LISTENING        4        System         
+0x3e755820         TCPv4    0.0.0.0:49154                  0.0.0.0:0            LISTENING        880      svchost.exe    
+0x3e755820         TCPv6    :::49154                       :::0                 LISTENING        880      svchost.exe    
+0x3e11f9d0         TCPv4    192.168.128.130:49188          104.18.102.194:443   CLOSED           2808     iexplore.exe   
+0x3e1521b0         TCPv4    192.168.128.130:49160          111.221.29.254:443   CLOSED           2808     iexplore.exe   
+0x3e1a9880         TCPv4    192.168.128.130:49177          204.79.197.200:443   CLOSED           2808     iexplore.exe   
+0x3e1d4520         TCPv4    192.168.128.130:49173          144.2.0.5:80         CLOSED           2808     iexplore.exe   
+0x3e1d9660         TCPv4    192.168.128.130:49170          111.221.29.254:443   CLOSED           -1                      
+0x3e9b66b0         UDPv4    192.168.128.130:137            *:*                                   4        System         2020-08-20 03:34:10 UTC+0000
+0x3eaf7260         UDPv4    192.168.128.130:68             *:*                                   740      svchost.exe    2020-08-20 03:34:13 UTC+0000
+0x3e8a8890         TCPv4    0.0.0.0:135                    0.0.0.0:0            LISTENING        688      svchost.exe    
+0x3e8c2230         TCPv4    0.0.0.0:135                    0.0.0.0:0            LISTENING        688      svchost.exe    
+0x3e8c2230         TCPv6    :::135                         :::0                 LISTENING        688      svchost.exe    
+0x3e94b1c0         TCPv4    0.0.0.0:49152                  0.0.0.0:0            LISTENING        384      wininit.exe    
+0x3e9d5c90         TCPv4    0.0.0.0:49152                  0.0.0.0:0            LISTENING        384      wininit.exe    
+0x3e9d5c90         TCPv6    :::49152                       :::0                 LISTENING        384      wininit.exe    
+0x3e9da4a0         TCPv4    0.0.0.0:49156                  0.0.0.0:0            LISTENING        500      lsass.exe      
+0x3e9da4a0         TCPv6    :::49156                       :::0                 LISTENING        500      lsass.exe      
+0x3e9cd540         TCPv6    -:0                            68b0:3a02:80fa:ffff:68b0:3a02:80fa:ffff:0 CLOSED           1        ??0????       
+0x3e9cdaf0         TCPv4    -:0                            104.176.58.2:0       CLOSED           424                     
+0x3e9cf860         TCPv6    -:0                            68b0:3a02:80fa:ffff:68b0:3a02:80fa:ffff:0 CLOSED           1        ??0????       
+0x3f2e80e0         UDPv4    0.0.0.0:0                      *:*                                   952      svchost.exe    2020-08-20 03:34:10 UTC+0000
+0x3f2e80e0         UDPv6    :::0                           *:*                                   952      svchost.exe    2020-08-20 03:34:10 UTC+0000
+0x3f20f760         TCPv4    0.0.0.0:49154                  0.0.0.0:0            LISTENING        880      svchost.exe    
+```
+<br>
+Looking through this output we are looking for an IPv4 address and are looking for the local side.
+<br>
+We should also make sure the it is "LISTENING" and not "CLOSED", and finally we need to see what the "Owner" is.
+What we end up finding is:
+
+<details>
+    <summary>Answer</summary>
+
+```
+Offset(P)          Proto    Local Address                  Foreign Address      State            Pid      Owner          Created                         
 0x3e3806a0         TCPv4    192.168.128.130:139            0.0.0.0:0            LISTENING        4        System
 ```
+
+</details>
+</details>
+
+
 
 </details>
