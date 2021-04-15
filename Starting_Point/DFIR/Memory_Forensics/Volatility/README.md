@@ -655,7 +655,7 @@ DefaultPassword
 Giving us the flag: FLAG{Welcome2}
 </details>
 </details>
-
+</details>
 <hr>
 <p></p>
 <details>
