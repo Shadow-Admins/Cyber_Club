@@ -567,6 +567,7 @@ Bob used when he set up his computer?
 <hr>
 <p></p>
 So what information can we pull from the hint?
+<p></p>
 <details>
     <summary>Spoilers</summary>
 <p></p>
@@ -577,6 +578,7 @@ With that information we can start our analysis.
 <hr>
 <p></p>
 Now that we know what we are looking for what options can we use?
+<p></p>
 <details>
     <summary>Spoilers</summary>
 <p></p>
