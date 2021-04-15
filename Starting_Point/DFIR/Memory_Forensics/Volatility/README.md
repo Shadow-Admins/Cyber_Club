@@ -116,6 +116,7 @@ The first challenge we are given is:
             - We are going to have to look for network related analysis options
     </details>
 </p>
+<hr>
 <p>
 So now that we know what we are looking for what are the possible options we can use?
 </p>
@@ -138,6 +139,7 @@ Looking at our 5 options we see that netscan is the only one that will work beca
 </p>
 </details>
 
+<hr>
 <br>
 
 So we can now run that command.
