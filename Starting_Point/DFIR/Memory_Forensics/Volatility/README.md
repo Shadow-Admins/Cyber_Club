@@ -109,7 +109,7 @@ The first challenge we are given is:
 <P>
     <details>
         <summary>Spoilers</summary>
-            <li>We are going to have to look for network related analysis options</li>
+            - We are going to have to look for network related analysis options
     </details>
 </p>
 <p>
@@ -131,4 +131,9 @@ netscan | To scan for network artifacts in 32- and 64-bit Windows Vista, Windows
 Looking at our 5 options we see that netscan is the only one that will work because the other 4 will not work with the memory profile we have.
 </p>
 </details>
+
+```
+0x3e3806a0         TCPv4    192.168.128.130:139            0.0.0.0:0            LISTENING        4        System
+```
+
 </details>
