@@ -284,6 +284,7 @@ We can now run that command.
 <details>
     <summary>Spoilers/Answer</summary>
 <p>
+The command we will run is:
 
 ```
 sudo volatility -f bob.vmem --profile=Win7SP1x64 iehistory
@@ -329,5 +330,14 @@ Title: Bob's Secret Blog - FLAG{encoded_secrets}
 Giving us the flag.
 <p>
 FLAG{encoded_secrets}
+
+</details>
+
+<hr>
+
+<details>
+    <summary>A Bob's Life 3</summary>
+
+
 
 </details>
