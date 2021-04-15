@@ -784,7 +784,7 @@ sudo volatility -f bob.vmem --profile=Win7SP1x64 hashdump -y 0xfffff8a000024010 
 ```
 
 <p></p>
-We now have a file that we can pass to john IOT crack the hashes. Using john is another lesson but you can see all the flags by using the <kbd>-h<kbd> flag.
+We now have a file that we can pass to john IOT crack the hashes. Using john is another lesson but you can see all the flags by using the <kbd>-h</kbd> flag.
 <br>
 The command we will use is:
 <p></p>
