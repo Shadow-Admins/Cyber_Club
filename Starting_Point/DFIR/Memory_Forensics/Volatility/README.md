@@ -410,7 +410,81 @@ sudo volatility -f bob.vmem --profile=Win7SP1x64 filescan | grep -i '\desktop'
 ```
 
 <p></p>
-Which gives us
+Which gives us:
+<p></p>
+
+```
+❯ sudo volatility -f bob.vmem --profile=Win7SP1x64 filescan | grep -i '\Desktop'                                                                                                              
+Volatility Foundation Volatility Framework 2.6                                                                                                                                                
+0x000000003e0cb360      1      1 R--rw- \Device\HarddiskVolume1\Users\Bob\Desktop                                                                                                             
+0x000000003e0de070     16      0 R--rwd \Device\HarddiskVolume1\Users\Bob\Favorites\desktop.ini                                                                                               
+0x000000003e0eb6a0      2      0 R--rwd \Device\HarddiskVolume1\Users\Bob\Favorites\Links\desktop.ini                                                                                         
+0x000000003e1688e0      2      0 R--rwd \Device\HarddiskVolume1\Users\Bob\Contacts\desktop.ini                                                                                                
+0x000000003e179070     16      0 R--rwd \Device\HarddiskVolume1\Users\Bob\AppData\Local\Microsoft\Windows\History\desktop.ini                                                                 
+0x000000003e1b08a0      2      0 R--rwd \Device\HarddiskVolume1\Users\Bob\Videos\desktop.ini                                                                                                  
+0x000000003e1d34d0      1      1 R--rw- \Device\HarddiskVolume1\Users\Bob\Desktop                                                                                                             
+0x000000003e1d8070      2      0 R--rwd \Device\HarddiskVolume1\Users\Bob\Searches\desktop.ini                                                                                                
+0x000000003e1dd2d0      2      0 R--rwd \Device\HarddiskVolume1\Users\Bob\Saved Games\desktop.ini                                                                                             
+0x000000003e1dd9e0      2      0 R--rwd \Device\HarddiskVolume1\Users\Bob\Downloads\desktop.ini                                                                                               
+0x000000003e1dedd0      2      0 R--rwd \Device\HarddiskVolume1\Users\Bob\Links\desktop.ini                                                                                                   
+0x000000003e2cca40      2      1 R--rwd \Device\HarddiskVolume1\Users\Bob\Desktop                                                                                                             
+0x000000003e2eee80      2      0 R--rwd \Device\HarddiskVolume1\Program Files\desktop.ini                                                                                                     
+0x000000003e329f20      2      0 R--rwd \Device\HarddiskVolume1\Users\Bob\AppData\Roaming\Microsoft\Windows\Start Menu\desktop.ini                                                            
+0x000000003e3416f0      2      0 R--rwd \Device\HarddiskVolume1\Users\Bob\AppData\Local\Microsoft\Windows\Burn\Burn\desktop.ini                                                               
+0x000000003e342dd0     16      0 R--rwd \Device\HarddiskVolume1\Users\Bob\Desktop\desktop.ini                                                                                                 
+0x000000003e3435a0     16      0 R--rwd \Device\HarddiskVolume1\Users\Public\desktop.ini                                                                                                      
+0x000000003e344660     16      0 R--rwd \Device\HarddiskVolume1\Users\Public\Desktop\desktop.ini
+0x000000003e347070      2      1 R--rwd \Device\HarddiskVolume1\Users\Public\Desktop
+0x000000003e347b70      2      1 R--rwd \Device\HarddiskVolume1\Users\Public\Desktop
+0x000000003e348f20      2      1 R--rwd \Device\HarddiskVolume1\Users\Bob\Desktop
+0x000000003e349dc0      2      0 R--rwd \Device\HarddiskVolume1\Users\Bob\AppData\Roaming\Microsoft\Internet Explorer\Quick Launch\desktop.ini
+0x000000003e354ab0      2      0 R--rwd \Device\HarddiskVolume1\Program Files (x86)\desktop.ini
+0x000000003e35a070     16      0 R--rwd \Device\HarddiskVolume1\Users\Bob\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\desktop.ini
+0x000000003e35af20     16      0 R--rwd \Device\HarddiskVolume1\ProgramData\Microsoft\Windows\Start Menu\Programs\desktop.ini
+0x000000003e35b740     16      0 R--rwd \Device\HarddiskVolume1\ProgramData\Microsoft\Windows\Start Menu\desktop.ini
+0x000000003e35cdd0     16      0 R--rwd \Device\HarddiskVolume1\Users\Bob\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Accessories\Desktop.ini
+0x000000003e35d070     16      0 R--rwd \Device\HarddiskVolume1\Users\Bob\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Administrative Tools\desktop.ini
+0x000000003e35d960     16      0 R--rwd \Device\HarddiskVolume1\Users\Bob\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Maintenance\Desktop.ini
+0x000000003e35e070     16      0 R--rwd \Device\HarddiskVolume1\Users\Bob\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup\desktop.ini
+0x000000003e35e810     16      0 R--rwd \Device\HarddiskVolume1\Users\Bob\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Accessories\Accessibility\Desktop.ini
+0x000000003e35fd10     16      0 R--rwd \Device\HarddiskVolume1\Users\Bob\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Accessories\System Tools\Desktop.ini
+0x000000003e360290     16      0 R--rwd \Device\HarddiskVolume1\ProgramData\Microsoft\Windows\Start Menu\Programs\Games\desktop.ini
+0x000000003e360b90     16      0 R--rwd \Device\HarddiskVolume1\ProgramData\Microsoft\Windows\Start Menu\Programs\Accessories\Desktop.ini
+0x000000003e361dd0     16      0 R--rwd \Device\HarddiskVolume1\ProgramData\Microsoft\Windows\Start Menu\Programs\Administrative Tools\desktop.ini
+0x000000003e3621f0     16      0 R--rwd \Device\HarddiskVolume1\ProgramData\Microsoft\Windows\Start Menu\Programs\Maintenance\Desktop.ini
+0x000000003e362650     16      0 R--rwd \Device\HarddiskVolume1\ProgramData\Microsoft\Windows\Start Menu\Programs\Accessories\Tablet PC\Desktop.ini
+0x000000003e363260     16      0 R--rwd \Device\HarddiskVolume1\ProgramData\Microsoft\Windows\Start Menu\Programs\Accessories\System Tools\Desktop.ini
+0x000000003e364b30     16      0 R--rwd \Device\HarddiskVolume1\ProgramData\Microsoft\Windows\Start Menu\Programs\Accessories\Accessibility\Desktop.ini
+0x000000003e366f20     16      0 R--rwd \Device\HarddiskVolume1\ProgramData\Microsoft\Windows\Start Menu\Programs\Accessories\Windows PowerShell\desktop.ini
+0x000000003e36d7e0      2      0 R--rwd \Device\HarddiskVolume1\Users\Bob\AppData\Roaming\Microsoft\Internet Explorer\Quick Launch\User Pinned\TaskBar\desktop.ini
+0x000000003e37f070      2      0 R--rw- \Device\HarddiskVolume1\Users\Public\Desktop\Google Chrome.lnk
+0x000000003e383920      2      0 R--rwd \Device\HarddiskVolume1\$Recycle.Bin\S-1-5-21-2085463377-1443911893-2077917805-1000\desktop.ini
+0x000000003e38a290      2      0 R--rwd \Device\HarddiskVolume1\Users\Bob\AppData\Roaming\Microsoft\Windows\Libraries\desktop.ini
+0x000000003e39af20     16      0 R--rwd \Device\HarddiskVolume1\Users\Bob\Documents\desktop.ini
+0x000000003e39c9e0     16      0 R--rwd \Device\HarddiskVolume1\Users\Public\Documents\desktop.ini
+0x000000003e39cf20      2      0 R--rwd \Device\HarddiskVolume1\Users\Public\Pictures\desktop.ini
+0x000000003e39d300      2      0 R--rwd \Device\HarddiskVolume1\Users\Bob\Music\desktop.ini
+0x000000003e39da80      2      0 R--rwd \Device\HarddiskVolume1\Users\Public\Music\desktop.ini
+0x000000003e39ef20      2      0 R--rwd \Device\HarddiskVolume1\Users\Bob\Pictures\desktop.ini
+0x000000003e3b74b0      6      0 R--r-d \Device\HarddiskVolume1\Program Files\VMware\VMware Tools\plugins\vmusr\desktopEvents.dll
+0x000000003e3c4860      2      0 R--rw- \Device\HarddiskVolume1\ProgramData\VMware\VMware Tools\Unity Filters\googledesktop.txt
+0x000000003e465070     16      0 R--rwd \Device\HarddiskVolume1\ProgramData\Microsoft\Windows\Start Menu\Programs\Startup\desktop.ini
+0x000000003e5b34d0     16      0 R--rwd \Device\HarddiskVolume1\Users\desktop.ini
+0x000000003e6b2a50      1      1 R--rw- \Device\HarddiskVolume1\Users\Bob\Desktop
+0x000000003e895480      2      0 R--rwd \Device\HarddiskVolume1\Users\Bob\AppData\Roaming\Microsoft\Windows\Recent\desktop.ini
+0x000000003e8cbd10      1      1 R--rw- \Device\HarddiskVolume1\Users\Bob\Desktop
+0x000000003e9b6550     16      0 R--rw- \Device\HarddiskVolume1\Users\Bob\Desktop\hacked.gif
+
+```
+<p></p>
+That gives us a much smaller list, and a file should stick out...
+<p></P>
+
+```
+0x000000003e9b6550     16      0 R--rw- \Device\HarddiskVolume1\Users\Bob\Desktop\hacked.gif
+```
+
+<p></p>
 
 </details>
 
