@@ -88,4 +88,28 @@ The <kbd>--profile=</kbd> flag will always be present now so that volatility kno
 We now have a foothold and can begin analysis on the file.
 </details>
 <hr>
+
 <H2>First Challenge</H2>
+<details>
+    <summary>A Bob's Life 1</summary>
+The first challenge we are given is:
+<p>
+    Bob has returned from a lunch break and thinks someone might have tampered with
+    <br> 
+    his PC but he is usually overly dramatic about these things. Can you make sure 
+    <br>
+    he actually has a network connection? What is his IPv4 address?
+</p>
+<p>
+    The flag format is  FLAG{IP.Address.Here}
+</p>
+<hr>
+<p>
+    So what information can we pull from the hint?
+<P>
+    <details>
+        <summary>Spoilers</summary>
+            <li>We are going to have to look for network related analysis options</li>
+    </details>
+</p>
+</details>
