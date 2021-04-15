@@ -111,6 +111,7 @@ The first challenge we are given is:
 <P>
     <details>
         <summary>Spoilers</summary>
+<p></p>
             - We are going to have to look for network related analysis options
     </details>
 </p>
