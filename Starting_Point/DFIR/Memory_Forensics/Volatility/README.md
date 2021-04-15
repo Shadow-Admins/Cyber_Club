@@ -249,9 +249,15 @@ The second challenge we are given is:
 So much for being air gapped. Maybe someone did use his machine after
 <br>
 all? Bob keeps notes in his "Blog", Can you make sure no one has found it?
-<hr>
+<p></p>
+
+<details>
+    <summary>Walkthrough</summary>
+<p></p>
+
 So what information can we pull from the hint?
 <p></p>
+
 <details>
     <summary>Spoilers</summary>
 <p></p>
@@ -338,7 +344,7 @@ FLAG{encoded_secrets}
 
 </details>
 </details>
-
+</details>
 <hr>
 
 <details>
@@ -351,8 +357,11 @@ This could be serious. It looks like the attacker left something for
 Bob on his Desktop. Was this someone sinister? Or some kind of prank? Can you take
 <br>
 a look at it?
-<p>
-<hr>
+<p></p>
+
+<details>
+    <summary>Walkthrough</summary>
+
 <p></p>
 So what information can we pull from the hint?
 <p></p>
@@ -556,7 +565,7 @@ Giving us the flag: FLAG{my_name_gif}
 </details>
 </details>
 </details>
-
+</details>
 <hr>
 <p></p>
 <details>
@@ -569,7 +578,11 @@ How did the attacker get Bob's password? He insists he has ALWAYS had very
 secure passwords. Let's find out. Can you check what was the default password 
 <br>
 Bob used when he set up his computer?
-<hr>
+<p></p>
+
+<details>
+    <summary>Walkthrough</summary>
+
 <p></p>
 So what information can we pull from the hint?
 <p></p>
@@ -661,6 +674,7 @@ Giving us the flag: FLAG{Welcome2}
 </details>
 </details>
 </details>
+</details>
 <hr>
 <p></p>
 
@@ -675,7 +689,10 @@ Can you check what his current password is?
 <p></p>
 Hint: Hashtags crack me up.
 <p></p>
-<hr>
+
+<details>
+    <summary>Walkthrough</summary>
+
 <p></p>
 So what can we pull from the hint?
 <details>
@@ -843,7 +860,7 @@ In both outputs we can see the password we are looking for.
 The password is Hunter2 so the flag is: FLAG{Hunter2}
 </details>
 </details>
-
+</details>
 </details>
 
 </details>
