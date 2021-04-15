@@ -118,7 +118,7 @@ So now that we know what we are looking for what are the possible options we can
     
 Option | Description
 ------ | -----------------------------------------------------------------
-connections | To view TCP connections that were active at the time of the memory acquisition, use the connections command. This walks the singly-linked list of connection structures pointed to by a non-exported symbol in the tcpip.sys module.<br><u>This command is for x86 and x64 Windows XP and Windows 2003 Server only.</u>
+connections | To view TCP connections that were active at the time of the memory acquisition, use the connections command. This walks the singly-linked list of connection structures pointed to by a non-exported symbol in the tcpip.sys module.<br><b><u>This command is for x86 and x64 Windows XP and Windows 2003 Server only.</u></b>
 connscan | Pool scanner for tcp connections
 sockets | Print list of open sockets
 sockscan | Pool scanner for tcp socket objects
