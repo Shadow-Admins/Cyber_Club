@@ -106,11 +106,10 @@ The first challenge we are given is:
 <p>
     The flag format is  FLAG{IP.Address.Here}
 </p>
-<hr>
 
 <details>
     <summary>Walkthrough</summary>
-
+<p></p>
 <p>
     So what information can we pull from the hint?
 <P>
