@@ -117,7 +117,7 @@ So now that we know what we are looking for what are the possible options we can
     <summary>Spoilers</summary>
     
 Option | Description
--------------------------------------------------------------------------
+------ | -----------------------------------------------------------------
 connections | Print list of open connections [Windows XP and 2003 Only]
 connscan | Pool scanner for tcp connections</li>
 
