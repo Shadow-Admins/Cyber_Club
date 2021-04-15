@@ -551,4 +551,20 @@ Giving us the flag: FLAG{my_name_gif}
 </details>
 </details>
 
+<hr>
+<p></p>
+<details>
+    <summary>A Bob's Life 4</summary>
+<p></p>
+The fourth challenge we are given is:
+<p></p>
+How did the attacker get Bob's password? He insists he has ALWAYS had very 
+<br>
+secure passwords. Let's find out. Can you check what was the default password 
+<br>
+Bob used when he set up his computer?
+</details>
+
+
+
 </details>
