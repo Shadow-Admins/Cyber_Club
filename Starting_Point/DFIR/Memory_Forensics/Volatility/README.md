@@ -13,6 +13,7 @@ Volatility is one of the best open source software programs for analyzing RAM in
 Volatility has a ton of options (flags) that can be used and can be overwhelming at the start.
 But once you work out a general road-map you can work through an analysis methodically. Once you have your initial foothold you can start searching for the information you need.
 If at any stage you dont know what command to run you can use the <kbd>-h</kbd> flag to print a list of commands you can use.
+<br>
 We will use a series of challenges from the CSC to work through IOT practice the use of volatility.
 <hr>
 
