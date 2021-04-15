@@ -338,6 +338,16 @@ FLAG{encoded_secrets}
 
 <details>
     <summary>A Bob's Life 3</summary>
+<p>
+The third challenge we are given is:
+<p>
+This could be serious. It looks like the attacker left something for
+<br>
+Bob on his Desktop. Was this someone sinister? Or some kind of prank? Can you take
+<br>
+a look at it?
+<p>
+<hr>
 
 
 
