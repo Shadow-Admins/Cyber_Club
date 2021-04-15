@@ -397,7 +397,7 @@ We can now run those commands.
 The first command we will run is <kbd>filescan</kbd>
 <p></p>
 
-```
+``` shell
 sudo volatility -f bob.vmem --profile=Win7SP1x64 filescan
 ```
 
@@ -410,6 +410,7 @@ sudo volatility -f bob.vmem --profile=Win7SP1x64 filescan | grep -i '\desktop'
 ```
 
 <p></p>
+Which gives us
 
 </details>
 
