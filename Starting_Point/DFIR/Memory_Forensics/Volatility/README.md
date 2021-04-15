@@ -367,6 +367,7 @@ Now that we know what we are looking for what options can we use?
 Options | Description
 --------|--------------
 asd | asd
-</details>
 
+</details>
+</details>
 </details>
