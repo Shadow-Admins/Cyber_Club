@@ -340,7 +340,7 @@ FLAG{encoded_secrets}
     <summary>A Bob's Life 3</summary>
 <p></p>
 The third challenge we are given is:
-<p>
+<p></p>
 This could be serious. It looks like the attacker left something for
 <br>
 Bob on his Desktop. Was this someone sinister? Or some kind of prank? Can you take
@@ -348,7 +348,13 @@ Bob on his Desktop. Was this someone sinister? Or some kind of prank? Can you ta
 a look at it?
 <p>
 <hr>
-
+<p></p>
+So what information can we pull from the hint?
+<details>
+    <summary>Spoilers</summary>
+- We need to use an option to look at what is on the desktop.
+</details>
+<hr>
 
 
 </details>
