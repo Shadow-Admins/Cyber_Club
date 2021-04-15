@@ -541,11 +541,14 @@ DataSectionObject 0x3e9b6550   None   \Device\HarddiskVolume1\Users\Bob\Desktop\
 <p></p>
 Not much information but if we look at the file in our file explorer we can see that it has dumped the .gif image which we can view and get the flag for this challenge.
 <p></p>
+<details>
+    <summary>Answer</summary>
 <div align="center">
 <img src="https://github.com/Shadow-Admins/Cyber_Club/blob/main/Starting_Point/DFIR/Memory_Forensics/Volatility/images/file.None.0xfffffa80023b6d00.hacked.gif.dat" width="600"><br>
 </div>
 <p></p>
 Giving us the flag: FLAG{my_name_gif}
+</details>
 </details>
 
 </details>
