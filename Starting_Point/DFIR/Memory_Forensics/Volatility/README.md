@@ -358,18 +358,25 @@ So what information can we pull from the hint?
 <p></p>
 So with that information we can start our analysis.
 </details>
+
 <hr>
+
 Now that we know what we are looking for what options can we use?
 <p></p>
 
 <details>
     <summary>Spoilers<summary>
 <p></p>
-
-Options | Description
---------|--------------
-asd | asd
+Looking at our options there are a few steps we need to go through.
+<br>
+First.
+<br>
+We need to locate all the files on the desktop.
+<br>
+Second.
+<br>
+We need to either read the file through volatility or we need to dump it onto our system
 
 </details>
-</details>
+
 </details>
