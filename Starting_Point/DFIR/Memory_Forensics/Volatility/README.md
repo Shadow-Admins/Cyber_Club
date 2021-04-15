@@ -92,7 +92,9 @@ We now have a foothold and can begin analysis on the file.
 <H2>Challenges</H2>
 <details>
     <summary>A Bob's Life 1</summary>
+<p>
 The first challenge we are given is:
+</p>
 <p>
     Bob has returned from a lunch break and thinks someone might have tampered with
     <br> 
