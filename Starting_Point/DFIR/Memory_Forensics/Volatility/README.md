@@ -698,6 +698,46 @@ hashdump | To extract and decrypt cached domain credentials stored in the regist
 <p></p>
 Now that we know the commands we need to use we can start our analysis.
 </details>
+<p></p>
+We can now run those commands.
+<p></p>
+<details>
+    <summary>Spoilers</summary>
+<p></p>
+The first command we will run is:
+<p></p>
+
+```
+sudo volatility -f bob.vmem --profile=Win7SP1x64 hivelist
+```
+
+<p></P>
+Which gives us:
+<p></p>
+
+```
+❯ sudo volatility -f bob.vmem --profile=Win7SP1x64 hivelist
+
+Volatility Foundation Volatility Framework 2.6
+Virtual            Physical           Name
+------------------ ------------------ ----
+0xfffff8a00000f010 0x0000000026fc1010 [no name]
+0xfffff8a000024010 0x000000002714c010 \REGISTRY\MACHINE\SYSTEM
+0xfffff8a000057010 0x000000002747f010 \REGISTRY\MACHINE\HARDWARE
+0xfffff8a0008fc010 0x00000000210b3010 \Device\HarddiskVolume1\Boot\BCD
+0xfffff8a001553010 0x0000000020440010 \SystemRoot\System32\Config\SOFTWARE
+0xfffff8a00177f010 0x000000001e852010 \SystemRoot\System32\Config\SECURITY
+0xfffff8a0017fb010 0x000000001e2fb010 \SystemRoot\System32\Config\SAM
+0xfffff8a0018d1010 0x000000001ddd8010 \??\C:\Windows\ServiceProfiles\NetworkService\NTUSER.DAT
+0xfffff8a001959410 0x000000003bba7410 \??\C:\Windows\ServiceProfiles\LocalService\NTUSER.DAT
+0xfffff8a001ef2010 0x000000000f7b7010 \??\C:\Users\Bob\ntuser.dat
+0xfffff8a001f02010 0x0000000009907010 \??\C:\Users\Bob\AppData\Local\Microsoft\Windows\UsrClass.dat
+0xfffff8a004342010 0x000000001fbbf010 \SystemRoot\System32\Config\DEFAULT
+
+```
+
+</details>
+
 </details>
 
 </details>
