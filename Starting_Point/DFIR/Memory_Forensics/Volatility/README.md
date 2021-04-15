@@ -256,4 +256,21 @@ So what information can we pull from the hint?
 <p></p>
 <p>So with that information we can start our analysis.</p>
 </details>
+
+<hr>
+
+<p></p>
+Now that we know what we are looking for what are the possible options we can use?
+<details>
+    <summary>Spoilers</summary>
+<p></p>
+Options | Description
+-------------------------------------
+asd | asd
+
+
+
+</details>
+
+
 </details>
