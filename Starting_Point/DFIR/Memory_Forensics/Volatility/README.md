@@ -582,9 +582,78 @@ Now that we know what we are looking for what options can we use?
 <details>
     <summary>Spoilers</summary>
 <p></p>
+Looking at our options there are two aimed at password recovery.
+<p></p>
 
+Options | Details
+--------|----------
+hashdump | To extract and decrypt cached domain credentials stored in the registry, use the hashdump command.
+lsadump | To dump LSA secrets from the registry, use the lsadump command. This exposes information such as the default password (for systems with autologin enabled), the RDP public key, and credentials used by DPAPI.
+
+<p></p>
+Looking at both we can see that the <kbd>lsadump</kbd> is optimal for our scenario as it dumps the default password.
+<p></p>
+Now that we know that we can start our analysis.
 </details>
+<p></p>
+We can now run that command.
+<p></p>
+<details>
+    <summary>Spoilers</summary>
+<p></p>
+The command we will run is:
+<p></p>
 
+```
+sudo volatility -f bob.vmem --profile=Win7SP1x64 lsadump
+```
+
+<p></p>
+Which gives us:
+<p></p>
+
+```
+❯ sudo volatility -f bob.vmem --profile=Win7SP1x64 lsadump
+
+Volatility Foundation Volatility Framework 2.6
+DefaultPassword
+0x00000000  10 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00   ................
+0x00000010  57 00 65 00 6c 00 63 00 6f 00 6d 00 65 00 32 00   W.e.l.c.o.m.e.2.
+0x00000020  c6 f2 ea 0c 76 c8 ef f0 fd de f8 3b 0d cd 25 c7   ....v......;..%.
+
+NL$KM
+0x00000000  40 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00   @...............
+0x00000010  94 bb 72 9a 14 c7 4a 92 85 6c d7 7f b9 67 e7 d4   ..r...J..l...g..
+0x00000020  05 25 b8 87 f0 1c ac 3c 23 84 4a a9 45 71 e1 f0   .%.....<#.J.Eq..
+0x00000030  36 59 a9 ff 26 2a cd 80 f1 79 27 83 11 18 40 5c   6Y..&*...y'...@\
+0x00000040  c7 29 15 d3 75 da ca 0d 4e f0 51 41 14 08 d8 b7   .)..u...N.QA....
+0x00000050  42 5f 1a 93 50 c7 67 cd ca f1 03 3a 6e 00 9f 75   B_..P.g....:n..u
+
+DPAPI_SYSTEM
+0x00000000  2c 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00   ,...............
+0x00000010  01 00 00 00 f0 7a 35 76 16 46 e9 84 87 ee d3 a9   .....z5v.F......
+0x00000020  f4 f4 46 91 89 c7 a3 9d 9b a9 78 93 8c 71 e8 f1   ..F.......x..q..
+0x00000030  0b 6d 43 76 f7 3d f9 d5 9d ef 15 b8 00 00 00 00   .mCv.=..........
+
+```
+
+<p></p>
+
+We can see that the default password has been dumped.
+
+```
+DefaultPassword
+0x00000000  10 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00   ................
+0x00000010  57 00 65 00 6c 00 63 00 6f 00 6d 00 65 00 32 00   W.e.l.c.o.m.e.2.
+0x00000020  c6 f2 ea 0c 76 c8 ef f0 fd de f8 3b 0d cd 25 c7   ....v......;..%.
+```
+
+<p></p>
+<details>
+<p></p>
+Giving us the flag: FLAG{Welcome2}
+</details>
+</details>
 
 
 </details>
