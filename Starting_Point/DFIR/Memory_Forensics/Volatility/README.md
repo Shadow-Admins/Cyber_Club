@@ -62,3 +62,12 @@ This one command have us alot of info however we are looking for one specific pi
 Suggested Profile(s) : Win7SP1x64, Win7SP0x64, Win2008R2SP0x64, Win2008R2SP1x64_23418, Win2008R2SP1x64, Win7SP1x64_23418
 ```
 
+<br>
+Most of the time the first profile will be the correct one however if commands aren't working we may need to try another profile.
+<br>
+This single command is what gives us our foothold to start analysis of the memory file from here our syntax stays basically the same except one flag is added.
+
+```
+sudo volatility -f bob.vmem --profile=Win7SP1x64 'Option to use'
+```
+
