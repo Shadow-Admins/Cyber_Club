@@ -206,6 +206,7 @@ Looking through this output we are looking for an IPv4 address and are looking f
 We should also make sure the it is "LISTENING" and not "CLOSED", and finally we need to see what the "Owner" is.
 <br>
 What we end up finding is:
+<p>
 
 <details>
     <summary>Answer</summary>
@@ -218,7 +219,7 @@ Offset(P)          Proto    Local Address                  Foreign Address      
 <br>
 From this we see Bob has an internal IPv4 address of <kbd>192.168.128.130</kbd> the <kbd>:139</kbd> is the port that the connection is on.
 <br>
-giving us the answer of: <kbd>192.168.128.130</kbd>
+Giving us the answer of: <kbd>192.168.128.130</kbd>
 </details>
 </details>
 
