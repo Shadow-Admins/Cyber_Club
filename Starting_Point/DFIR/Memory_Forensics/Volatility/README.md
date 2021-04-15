@@ -263,6 +263,7 @@ So what information can we pull from the hint?
 
 <p></p>
 Now that we know what we are looking for what are the possible options we can use?
+<p>
 <details>
     <summary>Spoilers</summary>
 <p></p>
@@ -277,6 +278,56 @@ This plugin will let us look at the internet history, you can look for files on 
 
 
 </details>
+<p>
+We can now run that command.
+<p>
+<details>
+    <summary>Spoilers/Answer</summary>
+<p>
 
+```
+sudo volatility -f bob.vmem --profile=Win7SP1x64 iehistory
+```
+which gives us:
+
+```
+❯ sudo volatility -f bob.vmem --profile=Win7SP1x64 iehistory
+Volatility Foundation Volatility Framework 2.6
+**************************************************
+Process: 1328 explorer.exe
+Cache type "DEST" at 0x423ed3
+Last modified: 2020-08-20 13:31:21 UTC+0000
+Last accessed: 2020-08-20 03:31:22 UTC+0000
+URL: Bob@http://192.168.128
+**************************************************
+Process: 1328 explorer.exe
+Cache type "DEST" at 0x47c25d3
+Last modified: 2020-08-20 13:34:07 UTC+0000
+Last accessed: 2020-08-20 03:34:08 UTC+0000
+URL: Bob@file:///C:/Users/Bob/Desktop/hacked.gif
+**************************************************
+Process: 2808 iexplore.exe
+Cache type "DEST" at 0x73a07bb
+Last modified: 2020-08-20 13:31:21 UTC+0000
+Last accessed: 2020-08-20 03:31:22 UTC+0000
+URL: Bob@http://192.168.128.128:8000/SecretBlog.html
+Title: Bob's Secret Blog - FLAG{encoded_secrets}
+```
+<p>
+Looking through the output we can see:
+
+```
+Process: 2808 iexplore.exe
+Cache type "DEST" at 0x73a07bb
+Last modified: 2020-08-20 13:31:21 UTC+0000
+Last accessed: 2020-08-20 03:31:22 UTC+0000
+URL: Bob@http://192.168.128.128:8000/SecretBlog.html
+Title: Bob's Secret Blog - FLAG{encoded_secrets}
+```
+
+<p>
+Giving us the flag.
+<p>
+FLAG{encoded_secrets}
 
 </details>
