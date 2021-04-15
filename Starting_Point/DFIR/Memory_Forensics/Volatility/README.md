@@ -650,6 +650,7 @@ DefaultPassword
 
 <p></p>
 <details>
+    <summary>Answer</summary>
 <p></p>
 Giving us the flag: FLAG{Welcome2}
 </details>
