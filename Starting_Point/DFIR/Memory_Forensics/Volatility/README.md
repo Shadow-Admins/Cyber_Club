@@ -244,9 +244,11 @@ So what information can we pull from the hint?
 <p></p>
 <details>
     <summary>Spoilers</summary>
+<p></p>
 - We are looking for a file called "Blog"
 <br>
 - We need to make sure it hasn't been changed.
+<p></p>
 <p>So with that information we can start our analysis.</p>
 </details>
 </details>
