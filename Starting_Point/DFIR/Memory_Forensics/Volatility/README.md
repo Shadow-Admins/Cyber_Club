@@ -90,6 +90,9 @@ We now have a foothold and can begin analysis on the file.
 <hr>
 
 <H2>Challenges</H2>
+<p></p>
+For the challenges I recommend you attempt them yourself and only go through the walk throughs when you are stuck. This way you will get used to searching for the commands and try a lot of different commands.
+<p></p>
 <details>
     <summary>A Bob's Life 1</summary>
 <p></p>
@@ -695,6 +698,7 @@ Hint: Hashtags crack me up.
 
 <p></p>
 So what can we pull from the hint?
+<p></p>
 <details>
     <summary>Spoilers</summary>
 <p></p>
@@ -862,5 +866,4 @@ The password is Hunter2 so the flag is: FLAG{Hunter2}
 </details>
 </details>
 </details>
-
 </details>
