@@ -368,14 +368,39 @@ Now that we know what we are looking for what options can we use?
     <summary>Spoilers</summary>
 <p></p>
 Looking at our options there are a few steps we need to go through.
-<br>
+<p></p>
 First.
 <br>
 We need to locate all the files on the desktop.
 <br>
 Second.
 <br>
-We need to either read the file through volatility or we need to dump it onto our system
+We need to either read the file through volatility or we need to dump it onto our system.
+<p></p>
+
+Options | Description
+--------|----------------
+filescan | To find FILE_OBJECTs in physical memory using pool tag scanning, use the filescan command. This will find open files even if a rootkit is hiding the files on disk and if the rootkit hooks some API functions to hide the open handles on a live system. The output shows the physical offset of the FILE_OBJECT, file name, number of pointers to the object, number of handles to the object, and the effective permissions granted to the object.
+dumpfiles | An important concept that every computer scientist, especially those who have spent time doing operating system research, is intimately familiar with is that of caching. Files are cached in memory for system performance as they are accessed and used. This makes the cache a valuable source from a forensic perspective since we are able to retrieve files that were in use correctly, instead of file carving which does not make use of how items are mapped in memory. Files may not be completely mapped in memory (also for performance), so missing sections are zero padded. Files dumped from memory can then be processed with external tools.
+
+<p></p>
+Now that we know what commands we can run we will look at some of the problems we will run into.
+
+</details>
+<p></p>
+We can now run those commands.
+<p></p>
+<details>
+    <summary>Spoilers</summary>
+
+<p></p>
+The first command we will run is <kbd>filescan</kbd>
+<p></p>
+
+```
+sudo volatility -f bob.vmem --profile=Win7SP1x64 filescan
+```
+
 
 </details>
 
