@@ -754,7 +754,89 @@ Virtual            Physical           Name
 ```
 
 <p></p>
-The next command we will run is
+Now that we know what the SYSTEM virtual address is <kbd>-y 0xfffff8a000024010</kbd> and the SAM virtual address <kbd>-s 0xfffff8a0017fb010</kbd> the next command we will run is:
+<p></p>
+
+```
+sudo volatility -f bob.vmem --profile=Win7SP1x64 hashdump -y 0xfffff8a000024010 -s 0xfffff8a0017fb010
+```
+<p></p>
+Which gives us:
+<p></p>
+
+```
+❯ sudo volatility -f bob.vmem --profile=Win7SP1x64 hashdump -y 0xfffff8a000024010 -s 0xfffff8a0017fb010
+
+Volatility Foundation Volatility Framework 2.6
+Administrator:500:aad3b435b51404eeaad3b435b51404ee:31d6cfe0d16ae931b73c59d7e0c089c0:::
+Guest:501:aad3b435b51404eeaad3b435b51404ee:31d6cfe0d16ae931b73c59d7e0c089c0:::
+Bob:1000:aad3b435b51404eeaad3b435b51404ee:21bc7dcd88ee195ecf3728677a47815b:::
+```
+
+<p></p>
+So we can see that the hashes are there but we cant understand them so we will need to use another program to decrypt the hash, enter john the ripper.
+<p></p>
+To enable us to decrypt the hash we will need to put them into a file the easiest way to do this is to append them into a text file when we run volitility like this:
+<p></p>
+
+```
+sudo volatility -f bob.vmem --profile=Win7SP1x64 hashdump -y 0xfffff8a000024010 -s 0xfffff8a0017fb010 > hash.hash
+```
+
+<p></p>
+We now have a file that we can pass to john IOT crack the hashes. Using john is another lesson but you can see all the flags by using the <kbd>-h<kbd> flag.
+<br>
+The command we will use is:
+<p></p>
+
+```
+sudo john --format=NT --show hash.hash
+```
+
+<p></p>
+This gives us:
+<p></p>
+
+```
+❯ sudo john --format=NT hash.hash                                                                                                                                                             
+Using default input encoding: UTF-8                                                                                                                                                           
+Loaded 3 password hashes with no different salts (NT [MD4 256/256 AVX2 8x3])                                                                                                                  
+Warning: no OpenMP support for this hash type, consider --fork=4                                                                                                                              
+Proceeding with single, rules:Single                                                                                                                                                          
+Press 'q' or Ctrl-C to abort, almost any other key for status                                                                                                                                 
+Warning: Only 10 candidates buffered for the current salt, minimum 24 needed for performance.                                                                                                 
+Warning: Only 9 candidates buffered for the current salt, minimum 24 needed for performance.                                                                                                  
+Almost done: Processing the remaining buffered candidate passwords, if any.                                                                                                                   
+Warning: Only 22 candidates buffered for the current salt, minimum 24 needed for performance.                                                                                                 
+Proceeding with wordlist:/usr/share/john/password.lst, rules:Wordlist                                                                                                                         
+                 (Administrator)                                                                                                                                                              
+                 (Guest)                                                                                                                                                                      
+Hunter2          (Bob)                                                                                                                                                                        
+3g 0:00:00:00 DONE 2/3 (2021-04-15 17:15) 100.0g/s 2968Kp/s 2968Kc/s 3158KC/s Pentium2..Pizza2                                                                                                
+Use the "--show --format=NT" options to display all of the cracked passwords reliably                                                                                                         
+Session completed              
+```
+
+<p></p>
+It may also show:
+<p></p>
+
+```
+❯ sudo john --format=NT --show hash2.hash
+Administrator::500:aad3b435b51404eeaad3b435b51404ee:31d6cfe0d16ae931b73c59d7e0c089c0:::
+Guest::501:aad3b435b51404eeaad3b435b51404ee:31d6cfe0d16ae931b73c59d7e0c089c0:::
+Bob:Hunter2:1000:aad3b435b51404eeaad3b435b51404ee:21bc7dcd88ee195ecf3728677a47815b:::
+
+3 password hashes cracked, 0 left
+```
+
+<p></p>
+In both outputs we can see the password we are looking for.
+<p></p>
+<details>
+    <summary>Answer</summary>
+The password is Hunter2 so the flag is: FLAG{Hunter2}
+</details>
 </details>
 
 </details>
