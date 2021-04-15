@@ -360,6 +360,8 @@ So with that information we can start our analysis.
 </details>
 <hr>
 Now that we know what we are looking for what options can we use?
+<p></p>
+
 <details>
     <summary>Spoilers<summary>
 <p></p>
