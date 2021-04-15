@@ -485,6 +485,62 @@ That gives us a much smaller list, and a file should stick out...
 ```
 
 <p></p>
+So we can see the file but how do we access it?
+<br>
+The first thing we need to do is make a new directory (im calling mine out) so that we can dump the file onto our system
+<p></p>
+
+```
+mkdir out
+```
+<p></p>
+
+And now we'll use the dumpfiles option. It does come with more flags that aren't shown when you use <kbd>-h</kbd> so I'll post them bellow.
+<p></p>
+
+```
+  -r REGEX, --regex=REGEX
+                        Dump files matching REGEX
+  -i, --ignore-case     Ignore case in pattern match
+  -o OFFSET, --offset=OFFSET
+                        Dump files for Process with physical address OFFSET
+  -Q PHYSOFFSET, --physoffset=PHYSOFFSET
+                        Dump File Object at physical address PHYSOFFSET
+  -D DUMP_DIR, --dump-dir=DUMP_DIR
+                        Directory in which to dump extracted files
+  -S SUMMARY_FILE, --summary-file=SUMMARY_FILE
+                        File where to store summary information
+  -p PID, --pid=PID     Operate on these Process IDs (comma-separated)
+  -n, --name            Include extracted filename in output file path
+  -u, --unsafe          Relax safety constraints for more data
+  -F FILTER, --filter=FILTER
+                        Filters to apply (comma-separated)
+```
+<p></p>
+We will use the <kbd>-Q</kbd> <kbd>-D</kbd><kbd>-n</kbd> flags. But what goes where?
+<br>
+Thinking back to the hacked.gif file we found we need to get one piece of information and that is the physical offset (if you want to know more about physical and virtual offsets I'd recommend google). The Physical offset is the number in the first column being <kbd>0x000000003e9b6550</kbd> the next thing we need is where we want to dump the file to <kbd>out/</kbd>. So what does this command look like?
+
+<p></p>
+
+```
+sudo volatility -f bob.vmem --profile=Win7SP1x64 dumpfiles -D out/ -n -Q 0x000000003e9b6550
+```
+
+<p></p>
+Running it we get:
+<p></p>
+
+```
+❯ sudo volatility -f bob.vmem --profile=Win7SP1x64 dumpfiles -D out/ -n -Q 0x000000003e9b6550
+
+Volatility Foundation Volatility Framework 2.6
+DataSectionObject 0x3e9b6550   None   \Device\HarddiskVolume1\Users\Bob\Desktop\hacked.gif
+```
+
+<p></p>
+Not much information but if we look at the file in our file explorer we can see that it has dumped the .gif image which we can view and get the flag for this challenge.
+<p></p>
 
 </details>
 
