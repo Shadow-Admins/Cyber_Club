@@ -332,6 +332,7 @@ Giving us the flag.
 FLAG{encoded_secrets}
 
 </details>
+</details>
 
 <hr>
 
