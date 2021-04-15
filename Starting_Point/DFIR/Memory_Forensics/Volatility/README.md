@@ -264,8 +264,9 @@ Now that we know what we are looking for what are the possible options we can us
 <details>
     <summary>Spoilers</summary>
 <p></p>
+
 Options | Description
--------------------------------------
+--------|-----------------------------
 asd | asd
 
 
