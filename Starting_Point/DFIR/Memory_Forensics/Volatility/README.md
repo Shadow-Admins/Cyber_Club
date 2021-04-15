@@ -658,8 +658,20 @@ Giving us the flag: FLAG{Welcome2}
 </details>
 <hr>
 <p></p>
+
 <details>
     <summary>A Bob's Life 5</summary>
+<p></p>
+The fifth challenge we're given is:
+<p></p>
+Well that doesn't look like a very secure password, Bob. Let's hope he has improved since then.
+<br>
+Can you check what his current password is?
+<p></p>
+Hint: Hashtags crack me up.
+<p></p>
+<hr>
+<p></p>
 
 </details>
 
