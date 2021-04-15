@@ -89,7 +89,7 @@ We now have a foothold and can begin analysis on the file.
 </details>
 <hr>
 
-<H2>First Challenge</H2>
+<H2>Challenges</H2>
 <details>
     <summary>A Bob's Life 1</summary>
 The first challenge we are given is:
@@ -225,6 +225,7 @@ FLAG{192.168.128.130}
 </details>
 </details>
 
-
-
+<details>
+    <summary>A Bob's Life 2</summary>
+</details>
 </details>
