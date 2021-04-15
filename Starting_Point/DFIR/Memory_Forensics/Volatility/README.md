@@ -338,7 +338,7 @@ FLAG{encoded_secrets}
 
 <details>
     <summary>A Bob's Life 3</summary>
-<p>
+<p></p>
 The third challenge we are given is:
 <p>
 This could be serious. It looks like the attacker left something for
