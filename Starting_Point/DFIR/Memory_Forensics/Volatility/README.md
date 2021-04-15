@@ -350,11 +350,23 @@ a look at it?
 <hr>
 <p></p>
 So what information can we pull from the hint?
+<p></p>
 <details>
     <summary>Spoilers</summary>
+<p></p>
 - We need to use an option to look at what is on the desktop.
+<p></p>
+So with that information we can start our analysis.
 </details>
 <hr>
+Now that we know what we are looking for what options can we use?
+<details>
+    <summary>Spoilers<summary>
+<p></p>
 
+Options | Description
+--------|--------------
+asd | asd
+</details>
 
 </details>
