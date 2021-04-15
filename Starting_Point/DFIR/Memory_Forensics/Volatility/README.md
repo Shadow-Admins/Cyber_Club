@@ -672,7 +672,20 @@ Hint: Hashtags crack me up.
 <p></p>
 <hr>
 <p></p>
+So what can we pull from the hint?
+<details>
+    <summary>Spoilers</summary>
+- We need to find the current password.
+- Windows passwords are stored as NTLM hashes within the SAM file in System32.
+</details>
+<hr>
+<p></p>
+Now that we know what we are looking for what options can we use?
+<details>
+    <summary>Spoilers</summary>
+<p></p>
 
+</details>
 </details>
 
 </details>
