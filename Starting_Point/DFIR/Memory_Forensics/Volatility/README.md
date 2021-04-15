@@ -20,7 +20,7 @@ But once you work out a general road-map you can work through an analysis method
 <br>
 If at any stage you dont know what command to run you can use the <kbd>-h</kbd> flag to print a list of commands you can use.
 <br>
-We will use a series of challenges (A Bob's Life...) from the CSC presented as a write up IOT practice the use of volatility.
+We will use a series of challenges (A Bob's Life... and Memory is RAM) from the CSC presented as a write up IOT practice the use of volatility.
 </details>
 <hr>
 
@@ -250,9 +250,11 @@ So what information can we pull from the hint?
 <details>
     <summary>Spoilers</summary>
 <p></p>
-- We are looking for a file called "Blog"
+- We are looking for something called "Blog"
 <br>
 - We need to make sure it hasn't been changed.
+<br>
+- thinking about blogs they are usually located on the internet
 <p></p>
 <p>So with that information we can start our analysis.</p>
 </details>
@@ -267,7 +269,10 @@ Now that we know what we are looking for what are the possible options we can us
 
 Options | Description
 --------|-----------------------------
-asd | asd
+iehistory | This plugin recovers fragments of IE history index.dat cache files. It can find basic accessed links (via FTP or HTTP), redirected links (--REDR), and deleted entries (--LEAK). It applies to any process which loads and uses the wininet.dll library, not just Internet Explorer. Typically that includes Windows Explorer and even malware samples.
+
+<p>
+This plugin will let us look at the internet history, you can look for files on the system called blog however this wont return anything.
 
 
 
