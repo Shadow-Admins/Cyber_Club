@@ -224,8 +224,7 @@ Giving us the answer of: <kbd>192.168.128.130</kbd>
 FLAG{192.168.128.130}
 </details>
 </details>
-
+</details>
 <details>
     <summary>A Bob's Life 2</summary>
-</details>
 </details>
