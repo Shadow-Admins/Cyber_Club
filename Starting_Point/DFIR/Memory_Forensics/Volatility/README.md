@@ -204,6 +204,7 @@ Offset(P)          Proto    Local Address                  Foreign Address      
 Looking through this output we are looking for an IPv4 address and are looking for the local side.
 <br>
 We should also make sure the it is "LISTENING" and not "CLOSED", and finally we need to see what the "Owner" is.
+<br>
 What we end up finding is:
 
 <details>
@@ -214,6 +215,10 @@ Offset(P)          Proto    Local Address                  Foreign Address      
 0x3e3806a0         TCPv4    192.168.128.130:139            0.0.0.0:0            LISTENING        4        System
 ```
 
+<br>
+From this we see Bob has an internal IPv4 address of <kbd>192.168.128.130</kbd> the <kbd>:139</kbd> is the port that the connection is on.
+<br>
+giving us the answer of: <kbd>192.168.128.130</kbd>
 </details>
 </details>
 
