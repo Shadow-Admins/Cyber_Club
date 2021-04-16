@@ -1884,5 +1884,51 @@ FLAG{149.56.185.56}
 <details>
     <summary>Memory is RAM 4</summary>
 <p></p>
+The fourth challenge we are given is:
+<p></p>
+What .onion site was the attacker browsing?
+<p></p>
+Flag Format: FLAG{site.onion}
+<p></p>
+<details>
+    <summary>Walkthrough</summary>
+<p></p>
+So what information can we pull from the hint?
+<p></p>
+<details>
+    <summary>Spoilers</summary>
+<p></p>
+- From some research about the .onion extention we find:
+<br>
+".onion is a special-use top level domain name designating an anonymous onion service, which was formerly known as a "hidden service",[1] reachable via the Tor network. Such addresses are not actual DNS names, and the .onion TLD is not in the Internet DNS root, but with the appropriate proxy software installed, Internet programs such as web browsers can access sites with .onion addresses by sending the request through the Tor network."
+<p></p>
+- So we know that we need to look at Tor again, and we need to see the browsing history
+<p></p>
+With that information we can start the analysis.
+<hr>
+<p></p>
+ Now that we know what we are looking for what options can we use for analysis?
+<p></p>
+<details>
+    <summary>Spoilers</summary>
+<p></p>
 
+Options | Description
+--------|--------------
+pslist | To list the processes of a system, use the pslist command. This walks the doubly-linked list pointed to by PsActiveProcessHead and shows the offset, process name, process ID, the parent process ID, number of threads, number of handles, and date/time when the process started and exited. As of 2.1 it also shows the Session ID and if the process is a Wow64 process (it uses a 32 bit address space on a 64 bit kernel). <p></p> This plugin does not detect hidden or unlinked processes (but psscan can do that). <p></p> If you see processes with 0 threads, 0 handles, and/or a non-empty exit time, the process may not actually still be active.
+memdump | To extract all memory resident pages in a process into an individual file, use the memdump command. Supply the output directory with -D or --dump-dir=DIR.
+
+<p></p>
+With these two options we can begin our analysis.
+<P></P>
+<details>
+    <summary>Spoilers</summary>
+<p></p>
+
+
+
+</details>
+</details>
+</details>
+</details>
 </details>
