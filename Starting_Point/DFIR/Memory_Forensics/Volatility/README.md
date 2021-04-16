@@ -1855,8 +1855,23 @@ Offset(P)          Proto    Local Address                  Foreign Address      
 ```
 
 <p></p>
-Looking at the above excerpt 
-
+Looking at the above excerpt we can see the initial process Tor.exe with PID of 2640, all connections bellow have a PID of -1 meaning they are child processes of Tor.exe. 
+<p></p>
+Since we are looking for the entry node (that is the first node that Tor communicates with) we know it will be an external address.
+<p></p>
+We also know that 127.0.0.1 is the local ip address of the system so we can exclude all those ip's leaving us with two external ip addresses.
+<p></p>
+A quick search will show us common Tor ports being:
+<p></p>
+"Transmission Control Protocol (TCP) and User Datagram Protocol (UDP) ports commonly affiliated with Tor include 9001, 9030, 9040, 9050, 9051, and 9150."
+<p></p>
+Providing us with the answer.
+<p></p>
+<details>
+    <summary>Answer</summary>
+<p></p>
+FLAG{149.56.185.56}
+</details>
 </details>
 </details>
 </details>
