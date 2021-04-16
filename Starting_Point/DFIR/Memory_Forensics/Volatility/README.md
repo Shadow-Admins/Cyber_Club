@@ -1224,11 +1224,11 @@ FLAG{privateinternetaccess}
 </details>
 </details>
 </details>
+</details>
 <hr>
 <details>
     <summary>Memory is RAM 2</summary>
 test
 stuff test
-</details>
 </details>
 </details>
