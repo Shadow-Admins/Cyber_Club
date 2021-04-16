@@ -1227,6 +1227,7 @@ FLAG{privateinternetaccess}
 </details>
 </details>
 <hr>
+<p></p>
 <details>
     <summary>Memory is RAM 2</summary>
 test
