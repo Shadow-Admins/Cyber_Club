@@ -1069,6 +1069,20 @@ Offset(V)          Name                    PID   PPID   Thds     Hnds   Sess  Wo
 0xfffffa8002f88640 ipconfig.exe           3128   2064      0 --------      0      0 2020-08-02 06:58:50 UTC+0000   2020-08-02 06:58:50 UTC+0000  
 ```
 
+<p></p>
+Here we can see multiple processes pointing us to the answer:
+<p></p>
+
+```
+Offset(V)          Name                    PID   PPID   Thds     Hnds   Sess  Wow64 Start                          Exit                                                                       
+------------------ -------------------- ------ ------ ------ -------- ------ ------ ------------------------------ ------------------------------                                             
+0xfffffa8004411b00 pia-service.ex         1348    504     18      312      0      0 2020-08-02 02:21:45 UTC+0000                                 
+0xfffffa8001c71b00 pia-client.exe         2408   2252     13      181      1      0 2020-08-02 02:24:20 UTC+0000                                 
+0xfffffa8001ab9060 pia-openvpn.ex         1872   1348      2       78      0      0 2020-08-02 06:58:40 UTC+0000                                 
+```
+
+<p></p>
+Next 
 
 
 
