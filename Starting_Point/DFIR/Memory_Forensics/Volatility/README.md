@@ -1230,6 +1230,17 @@ FLAG{privateinternetaccess}
 <p></p>
 <details>
     <summary>Memory is RAM 2</summary>
-test
-stuff test
+<p></p>
+The second challenge we are given is:
+<p></p>
+It is believed the attacker attempted to identify and exploit a SQL injection vulnerability in a victim's website, can you identify the domain they were targeting?
+<br>
+Flag Format: FLAG{domain}
+<p></p>
+
+<details>
+    <summary>Walkthrough</summary>
+<p></p>
+
+</details>
 </details>
