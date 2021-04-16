@@ -1247,8 +1247,6 @@ So what information can we pull from the hint?
     <summary>Spoilers</summary>
 <p></p>
 - the SQL injection was likely performed in a terminal.
-<br>
-- we can also check the iehistory to see if there is any information there.
 <p></p>
 With that information we can now begin our analysis.
 </details>
@@ -1261,11 +1259,294 @@ With that information we can now begin our analysis.
 
 Options | Description
 --------|--------------
-iehistory | This plugin recovers fragments of IE history index.dat cache files. It can find basic accessed links (via FTP or HTTP), redirected links (--REDR), and deleted entries (--LEAK). It applies to any process which loads and uses the wininet.dll library, not just Internet Explorer. Typically that includes Windows Explorer and even malware samples.
 cmdscan | The cmdscan plugin searches the memory of csrss.exe on XP/2003/Vista/2008 and conhost.exe on Windows 7 for commands that attackers entered through a console shell (cmd.exe). This is one of the most powerful commands you can use to gain visibility into an attackers actions on a victim system, whether they opened cmd.exe through an RDP session or proxied input/output to a command shell from a networked backdoor. <p></p> In addition to the commands entered into a shell, this plugin shows: <p></p> - The name of the console host process (csrss.exe or conhost.exe) <br> - The name of the application using the console (whatever process is using cmd.exe) <br> - The location of the command history buffers, including the current buffer count, last added command, and last displayed command <br> - The application process handle <p></p> Due to the scanning technique this plugin uses, it has the capability to find commands from both active and closed consoles.
+consoles | Similar to cmdscan the consoles plugin finds commands that attackers typed into cmd.exe or executed via backdoors. However, instead of scanning for COMMAND_HISTORY, this plugin scans for CONSOLE_INFORMATION. The major advantage to this plugin is it not only prints the commands attackers typed, but it collects the entire screen buffer (input and output). For instance, instead of just seeing "dir", you'll see exactly what the attacker saw, including all files and directories listed by the "dir" command. <p></p> Additionally, this plugin prints the following: <p></p> - The original console window title and current console window title <br> - The name and pid of attached processes (walks a LIST_ENTRY to enumerate all of them if more than one) <br> - Any aliases associated with the commands executed. For example, attackers can register an alias such that typing "hello" actually executes "cd system" <br> - The screen coordinates of the cmd.exe console
 
+<p></p>
+Both of these options will show us terminal CLI information but with slightly different outputs, lets look at them now.
+<p></p>
+<details>
+    <summary>Spoilers</summary>
+<p></p>
+The first command we will run is <kbd>cmdscan</kbd> which looks like this:
+<p></p>
 
+```
+sudo volatility -f dump.vmem --profile=Win7SP1x64 cmdscan
+```
 
+<p></p>
+Which outputs:
+<p></p>
+
+```
+❯ sudo volatility -f dump.vmem --profile=Win7SP1x64 cmdscan
+Volatility Foundation Volatility Framework 2.6
+**************************************************
+CommandProcess: conhost.exe Pid: 3568
+CommandHistory: 0xff2f0 Application: cmd.exe Flags: Allocated, Reset
+CommandCount: 12 LastAdded: 11 LastDisplayed: 11
+FirstCommand: 0 CommandCountMax: 50
+ProcessHandle: 0x60
+Cmd #0 @ 0xf3b50: cd Downloads
+Cmd #1 @ 0xfde30: cd sqlmap
+Cmd #2 @ 0xdbe50: cd sqlmapproject-sqlmap-b719b96
+Cmd #3 @ 0xfdbe0: ls
+Cmd #4 @ 0xfdc80: dir
+Cmd #5 @ 0xfbbd0: python3 sqlmap.py --help
+Cmd #6 @ 0xfde50: py -3
+Cmd #7 @ 0xfbd50: py -3 sqlmap.py --help
+Cmd #8 @ 0xff8e0: sqlmap -u "http://platypus-corp.com.au" --tor --check-tor --dbs --random-agent
+Cmd #9 @ 0xff4d0: py -3 sqlmap.py -u "http://platypus-corp.com.au" --tor --check-tor --dbs --random-agent
+Cmd #10 @ 0x105690: py -3 sqlmap.py -u "http://platypus-corp.com.au/"  --crawl --tor --check-tor --dbs --random-agent
+Cmd #11 @ 0x105760: py -3 sqlmap.py -u "http://platypus-corp.com.au/"  --crawl=5 --tor --check-tor --dbs --random-agent
+Cmd #15 @ 0xb0158: 
+Cmd #16 @ 0xfdc80: dir
+```
+
+<p></p>
+From this command we can see the information we were looking for. We will also look at the <kbd>consoles</kbd> command as it outputs the information in a different way.
+<p></p>
+The consoles command will look like this:
+<p></p>
+
+```
+sudo volatility -f dump.vmem --profile=Win7SP1x64 consoles
+```
+
+<p></p>
+Which outputs:
+<p></p>
+
+```
+❯ sudo volatility -f dump.vmem --profile=Win7SP1x64 consoles                                                                                                                                  
+Volatility Foundation Volatility Framework 2.6                                                                                                                                                
+**************************************************                                                                                                                                            
+ConsoleProcess: conhost.exe Pid: 3568                                                                                                                                                         
+Console: 0xff146200 CommandHistorySize: 50                                                                                                                                                    
+HistoryBufferCount: 4 HistoryBufferMax: 4                                                                                                                                                     
+OriginalTitle: %SystemRoot%\system32\cmd.exe                                                                                                                                                  
+Title: C:\Windows\system32\cmd.exe                                                                                                                                                            
+AttachedProcess: cmd.exe Pid: 3692 Handle: 0x60                                                                                                                                               
+----                                                                                                                                                                                          
+CommandHistory: 0x100c70 Application: cmd.exe Flags:                                                                                                                                          
+CommandCount: 0 LastAdded: -1 LastDisplayed: -1                                                                                                                                               
+FirstCommand: 0 CommandCountMax: 50                                                                                                                                                           
+ProcessHandle: 0x0                                                                                                                                                                            
+----                                                                                                                                                                                          
+CommandHistory: 0xffa90 Application: python.exe Flags: Reset                                                                                                                                  
+CommandCount: 2 LastAdded: 1 LastDisplayed: 1                                                                                                                                                 
+FirstCommand: 0 CommandCountMax: 50                                                                                                                                                           
+ProcessHandle: 0x0                                                                                                                                                                            
+Cmd #0 at 0xfdeb0: exit()                                                                                                                                                                     
+Cmd #1 at 0xff890: n                                                                                                                                                                          
+----                                                                                                                                                                                          
+CommandHistory: 0xff600 Application: py.exe Flags:                                                                                                                                            
+CommandCount: 0 LastAdded: -1 LastDisplayed: -1                                                                                                                                               
+FirstCommand: 0 CommandCountMax: 50
+ProcessHandle: 0x0
+----
+CommandHistory: 0xff2f0 Application: cmd.exe Flags: Allocated, Reset
+CommandCount: 12 LastAdded: 11 LastDisplayed: 11
+FirstCommand: 0 CommandCountMax: 50
+ProcessHandle: 0x60
+Cmd #0 at 0xf3b50: cd Downloads
+Cmd #1 at 0xfde30: cd sqlmap
+Cmd #2 at 0xdbe50: cd sqlmapproject-sqlmap-b719b96
+Cmd #3 at 0xfdbe0: ls
+Cmd #4 at 0xfdc80: dir
+Cmd #5 at 0xfbbd0: python3 sqlmap.py --help
+Cmd #6 at 0xfde50: py -3
+Cmd #7 at 0xfbd50: py -3 sqlmap.py --help
+Cmd #8 at 0xff8e0: sqlmap -u "http://platypus-corp.com.au" --tor --check-tor --dbs --random-agent
+Cmd #9 at 0xff4d0: py -3 sqlmap.py -u "http://platypus-corp.com.au" --tor --check-tor --dbs --random-agent
+Cmd #10 at 0x105690: py -3 sqlmap.py -u "http://platypus-corp.com.au/"  --crawl --tor --check-tor --dbs --random-agent
+Cmd #11 at 0x105760: py -3 sqlmap.py -u "http://platypus-corp.com.au/"  --crawl=5 --tor --check-tor --dbs --random-agent
+----
+Screen 0xdf970 X:80 Y:300
+Dump:                                                                                                                                                                                         
+07/31/2020  06:28 PM            16,703 .pylintrc                                                                                                                                              
+07/31/2020  06:28 PM               402 .travis.yml                                                                                                                                            
+07/31/2020  06:28 PM             2,092 COMMITMENT                                                                                                                                             
+07/31/2020  06:28 PM    <DIR>          data                                                                                                                                                   
+07/31/2020  06:28 PM    <DIR>          doc                                       
+07/31/2020  06:28 PM    <DIR>          extra                                     
+07/31/2020  06:28 PM    <DIR>          lib                                       
+07/31/2020  06:28 PM            18,886 LICENSE                                   
+07/31/2020  06:28 PM    <DIR>          plugins                                   
+07/31/2020  06:28 PM             5,005 README.md                                
+07/31/2020  06:28 PM            21,310 sqlmap.conf                              
+07/31/2020  06:28 PM            21,263 sqlmap.py                                
+07/31/2020  06:28 PM             2,783 sqlmapapi.py                             
+07/31/2020  06:28 PM    <DIR>          tamper                                    
+07/31/2020  06:28 PM    <DIR>          thirdparty                               
+              10 File(s)         88,796 bytes                                    
+              10 Dir(s)  14,491,189,248 bytes free                              
+                                                                                 
+C:\Users\User\Downloads\sqlmap\sqlmapproject-sqlmap-b719b96>python3 sqlmap.py --
+help                                                                             
+'python3' is not recognized as an internal or external command,                 
+operable program or batch file.                                                  
+                                                                                 
+C:\Users\User\Downloads\sqlmap\sqlmapproject-sqlmap-b719b96>py -3               
+Python 3.8.5 (tags/v3.8.5:580fbb0, Jul 20 2020, 15:43:08) [MSC v.1926 32 bit (In
+tel)] on win32                  
+    -g GOOGLEDORK       Process Google dork results as target URLs              
+                                                                                 
+  Request:                                                                       
+    These options can be used to specify how to connect to the target URL       
+                                                                                 
+    --data=DATA         Data string to be sent through POST (e.g. "id=1")       
+    --cookie=COOKIE     HTTP Cookie header value (e.g. "PHPSESSID=a8d127e..")   
+    --random-agent      Use randomly selected HTTP User-Agent header value      
+    --proxy=PROXY       Use a proxy to connect to the target URL                
+    --tor               Use Tor anonymity network                               
+    --check-tor         Check to see if Tor is used properly                    
+                                                                                 
+  Injection:                                                                     
+    These options can be used to specify which parameters to test for,          
+    provide custom injection payloads and optional tampering scripts            
+                                                                                 
+    -p TESTPARAMETER    Testable parameter(s)                                    
+    --dbms=DBMS         Force back-end DBMS to provided value                   
+                                                                                 
+  Detection:                                                                     
+    These options can be used to customize the detection phase                  
+                                                                                 
+    --level=LEVEL       Level of tests to perform (1-5, default 1)              
+    --risk=RISK         Risk of tests to perform (1-3, default 1)               
+                                                                                 
+  Techniques:                                    
+    system underlying operating system                                           
+                                                                                 
+    --os-shell          Prompt for an interactive operating system shell        
+    --os-pwn            Prompt for an OOB shell, Meterpreter or VNC             
+                                                                                 
+  General:                                                                       
+    These options can be used to set some general working parameters            
+                                                                                 
+    --batch             Never ask for user input, use the default behavior      
+    --flush-session     Flush session files for current target                  
+                                                                                 
+  Miscellaneous:                                                                 
+    These options do not fit into any other category                            
+                                                                                 
+    --sqlmap-shell      Prompt for an interactive sqlmap shell                  
+    --wizard            Simple wizard interface for beginner users              
+                                                                                 
+Press Enter to continue...                                                       
+                                                                                 
+C:\Users\User\Downloads\sqlmap\sqlmapproject-sqlmap-b719b96>sqlmap -u "http://pl
+atypus-corp.com.au" --tor --check-tor --dbs --random-agent                      
+'sqlmap' is not recognized as an internal or external command,                  
+operable program or batch file.                                                  
+                                                                                 
+C:\Users\User\Downloads\sqlmap\sqlmapproject-sqlmap-b719b96>py -3 sqlmap.py -u "
+http://platypus-corp.com.au" --tor --check-tor --dbs --random-agent             
+        ___                                                                      
+       __H__                                                                     
+ ___ ___[']_____ ___ ___  {1.4.7.25#dev}                                         
+|_ -| . [']     | .'| . |                                                        
+|___|_  [']_|_|_|__,|  _|                                                        
+      |_|V...       |_|   http://sqlmap.org                                      
+                                                                                 
+[!] legal disclaimer: Usage of sqlmap for attacking targets without prior mutual
+ consent is illegal. It is the end user's responsibility to obey all applicable 
+local, state and federal laws. Developers assume no liability and are not respon
+sible for any misuse or damage caused by this program                           
+                                                                                 
+[*] starting @ 13:50:27 /2020-08-02/                                             
+                                                                                 
+[13:50:27] [WARNING] increasing default value for option '--time-sec' to 10 beca
+use switch '--tor' was provided                                                  
+[13:50:27] [INFO] setting Tor SOCKS proxy settings                              
+[13:50:28] [INFO] fetched random HTTP User-Agent header value 'Opera/9.80 (Windo
+ws NT 6.1; U; ja) Presto/2.5.22 Version/10.50' from file 'C:\Users\User\Download
+s\sqlmap\sqlmapproject-sqlmap-b719b96\data\txt\user-agents.txt'                 
+[13:50:28] [INFO] checking Tor connection                                        
+[13:50:31] [INFO] Tor is properly being used                                     
+[13:50:32] [INFO] testing connection to the target URL                          
+[13:50:35] [CRITICAL] unable to connect to the target URL or proxy. sqlmap is go
+ing to retry the request(s)                                                      
+[13:50:35] [WARNING] please make sure that you have Tor installed and running so
+ you could successfully use switch '--tor' (e.g. 'https://www.torproject.org/dow
+nload/download.html.en')                                                         
+                                                                                 
+                                                                                 
+[*] ending @ 13:50:40 /2020-08-02/                                               
+                                                                                 
+^C                                                                               
+C:\Users\User\Downloads\sqlmap\sqlmapproject-sqlmap-b719b96>py -3 sqlmap.py -u "
+http://platypus-corp.com.au/"  --crawl --tor --check-tor --dbs --random-agent   
+        ___                                                                      
+       __H__                                                                     
+ ___ ___[)]_____ ___ ___  {1.4.7.25#dev}                                         
+|_ -| . ["]     | .'| . |                                                        
+|___|_  [(]_|_|_|__,|  _|                                                        
+      |_|V...       |_|   http://sqlmap.org                                      
+                                                                                 
+Usage: sqlmap.py [options]                                                       
+                                                                                 
+sqlmap.py: error: option --crawl: invalid integer value: '--tor'                
+                                                                                 
+Press Enter to continue...exit()                                                 
+                                                                                 
+C:\Users\User\Downloads\sqlmap\sqlmapproject-sqlmap-b719b96>py -3 sqlmap.py -u "
+http://platypus-corp.com.au/"  --crawl=5 --tor --check-tor --dbs --random-agent 
+        ___                                                                      
+       __H__                                                                     
+ ___ ___[)]_____ ___ ___  {1.4.7.25#dev}                                         
+|_ -| . [(]     | .'| . |                                                        
+|___|_  [.]_|_|_|__,|  _|                                                        
+      |_|V...       |_|   http://sqlmap.org                                      
+                                                                                 
+[!] legal disclaimer: Usage of sqlmap for attacking targets without prior mutual
+ consent is illegal. It is the end user's responsibility to obey all applicable 
+local, state and federal laws. Developers assume no liability and are not respon
+sible for any misuse or damage caused by this program                           
+                                                                                 
+[*] starting @ 13:51:07 /2020-08-02/                                             
+                                                                                 
+[13:51:07] [WARNING] increasing default value for option '--time-sec' to 10 beca
+use switch '--tor' was provided                                                  
+[13:51:07] [INFO] setting Tor SOCKS proxy settings                              
+[13:51:08] [INFO] fetched random HTTP User-Agent header value 'Mozilla/5.0 (Wind
+ows NT 6.2; rv:21.0) Gecko/20130326 Firefox/21.0' from file 'C:\Users\User\Downl
+oads\sqlmap\sqlmapproject-sqlmap-b719b96\data\txt\user-agents.txt'              
+[13:51:08] [INFO] checking Tor connection                                        
+[13:51:10] [INFO] Tor is properly being used                                     
+do you want to check for the existence of site's sitemap(.xml) [y/N] n          
+[13:51:12] [INFO] starting crawler for target URL 'http://platypus-corp.com.au/'
+                                                                                 
+[13:51:12] [INFO] searching for links with depth 1                              
+[13:51:14] [CRITICAL] unable to connect to the target URL or proxy. sqlmap is go
+ing to retry the request(s)                                                      
+[13:51:14] [WARNING] please make sure that you have Tor installed and running so
+ you could successfully use switch '--tor' (e.g. 'https://www.torproject.org/dow
+nload/download.html.en')                                                         
+                                                                                 
+[13:51:22] [WARNING] user aborted during crawling. sqlmap will use partial list 
+[13:51:22] [WARNING] no usable links found (with GET parameters)                
+                                                                                 
+                                                                                 
+[*] ending @ 13:51:23 /2020-08-02/                                               
+                                                                                 
+                                                                                 
+C:\Users\User\Downloads\sqlmap\sqlmapproject-sqlmap-b719b96>                    
+```
+
+<p></p>
+The <kbd>consoles</kbd> command outputs alot more information however it allows us to see exactly what is being returned within the terminal.
+<p></p>
+Both of these methods pointed us to the correct answer.
+<p></p>
+<details>
+    <summary>Answer</summary>
+<p></p>
+FLAG{platypus-corp.com.au}
+<p></p>
+</details>
+</details>
 </details>
 </details>
 </details>
