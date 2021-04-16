@@ -1185,11 +1185,42 @@ Name                                                  Pid   PPid   Thds   Hnds T
 ```
 
 <p></p>
+The final command we will look at is <kbd>cmdline</kbd>.
+<p></p>
+The command we will run is:
+<p></p>
 
+```
+sudo volatility -f dump.vmem --profile=Win7SP1x64 cmdline
+```
 
+<p></p>
+Which gives us a huge output however we are only interested in these lines:
+<p></p>
 
+```
+❯ sudo volatility -f dump.vmem --profile=Win7SP1x64 
+Volatility Foundation Volatility Framework 2.6                                                                                                                                                
+************************************************************************
+pia-service.ex pid:   1348
+Command line : "C:\Program Files\Private Internet Access\pia-service.exe"
+************************************************************************
+pia-client.exe pid:   2408
+Command line : "C:\Program Files\Private Internet Access\pia-client.exe" 
+************************************************************************
+pia-openvpn.ex pid:   1872
+Command line : 
+************************************************************************
+```
 
+<p></p>
+Now that we have looked at the different ways we can get the information we need a simple google search will show that pia is a vpn provider.
 
+<details>
+    <summary>Answer</summary>
+<p></p>
+FLAG{privateinternetaccess}
+</details>
 
 </details>
 </details>
