@@ -1692,13 +1692,170 @@ Offset(V)          Name                    PID   PPID   Thds     Hnds   Sess  Wo
 The next command we will run is <kbd>netscan</kbd> to see all network connections from the system.
 <br>
 The command will look like this:
+<p></p>
 
 ```
-
+sudo volatility -f dump.vmem --profile=Win7SP1x64 netscan
 ```
 
+<p></p>
+Which gives us the following output:
+<p></p>
 
+```
+❯ sudo volatility -f dump.vmem --profile=Win7SP1x64 netscan                                                                                                                                   
+Volatility Foundation Volatility Framework 2.6                                                                                                                                                
+Offset(P)          Proto    Local Address                  Foreign Address      State            Pid      Owner          Created                                                              
+0x7ccc6b00         TCPv4    127.0.0.1:9150                 127.0.0.1:49976      ESTABLISHED      -1                                                                                           
+0x7d0389f0         UDPv4    0.0.0.0:55079                  *:*                                   1032     svchost.exe    2020-08-02 06:58:46 UTC+0000                                         
+0x7d0acec0         UDPv4    0.0.0.0:55393                  *:*                                   1032     svchost.exe    2020-08-02 06:58:49 UTC+0000                                         
+0x7d0d8a30         UDPv4    0.0.0.0:60491                  *:*                                   1032     svchost.exe    2020-08-02 06:58:49 UTC+0000                                         
+0x7d1129e0         UDPv4    0.0.0.0:5355                   *:*                                   1032     svchost.exe    2020-08-02 06:58:50 UTC+0000                                         
+0x7d15bbf0         UDPv4    192.168.72.156:138             *:*                                   4        System         2020-08-02 06:57:12 UTC+0000                                         
+0x7d1ce160         UDPv4    10.18.10.10:138                *:*                                   4        System         2020-08-02 06:58:42 UTC+0000
+0x7d235d70         UDPv4    0.0.0.0:49279                  *:*                                   1032     svchost.exe    2020-08-02 06:58:46 UTC+0000
+0x7d306a70         UDPv4    0.0.0.0:0                      *:*                                   1032     svchost.exe    2020-08-02 06:58:50 UTC+0000
+0x7d306a70         UDPv6    :::0                           *:*                                   1032     svchost.exe    2020-08-02 06:58:50 UTC+0000
+0x7d30bbe0         UDPv4    0.0.0.0:62691                  *:*                                   1032     svchost.exe    2020-08-02 06:58:49 UTC+0000
+0x7d700820         UDPv4    0.0.0.0:64450                  *:*                                   1872     pia-openvpn.ex 2020-08-02 06:58:41 UTC+0000
+0x7d70dc60         UDPv4    0.0.0.0:53051                  *:*                                   1032     svchost.exe    2020-08-02 06:58:50 UTC+0000
+0x7d70dc60         UDPv6    :::53051                       *:*                                   1032     svchost.exe    2020-08-02 06:58:50 UTC+0000
+0x7d93d240         UDPv4    0.0.0.0:5353                   *:*                                   3704     chrome.exe     2020-08-02 06:58:47 UTC+0000
+0x7d93d240         UDPv6    :::5353                        *:*                                   3704     chrome.exe     2020-08-02 06:58:47 UTC+0000
+0x7d9b32e0         UDPv4    0.0.0.0:62238                  *:*                                   1032     svchost.exe    2020-08-02 06:58:49 UTC+0000
+0x7d0d5b50         TCPv4    0.0.0.0:49156                  0.0.0.0:0            LISTENING        512      lsass.exe      
+0x7d0db8a0         TCPv4    0.0.0.0:49156                  0.0.0.0:0            LISTENING        512      lsass.exe      
+0x7d0db8a0         TCPv6    :::49156                       :::0                 LISTENING        512      lsass.exe      
+0x7d65ac80         TCPv4    0.0.0.0:135                    0.0.0.0:0            LISTENING        716      svchost.exe    
+0x7d65ac80         TCPv6    :::135                         :::0                 LISTENING        716      svchost.exe    
+0x7d6633c0         TCPv4    0.0.0.0:49152                  0.0.0.0:0            LISTENING        400      wininit.exe    
+0x7d665870         TCPv4    0.0.0.0:135                    0.0.0.0:0            LISTENING        716      svchost.exe    
+0x7d673ee0         TCPv4    0.0.0.0:49152                  0.0.0.0:0            LISTENING        400      wininit.exe    
+0x7d673ee0         TCPv6    :::49152                       :::0                 LISTENING        400      wininit.exe    
+0x7d6c90f0         TCPv4    0.0.0.0:49153                  0.0.0.0:0            LISTENING        784      svchost.exe    
+0x7d6c9390         TCPv4    0.0.0.0:49153                  0.0.0.0:0            LISTENING        784      svchost.exe    
+0x7d6c9390         TCPv6    :::49153                       :::0                 LISTENING        784      svchost.exe    
+0x7d028970         TCPv4    127.0.0.1:49991                127.0.0.1:49990      ESTABLISHED      -1                      
+0x7d112cd0         TCPv4    10.18.10.10:50006              104.97.252.112:443   CLOSED           -1                      
+0x7d3d7010         TCPv4    127.0.0.1:9150                 127.0.0.1:49985      ESTABLISHED      -1                      
+0x7d8332b0         TCPv4    127.0.0.1:9150                 127.0.0.1:49983      ESTABLISHED      -1                      
+0x7da14010         UDPv6    ::1:1900                       *:*                                   848      svchost.exe    2020-08-02 06:58:42 UTC+0000
+0x7e32b850         UDPv4    127.0.0.1:56109                *:*                                   848      svchost.exe    2020-08-02 06:58:42 UTC+0000
+0x7e2948e0         TCPv4    0.0.0.0:445                    0.0.0.0:0            LISTENING        4        System         
+0x7e2948e0         TCPv6    :::445                         :::0                 LISTENING        4        System         
+0x7e29cc80         TCPv4    0.0.0.0:49154                  0.0.0.0:0            LISTENING        952      svchost.exe    
+0x7e29fee0         TCPv4    0.0.0.0:49154                  0.0.0.0:0            LISTENING        952      svchost.exe    
+0x7e29fee0         TCPv6    :::49154                       :::0                 LISTENING        952      svchost.exe    
+0x7e2d3ac0         TCPv4    0.0.0.0:49155                  0.0.0.0:0            LISTENING        504      services.exe   
+0x7e2d9ee0         TCPv4    0.0.0.0:49155                  0.0.0.0:0            LISTENING        504      services.exe   
+0x7e2d9ee0         TCPv6    :::49155                       :::0                 LISTENING        504      services.exe   
+0x7e2d9ee0         TCPv6    :::49155                       :::0                 LISTENING        504      services.exe   
+0x7e3258b0         TCPv4    127.0.0.1:49954                127.0.0.1:49953      ESTABLISHED      -1                      
+0x7e33acd0         TCPv4    127.0.0.1:49985                127.0.0.1:9150       ESTABLISHED      -1                      
+0x7e370210         TCPv4    192.168.72.156:49963           160.16.212.196:5222  ESTABLISHED      -1                      
+0x7e7e9010         UDPv4    10.18.10.10:137                *:*                                   4        System         2020-08-02 06:58:42 UTC+0000
+0x7e9826a0         UDPv4    0.0.0.0:64976                  *:*                                   1032     svchost.exe    2020-08-02 06:58:50 UTC+0000
+0x7e992380         UDPv4    192.168.72.156:137             *:*                                   4        System         2020-08-02 06:57:12 UTC+0000
+0x7e60f730         TCPv4    127.0.0.1:9150                 127.0.0.1:49986      ESTABLISHED      -1                      
+0x7e686cd0         TCPv4    127.0.0.1:49986                127.0.0.1:9150       ESTABLISHED      -1                      
+0x7e6e8050         TCPv4    127.0.0.1:49992                127.0.0.1:50005      CLOSED           -1                      
+0x7e971500         TCPv4    127.0.0.1:49982                127.0.0.1:9150       ESTABLISHED      -1                      
+0x7e983960         TCPv4    127.0.0.1:49972                127.0.0.1:49971      ESTABLISHED      -1                      
+0x7ec85cd0         TCPv4    127.0.0.1:9150                 127.0.0.1:49973      ESTABLISHED      -1                      
+0x7ed9dcd0         TCPv4    127.0.0.1:49983                127.0.0.1:9150       ESTABLISHED      -1                      
+0x7ee75e40         UDPv4    0.0.0.0:5355                   *:*                                   1032     svchost.exe    2020-08-02 06:58:50 UTC+0000
+0x7ee75e40         UDPv6    :::5355                        *:*                                   1032     svchost.exe    2020-08-02 06:58:50 UTC+0000
+0x7ef0b7a0         UDPv6    fe80::19bc:868a:ebe:e82c:546   *:*                                   784      svchost.exe    2020-08-02 06:58:42 UTC+0000
+0x7f2b36c0         UDPv6    ::1:56108                      *:*                                   848      svchost.exe    2020-08-02 06:58:42 UTC+0000
+0x7f2ed010         UDPv4    10.18.10.10:68                 *:*                                   784      svchost.exe    2020-08-02 06:58:45 UTC+0000
+0x7f2f8ec0         UDPv6    fe80::19bc:868a:ebe:e82c:1900  *:*                                   848      svchost.exe    2020-08-02 06:58:42 UTC+0000
+0x7f393460         UDPv4    0.0.0.0:0                      *:*                                   952      svchost.exe    2020-08-02 06:58:50 UTC+0000
+0x7f393460         UDPv6    :::0                           *:*                                   952      svchost.exe    2020-08-02 06:58:50 UTC+0000
+0x7f3d4ec0         UDPv4    0.0.0.0:52187                  *:*                                   1032     svchost.exe    2020-08-02 06:58:46 UTC+0000
+0x7f3d8380         UDPv4    0.0.0.0:57768                  *:*                                   1032     svchost.exe    2020-08-02 06:58:49 UTC+0000
+0x7f3d8590         UDPv4    0.0.0.0:52769                  *:*                                   1032     svchost.exe    2020-08-02 06:58:46 UTC+0000
+0x7f3e30e0         UDPv4    127.0.0.1:53236                *:*                                   4060     pidgin.exe     2020-08-02 06:58:11 UTC+0000
+0x7f6548b0         UDPv4    0.0.0.0:55679                  *:*                                   1032     svchost.exe    2020-08-02 06:58:49 UTC+0000
+0x7f681710         UDPv4    192.168.72.156:1900            *:*                                   848      svchost.exe    2020-08-02 06:58:42 UTC+0000
+0x7f2ac3b0         TCPv4    127.0.0.1:9150                 127.0.0.1:49979      ESTABLISHED      -1                      
+0x7f2afcd0         TCPv4    127.0.0.1:9150                 127.0.0.1:49975      ESTABLISHED      -1                      
+0x7f2ca7c0         TCPv4    127.0.0.1:49951                127.0.0.1:49950      ESTABLISHED      -1                      
+0x7f310cd0         TCPv4    127.0.0.1:49962                127.0.0.1:49961      ESTABLISHED      -1                      
+0x7f32a730         TCPv4    127.0.0.1:49971                127.0.0.1:49972      ESTABLISHED      -1                      
+0x7f63bcd0         TCPv4    127.0.0.1:9150                 127.0.0.1:49977      ESTABLISHED      -1                      
+0x7f657b80         TCPv4    127.0.0.1:49973                127.0.0.1:9150       ESTABLISHED      -1                      
+0x7f658cd0         TCPv4    127.0.0.1:9151                 127.0.0.1:49956      ESTABLISHED      -1                      
+0x7f6d5cd0         TCPv4    127.0.0.1:49977                127.0.0.1:9150       ESTABLISHED      -1                      
+0x7f6eecd0         TCPv4    127.0.0.1:49992                127.0.0.1:50003      CLOSED           -1                      
+0x7f7ec7a0         TCPv4    127.0.0.1:49959                127.0.0.1:9151       ESTABLISHED      -1                      
+0x7faee240         UDPv4    0.0.0.0:50941                  *:*                                   1032     svchost.exe    2020-08-02 06:58:46 UTC+0000
+0x7fb40c40         UDPv4    0.0.0.0:63963                  *:*                                   1032     svchost.exe    2020-08-02 06:58:46 UTC+0000
+0x7fb5e850         UDPv4    10.18.10.10:1900               *:*                                   848      svchost.exe    2020-08-02 06:58:42 UTC+0000
+0x7fb6a860         UDPv4    10.18.10.10:58903              *:*                                   3704     chrome.exe     2020-08-02 06:58:47 UTC+0000
+0x7fbf2ca0         UDPv4    0.0.0.0:52416                  *:*                                   1032     svchost.exe    2020-08-02 06:58:46 UTC+0000
+0x7fc09ec0         UDPv4    192.168.72.156:68              *:*                                   784      svchost.exe    2020-08-02 06:58:50 UTC+0000
+0x7fc0ce00         UDPv4    192.168.72.156:58904           *:*                                   3704     chrome.exe     2020-08-02 06:58:47 UTC+0000
+0x7fc0d010         UDPv4    0.0.0.0:5353                   *:*                                   3704     chrome.exe     2020-08-02 06:58:47 UTC+0000
+0x7fc45820         UDPv4    0.0.0.0:5353                   *:*                                   3704     chrome.exe     2020-08-02 06:58:47 UTC+0000
+0x7fc45820         UDPv6    :::5353                        *:*                                   3704     chrome.exe     2020-08-02 06:58:47 UTC+0000
+0x7fcb0190         UDPv4    0.0.0.0:5353                   *:*                                   3704     chrome.exe     2020-08-02 06:58:47 UTC+0000
+0x7fd1dd70         UDPv4    127.0.0.1:53237                *:*                                   4060     pidgin.exe     2020-08-02 06:58:11 UTC+0000
+0x7fd5e450         UDPv6    fe80::e1ba:8eee:519f:dce6:1900 *:*                                   848      svchost.exe    2020-08-02 06:58:42 UTC+0000
+0x7fe80830         UDPv4    127.0.0.1:1900                 *:*                                   848      svchost.exe    2020-08-02 06:58:42 UTC+0000
+0x7fa717b0         TCPv4    127.0.0.1:9150                 0.0.0.0:0            LISTENING        2640     tor.exe        
+0x7faa2c50         TCPv4    192.168.72.156:139             0.0.0.0:0            LISTENING        4        System         
+0x7fc5c620         TCPv4    127.0.0.1:49992                0.0.0.0:0            LISTENING        1348     pia-service.ex 
+0x7fca7b00         TCPv4    127.0.0.1:9151                 0.0.0.0:0            LISTENING        2640     tor.exe        
+0x7fa19010         TCPv4    127.0.0.1:49975                127.0.0.1:9150       ESTABLISHED      -1                      
+0x7fa3d500         TCPv4    127.0.0.1:49952                127.0.0.1:9151       ESTABLISHED      -1                      
+0x7fa74460         TCPv4    127.0.0.1:49990                127.0.0.1:49991      ESTABLISHED      -1                      
+0x7fa806e0         TCPv4    127.0.0.1:9151                 127.0.0.1:49959      ESTABLISHED      -1                      
+0x7faa6010         TCPv4    192.168.72.156:49955           149.56.185.56:9001   ESTABLISHED      -1                      
+0x7faca010         TCPv4    127.0.0.1:9150                 127.0.0.1:49984      ESTABLISHED      -1                      
+0x7fb799a0         TCPv4    127.0.0.1:49953                127.0.0.1:49954      ESTABLISHED      -1                      
+0x7fc028b0         TCPv4    127.0.0.1:49950                127.0.0.1:49951      ESTABLISHED      -1                      
+0x7fc515a0         TCPv4    127.0.0.1:49976                127.0.0.1:9150       ESTABLISHED      -1                      
+0x7fc8b9d0         TCPv4    127.0.0.1:49966                127.0.0.1:49965      ESTABLISHED      -1                      
+0x7fcaccd0         TCPv4    127.0.0.1:49961                127.0.0.1:49962      ESTABLISHED      -1                      
+0x7fcadac0         TCPv4    127.0.0.1:49956                127.0.0.1:9151       ESTABLISHED      -1                      
+0x7fcc3cd0         TCPv4    127.0.0.1:50005                127.0.0.1:49992      CLOSED           -1                      
+0x7fd097d0         TCPv4    192.168.72.156:49949           192.241.189.207:443  ESTABLISHED      -1                      
+0x7fd6ccd0         TCPv4    127.0.0.1:49965                127.0.0.1:49966      ESTABLISHED      -1                      
+0x7fd74010         TCPv4    127.0.0.1:49979                127.0.0.1:9150       ESTABLISHED      -1                      
+0x7fdce540         TCPv4    127.0.0.1:9150                 127.0.0.1:49982      ESTABLISHED      -1                      
+0x7fe65500         TCPv4    127.0.0.1:9151                 127.0.0.1:49952      ESTABLISHED      -1                      
+0x7fe821b0         TCPv4    127.0.0.1:49984                127.0.0.1:9150       ESTABLISHED      -1                      
+```
 
+<p></p>
+If we look through the output we can see the Tor.exe with the PID of 2640 which we found when we ran <kbd>pslist</kbd>.
+
+```
+Offset(P)          Proto    Local Address                  Foreign Address      State            Pid      Owner          Created                                                              
+0x7fca7b00         TCPv4    127.0.0.1:9151                 0.0.0.0:0            LISTENING        2640     tor.exe        
+0x7fa19010         TCPv4    127.0.0.1:49975                127.0.0.1:9150       ESTABLISHED      -1                      
+0x7fa3d500         TCPv4    127.0.0.1:49952                127.0.0.1:9151       ESTABLISHED      -1                      
+0x7fa74460         TCPv4    127.0.0.1:49990                127.0.0.1:49991      ESTABLISHED      -1                      
+0x7fa806e0         TCPv4    127.0.0.1:9151                 127.0.0.1:49959      ESTABLISHED      -1                      
+0x7faa6010         TCPv4    192.168.72.156:49955           149.56.185.56:9001   ESTABLISHED      -1                      
+0x7faca010         TCPv4    127.0.0.1:9150                 127.0.0.1:49984      ESTABLISHED      -1                      
+0x7fb799a0         TCPv4    127.0.0.1:49953                127.0.0.1:49954      ESTABLISHED      -1                      
+0x7fc028b0         TCPv4    127.0.0.1:49950                127.0.0.1:49951      ESTABLISHED      -1                      
+0x7fc515a0         TCPv4    127.0.0.1:49976                127.0.0.1:9150       ESTABLISHED      -1                      
+0x7fc8b9d0         TCPv4    127.0.0.1:49966                127.0.0.1:49965      ESTABLISHED      -1                      
+0x7fcaccd0         TCPv4    127.0.0.1:49961                127.0.0.1:49962      ESTABLISHED      -1                      
+0x7fcadac0         TCPv4    127.0.0.1:49956                127.0.0.1:9151       ESTABLISHED      -1                      
+0x7fcc3cd0         TCPv4    127.0.0.1:50005                127.0.0.1:49992      CLOSED           -1                      
+0x7fd097d0         TCPv4    192.168.72.156:49949           192.241.189.207:443  ESTABLISHED      -1                      
+0x7fd6ccd0         TCPv4    127.0.0.1:49965                127.0.0.1:49966      ESTABLISHED      -1                      
+0x7fd74010         TCPv4    127.0.0.1:49979                127.0.0.1:9150       ESTABLISHED      -1                      
+0x7fdce540         TCPv4    127.0.0.1:9150                 127.0.0.1:49982      ESTABLISHED      -1                      
+0x7fe65500         TCPv4    127.0.0.1:9151                 127.0.0.1:49952      ESTABLISHED      -1                      
+0x7fe821b0         TCPv4    127.0.0.1:49984                127.0.0.1:9150       ESTABLISHED      -1                      
+```
+
+<p></p>
+Looking at the above excerpt 
 
 </details>
 </details>
