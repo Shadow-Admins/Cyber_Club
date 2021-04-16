@@ -1550,3 +1550,9 @@ FLAG{platypus-corp.com.au}
 </details>
 </details>
 </details>
+
+<hr>
+
+<details>
+    <summary>Memory is RAM 3</summary>
+</details>
