@@ -1241,6 +1241,31 @@ Flag Format: FLAG{domain}
 <details>
     <summary>Walkthrough</summary>
 <p></p>
+So what information can we pull from the hint?
+<p></p>
+<details>
+    <summary>Spoilers</summary>
+<p></p>
+- the SQL injection was likely performed in a terminal.
+<br>
+- we can also check the iehistory to see if there is any information there.
+<p></p>
+With that information we can now begin our analysis.
+</details>
+<hr>
+ Now that we know what we are looking for what are the possible options we can use?
+<p></p>
+<details>
+    <summary>Spoilers</summary>
+<p></p>
 
+Options | Description
+--------|-------------<!-- markdownlint-capture -->
+iehistory | This plugin recovers fragments of IE history index.dat cache files. It can find basic accessed links (via FTP or HTTP), redirected links (--REDR), and deleted entries (--LEAK). It applies to any process which loads and uses the wininet.dll library, not just Internet Explorer. Typically that includes Windows Explorer and even malware samples.
+cmdscan | The cmdscan plugin searches the memory of csrss.exe on XP/2003/Vista/2008 and conhost.exe on Windows 7 for commands that attackers entered through a console shell (cmd.exe). This is one of the most powerful commands you can use to gain visibility into an attackers actions on a victim system, whether they opened cmd.exe through an RDP session or proxied input/output to a command shell from a networked backdoor. <p></p> In addition to the commands entered into a shell, this plugin shows: <p></p> - The name of the console host process (csrss.exe or conhost.exe) <br> - The name of the application using the console (whatever process is using cmd.exe) <br> - The location of the command history buffers, including the current buffer count, last added command, and last displayed command <br> - The application process handle <p></p> Due to the scanning technique this plugin uses, it has the capability to find commands from both active and closed consoles.
+
+
+
+</details>
 </details>
 </details>
