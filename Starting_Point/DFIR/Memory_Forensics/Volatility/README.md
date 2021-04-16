@@ -1877,3 +1877,12 @@ FLAG{149.56.185.56}
 </details>
 </details>
 </details>
+
+<p></p>
+<hr>
+<p></p>
+<details>
+    <summary>Memory is RAM 4</summary>
+<p></p>
+
+</details>
