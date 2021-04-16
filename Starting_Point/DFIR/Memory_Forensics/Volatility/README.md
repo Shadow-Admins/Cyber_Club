@@ -1223,11 +1223,12 @@ Now that we have looked at the different ways we can get the information we need
 FLAG{privateinternetaccess}
 </details>
 </details>
+</details>
 <hr>
 <details>
     <summary>Memory is RAM 2</summary>
-
-</details>
+test
+stuff test
 </details>
 </details>
 </details>
