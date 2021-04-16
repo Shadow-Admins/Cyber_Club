@@ -880,8 +880,51 @@ The password is Hunter2 so the flag is: FLAG{Hunter2}
 <p></p>
 <H3>Memory is RAM</H2>
 <p></p>
+These challenges will use the file dump.vmem
+<br>
+When you download it the file comes as dump.7z you can either extract it through an archive manager or through CLI which I will explain now.
+<p></p>
+The first thing you will need is to install p7zip-full if you haven't already. To do this run this command:
+<p></p>
 
-<H2>TEST<H2>
-testing stuff again
-you know
+```
+sudo apt install p7zip-full
+```
+
+Now that's installed you can run this command on the file:
+
+```
+p7zip -d dump.7z
+```
+
+Which will give you this and extract the file:
+
+```
+❯ p7zip -d dump.7z
+
+7-Zip (a) [64] 16.02 : Copyright (c) 1999-2016 Igor Pavlov : 2016-05-21
+p7zip Version 16.02 (locale=en_AU.UTF-8,Utf16=on,HugeFiles=on,64 bits,8 CPUs Intel(R) Core(TM) i7-8650U CPU @ 1.90GHz (806EA),ASM,AES-NI)
+
+Scanning the drive for archives:
+1 file, 479938046 bytes (458 MiB)
+
+Extracting archive: dump.7z
+--
+Path = dump.7z
+Type = 7z
+Physical Size = 479938046
+Headers Size = 122
+Method = LZMA2:20
+Solid = -
+Blocks = 1
+
+Everything is Ok
+
+Size:       2147483648
+Compressed: 479938046
+
+```
+
+<p></p>
+
 </details>
