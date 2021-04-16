@@ -929,7 +929,7 @@ Compressed: 479938046
 ```
 
 <p></p>
-We can now begin our analysis on dump.vmem
+Once we determine the image profile using <kbd>imageinfo</kbd> (refer to Getting your Foothold ) we can begin our analysis on dump.vmem
 <p></p>
 </details>
 <p></p>
@@ -958,13 +958,26 @@ So what information can we pull from the hint?
 <p></p>
 - What is a VPN? A virtual private network (VPN) gives you online privacy and anonymity by creating a private network from a public internet connection. VPNs mask your internet protocol (IP) address so your online actions are virtually untraceable. Most important, VPN services establish secure and encrypted connections to provide greater privacy than even a secured Wi-Fi hotspot.
   <br>
-- So from that we can conclude that a VPN has something to do with the internet and will most likely be a program running locally on the system IOT create the tunnel.
+- So from that we can conclude that a VPN has something to do with the internet and will most likely be a program or process running locally on the system IOT create the tunnel.
 <p></p>
 With that information we can begin our analysis.
 </details>
+<hr>
+<p></p>
+Now that we know what we are looking for what are the possible options we can use?
+<p></p>
+<details>
+    <summary>Spoilers</summary>
+<p></p>
+
+Options | Description
+--------|-------------
+pslist | To list the processes of a system, use the <kbd>pslist</kbd> command. This walks the doubly-linked list pointed to by <kbd>PsActiveProcessHead</kbd> and shows the offset, process name, process ID, the parent process ID, number of threads, number of handles, and date/time when the process started and exited. <p></p> This plugin does not detect hidden or unlinked processes (but psscan can do that). <p></p> If you see processes with 0 threads, 0 handles, and/or a non-empty exit time, the process may not actually still be active. <p></p> Also note the two processes <kbd>System</kbd> and <kbd>smss.exe</kbd> will not have a Session ID, because System starts before sessions are established and <kbd>smss.exe</kbd> is the session manager itself.
+psscan | 
 
 
 
+</details>
 </details>
 </details>
 </details>
