@@ -938,5 +938,33 @@ We can now begin our analysis on dump.vmem
 
 <details>
     <summary>Memory is RAM 1</summary>
+<p></p>
+The first challenge we are given is:
+<p></p>
+We've recovered a memory dump of an attackers VM and need you to perform
+<br>
+some analysis. First up, what VPN provider was the attacker using?
+<p></p>
+Flag Format: FLAG{somevpncompany} (provider name with no whitespace)
+<p></p>
+<details>
+    <summary>Walkthrough</summary>
+<p></p>
+So what information can we pull from the hint?
+<p></p>
+
+<details>
+    <summary>Spoilers</summary>
+<p></p>
+- What is a VPN? A virtual private network (VPN) gives you online privacy and anonymity by creating a private network from a public internet connection. VPNs mask your internet protocol (IP) address so your online actions are virtually untraceable. Most important, VPN services establish secure and encrypted connections to provide greater privacy than even a secured Wi-Fi hotspot.
+  <br>
+- So from that we can conclude that a VPN has something to do with the internet and will most likely be a program running locally on the system IOT create the tunnel.
+<p></p>
+With that information we can begin our analysis.
+</details>
+
+
+
+</details>
 </details>
 </details>
