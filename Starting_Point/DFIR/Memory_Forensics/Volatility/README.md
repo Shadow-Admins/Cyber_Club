@@ -932,5 +932,11 @@ Compressed: 479938046
 We can now begin our analysis on dump.vmem
 <p></p>
 </details>
+<p></p>
+<hr>
+<p></p>
 
+<details>
+    <summary>Memory is RAM 1</summary>
+</details>
 </details>
