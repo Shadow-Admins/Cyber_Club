@@ -1215,14 +1215,15 @@ Command line :
 
 <p></p>
 Now that we have looked at the different ways we can get the information we need a simple google search will show that pia is a vpn provider.
+<p></p>
 
 <details>
     <summary>Answer</summary>
 <p></p>
 FLAG{privateinternetaccess}
 </details>
-
 </details>
+
 </details>
 </details>
 </details>
