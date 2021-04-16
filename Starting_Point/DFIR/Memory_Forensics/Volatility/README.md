@@ -973,7 +973,12 @@ Now that we know what we are looking for what are the possible options we can us
 Options | Description
 --------|-------------
 pslist | To list the processes of a system, use the <kbd>pslist</kbd> command. This walks the doubly-linked list pointed to by <kbd>PsActiveProcessHead</kbd> and shows the offset, process name, process ID, the parent process ID, number of threads, number of handles, and date/time when the process started and exited. <p></p> This plugin does not detect hidden or unlinked processes (but psscan can do that). <p></p> If you see processes with 0 threads, 0 handles, and/or a non-empty exit time, the process may not actually still be active. <p></p> Also note the two processes <kbd>System</kbd> and <kbd>smss.exe</kbd> will not have a Session ID, because System starts before sessions are established and <kbd>smss.exe</kbd> is the session manager itself.
-psscan | 
+psscan | To enumerate processes using pool tag scanning (<kbd>_POOL_HEADER</kbd>), use the <kbd>psscan</kbd> command. This can find processes that previously terminated (inactive) and processes that have been hidden or unlinked by a rootkit. The downside is that rootkits can still hide by overwriting the pool tag values (though not commonly seen in the wild).
+pstree | To view the process listing in tree form, use the <kbd>pstree</kbd> command. This enumerates processes using the same technique as <kbd>pslist</kbd>, so it will also not show hidden or unlinked processes. Child process are indicated using indention and periods.
+cmdline | This will output all process command-line outputs.
+
+<p></p>
+All of these will show us information that will be usefull, so now that we know which options we can use we can start our analysis.
 
 
 
