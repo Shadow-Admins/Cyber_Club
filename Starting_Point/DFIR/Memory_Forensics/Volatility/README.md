@@ -2098,9 +2098,163 @@ Flag format: FLAG{domain}
 <details>
     <summary>Walkthrough</summary>
 <p></p>
+So what information can we pull from the hint?
+<p></p>
+<details>
+    <summary>Spoilers</summary>
+<p></p>
+- First what is XMPP? "Extensible Messaging and Presence Protocol (XMPP, originally named Jabber[1]) is an open communication protocol designed for instant messaging (IM), presence information, and contact list maintenance. Based on XML (Extensible Markup Language), it enables the near-real-time exchange of structured data between any two or more network entities."
+- So we know that when we list the processes we need to look for a messaging app, (if you have played with linux before the app will stick out)
+<p></p>
+With this information we can begine our analysis.
+<p></p>
+<hr>
+<p></p>
+Now that we know what we are looking for what options can we use?
+<p></p>
 
+Options | Description
+--------|-------------------
+pslist | To list the processes of a system, use the pslist command. This walks the doubly-linked list pointed to by PsActiveProcessHead and shows the offset, process name, process ID, the parent process ID, number of threads, number of handles, and date/time when the process started and exited. As of 2.1 it also shows the Session ID and if the process is a Wow64 process (it uses a 32 bit address space on a 64 bit kernel). <p></p> This plugin does not detect hidden or unlinked processes (but psscan can do that). <p></p> If you see processes with 0 threads, 0 handles, and/or a non-empty exit time, the process may not actually still be active.
+netscan | To scan for network artifacts in 32- and 64-bit Windows Vista, Windows 2008 Server and Windows 7 memory dumps, use the netscan command. This finds TCP endpoints, TCP listeners, UDP endpoints, and UDP listeners. It distinguishes between IPv4 and IPv6, prints the local and remote IP (if applicable), the local and remote port (if applicable), the time when the socket was bound or when the connection was established, and the current state (for TCP connections only).
 
+<p></p>
+With these two options we can now begin our analysis.
+<p></p>
+<details>
+    <summary>Spoilers</summary>
+<p></p>
+The first thing we will do is lust all of the processes using <kbd>pslist</kbd> the command looks like this:
+<p></p>
 
+```
+sudo volatility -f dump.vmem --profile=Win7SP1x64 pslist
+```
 
+<p></p>
+Which gives an output of:
+<p></p>
+
+```
+❯ sudo volatility -f dump.vmem --profile=Win7SP1x64 pslist                                                                                                                                    
+[sudo] password for parrot:                                                                                                                                                                   
+Volatility Foundation Volatility Framework 2.6                                                                                                                                                
+Offset(V)          Name                    PID   PPID   Thds     Hnds   Sess  Wow64 Start                          Exit                                                                       
+------------------ -------------------- ------ ------ ------ -------- ------ ------ ------------------------------ ------------------------------                                             
+0xfffffa80018b0960 System                    4      0     97      541 ------      0 2020-08-02 02:21:39 UTC+0000                                                                              
+0xfffffa80031c75d0 smss.exe                272      4      2       30 ------      0 2020-08-02 02:21:39 UTC+0000                                                                              
+0xfffffa8003c2f060 csrss.exe               360    344      9      555      0      0 2020-08-02 02:21:40 UTC+0000                                                                              
+0xfffffa800350d060 wininit.exe             400    344      3       81      0      0 2020-08-02 02:21:41 UTC+0000                                                                              
+0xfffffa8003df0b00 csrss.exe               412    392     11      558      1      0 2020-08-02 02:21:41 UTC+0000                                                                              
+0xfffffa8003e679a0 winlogon.exe            456    392      3      117      1      0 2020-08-02 02:21:41 UTC+0000                                                                              
+0xfffffa8003db3b00 services.exe            504    400      7      214      0      0 2020-08-02 02:21:41 UTC+0000                                                                              
+0xfffffa8003e03b00 lsass.exe               512    400      9      643      0      0 2020-08-02 02:21:41 UTC+0000                                                                              
+0xfffffa8003ea8b00 lsm.exe                 524    400     11      167      0      0 2020-08-02 02:21:41 UTC+0000                                                                              
+0xfffffa8003fd49c0 svchost.exe             644    504     12      375      0      0 2020-08-02 02:21:42 UTC+0000                                                                              
+0xfffffa800403e2f0 svchost.exe             716    504      9      317      0      0 2020-08-02 02:21:42 UTC+0000                                                                              
+0xfffffa8003fdcb00 svchost.exe             784    504     25      560      0      0 2020-08-02 02:21:42 UTC+0000                                                                              
+0xfffffa80040a2b00 svchost.exe             860    504     22      479      0      0 2020-08-02 02:21:42 UTC+0000                                                                              
+0xfffffa80040f3060 svchost.exe             912    504     15      644      0      0 2020-08-02 02:21:42 UTC+0000                                                                              
+0xfffffa800410d5f0 svchost.exe             952    504     47     1307      0      0 2020-08-02 02:21:43 UTC+0000                                                                              
+0xfffffa80030d1500 svchost.exe            1032    504     35      607      0      0 2020-08-02 02:21:44 UTC+0000                                                                              
+0xfffffa80034b36e0 spoolsv.exe            1132    504     15      289      0      0 2020-08-02 02:21:44 UTC+0000                                                                              
+0xfffffa8003474b00 svchost.exe            1164    504     21      344      0      0 2020-08-02 02:21:44 UTC+0000                                                                              
+0xfffffa800440ab00 svchost.exe            1244    504     11      315      0      0 2020-08-02 02:21:44 UTC+0000                                 
+0xfffffa8004411b00 pia-service.ex         1348    504     18      312      0      0 2020-08-02 02:21:45 UTC+0000                                 
+0xfffffa800199a6e0 VGAuthService.         1428    504      3       86      0      0 2020-08-02 02:21:45 UTC+0000                                 
+0xfffffa80044d3b00 vmtoolsd.exe           1488    504     11      299      0      0 2020-08-02 02:21:45 UTC+0000                                 
+0xfffffa8004561b00 WmiPrvSE.exe           1876    644     11      230      0      0 2020-08-02 02:21:46 UTC+0000                                 
+0xfffffa80019986d0 dllhost.exe            1960    504     14      196      0      0 2020-08-02 02:21:46 UTC+0000                                 
+0xfffffa8004684b00 msdtc.exe              1984    504     12      146      0      0 2020-08-02 02:21:47 UTC+0000                                 
+0xfffffa80041c2700 taskhost.exe           2900    504      8      199      1      0 2020-08-02 02:22:02 UTC+0000                                 
+0xfffffa8004aad7f0 dwm.exe                1792    860      5      160      1      0 2020-08-02 02:22:03 UTC+0000                                 
+0xfffffa8004ab7b00 explorer.exe           2252   2180     28      882      1      0 2020-08-02 02:22:03 UTC+0000                                 
+0xfffffa80040d7410 vm3dservice.ex         2464   2252      2       42      1      0 2020-08-02 02:22:04 UTC+0000                                 
+0xfffffa80041f9b00 vmtoolsd.exe           2468   2252      8      181      1      0 2020-08-02 02:22:04 UTC+0000                                 
+0xfffffa80045d6b00 SearchIndexer.         2420    504     13      712      0      0 2020-08-02 02:22:10 UTC+0000                                 
+0xfffffa8001c48b00 sppsvc.exe             3620    504      4      153      0      0 2020-08-02 02:23:46 UTC+0000                                 
+0xfffffa8001b4b060 svchost.exe            3708    504     13      347      0      0 2020-08-02 02:23:46 UTC+0000                                 
+0xfffffa8001ad5b00 cmd.exe                3692   2252      1       22      1      0 2020-08-02 02:24:05 UTC+0000                                 
+0xfffffa8001c3eb00 conhost.exe            3568    412      2       53      1      0 2020-08-02 02:24:05 UTC+0000                                 
+0xfffffa8001ab1b00 chrome.exe             3704   2252     34      793      1      0 2020-08-02 02:24:08 UTC+0000                                 
+0xfffffa8001bc9b00 chrome.exe             3696   3704      8       75      1      0 2020-08-02 02:24:09 UTC+0000                                 
+0xfffffa8001c0a060 chrome.exe             1724   3704     10      230      1      0 2020-08-02 02:24:09 UTC+0000                                 
+0xfffffa8001c3cb00 chrome.exe             3896   3704     33      469      1      0 2020-08-02 02:24:09 UTC+0000                                 
+0xfffffa8001c6fb00 chrome.exe             1516   3704     16      272      1      0 2020-08-02 02:24:11 UTC+0000                                 
+0xfffffa8001c71b00 pia-client.exe         2408   2252     13      181      1      0 2020-08-02 02:24:20 UTC+0000                                 
+0xfffffa80024a0b00 wuauclt.exe            3152    952      4       97      1      0 2020-08-02 02:24:58 UTC+0000                                 
+0xfffffa8004794b00 svchost.exe             848    504     10      142      0      0 2020-08-02 02:25:23 UTC+0000                                 
+0xfffffa8002550360 pidgin.exe             4060   2252     13      262      1      1 2020-08-02 03:40:36 UTC+0000                                 
+0xfffffa80024a4870 chrome.exe             3172   3704     15      394      1      0 2020-08-02 03:40:49 UTC+0000                                 
+0xfffffa8002499b00 audiodg.exe             616    784      4      126      0      0 2020-08-02 03:52:48 UTC+0000                                 
+0xfffffa8002f4eb00 SearchProtocol         3996   2420      7      326      0      0 2020-08-02 06:47:09 UTC+0000                                 
+0xfffffa8004525b00 firefox.exe            3412   4012     55      813      1      0 2020-08-02 06:57:58 UTC+0000                                 
+0xfffffa8002483820 firefox.exe            3424   3412     12      209      1      0 2020-08-02 06:57:58 UTC+0000                                 
+0xfffffa80040ad910 tor.exe                2640   3412      6       77      1      0 2020-08-02 06:57:59 UTC+0000                                 
+0xfffffa8004ac2930 SearchFilterHo         1904   2420      6      111      0      0 2020-08-02 06:57:59 UTC+0000                                 
+0xfffffa8001d113e0 firefox.exe            2728   3412     28      352      1      0 2020-08-02 06:58:08 UTC+0000                                 
+0xfffffa800250e770 firefox.exe            3380   3412     26      342      1      0 2020-08-02 06:58:09 UTC+0000                                 
+0xfffffa8001aaeb00 firefox.exe            3756   3412     23      312      1      0 2020-08-02 06:58:13 UTC+0000                                 
+0xfffffa8001ab9060 pia-openvpn.ex         1872   1348      2       78      0      0 2020-08-02 06:58:40 UTC+0000                                 
+0xfffffa8002f84b00 conhost.exe            2832    360      1       33      0      0 2020-08-02 06:58:41 UTC+0000                                 
+0xfffffa8001ceeb00 mobsync.exe             208    644      8      165      1      0 2020-08-02 06:58:45 UTC+0000                                 
+0xfffffa80030155f0 cmd.exe                2064   1488      0 --------      0      0 2020-08-02 06:58:50 UTC+0000   2020-08-02 06:58:50 UTC+0000  
+0xfffffa800256f770 conhost.exe            3392    360      0       30      0      0 2020-08-02 06:58:50 UTC+0000                                 
+0xfffffa8002f88640 ipconfig.exe           3128   2064      0 --------      0      0 2020-08-02 06:58:50 UTC+0000   2020-08-02 06:58:50 UTC+0000  
+```
+
+<p></p>
+Through some reasearch we find that pidgin is an XMPP application, we also need to note the PID of 4060.
+<br>
+"Pidgin is a chat program which lets you log into accounts on multiple chat networks simultaneously. This means that you can be chatting with friends on XMPP and sitting in an IRC channel at the same time."
+<p></p>
+
+```
+Offset(V)          Name                    PID   PPID   Thds     Hnds   Sess  Wow64 Start                          Exit                                                                       
+------------------ -------------------- ------ ------ ------ -------- ------ ------ ------------------------------ ------------------------------                                             
+0xfffffa8002550360 pidgin.exe             4060   2252     13      262      1      1 2020-08-02 03:40:36 UTC+0000                                 
+```
+
+<p></p>
+Now that we know which application we are looking at we can now dump the memory associated with it IOT investigate further, so we will now use the <kbd>memdump</kbd> option after making a dump directory <kbd>mkdir pidgin_dump</kbd>, the command looks like this:
+<p></p>
+
+```
+sudo volatility -f dump.vmem --profile=Win7SP1x64 memdump -D pidgin_dump -p 4060
+```
+
+<p></p>
+Which gives an output of:
+<p></p>
+
+```
+❯ sudo volatility -f dump.vmem --profile=Win7SP1x64 memdump -D pidgin_dump -p 4060
+Volatility Foundation Volatility Framework 2.6
+************************************************************************
+Writing pidgin.exe [  4060] to 4060.dmp
+```
+
+<p></p>
+Now that we have a file we can analyse we can again run strings on the file (my system lagged while running strings and pipping to another command so a tip is to run strings on 4060.dmp and append it to a text file <kbd>strings 4060.dmp > out.txt</kbd> we can then run other commands much quicker).
+<br>
+Now that we have a text file we can <kbd>cat</kbd> the file and pipe it to grep to search for the database we are looking for.
+<br>
+If you aren't familiar with <kbd>head</kbd> <kbd>tail</kbd> <kbd>less</kbd> or <kbd>more</kbd> you should start as it allows us to more managebly view large outputs of information try all on this file and see the differences (<kbd>q</kbd> will quit out of <kbd>less</kbd>). The command will look like this:
+<p></p>
+
+```
+cat out.txt | grep database | less
+```
+
+<p></p>
+This shows us the answer.
+<p></p>
+<details>
+    <summary>Answer</summary>
+<p></p>
+FLAG{aus-offensive.com.au}
+</details>
+</details>
+</details>
 </details>
 </details>
