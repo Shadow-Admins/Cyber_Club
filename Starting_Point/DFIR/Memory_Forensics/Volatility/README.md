@@ -2028,12 +2028,53 @@ Writing tor.exe [  2640] to 2640.dmp
 ```
 
 <p></p>
-
+The memdump will output a file for us, running <kbd>file 2640.dmp</kbd> lets us know this is a dat file. From here we can run strings on the file (The strings command returns each string of printable characters in files. Its main uses are to determine the contents of and to extract text from binary files) and since we know we are searching for a .onion file we can pipe (|) the output of strings into grep searching for .onion the command looks like This:
 <p></p>
 
+```
+strings 2640.dmp | grep .onion
+```
 
+<p></p>
+This command outputs a ton of information but at the tail of the output is the information we are looking for.
+<p></p>
 
+```
+https://xsstorweb56srs3a.onion/threads/29059/
+rs3a.onion/threa
+https://xsstorweb56srs3a.onion/threads/29059/
+https://xsstorweb56srs3a.onion/threads/29059/
+https://xsstorweb56srs3a.onion/threads/29059/
+https://xsstorweb56srs3a.onion/threads/29059/
+b56srs3a.onion
+^privateBrowsingId=1&firstPartyDomain=xsstorweb56srs3a.onion
+https://xsstorweb56srs3a.onion
+https://xsstorweb56srs3a.onion/threads/29059/
+https://xsstorweb56srs3a.onion/threads/29059/
+https://xsstorweb56srs3a.onion/styles/favicon.png
+https://xsstorweb56srs3a.onion/threads/29059/
+https://xsstorweb56srs3a.onion/threads/29059/
+https://xsstorweb56srs3a.onion/threads/29059/
+https://xsstorweb56srs3a.onion/threads/29059/
+https://xsstorweb56srs3a.onion/threads/29059/
+https://xsstorweb56srs3a.onion/threads/29059/
+https://xsstorweb56srs3a.onion/threads/29059/
+https://xsstorweb56srs3a.onion/threads/29059/
+https://xsstorweb56srs3a.onion/threads/29059/
+.onion/t@
+https://xsstorweb56srs3a.onion/forums/140/
+xsstorweb56srs3a.onion
+```
 
+This output gives us our answer.
+
+<p></p>
+<details>
+    <summary>Answer</summary>
+<p></p>
+FLAG{xsstorweb56srs3a.onion}
+<p></p>
+</details>
 </details>
 </details>
 </details>
