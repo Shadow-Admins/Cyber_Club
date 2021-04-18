@@ -2103,7 +2103,9 @@ So what information can we pull from the hint?
 <details>
     <summary>Spoilers</summary>
 <p></p>
-- First what is XMPP? "Extensible Messaging and Presence Protocol (XMPP, originally named Jabber[1]) is an open communication protocol designed for instant messaging (IM), presence information, and contact list maintenance. Based on XML (Extensible Markup Language), it enables the near-real-time exchange of structured data between any two or more network entities."
+- First what is XMPP? 
+<br>
+"Extensible Messaging and Presence Protocol (XMPP, originally named Jabber) is an open communication protocol designed for instant messaging (IM), presence information, and contact list maintenance. Based on XML (Extensible Markup Language), it enables the near-real-time exchange of structured data between any two or more network entities."
 - So we know that when we list the processes we need to look for a messaging app, (if you have played with linux before the app will stick out)
 <p></p>
 With this information we can begine our analysis.
@@ -2244,6 +2246,47 @@ If you aren't familiar with <kbd>head</kbd> <kbd>tail</kbd> <kbd>less</kbd> or <
 
 ```
 cat out.txt | grep database | less
+```
+
+<p></p>
+Which gives and output of:
+<p></p>
+
+```
+❯ cat out.txt | grep database | less                                                                                                                                                           
+just looking to see if you had a copy of that database we spoke about a while back, i've seen its been circulating a bit but havent managed to grab a copy myself                             
+just looking to see if you had a copy of that database we spoke about a while back, i've seen its been circulating a bit but havent managed to grab a copy myself                             
+st looking to see if you had a copy of that database we spoke about a while back, i've seen its been circulating a bit but havent managed to grab a copy myself                               
+just looking to see if you had a copy of that database we spoke about a while back, i've seen its been circulating a bit but havent managed to grab a copy myself                             
+all good, it was the aus-offensive.com.au database, think it was the jan-2020 version? willing to drop 0.3 btc for a copy if you have it                                                      
+all good, it was the aus-offensive.com.au database, think it was the jan-2020 version? willing to drop 0.3 btc for a copy if you have it                                                      
+all good, it was the aus-offensive.com.au database, think it was the jan-2020 version? willing to drop 0.3 btc for a copy if you have it                                                      
+all good, it was the aus-offensive.com.au database, think it was the jan-2020 version? willing to drop 0.3 btc for a copy if you have it                                                      
+all good, it was the aus-offensive.com.au database, think it was the jan-2020 version? willing to drop 0.3 btc for a copy if you have it                                                      
+:57:04 PM) yung_mendax@xmpp.jp/24175827678445536902550094050: all good, it was the aus-offensive.com.au database, think it was the jan-2020 version? willing to drop 0.3 btc for a copy if you
+ have it                                                                                                                                                                                      
+:55:38 PM) yung_mendax@xmpp.jp/24175827678445536902550094050: just looking to see if you had a copy of that database we spoke about a while back, i've seen its been circulating a bit but hav
+ent managed to grab a copy myself                                                                                                                                                             
+just looking to see if you had a copy of that database we spoke about a while back, i've seen its been circulating a bit but havent managed to grab a copy myself                             
+st looking to see if you had a copy of that database we spoke about a while back, i've seen its been circulating a bit but havent managed to grab a copy myself b a copy myself               
+no secret in database                                                                                                                                                                         
+no secret in database                                                                                                                                                                         
+transitioning user %s to auxprop database
+file is encrypted or is not a database
+auxiliary database format error
+database schema has changed
+unable to open database file
+database or disk is full
+database disk image is malformed
+attempt to write a readonly database
+database table is locked
+database is locked
+SQL logic error or missing database
+database_list
+database schema is locked: %s
+database table is locked: %s
+The certificate/key database is in an old, unsupported format.
+You have no database of root certificates, so this certificate cannot be validated.
 ```
 
 <p></p>
