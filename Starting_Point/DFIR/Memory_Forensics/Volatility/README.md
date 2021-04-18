@@ -2080,3 +2080,27 @@ FLAG{xsstorweb56srs3a.onion}
 </details>
 </details>
 </details>
+
+<p></p>
+<hr>
+<p></p>
+<details>
+    <summary>Memory is RAM 5</summary>
+<p></p>
+It looks like the attacker was talking to someone over XMPP about buying
+<br>
+a database, can you recover the communications and find the domain the database
+<br>
+belongs to?
+<p></p>
+Flag format: FLAG{domain}
+<p></p>
+<details>
+    <summary>Walkthrough</summary>
+<p></p>
+
+
+
+
+</details>
+</details>
