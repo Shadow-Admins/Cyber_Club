@@ -2460,7 +2460,7 @@ The first challenge we are given is:
 <p></p>
 My friend John is an "environmental" activist and a humanitarian. He hated the ideology of Thanos from the Avengers: Infinity War. He sucks at programming. He used too many variables while writing any program. One day, John gave me a memory dump and asked me to find out what he was doing while he took the dump. Can you figure it out for me?
 <p></p>
-Challenge File: https://drive.google.com/file/d/1MjMGRiPzweCOdikO3DTaVfbdBK5kyynT/view
+Challenge File: <a href="https://github.com/stuxnet999/MemLabs/tree/master/Lab%200" rel="nofollow">MEMLABS 0</a>
 <p></p>
 
 
