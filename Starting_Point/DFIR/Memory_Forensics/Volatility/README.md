@@ -2602,7 +2602,59 @@ Compressed: 158197742
 </details>
 <p></p>
 <details>
+    <summary>Starting Point</summary>
+<p></p>
+The first thing we need to do is figure out what the <kbd>imageinfo</kbd> is IOT get our profile.
+<br>
+The command looks like this:
+<p></p>
+
+```
+sudo volatility -f MemoryDump_Lab1.raw imageinfo
+```
+
+<p></p>
+Which outputs:
+<p></p>
+
+```
+❯ sudo volatility -f MemoryDump_Lab1.raw imageinfo
+Volatility Foundation Volatility Framework 2.6
+INFO    : volatility.debug    : Determining profile based on KDBG search...
+          Suggested Profile(s) : Win7SP1x64, Win7SP0x64, Win2008R2SP0x64, Win2008R2SP1x64_23418, Win2008R2SP1x64, Win7SP1x64_23418
+                     AS Layer1 : WindowsAMD64PagedMemory (Kernel AS)
+                     AS Layer2 : FileAddressSpace (/home/parrot/ctf/MEMLABS/MEMLABS_1/MemoryDump_Lab1.raw)
+                      PAE type : No PAE
+                           DTB : 0x187000L
+                          KDBG : 0xf800028100a0L
+          Number of Processors : 1
+     Image Type (Service Pack) : 1
+                KPCR for CPU 0 : 0xfffff80002811d00L
+             KUSER_SHARED_DATA : 0xfffff78000000000L
+           Image date and time : 2019-12-11 14:38:00 UTC+0000
+     Image local date and time : 2019-12-11 20:08:00 +0530
+```
+
+<p></p>
+From this output we can see the suggested profiles and will use Win7SP1x64 for this challenge.
+<p></p>
+</details>
+<details>
     <summary>Walkthrough Flag 1</summary>
+<p></p>
+The first thing we want to look at is the the black box that popped up, this likely ran a command so we will investigate this.
+<p></p>
+The options we will use for this are:
+<p></p>
+
+Option | Description
+-------|--------------
+pstree | To view the process listing in tree form, use the <kbd>pstree</kbd> command. This enumerates processes using the same technique as <kbd>pslist</kbd>, so it will also not show hidden or unlinked processes. Child process are indicated using indention and periods.
+cmdline | This will output all process command-line outputs.
+consoles | Similar to cmdscan the consoles plugin finds commands that attackers typed into cmd.exe or executed via backdoors. However, instead of scanning for COMMAND_HISTORY, this plugin scans for CONSOLE_INFORMATION. The major advantage to this plugin is it not only prints the commands attackers typed, but it collects the entire screen buffer (input and output). For instance, instead of just seeing "dir", you'll see exactly what the attacker saw, including all files and directories listed by the "dir" command. <p></p> Additionally, this plugin prints the following: <p></p> - The original console window title and current console window title <br> - The name and pid of attached processes (walks a LIST_ENTRY to enumerate all of them if more than one) <br> - Any aliases associated with the commands executed. For example, attackers can register an alias such that typing "hello" actually executes "cd system" <br> - The screen coordinates of the cmd.exe console
+
+
+
 </details>
 <p></p>
 <details>
