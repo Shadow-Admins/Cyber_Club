@@ -2087,6 +2087,8 @@ FLAG{xsstorweb56srs3a.onion}
 <details>
     <summary>Memory is RAM 5</summary>
 <p></p>
+The fifth challenge we are given is:
+<p></p>
 It looks like the attacker was talking to someone over XMPP about buying
 <br>
 a database, can you recover the communications and find the domain the database
@@ -2300,4 +2302,24 @@ FLAG{aus-offensive.com.au}
 </details>
 </details>
 </details>
+</details>
+
+<p></p>
+<hr>
+<p></p>
+<details>
+    <summary>Memory is RAM 6</summary>
+<p></p>
+The final challenge we are given is:
+<p></p>
+It seems like the attacker uses LastPass to store their credentials,
+<br>
+can you recover their password for the xss.is forum?
+<p></p>
+Flag format: FLAG{password}
+<p></p>
+<details>
+    <summary>Walkthrough</summary>
+
+
 </details>
