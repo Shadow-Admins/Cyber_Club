@@ -2321,5 +2321,110 @@ Flag format: FLAG{password}
 <details>
     <summary>Walkthrough</summary>
 
+<p></p>
+So what information can we pull from the hint?
+<p></p>
+<details>
+    <summary>Spoilers</summary>
+<p></p>
+- We will need a way to extract passwords from LastPass but what is Last Pass?
+<br>
+"LastPass is a secure password manager that stores all of your usernames and passwords in one safe place, called a Vault. After you save a password to your Vault, LastPass always remembers it for you. When you need to log in to a website, LastPass enters your username and password for you!"
+<p></p>
+- The password we need is for xss.is
+<p></p>
+With that information we can start our analysis.
+<p></p>
+<details>
+    <summary>Spoilers</summary>
+<p></p>
+So now we know what we are looking for what options can we use?
+<p></p>
+This is the first challenge where we will introduce the use of plugins to assist with our analysis.
+<br>
+A quick google for "lastpass volatility" will direct us to a github site that has the plugin we need, https://github.com/kevthehermit/volatility_plugins
+<br>
+So what does this plugin do?
+<p></p>
 
+Plugin | Description
+-------|--------------
+lastpass | Read browser memory space and attempt to recover any resident artefact's. <p></p> IMPORTANT <p></p> It is important to note that this process only works if a memory image was taken whilst the lastpass plugin was running in active browser. And will only find credentials for domains that are active in a tab
+
+<p></p>
+So now that we have found the plugin we will use we will now clone it so we can use it in our analysis.
+<p></p>
+<details>
+    <summary>Spoilers</summary>
+<p></p>
+The first thing we need to do is clone the git repository containg the plugin so we can use it, the command looks like this:
+<p></p>
+
+```
+git clone https://github.com/kevthehermit/volatility_plugins.git
+```
+
+<p></p>
+Which gives us the output of:
+<p></p>
+
+```
+❯ git clone https://github.com/kevthehermit/volatility_plugins.git
+Cloning into 'volatility_plugins'...
+remote: Enumerating objects: 90, done.
+remote: Total 90 (delta 0), reused 0 (delta 0), pack-reused 90
+Receiving objects: 100% (90/90), 20.28 KiB | 944.00 KiB/s, done.
+Resolving deltas: 100% (47/47), done.
+```
+
+<p></p>
+you need to get the location for the plugin, the easiest way is to go into the folder containing the plugin and use the command <kbd>pwd</kbd>, once you have the file path you will need to use the <kbd>-plugin=</kbd> flag (note this flag must come straight after the volatility command or it wont work) the command looks like this:
+<p></p>
+
+
+```
+sudo volatility --plugins=/home/parrot/ctf/csc/Preseason/Memory_is_RAM/volatility_plugins/lastpass -f dump.vmem --profile=Win7SP1x64 lastpass
+```
+
+<p></p>
+The output looks like this:
+<p></p>
+
+```
+❯ sudo volatility --plugins=/home/parrot/ctf/csc/Preseason/Memory_is_RAM/volatility_plugins/lastpass -f dump.vmem --profile=Win7SP1x64 lastpass
+Volatility Foundation Volatility Framework 2.6
+Searching for LastPass Signatures
+Found pattern in Process: chrome.exe (3704)
+Found pattern in Process: chrome.exe (3704)
+Found pattern in Process: chrome.exe (3704)
+Found pattern in Process: chrome.exe (1516)
+Found pattern in Process: chrome.exe (1516)
+Found pattern in Process: chrome.exe (1516)
+Found pattern in Process: chrome.exe (1516)
+Found pattern in Process: chrome.exe (1516)
+Found pattern in Process: chrome.exe (1516)
+Found pattern in Process: chrome.exe (3172)
+Found pattern in Process: chrome.exe (3172)
+Found pattern in Process: chrome.exe (3172)
+Found pattern in Process: chrome.exe (3172)
+
+Found LastPass Entry for xss.is
+UserName: yung_mendax
+Pasword: 8QUGzXSd2WXTHCe1ZW
+```
+
+<p></p>
+Which gives us the answer:
+<p></p>
+<details>
+    <summary>Answer</summary>
+<p></p>
+FLAG{8QUGzXSd2WXTHCe1ZW}
+<p></p>
 </details>
+</details>
+</details>
+</details>
+</details>
+<p></p>
+<hr>
