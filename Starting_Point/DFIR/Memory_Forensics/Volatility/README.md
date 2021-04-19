@@ -2578,7 +2578,18 @@ Compressed: 158197742
 <p></p>
 <details>
     <summary>Walkthrough</summary>
-
+<p></p>
+<details>
+    <summary>Flag 1</summary>
+</details>
+<p></p>
+<details>
+    <summary>Flag 2</summary>
+</details>
+<p></p>
+<details>
+    <summary>Flag 3</summary>
+</details>
 </details>
 </details>
 <p></p>
