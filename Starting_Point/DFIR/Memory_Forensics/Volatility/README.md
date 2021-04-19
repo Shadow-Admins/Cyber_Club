@@ -2982,7 +2982,7 @@ echo ZmxhZ3t0aDFzXzFzX3RoM18xc3Rfc3Q0ZzMhIX0= | base64 -d
 ```
 
 <p></p>
-In this command we are echoing the string and piping it as a standard input into <kbd>base64</base64> we use the <kbd>-d</kbd> flag to decode from base64 to human readable language.
+In this command we are echoing the string and piping it as a standard input into <kbd>base64</kbd> we use the <kbd>-d</kbd> flag to decode from base64 to human readable language.
 <br>
 The output is our first flag.
 <p></p>
