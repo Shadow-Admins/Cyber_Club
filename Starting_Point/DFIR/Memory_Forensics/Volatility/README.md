@@ -2506,6 +2506,9 @@ Challenge File: <a href="https://github.com/stuxnet999/MemLabs/tree/master/Lab%2
 <p></p>
 <hr>
 <p></p>
+<details>
+    <summary>Getting Started</summary>
+<p></p>
 This file is given with MD5 hashes (MD5 hashes are used to ensure the data integrity of files. Because the MD5 hash algorithm always produces the same output for the same given input, users can compare a hash of the source file with a newly created hash of the destination file to check that it is intact and unmodified.)
 <p></p>
 The commpressed archive
@@ -2570,8 +2573,8 @@ Size:       1073676288
 Compressed: 158197742
 ```
 
-<p></p>
-<hr>
+
+</details>
 <p></p>
 <details>
     <summary>Walkthrough</summary>
