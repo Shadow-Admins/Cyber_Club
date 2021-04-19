@@ -2432,7 +2432,7 @@ FLAG{8QUGzXSd2WXTHCe1ZW}
 <p></p>
 <H3>MEMLABS</H3>
 <p></p>
-This series of challenges was made by P. Abhiram Kumar (https://github.com/stuxnet999/MemLabs) and are hosted on github for free. They vary in their range of difficulty from begginer to hard, one thing to note is that the scenarios dont really provide much direction and it can be laborious searching through a massive dump for a needle in a haystack. Feel free to try and find the flags with the little information you are given otherwise I will create scenario pointers to at least guide your analysis.
+This series of challenges was made by P. Abhiram Kumar (https://github.com/stuxnet999/MemLabs) and are hosted on github for free. They vary in their range of difficulty from begginer to hard, one thing to note is that the scenarios dont really provide much direction and it can be laborious searching through a massive dump for a needle in a haystack. Feel free to try and find the flags with the little information you are given, otherwise I will create scenario pointers to at least guide your analysis.
 <p></p>
 The challenges are as follows:
 <p></p>
@@ -2448,3 +2448,57 @@ Lab 5 | Black Tuesday | Medium - Hard
 Lab 6 | The Reckoning | Hard
 
 <p></p>
+<details>
+    <summary>Lab 0 - Never Too Late Mister</summary>
+
+</details>
+<p></p>
+<hr>
+
+<p></p>
+<details>
+    <summary>Lab 1 - Beginner's Luck</summary>
+
+</details>
+<p></p>
+<hr>
+
+<p></p>
+<details>
+    <summary>Lab 2 - A New World</summary>
+
+</details>
+<p></p>
+<hr>
+
+<p></p>
+<details>
+    <summary>Lab 3 - The Evil's Den</summary>
+
+</details>
+<p></p>
+<hr>
+
+<p></p>
+<details>
+    <summary>Lab 4 - Obsession</summary>
+
+</details>
+<p></p>
+<hr>
+
+<p></p>
+<details>
+    <summary>Lab 5 - Black Tuesday</summary>
+
+</details>
+<p></p>
+<hr>
+
+<p></p>
+<details>
+    <summary>Lab 6 - The Reckoning</summary>
+
+</details>
+<p></p>
+<hr>
