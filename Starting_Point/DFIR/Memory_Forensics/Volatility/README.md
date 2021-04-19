@@ -2456,15 +2456,10 @@ Lab 6 | The Reckoning | Hard
 <details>
     <summary>Lab 0 - Never Too Late Mister</summary>
 <p></p>
-The first challenge we are given is:
-<p></p>
-My friend John is an "environmental" activist and a humanitarian. He hated the ideology of Thanos from the Avengers: Infinity War. He sucks at programming. He used too many variables while writing any program. One day, John gave me a memory dump and asked me to find out what he was doing while he took the dump. Can you figure it out for me?
+MEMLABS provides a write up for LAB 0 as it is designed as an introduction so I will post a link direct to that walkthrough.
 <p></p>
 Challenge File: <a href="https://github.com/stuxnet999/MemLabs/tree/master/Lab%200" rel="nofollow">MEMLABS 0</a>
 <p></p>
-
-
-
 </details>
 <p></p>
 <hr>
