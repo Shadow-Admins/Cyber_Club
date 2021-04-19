@@ -2651,10 +2651,354 @@ Option | Description
 -------|--------------
 pstree | To view the process listing in tree form, use the <kbd>pstree</kbd> command. This enumerates processes using the same technique as <kbd>pslist</kbd>, so it will also not show hidden or unlinked processes. Child process are indicated using indention and periods.
 cmdline | This will output all process command-line outputs.
-consoles | Similar to cmdscan the consoles plugin finds commands that attackers typed into cmd.exe or executed via backdoors. However, instead of scanning for COMMAND_HISTORY, this plugin scans for CONSOLE_INFORMATION. The major advantage to this plugin is it not only prints the commands attackers typed, but it collects the entire screen buffer (input and output). For instance, instead of just seeing "dir", you'll see exactly what the attacker saw, including all files and directories listed by the "dir" command. <p></p> Additionally, this plugin prints the following: <p></p> - The original console window title and current console window title <br> - The name and pid of attached processes (walks a LIST_ENTRY to enumerate all of them if more than one) <br> - Any aliases associated with the commands executed. For example, attackers can register an alias such that typing "hello" actually executes "cd system" <br> - The screen coordinates of the cmd.exe console
+consoles | Similar to <kbd>cmdscan</kbd> the <kbd>consoles</kbd> plugin finds commands that attackers typed into cmd.exe or executed via backdoors. However, instead of scanning for COMMAND_HISTORY, this plugin scans for CONSOLE_INFORMATION. The major advantage to this plugin is it not only prints the commands attackers typed, but it collects the entire screen buffer (input and output). For instance, instead of just seeing "dir", you'll see exactly what the attacker saw, including all files and directories listed by the "dir" command. <p></p> Additionally, this plugin prints the following: <p></p> - The original console window title and current console window title <br> - The name and pid of attached processes (walks a LIST_ENTRY to enumerate all of them if more than one) <br> - Any aliases associated with the commands executed. For example, attackers can register an alias such that typing "hello" actually executes "cd system" <br> - The screen coordinates of the cmd.exe console
 
+<p></p>
+Now we have the options we will use we can begin our analysis.
+<p></p>
+The first thing we will do is see what processes are currently running. To do that we will use the <kbd>pstree</kbd> command:
+<p></p>
 
+```
+sudo volatility -f MemoryDump_Lab1.raw --profile=Win7SP1x64 pstree
+```
 
+<p></p>
+Which outputs:
+<p></p>
+
+```
+❯ sudo volatility -f MemoryDump_Lab1.raw --profile=Win7SP1x64 pstree                                                                                                                          
+Volatility Foundation Volatility Framework 2.6                                                                                                                                                
+Name                                                  Pid   PPid   Thds   Hnds Time                                                                                                           
+-------------------------------------------------- ------ ------ ------ ------ ----                                                                                                           
+ 0xfffffa8000f4c670:explorer.exe                     2504   3000     34    825 2019-12-11 14:37:14 UTC+0000                                                                                   
+. 0xfffffa8000f9a4e0:VBoxTray.exe                    2304   2504     14    144 2019-12-11 14:37:14 UTC+0000
+. 0xfffffa8001010b30:WinRAR.exe                      1512   2504      6    207 2019-12-11 14:37:23 UTC+0000
+ 0xfffffa8001c5f630:wininit.exe                       424    312      3     75 2019-12-11 13:41:34 UTC+0000
+. 0xfffffa8001c98530:services.exe                     484    424     13    219 2019-12-11 13:41:35 UTC+0000
+.. 0xfffffa8002170630:wmpnetwk.exe                   1856    484     16    451 2019-12-11 14:16:08 UTC+0000
+.. 0xfffffa8001f91b30:TCPSVCS.EXE                    1416    484      4     97 2019-12-11 13:41:55 UTC+0000
+.. 0xfffffa8001da96c0:svchost.exe                     876    484     32    941 2019-12-11 13:41:43 UTC+0000
+.. 0xfffffa8001d327c0:VBoxService.ex                  652    484     13    137 2019-12-11 13:41:40 UTC+0000
+.. 0xfffffa8000eac770:svchost.exe                    2660    484      6    100 2019-12-11 14:35:14 UTC+0000
+.. 0xfffffa80022199e0:svchost.exe                    2368    484      9    365 2019-12-11 14:32:51 UTC+0000
+.. 0xfffffa8001e50b30:svchost.exe                    1044    484     14    366 2019-12-11 13:41:48 UTC+0000
+.. 0xfffffa8001d8c420:svchost.exe                     816    484     23    569 2019-12-11 13:41:42 UTC+0000
+... 0xfffffa80021da060:audiodg.exe                   2064    816      6    131 2019-12-11 14:32:37 UTC+0000
+.. 0xfffffa8001c38580:svchost.exe                     948    484     13    322 2019-12-11 14:16:07 UTC+0000
+.. 0xfffffa8001eba230:spoolsv.exe                    1208    484     13    282 2019-12-11 13:41:51 UTC+0000
+.. 0xfffffa8001d376f0:SearchIndexer.                  480    484     14    701 2019-12-11 14:16:09 UTC+0000
+... 0xfffffa8000fff630:SearchProtocol                2524    480      7    226 2019-12-11 14:37:21 UTC+0000
+... 0xfffffa8001020b30:SearchProtocol                2868    480      8    279 2019-12-11 14:37:23 UTC+0000
+... 0xfffffa8000ecea60:SearchFilterHo                1720    480      5     90 2019-12-11 14:37:21 UTC+0000
+.. 0xfffffa8000f3aab0:taskhost.exe                   2908    484      9    158 2019-12-11 14:37:13 UTC+0000
+.. 0xfffffa8001cf4b30:svchost.exe                     588    484     11    358 2019-12-11 13:41:39 UTC+0000
+.. 0xfffffa8001d49b30:svchost.exe                     720    484      8    279 2019-12-11 13:41:41 UTC+0000
+.. 0xfffffa8001da5b30:svchost.exe                     852    484     28    542 2019-12-11 13:41:43 UTC+0000
+... 0xfffffa8000f4db30:dwm.exe                       3004    852      5     72 2019-12-11 14:37:14 UTC+0000
+... 0xfffffa8001dfa910:dwm.exe                       1988    852      5     72 2019-12-11 14:32:25 UTC+0000
+.. 0xfffffa8001e1bb30:svchost.exe                     472    484     19    476 2019-12-11 13:41:47 UTC+0000
+.. 0xfffffa8000d3c400:sppsvc.exe                     1508    484      4    141 2019-12-11 14:16:06 UTC+0000
+.. 0xfffffa8001f58890:svchost.exe                    1372    484     22    295 2019-12-11 13:41:54 UTC+0000
+.. 0xfffffa8001eda060:svchost.exe                    1248    484     19    313 2019-12-11 13:41:52 UTC+0000
+.. 0xfffffa8001eb47f0:taskhost.exe                    296    484      8    151 2019-12-11 14:32:24 UTC+0000
+. 0xfffffa8001ca0580:lsass.exe                        492    424      9    764 2019-12-11 13:41:35 UTC+0000
+. 0xfffffa8001ca4b30:lsm.exe                          500    424     11    185 2019-12-11 13:41:35 UTC+0000
+ 0xfffffa800154f740:csrss.exe                         320    312      9    457 2019-12-11 13:41:32 UTC+0000
+ 0xfffffa8000ca0040:System                              4      0     80    570 2019-12-11 13:41:25 UTC+0000
+. 0xfffffa800148f040:smss.exe                         248      4      3     37 2019-12-11 13:41:25 UTC+0000
+.. 0xfffffa8001c45060:psxss.exe                       376    248     18    786 2019-12-11 13:41:33 UTC+0000
+ 0xfffffa8001c5f060:winlogon.exe                      416    360      4    118 2019-12-11 13:41:34 UTC+0000
+ 0xfffffa8000ca81e0:csrss.exe                         368    360      7    199 2019-12-11 13:41:33 UTC+0000
+. 0xfffffa8002227140:conhost.exe                     2692    368      2     50 2019-12-11 14:34:54 UTC+0000
+. 0xfffffa800104a780:conhost.exe                     2260    368      2     50 2019-12-11 14:37:54 UTC+0000
+ 0xfffffa8002046960:explorer.exe                      604   2016     33    927 2019-12-11 14:32:25 UTC+0000
+. 0xfffffa80021c75d0:VBoxTray.exe                    1844    604     11    140 2019-12-11 14:32:35 UTC+0000
+. 0xfffffa8002222780:cmd.exe                         1984    604      1     21 2019-12-11 14:34:54 UTC+0000
+. 0xfffffa80022bab30:mspaint.exe                     2424    604      6    128 2019-12-11 14:35:14 UTC+0000
+. 0xfffffa8001048060:DumpIt.exe                       796    604      2     45 2019-12-11 14:37:54 UTC+0000
+ 0xfffffa8001e68060:csrss.exe                        2760   2680      7    172 2019-12-11 14:37:05 UTC+0000
+ 0xfffffa8000ecbb30:winlogon.exe                     2808   2680      4    119 2019-12-11 14:37:05 UTC+0000
+```
+
+<p></p>
+From this output we can see some processes running that should stick out mainly: WinRAR.exe, mspaint.exe and cmd.exe we will look at the last process for this stage of the challenge.
+<p></p>
+The next option we will run is <kbd>cmdline</kbd>:
+<p></p>
+
+```
+sudo volatility -f MemoryDump_Lab1.raw --profile=Win7SP1x64 cmdline
+```
+
+<p></p>
+Which outputs:
+<p></p>
+
+```
+❯ sudo volatility -f MemoryDump_Lab1.raw --profile=Win7SP1x64 cmdline                                                                                                                         
+Volatility Foundation Volatility Framework 2.6                                                                                                                                                
+************************************************************************                                                                                                                      
+System pid:      4                                                                                                                                                                            
+************************************************************************                                                                                                                      
+smss.exe pid:    248                                                                                                                                                                          
+Command line : \SystemRoot\System32\smss.exe                                                                                                                                                  
+************************************************************************                                                                                                                      
+csrss.exe pid:    320                                                                                                                                                                         
+Command line : %SystemRoot%\system32\csrss.exe ObjectDirectory=\Windows SharedSection=1024,20480,768 Windows=On SubSystemType=Windows ServerDll=basesrv,1 ServerDll=winsrv:UserServerDllInitia
+lization,3 ServerDll=winsrv:ConServerDllInitialization,2 ServerDll=sxssrv,4 ProfileControl=Off MaxRequestThreads=16                                                                           
+************************************************************************                                                                                                                      
+csrss.exe pid:    368                                                                                                                                                                         
+Command line : %SystemRoot%\system32\csrss.exe ObjectDirectory=\Windows SharedSection=1024,20480,768 Windows=On SubSystemType=Windows ServerDll=basesrv,1 ServerDll=winsrv:UserServerDllInitia
+lization,3 ServerDll=winsrv:ConServerDllInitialization,2 ServerDll=sxssrv,4 ProfileControl=Off MaxRequestThreads=16
+************************************************************************
+psxss.exe pid:    376
+Command line : %SystemRoot%\system32\psxss.exe
+************************************************************************
+winlogon.exe pid:    416
+Command line : winlogon.exe
+************************************************************************
+wininit.exe pid:    424
+Command line : wininit.exe
+************************************************************************
+services.exe pid:    484
+Command line : C:\Windows\system32\services.exe 
+************************************************************************
+lsass.exe pid:    492
+Command line : C:\Windows\system32\lsass.exe
+************************************************************************
+lsm.exe pid:    500
+Command line : C:\Windows\system32\lsm.exe
+************************************************************************
+svchost.exe pid:    588
+Command line : C:\Windows\system32\svchost.exe -k DcomLaunch
+************************************************************************
+VBoxService.ex pid:    652
+Command line : C:\Windows\System32\VBoxService.exe
+************************************************************************
+svchost.exe pid:    720
+Command line : C:\Windows\system32\svchost.exe -k RPCSS
+************************************************************************
+svchost.exe pid:    816
+Command line : C:\Windows\System32\svchost.exe -k LocalServiceNetworkRestricted
+************************************************************************
+svchost.exe pid:    852
+Command line : C:\Windows\System32\svchost.exe -k LocalSystemNetworkRestricted
+************************************************************************
+svchost.exe pid:    876
+Command line : C:\Windows\system32\svchost.exe -k netsvcs
+************************************************************************
+svchost.exe pid:    472
+Command line : C:\Windows\system32\svchost.exe -k LocalService
+************************************************************************
+svchost.exe pid:   1044
+Command line : C:\Windows\system32\svchost.exe -k NetworkService
+************************************************************************                                                                                                         [60/4517]
+spoolsv.exe pid:   1208
+Command line : C:\Windows\System32\spoolsv.exe
+************************************************************************
+svchost.exe pid:   1248
+Command line : C:\Windows\system32\svchost.exe -k LocalServiceNoNetwork
+************************************************************************
+svchost.exe pid:   1372
+Command line : C:\Windows\system32\svchost.exe -k LocalServiceAndNoImpersonation
+************************************************************************
+TCPSVCS.EXE pid:   1416
+Command line : C:\Windows\System32\tcpsvcs.exe
+************************************************************************
+sppsvc.exe pid:   1508
+Command line : C:\Windows\system32\sppsvc.exe
+************************************************************************
+svchost.exe pid:    948
+Command line : C:\Windows\System32\svchost.exe -k secsvcs
+************************************************************************
+wmpnetwk.exe pid:   1856
+Command line : "C:\Program Files\Windows Media Player\wmpnetwk.exe"
+************************************************************************
+SearchIndexer. pid:    480
+Command line : C:\Windows\system32\SearchIndexer.exe /Embedding
+************************************************************************
+taskhost.exe pid:    296
+Command line : "taskhost.exe"
+************************************************************************
+dwm.exe pid:   1988
+Command line : "C:\Windows\system32\Dwm.exe"
+************************************************************************
+explorer.exe pid:    604
+Command line : C:\Windows\Explorer.EXE
+************************************************************************
+VBoxTray.exe pid:   1844
+Command line : "C:\Windows\System32\VBoxTray.exe" 
+************************************************************************
+audiodg.exe pid:   2064
+Command line : C:\Windows\system32\AUDIODG.EXE 0x20c
+************************************************************************
+svchost.exe pid:   2368
+Command line : C:\Windows\System32\svchost.exe -k LocalServicePeerNet
+************************************************************************
+cmd.exe pid:   1984
+Command line : "C:\Windows\system32\cmd.exe" 
+************************************************************************
+conhost.exe pid:   2692
+Command line : \??\C:\Windows\system32\conhost.exe
+************************************************************************
+mspaint.exe pid:   2424
+Command line : "C:\Windows\system32\mspaint.exe" 
+************************************************************************
+svchost.exe pid:   2660
+Command line : C:\Windows\system32\svchost.exe -k imgsvc
+************************************************************************
+csrss.exe pid:   2760
+Command line : %SystemRoot%\system32\csrss.exe ObjectDirectory=\Windows SharedSection=1024,20480,768 Windows=On SubSystemType=Windows ServerDll=basesrv,1 ServerDll=winsrv:UserServerDllInitia
+lization,3 ServerDll=winsrv:ConServerDllInitialization,2 ServerDll=sxssrv,4 ProfileControl=Off MaxRequestThreads=16
+************************************************************************
+winlogon.exe pid:   2808
+Command line : winlogon.exe
+************************************************************************
+taskhost.exe pid:   2908
+Command line : "taskhost.exe"
+************************************************************************
+dwm.exe pid:   3004
+Command line : "C:\Windows\system32\Dwm.exe"
+************************************************************************
+explorer.exe pid:   2504
+Command line : C:\Windows\Explorer.EXE
+************************************************************************
+VBoxTray.exe pid:   2304
+Command line : "C:\Windows\System32\VBoxTray.exe" 
+************************************************************************
+SearchProtocol pid:   2524
+Command line : "C:\Windows\system32\SearchProtocolHost.exe" Global\UsGthrFltPipeMssGthrPipe_S-1-5-21-3073570648-3149397540-2269648332-10032_ Global\UsGthrCtrlFltPipeMssGthrPipe_S-1-5-21-3073
+570648-3149397540-2269648332-10032 1 -2147483646 "Software\Microsoft\Windows Search" "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT; MS Search 4.0 Robot)" "C:\ProgramData\Microsoft\Search\Da
+ta\Temp\usgthrsvc" "DownLevelDaemon"  "1"
+************************************************************************
+SearchFilterHo pid:   1720
+Command line : "C:\Windows\system32\SearchFilterHost.exe" 0 508 512 520 65536 516 
+************************************************************************
+WinRAR.exe pid:   1512
+Command line : "C:\Program Files\WinRAR\WinRAR.exe" "C:\Users\Alissa Simpson\Documents\Important.rar"
+************************************************************************
+SearchProtocol pid:   2868
+Command line : "C:\Windows\system32\SearchProtocolHost.exe" Global\UsGthrFltPipeMssGthrPipe3_ Global\UsGthrCtrlFltPipeMssGthrPipe3 1 -2147483646 "Software\Microsoft\Windows Search" "Mozilla/
+4.0 (compatible; MSIE 6.0; Windows NT; MS Search 4.0 Robot)" "C:\ProgramData\Microsoft\Search\Data\Temp\usgthrsvc" "DownLevelDaemon" 
+************************************************************************
+DumpIt.exe pid:    796
+Command line : "C:\Users\SmartNet\Downloads\DumpIt\DumpIt.exe" 
+************************************************************************
+conhost.exe pid:   2260
+Command line : \??\C:\Windows\system32\conhost.exe
+```
+
+<p></p>
+This showed us that the commands were run and showed us some important information for WinRAR.exe but we will come abck to that.
+<br>
+We will now run <kbd>consoles</kbd> to see the input/output within the command-line:
+<p></p>
+
+```
+sudo volatility -f MemoryDump_Lab1.raw --profile=Win7SP1x64 consoles
+```
+
+<p></p>
+Which outputs:
+<p></p>
+
+```
+❯ sudo volatility -f MemoryDump_Lab1.raw --profile=Win7SP1x64 consoles
+Volatility Foundation Volatility Framework 2.6
+**************************************************
+ConsoleProcess: conhost.exe Pid: 2692
+Console: 0xff756200 CommandHistorySize: 50
+HistoryBufferCount: 1 HistoryBufferMax: 4
+OriginalTitle: %SystemRoot%\system32\cmd.exe
+Title: C:\Windows\system32\cmd.exe - St4G3$1
+AttachedProcess: cmd.exe Pid: 1984 Handle: 0x60 
+----
+CommandHistory: 0x1fe9c0 Application: cmd.exe Flags: Allocated, Reset
+CommandCount: 1 LastAdded: 0 LastDisplayed: 0
+FirstCommand: 0 CommandCountMax: 50
+ProcessHandle: 0x60
+Cmd #0 at 0x1de3c0: St4G3$1
+----
+Screen 0x1e0f70 X:80 Y:300
+Dump:
+Microsoft Windows [Version 6.1.7601]                                             
+Copyright (c) 2009 Microsoft Corporation.  All rights reserved.                 
+                                                                                 
+C:\Users\SmartNet>St4G3$1                                                        
+ZmxhZ3t0aDFzXzFzX3RoM18xc3Rfc3Q0ZzMhIX0=                                         
+Press any key to continue . . .                                                  
+**************************************************
+ConsoleProcess: conhost.exe Pid: 2260
+Console: 0xff756200 CommandHistorySize: 50
+HistoryBufferCount: 1 HistoryBufferMax: 4
+OriginalTitle: C:\Users\SmartNet\Downloads\DumpIt\DumpIt.exe
+Title: C:\Users\SmartNet\Downloads\DumpIt\DumpIt.exe
+AttachedProcess: DumpIt.exe Pid: 796 Handle: 0x60
+----
+CommandHistory: 0x38ea90 Application: DumpIt.exe Flags: Allocated
+CommandCount: 0 LastAdded: -1 LastDisplayed: -1 
+FirstCommand: 0 CommandCountMax: 50
+ProcessHandle: 0x60
+----
+Screen 0x371050 X:80 Y:300
+Dump:
+  DumpIt - v1.3.2.20110401 - One click memory memory dumper                     
+  Copyright (c) 2007 - 2011, Matthieu Suiche <http://www.msuiche.net>           
+  Copyright (c) 2010 - 2011, MoonSols <http://www.moonsols.com>                 
+                                                                                 
+                                                                                 
+    Address space size:        1073676288 bytes (   1023 Mb)                    
+    Free space size:          24185389056 bytes (  23064 Mb)                    
+                                                                                 
+    * Destination = \??\C:\Users\SmartNet\Downloads\DumpIt\SMARTNET-PC-20191211-
+143755.raw                                                                       
+                                                                                 
+    --> Are you sure you want to continue? [y/n] y                              
+    + Processing...                                                              
+```
+
+<p></p>
+This command however did print some useful information for us, we can see that cmd.exe ran a binary called "St4G3$1" and we can see the output of that binary.
+<p></p>
+
+```
+ZmxhZ3t0aDFzXzFzX3RoM18xc3Rfc3Q0ZzMhIX0=
+```
+
+<p></p>
+Over time you will get used to seeing certain types of hashes, encryption and computer language. For example this output is base64 which can be identified by the "=" at the end of the string. 
+<br>
+(In programming, Base64 is a group of binary-to-text encoding schemes that represent binary data (more specifically, a sequence of 8-bit bytes) in an ASCII string format by translating the data into a radix-64 representation. The term Base64 originates from a specific MIME content transfer encoding. Each non-final Base64 digit represents exactly 6 bits of data. Three 8-bit bytes (i.e., a total of 24 bits) can therefore be represented by four 6-bit Base64 digits.
+<p></p>
+Common to all binary-to-text encoding schemes, Base64 is designed to carry data stored in binary formats across channels that only reliably support text content. Base64 is particularly prevalent on the World Wide Web where its uses include the ability to embed image files or other binary assets inside textual assets such as HTML and CSS files.) 
+<p></p>
+Now that we know that the output is base64 how do we convert it to something we can read? Linux comes built in with a base64 encoder and decoder it takes a standard input and gives a standard output. To pass the encoded string as a standard input we will use the <kbd>echo</kbd> command:
+<p></p>
+
+```
+echo ZmxhZ3t0aDFzXzFzX3RoM18xc3Rfc3Q0ZzMhIX0= | base64 -d
+```
+
+<p></p>
+In this command we are echoing the string and piping it as a standard input into <kbd>base64</base64> we use the <kbd>-d</kbd> flag to decode from base64 to human readable language.
+<br>
+The output is our first flag.
+<p></p>
+<details>
+    <summary>Answer</summary>
+<p></p>
+
+```
+❯ echo ZmxhZ3t0aDFzXzFzX3RoM18xc3Rfc3Q0ZzMhIX0= | base64 -d
+flag{th1s_1s_th3_1st_st4g3!!}% 
+```
+
+<p></p>
+FLAG{th1s_1s_th3_1st_st4g3!!}
+<p></p>
+</details>
 </details>
 <p></p>
 <details>
