@@ -103,6 +103,9 @@ For the challenges I recommend you attempt them yourself and only go through the
 This series of challenges is from the 2020 Cyber Skills Challenge, these challenges will use the file bob.vmem
 <p></p>
 <details>
+    <summary>Challenges</summary>
+<p></p>
+<details>
     <summary>A Bob's Life 1</summary>
 <p></p>
 <p>
@@ -871,6 +874,7 @@ In both outputs we can see the password we are looking for.
 <details>
     <summary>Answer</summary>
 The password is Hunter2 so the flag is: FLAG{Hunter2}
+</details>
 </details>
 </details>
 </details>
