@@ -2460,6 +2460,34 @@ MEMLABS provides a write up for LAB 0 as it is designed as an introduction so I 
 <p></p>
 Challenge File: <a href="https://github.com/stuxnet999/MemLabs/tree/master/Lab%200" rel="nofollow">MEMLABS 0</a>
 <p></p>
+The only thing I will discuss is how to extract the file. First you will need to ensure you have xz-utils installed:
+<p></p>
+
+```
+sudo apt-get install xz-utils
+```
+
+<p></p>
+Once you have this installed you use the following command to extract the .tar files
+<p></p>
+
+```
+unxz Challenge.tar.xz
+```
+
+<p></p>
+
+you will then need to untar the challenge file:
+
+<p></p>
+
+```
+unxz Challenge.tar.xz
+```
+
+<p></p>
+This will leave you with the file to start analysing.
+<p></p>
 </details>
 <p></p>
 <hr>
