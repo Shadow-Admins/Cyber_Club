@@ -2580,15 +2580,26 @@ Compressed: 158197742
     <summary>Walkthrough</summary>
 <p></p>
 <details>
-    <summary>Flag 1</summary>
+    <summary>Scenario Hints</summary>
+<p></p>
+- The black window that popped up may have been running a command.
+<br>
+- She was drawing something so try looking for an image program.
+<br>
+- I wonder if there are any "important" files on her computer.
+<p></p>
 </details>
 <p></p>
 <details>
-    <summary>Flag 2</summary>
+    <summary>Walkthrough Flag 1</summary>
 </details>
 <p></p>
 <details>
-    <summary>Flag 3</summary>
+    <summary>Walkthrough Flag 2</summary>
+</details>
+<p></p>
+<details>
+    <summary>Walkthrough Flag 3</summary>
 </details>
 </details>
 </details>
