@@ -2504,6 +2504,8 @@ Note: This challenge is composed of 3 flags.
 <p></p>
 Challenge File: <a href="https://github.com/stuxnet999/MemLabs/tree/master/Lab%201" rel="nofollow">MEMLABS 1</a>
 <p></p>
+<hr>
+<p></p>
 This file is given with MD5 hashes (MD5 hashes are used to ensure the data integrity of files. Because the MD5 hash algorithm always produces the same output for the same given input, users can compare a hash of the source file with a newly created hash of the destination file to check that it is intact and unmodified.)
 <p></p>
 The commpressed archive
@@ -2529,6 +2531,8 @@ and
 md5sum MemoryDump_Lab1.raw
 ```
 
+<p></p>
+<hr>
 <p></p>
 The file comes compressed as a .7z IOT extract it we first need to ensure we have p7zip installed on our system by using the following command:
 <p></p>
