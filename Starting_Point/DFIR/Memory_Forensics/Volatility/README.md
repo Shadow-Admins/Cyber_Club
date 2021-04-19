@@ -883,6 +883,9 @@ The password is Hunter2 so the flag is: FLAG{Hunter2}
 This series of challenges is from the 2020 Cyber Skills Challenge, These challenges will use the file dump.vmem
 <p></p>
 <details>
+    <summary>Challenges</summary>
+<p></p>
+<details>
     <summary>Starting Point</summary>
 <p></p>
 When you download it the file comes as dump.7z you can either extract it through an archive manager or through CLI which I will explain now.
@@ -2421,6 +2424,7 @@ Which gives us the answer:
 <p></p>
 FLAG{8QUGzXSd2WXTHCe1ZW}
 <p></p>
+</details>
 </details>
 </details>
 </details>
