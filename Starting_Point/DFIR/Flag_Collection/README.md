@@ -259,11 +259,34 @@ FLAG{fl4g5_4r3_fun}
 </details>
 </details>
 <p></p>
+<hr>
+<p></p>
 <details>
     <summary>Challenge 2</summary>
+<p></p>
+I got sent a new flag for my collection but something isn't right with
+it. Can you open it?
+<p></p>
+<details>
+    <summary>Hint</summary>
+Your Head-er can GIF you the answers.
+</details>
+<p></p>
+<details>
+    <summary>Hint</summary>
+Magic numbers can tell you a lot.
+</details>
+<p></p>
+<img src="https://drive.google.com/file/d/18bv2QWGmy8zuRvTzFJptfvN1f7k9ts4M/view?usp=sharing" width="600"><br>
+<p></p>
+
+<details>
+    <summary>Walkthrough</summary>
 
 
 
 
+
+</details>
 </details>
 </details>
