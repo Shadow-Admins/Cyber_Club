@@ -80,7 +80,7 @@ Compressed: 3658662
 <p></p>
 Now we have a file to work with I always start with determining what type of file it is using the <kbd>file</kbd> command.
 <p></p>
-> file tests each argument in an attempt to classify it.  There are three sets of tests, performed in this order: filesystem tests, magic tests, and language tests.  The first test that succeeds causes the file type to be printed.
+> file tests each argument in an attempt to classify it.  There are three sets of tests, performed in this order: filesystem tests, magic tests, and language tests.  The first > test that succeeds causes the file type to be printed.
 <p></p>
 
 ```
