@@ -560,6 +560,7 @@ You can see that GIF89a has now appeared in the right column and if you open the
 <img src="https://github.com/Shadow-Admins/Cyber_Club/blob/main/Starting_Point/DFIR/Flag_Collection/images/china.gif" width="600"><br>
 </div>
 FLAG{4h34d_0f_th3_curv3}
+<p></p>
 </details>
 </details>
 </details>
