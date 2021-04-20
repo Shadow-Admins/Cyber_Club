@@ -431,8 +431,7 @@ You notice that i have piped (|) the output of xxd to <kbd>head</kbd> as magic n
 But this just looks like a stack of numbers and we have nothing to compare it to so lets put it side by side with a working .gif image.
 <p></p>
 
-china.gif | working.gif
-----------|------------
+china.gif
 ``` 
 00000000: 0000 0000 0000 2003 9001 f700 0000 0000  ...... .........
 00000010: 0000 3300 0066 0000 9900 00cc 0000 ff00  ..3..f..........
@@ -445,7 +444,7 @@ china.gif | working.gif
 00000080: ff66 00ff 9900 ffcc 00ff ff33 0000 3300  .f.........3..3.
 00000090: 3333 0066 3300 9933 00cc 3300 ff33 2b00  33.f3..3..3..3+. 
 ```
-|
+Working.gif
 ```
 00000000: 4749 4638 3961 0002 0002 8000 0000 0000  GIF89a..........
 00000010: 0000 0021 ff0b 4e45 5453 4341 5045 322e  ...!..NETSCAPE2.
@@ -459,6 +458,109 @@ china.gif | working.gif
 00000090: 3a43 0412 e207 27c9 1306 e214 499a 1b08  :C....'.....I...
 ```
 
+<p></p>
+Ok so what can we see here, if we look at the first lines of the two images we can see there is a difference, china.gif has 3 octets of 0's where as working.gif has numbers. This can also be seen in the right hand column with the absence of GIF in china.gif where at it is present in the working.gif file.
+<p></p>
+This site provides a very good <a href="https://www.file-recovery.com/gif-signature-format.htm" rel="nofollow">Explanation</a> of what is happening with .gif headers/magic numbers.
+<p></p>
+So now that we know what is wrong with our image how do we fix it? by adding the magic numbers to our broken .gif file using a tool called <kbd>hexedit</kbd> (or any other hex editing tool you may be familiar with).
+<p></p>
+<details>
+    <summary>What is hexedit?</summary>
+Hexedit allows you to view and edit files in hexadecimal or in ASCII
+<p></p>
+Bellow is the basic help file for hexedit:
+<p></p>
+
+```
+❯ hexedit -h
+usage: hexedit [-s | --sector] [-m | --maximize] [-l<n> | --linelength <n>] [--color] [-h | --help] filename
+```
+
+<p></p>
+Bellow is the list of commands for hexedit:
+<p></p>
+
+```
+COMMANDS (quickly)
+   Moving
+       <, > :  go to start/end of the file
+       Right:  next character
+       Left:   previous character
+       Down:   next line
+       Up:     previous line
+       Home:   beginning of line
+       End:    end of line
+       PUp:    page forward
+       PDown:  page backward
+
+   Miscellaneous
+       F2:     save
+       F3:     load file
+       F1:     help
+       Ctrl-L: redraw
+       Ctrl-Z: suspend
+       Ctrl-X: save and exit
+       Ctrl-C: exit without saving
+
+       Tab:    toggle hex/ascii
+       Return: go to
+       Backspace: undo previous character
+       Ctrl-U: undo all
+       Ctrl-S: search forward
+       Ctrl-R: search backward
+
+Cut&Paste
+       Ctrl-Space: set mark
+       Esc-W:  copy
+       Ctrl-Y: paste
+       Esc-Y:  paste into a file
+       Esc-I:  fill
+
+```
+
+<p></p>
+More information can be attained using man hexedit
+</details>
+<p></p>
+First we need to ensure hexedit is installed:
+<p></p>
+
+```
+sudo apt install hexedit
+```
+
+<p></p>
+Now that we have hexedit installed we can use it to add the .gif magic numbers to china.gif using <kbd>F2</kbd> to save before using <kbd>Ctrl + c</kbd> to exit.
+<br>
+We will be adding "4749 4638 3961" to the first 3 octets and our file should look like this after modification:
+<p></p>
+
+```
+❯ xxd china.gif | head
+00000000: 4749 4638 3961 2003 9001 f700 0000 0000  GIF89a .........
+00000010: 0000 3300 0066 0000 9900 00cc 0000 ff00  ..3..f..........
+00000020: 2b00 002b 3300 2b66 002b 9900 2bcc 002b  +..+3.+f.+..+..+
+00000030: ff00 5500 0055 3300 5566 0055 9900 55cc  ..U..U3.Uf.U..U.
+00000040: 0055 ff00 8000 0080 3300 8066 0080 9900  .U......3..f....
+00000050: 80cc 0080 ff00 aa00 00aa 3300 aa66 00aa  ..........3..f..
+00000060: 9900 aacc 00aa ff00 d500 00d5 3300 d566  ............3..f
+00000070: 00d5 9900 d5cc 00d5 ff00 ff00 00ff 3300  ..............3.
+00000080: ff66 00ff 9900 ffcc 00ff ff33 0000 3300  .f.........3..3.
+00000090: 3333 0066 3300 9933 00cc 3300 ff33 2b00  33.f3..3..3..3+.
+```
+
+<p></p>
+You can see that GIF89a has now appeared in the right column and if you open the file using file explorer we can now open the image and get the flag.
+<p></p>
+<details>
+    <summary>Answer</summary>
+<p></p>
+<div align="center">
+<img src="https://github.com/Shadow-Admins/Cyber_Club/blob/main/Starting_Point/DFIR/Flag_Collection/images/china.gif" width="600"><br>
+</div>
+FLAG{4h34d_0f_th3_curv3}
+</details>
 </details>
 </details>
 </details>
