@@ -18,6 +18,7 @@ The first challenge we are given is:
 <p></p>
 Have you seen my flag collection? I could have sworn it was around here
 somewhere.
+<p></p>
 <details>
     <summary>Hint</summary>
 <p></p>
@@ -32,7 +33,48 @@ Foremost is my favourite.
 <p></p>
 Challenge File: <a href="https://drive.google.com/file/d/1MRxLoCJQTiKhUys-G_vBCAjkOgz07HKQ/view?usp=sharing" rel="nofollow">Google Drive</a>
 <p></p>
+<details>
+    <summary>Extracting the File</summary>
+<p></p>
+The file comes compressed as a .7z IOT extract it we first need to ensure we have p7zip installed on our system by using the following command:
+<p></p>
 
+```
+sudo apt install p7zip
+```
+
+<p></p>
+Once p7zip is installed we run the following command to extract the challenge file:
+<p></p>
+
+```
+❯ p7zip -d collection.7z
+
+7-Zip (a) [64] 16.02 : Copyright (c) 1999-2016 Igor Pavlov : 2016-05-21
+p7zip Version 16.02 (locale=en_AU.UTF-8,Utf16=on,HugeFiles=on,64 bits,8 CPUs Intel(R) Core(TM) i7-8650U CPU @ 1.90GHz (806EA),ASM,AES-NI)
+
+Scanning the drive for archives:
+1 file, 3658662 bytes (3573 KiB)
+
+Extracting archive: collection.7z
+--
+Path = collection.7z
+Type = 7z
+Physical Size = 3658662
+Headers Size = 138
+Method = LZMA2:26
+Solid = -
+Blocks = 1
+
+Everything is Ok     
+
+Size:       133169152
+Compressed: 3658662
+```
+
+<p></p>
+</details>
+<p></p>
 <details>
     <summary>Walkthrough</summary>
 <p></p>
