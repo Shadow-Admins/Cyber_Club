@@ -929,6 +929,8 @@ The password is Hunter2 so the flag is: FLAG{Hunter2}
 <p></p>
 This series of challenges is from the 2020 Cyber Skills Challenge, These challenges will use the file dump.vmem
 <p></p>
+Challenge File: <a href="https://drive.google.com/file/d/1qCShCAP7KE2y1rGR0-b2j3lT2vLa4QG5/view?usp=sharing" rel="nofollow">Google Drive</a>
+<p></p>
 <details>
     <summary>Challenges</summary>
 <p></p>
