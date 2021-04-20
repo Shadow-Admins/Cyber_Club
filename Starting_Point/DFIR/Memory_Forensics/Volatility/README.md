@@ -105,6 +105,47 @@ This series of challenges is from the 2020 Cyber Skills Challenge, these challen
 Challenge File: <a href="https://drive.google.com/file/d/1F0QgNZoBZvIr-0Z3j4B3hdCQT5wvVj4a/view?usp=sharing" rel="nofollow">Google Drive</a>
 <p></p>
 <details>
+    <summary>Extracting the File</summary>
+<p></p>
+The file comes compressed as a .7z IOT extract it we first need to ensure we have p7zip installed on our system by using the following command:
+<p></p>
+
+```
+sudo apt install p7zip
+```
+
+<p></p>
+Once p7zip is installed we run the following command to extract the challenge file:
+<p></p>
+
+```
+❯ p7zip -d  bob.7z
+
+7-Zip (a) [64] 16.02 : Copyright (c) 1999-2016 Igor Pavlov : 2016-05-21
+p7zip Version 16.02 (locale=en_AU.UTF-8,Utf16=on,HugeFiles=on,64 bits,8 CPUs Intel(R) Core(TM) i7-8650U CPU @ 1.90GHz (806EA),ASM,AES-NI)
+
+Scanning the drive for archives:
+1 file, 134831177 bytes (129 MiB)
+
+Extracting archive: bob.7z
+--
+Path = bob.7z
+Type = 7z
+Physical Size = 134831177
+Headers Size = 122
+Method = LZMA2:26
+Solid = -
+Blocks = 1
+
+Everything is Ok
+
+Size:       1073741824
+Compressed: 134831177
+```
+
+<p></p>
+</details>
+<details>
     <summary>Challenges</summary>
 <p></p>
 <details>
