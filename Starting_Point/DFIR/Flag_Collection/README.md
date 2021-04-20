@@ -282,10 +282,182 @@ Challenge File: <a href="https://drive.google.com/file/d/18bv2QWGmy8zuRvTzFJptfv
 
 <details>
     <summary>Walkthrough</summary>
+The first thing I start with is attempting to open and view china.gif through the file explorer however it returns an error message stating it couldn't open the file and it appears it isn't a .gif file.
+<br>
+From here we should run the <kbd>file</kbd> command to ascertain what the file type is, which returns:
+<p></p>
 
+```
+❯ file china.gif
+china.gif: data
+```
 
+<p></p>
+Interesting, running <kbd>strings</kbd> or <kbd>cat</kbd> on the file returns nothing of interest either.
+<p></p>
+Its time to look at the hints now.
+<br>
+Lets start with the second hint pointing towards the first hint. A quick google returns:
+<br>
+"File magic numbers are the first bits of a file which uniquely identify the type of file."
+<br>
+"Magic numbers/File signatures are typically not visible to the user but can be seen by using a hex editor or by using the <kbd>xxd</kbd> command"
+<p></p>
+Ok so we know what magic numbers are lets have a look at this files magic number, we will first use <kbd>xxd</kbd> to view the magic number:
+<p></p>
+<details>
+    <summary>What is xxd?</summary>
+xxd creates a hex dump of a given file or standard input.  It can also convert a hex dump back to its original binary form.  Like uuencode(1) and uudecode(1) it allows the transmission of binary data in a `mail-safe' ASCII representation, but has the advantage of decoding to standard output.  Moreover, it can be used to perform binary file patching.
+<p></p>
+This is the help file for <kbd>xxd</kbd>
+<p></p>
 
+```
+❯ xxd -h
+Usage:
+       xxd [options] [infile [outfile]]
+    or
+       xxd -r [-s [-]offset] [-c cols] [-ps] [infile [outfile]]
+Options:
+    -a          toggle autoskip: A single '*' replaces nul-lines. Default off.
+    -b          binary digit dump (incompatible with -ps,-i,-r). Default hex.
+    -C          capitalize variable names in C include file style (-i).
+    -c cols     format <cols> octets per line. Default 16 (-i: 12, -ps: 30).
+    -E          show characters in EBCDIC. Default ASCII.
+    -e          little-endian dump (incompatible with -ps,-i,-r).
+    -g          number of octets per group in normal output. Default 2 (-e: 4).
+    -h          print this summary.
+    -i          output in C include file style.
+    -l len      stop after <len> octets.
+    -o off      add <off> to the displayed file position.
+    -ps         output in postscript plain hexdump style.
+    -r          reverse operation: convert (or patch) hexdump into binary.
+    -r -s off   revert with <off> added to file positions found in hexdump.
+    -d          show offset in decimal instead of hex.
+    -s [+][-]seek  start at <seek> bytes abs. (or +: rel.) infile offset.
+    -u          use upper case hex letters.
+    -v          show version: "xxd V1.10 27oct98 by Juergen Weigert".
+```
 
+<p></p>
+Bellow is the description of all flags.
+<p></p>
+
+```
+        If no infile is given, standard input is read.  If infile is specified as a `-' character, then input is taken from standard input.  If no outfile is given (or a `-' character is
+        in its place), results are sent to standard output.
+
+       Note that a "lazy" parser is used which does not check for more than the first option letter, unless the option is followed by a parameter.  Spaces between a single option letter
+       and its parameter are optional.  Parameters to options can be specified in decimal, hexadecimal or octal notation.  Thus -c8, -c 8, -c 010 and -cols 8 are all equivalent.
+
+       -a | -autoskip
+              Toggle autoskip: A single '*' replaces nul-lines.  Default off.
+
+       -b | -bits
+              Switch to bits (binary digits) dump, rather than hexdump.  This option writes octets as eight digits "1"s and "0"s instead of a normal hexadecimal dump. Each line is  pre‐
+              ceded by a line number in hexadecimal and followed by an ascii (or ebcdic) representation. The command line switches -r, -p, -i do not work with this mode.
+
+       -c cols | -cols cols
+              Format <cols> octets per line. Default 16 (-i: 12, -ps: 30, -b: 6). Max 256.
+
+       -C | -capitalize
+              Capitalize variable names in C include file style, when using -i.
+
+       -E | -EBCDIC
+              Change the character encoding in the righthand column from ASCII to EBCDIC.  This does not change the hexadecimal representation. The option is meaningless in combinations
+              with -r, -p or -i.
+
+       -e     Switch to little-endian hexdump.  This option treats byte groups as words in little-endian byte order.  The default grouping of 4 bytes may be changed using -g.  This  op‐
+              tion only applies to hexdump, leaving the ASCII (or EBCDIC) representation unchanged.  The command line switches -r, -p, -i do not work with this mode.
+
+       -g bytes | -groupsize bytes
+              Separate  the  output  of  every <bytes> bytes (two hex characters or eight bit-digits each) by a whitespace.  Specify -g 0 to suppress grouping.  <Bytes> defaults to 2 in
+              normal mode, 4 in little-endian mode and 1 in bits mode.  Grouping does not apply to postscript or include style.
+
+       -h | -help
+              Print a summary of available commands and exit.  No hex dumping is performed.
+
+       -i | -include
+              Output in C include file style. A complete static array definition is written (named after the input file), unless xxd reads from stdin.
+
+       -l len | -len len
+              Stop after writing <len> octets.
+
+       -o offset
+              Add <offset> to the displayed file position.
+
+       -p | -ps | -postscript | -plain
+              Output in postscript continuous hexdump style. Also known as plain hexdump style.
+
+       -r | -revert
+              Reverse operation: convert (or patch) hexdump into binary.  If not writing to stdout, xxd writes into its output file without truncating it. Use the combination -r  -p  to
+              read plain hexadecimal dumps without line number information and without a particular column layout. Additional Whitespace and line-breaks are allowed anywhere.
+
+       -seek offset
+              When used after -r: revert with <offset> added to file positions found in hexdump.
+
+       -s [+][-]seek
+              Start at <seek> bytes abs. (or rel.) infile offset.  + indicates that the seek is relative to the current stdin file position (meaningless when not reading from stdin).  -
+              indicates that the seek should be that many characters from the end of the input (or if combined with +: before the current stdin file position).  Without -s  option,  xxd
+              starts at the current file position.
+
+       -u     Use upper case hex letters. Default is lower case.
+
+       -v | -version
+              Show version string.
+```
+
+<p></p>
+</details>
+<p></p>
+
+```
+❯ xxd china.gif | head
+00000000: 0000 0000 0000 2003 9001 f700 0000 0000  ...... .........
+00000010: 0000 3300 0066 0000 9900 00cc 0000 ff00  ..3..f..........
+00000020: 2b00 002b 3300 2b66 002b 9900 2bcc 002b  +..+3.+f.+..+..+
+00000030: ff00 5500 0055 3300 5566 0055 9900 55cc  ..U..U3.Uf.U..U.
+00000040: 0055 ff00 8000 0080 3300 8066 0080 9900  .U......3..f....
+00000050: 80cc 0080 ff00 aa00 00aa 3300 aa66 00aa  ..........3..f..
+00000060: 9900 aacc 00aa ff00 d500 00d5 3300 d566  ............3..f
+00000070: 00d5 9900 d5cc 00d5 ff00 ff00 00ff 3300  ..............3.
+00000080: ff66 00ff 9900 ffcc 00ff ff33 0000 3300  .f.........3..3.
+00000090: 3333 0066 3300 9933 00cc 3300 ff33 2b00  33.f3..3..3..3+.
+```
+
+<p></p>
+You notice that i have piped (|) the output of xxd to <kbd>head</kbd> as magic numbers are located in the first bytes of a file so we only need to see the start.
+<br>
+But this just looks like a stack of numbers and we have nothing to compare it to so lets put it side by side with a working .gif image.
+<p></p>
+
+china.gif | working.gif
+----------|------------
+``` 
+00000000: 0000 0000 0000 2003 9001 f700 0000 0000  ...... .........
+00000010: 0000 3300 0066 0000 9900 00cc 0000 ff00  ..3..f..........
+00000020: 2b00 002b 3300 2b66 002b 9900 2bcc 002b  +..+3.+f.+..+..+
+00000030: ff00 5500 0055 3300 5566 0055 9900 55cc  ..U..U3.Uf.U..U.
+00000040: 0055 ff00 8000 0080 3300 8066 0080 9900  .U......3..f....
+00000050: 80cc 0080 ff00 aa00 00aa 3300 aa66 00aa  ..........3..f..
+00000060: 9900 aacc 00aa ff00 d500 00d5 3300 d566  ............3..f
+00000070: 00d5 9900 d5cc 00d5 ff00 ff00 00ff 3300  ..............3.
+00000080: ff66 00ff 9900 ffcc 00ff ff33 0000 3300  .f.........3..3.
+00000090: 3333 0066 3300 9933 00cc 3300 ff33 2b00  33.f3..3..3..3+. 
+```
+|
+```
+00000000: 4749 4638 3961 0002 0002 8000 0000 0000  GIF89a..........
+00000010: 0000 0021 ff0b 4e45 5453 4341 5045 322e  ...!..NETSCAPE2.
+00000020: 3003 0100 0000 21f9 0405 0500 ff00 2c00  0.....!.......,.
+00000030: 0000 0000 0200 0287 0000 002b 606c 4605  ...........+`lF.
+00000040: b007 b33d 1b1d c1d5 1b09 0769 8801 010a  ...=.......i....
+00000050: a74d 0508 e807 2b1e af06 07ec de15 0606  .M....+.........
+00000060: 9060 7621 5f25 ca07 6f44 4575 3053 c013  .`v!_%..oDEu0S..
+00000070: 2424 3e96 8e1e 4ce6 090c 064e a408 d01e  $$>...L....N....
+00000080: 3e6b 4f3a 12af 0546 aebf 0732 b036 147c  >kO:...F...2.6.|
+00000090: 3a43 0412 e207 27c9 1306 e214 499a 1b08  :C....'.....I...
+```
 
 </details>
 </details>
