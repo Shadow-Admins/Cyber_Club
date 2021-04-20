@@ -277,7 +277,7 @@ Your Head-er can GIF you the answers.
 Magic numbers can tell you a lot.
 </details>
 <p></p>
-<img src="https://drive.google.com/file/d/18bv2QWGmy8zuRvTzFJptfvN1f7k9ts4M/view?usp=sharing" width="600"><br>
+Challenge File: <a href="https://drive.google.com/file/d/18bv2QWGmy8zuRvTzFJptfvN1f7k9ts4M/view?usp=sharing" rel="nofollow">Google Drive</a>
 <p></p>
 
 <details>
