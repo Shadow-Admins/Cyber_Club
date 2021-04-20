@@ -102,6 +102,8 @@ For the challenges I recommend you attempt them yourself and only go through the
 <p></p>
 This series of challenges is from the 2020 Cyber Skills Challenge, these challenges will use the file bob.vmem
 <p></p>
+Challenge File: <a href="https://drive.google.com/file/d/1F0QgNZoBZvIr-0Z3j4B3hdCQT5wvVj4a/view?usp=sharing" rel="nofollow">Google Drive</a>
+<p></p>
 <details>
     <summary>Challenges</summary>
 <p></p>
