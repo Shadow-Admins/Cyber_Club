@@ -259,3 +259,11 @@ FLAG{fl4g5_4r3_fun}
 </details>
 </details>
 </details>
+<p></p>
+<details>
+    <summary>Challenge 2</summary>
+
+
+
+
+</details>
