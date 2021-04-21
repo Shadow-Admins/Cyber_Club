@@ -225,6 +225,24 @@ usb.raw1        67584 3975167 3907584  1.9G  7 HPFS/NTFS/exFAT
 
 <p></p>
 This confirms for me that this is a USB device and the next step will be to mount it IOT investigate further.
+<p></p>
+The first thing we need to do is make a location for the USB to mount to, we will do this using <kbd>mkdir</kbd> using the following command in the following location.
+<p></p>
+
+```
+sudo mkdir /mnt/mnt_point
+```
+
+<p></p>
+Now that we have a location to mount to we can mount the USB IOT investigate further using the following command.
+<p></p>
+
+```
+
+```
+
+
+
 </details>
 
 
