@@ -10,6 +10,11 @@ Speed Me Up Scottie was a series of python scripting challenges from the CSC 202
 <p></p>
 This program prints the flag, but takes a reeeeeeeeeally long time to do so. Can you rewrite it faster?
 <p></p>
+<details>
+    <summary>Hint</summary>
+My calculations say it will take over 100 years on an average PC. My friends version finished in milliseconds!
+</details>
+<p></p>
 Challenge File: <a href="https://drive.google.com/file/d/1oKn3B1gbc7xDdAL-TDqORSh9VagiePQl/view?usp=sharing" rel="nofollow">Google Drive</a>
 </details>
 <p></p>
