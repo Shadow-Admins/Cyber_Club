@@ -1,4 +1,3 @@
-```python
 def my_func(x):
     # Note: Don't fall for the off by one
     if x == 0 or x == 1:
@@ -7,5 +6,3 @@ def my_func(x):
 
 
 print(f"flag{{{my_func(100)}}}")
-
-````
