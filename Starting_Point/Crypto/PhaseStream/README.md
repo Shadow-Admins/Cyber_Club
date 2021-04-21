@@ -16,6 +16,9 @@ The aliens are trying to build a secure cipher to encrypt all our games called "
 <p></p>
 
 </details>
+</details>
+<p></p>
+<hr>
 <p></p>
 <details>
     <Summary>PhaseStream 2</summary>
@@ -29,6 +32,9 @@ Challenge File: <a href="https://drive.google.com/file/d/1J03PVS2LCqK4siJ57Utfnv
 <p></p>
 
 </details>
+</details>
+<p></p>
+<hr>
 <p></p>
 <details>
     <Summary>PhaseStream 3</summary>
@@ -42,12 +48,9 @@ Challenge File: <a href="https://drive.google.com/file/d/1kAqq7T5Y2ZQfBx4lJwavg8
 <p></p>
 
 </details>
-<p></p>
-<details>
-    <summary>Walkthrough</summary>
-<p></p>
-
 </details>
+<p></p>
+<hr>
 <p></p>
 <details>
     <Summary>PhaseStream 4</summary>
