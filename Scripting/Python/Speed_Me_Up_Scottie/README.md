@@ -38,6 +38,35 @@ print(f"flag{{{my_func(100)}}}")
 <details>
     <summary>Solutions</summary>
 <p></p>
+Solution 1
+<p></p>
+
+```python
+#!/usr/bin/env python3
+
+import functools
+
+def memoize(f):
+    cache= {}
+    @functools.wraps(f)
+    def memf(*x):
+        if x not in cache:
+            cache[x] = f(*x)
+        return cache[x]
+    return memf
+
+
+def my_func(x):
+    # Note: Don't fall for the off by one
+    if x == 0 or x == 1:
+        return 1
+    return my_func(x - 1) + my_func(x - 2)
+
+my_func = memoize(my_func)
+
+print(my_func(100))
+```
+
 
 </details>
 </details>
