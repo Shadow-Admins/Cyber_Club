@@ -12,6 +12,7 @@ This program prints the flag, but takes a reeeeeeeeeally long time to do so. Can
 <p></p>
 <details>
     <summary>Hint</summary>
+<p></p>
 My calculations say it will take over 100 years on an average PC. My friends version finished in milliseconds!
 </details>
 <p></p>
