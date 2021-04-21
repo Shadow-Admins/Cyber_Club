@@ -35,6 +35,11 @@ print(f"flag{{{my_func(100)}}}")
 
 <p></p>
 </details>
+<details>
+    <summary>Solutions</summary>
+<p></p>
+
+</details>
 </details>
 <hr>
 <p></p>
@@ -76,4 +81,8 @@ print(
 
 <p></p>
 </details>
+<details>
+    <summary>Solutions</summary>
+<p></p>
+
 </details>
