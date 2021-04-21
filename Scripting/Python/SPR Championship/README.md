@@ -20,7 +20,14 @@ nc spr-championship.ctf.fifthdoma.in 1700
 <p></p>
 The flag format for this series is flag{some_text}
 <p></p>
+<details>
+    <summary>Solutions</summary>
+<p></p>
+
 </details>
+</details>
+<p></p>
+<hr>
 <p></p>
 <details>
     <summary>SPR Championship 2</summary>
