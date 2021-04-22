@@ -174,8 +174,6 @@ Blocky Signs was a 700pt crypto challenge from the CSC 2020.
 <p></p>
 Intel Incoming was a 900pt crypto challenge from the CSC 2020.
 <p></p>
-<hr>
-
 </details>
 <p></p>
 <hr>

@@ -1,6 +1,6 @@
 <H1>Very Secure Protocol</H1>
 <p></p>
-Su-code-ku was a 50pt crypto challenge from the CSC 2020.
+Very Secure Protocol was a 550pt crypto challenge from the CSC 2020.
 <p></p>
 <H2>Challenge</H2>
 <details>
