@@ -7,7 +7,9 @@ Y2 was a 50pt scripting challenge from the CSC 2021
     <summary></summary>
 <p></p>
 What is the value of y2?
+<p></p>
 
+```
 with
   t1(x1, x2) as (select 1, 2),
   t2(y1, y2) as (
@@ -16,7 +18,9 @@ with
   )
 select *
 from t1, t2
+```
 
+<p></p>
 Flag will be in the format FLAG{#}
 <p></p>
 
