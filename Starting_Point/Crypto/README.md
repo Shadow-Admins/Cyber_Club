@@ -33,7 +33,7 @@ What a Mess was a 600pt crypto challenge from the CSC 2021.
 <p></p>
 <hr>
 <p></p>
-<details>
+</details>
 </details>
 <p></p>
 <hr>
