@@ -18,7 +18,7 @@ In order for data to be secured for storage or transmission, it must be transfor
 <details>
     <summary>Hack The Box - Cyber Apocalypse 2021</summary>
 <p></p>
-![Little Nightmares](https://github.com/Shadow-Admins/Cyber_Club/tree/main/Starting_Point/Crypto/Challenges/HTB_Cyber_Apocalypse_2021/Little_Nightmares)
+<a href="https://github.com/Shadow-Admins/Cyber_Club/tree/main/Starting_Point/Crypto/Challenges/HTB_Cyber_Apocalypse_2021/Little_Nightmares" rel="nofollow">Little Nightmares</a>
 <p></p>
 Little Nightmares was a 325pt crypto challenge from the Hack The Box Cyber Apocalypse 2021.
 <p></p>
