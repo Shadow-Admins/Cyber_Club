@@ -1,6 +1,6 @@
 <H1>PhaseStream</H1>
 <p></p>
-PhaseStream was a series of crypto challenges from the Hack The Box Cyber Apocalypse 2021.
+PhaseStream was a series of crypto challenges all worth 300pts from the Hack The Box Cyber Apocalypse 2021.
 <p></p>
 <H2>Challenge</H2>
 <details>
