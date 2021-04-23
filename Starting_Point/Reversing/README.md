@@ -123,13 +123,11 @@ halfaesed was a 400pt reversing challenge from the CSC 2020.
 <a href="https://github.com/Shadow-Admins/Cyber_Club/blob/3194fad44d9a60aeb45b084be48ac2ca6764d4ed/Starting_Point/Reversing/Challenges/CSC_2020/Identify_and_decrypt/README.md" rel="nofollow">Identify and decrypt</a>
 <p></p>
 Identify and decrypt was a 900pt reversing challenge from the CSC 2020.
-
-
-
-
-
-
-
+<p></p>
+</details>
+<details>
+    <summary>CSC - 2021</summary>
+<p></p>
 
 </details>
 </details>
