@@ -17,7 +17,7 @@ and to ensure it executes correctly.
 <p></p>
 The password to this zip file is infected.
 <p></p>
-Challenge File: <a href="https://drive.google.com/file/d/1Xdsjsk_2FfxgedfSNaXLJLgVYc36Ds2D/view?usp=sharing" rel="nofollow">Google Drive</a>
+Challenge File: <a href="https://drive.google.com/file/d/1pMqRc9RauW9MrL21HwBNhtwKHtGAJ7t6/view?usp=sharing" rel="nofollow">Google Drive</a>
 <p></p>
 <details>
     <summary>Walkthrough</summary>
@@ -38,7 +38,7 @@ environment (e.g. VM) to prevent undesired system changes and to ensure it execu
 <p></p>
 The password to this zip file is infected.
 <p></p>
-Challenge File: <a href="https://drive.google.com/file/d/1Xdsjsk_2FfxgedfSNaXLJLgVYc36Ds2D/view?usp=sharing" rel="nofollow">Google Drive</a>
+Challenge File: <a href="https://drive.google.com/file/d/1pMqRc9RauW9MrL21HwBNhtwKHtGAJ7t6/view?usp=sharing" rel="nofollow">Google Drive</a>
 <p></p>
 <details>
     <summary>Walkthrough</summary>
@@ -46,6 +46,8 @@ Challenge File: <a href="https://drive.google.com/file/d/1Xdsjsk_2FfxgedfSNaXLJL
 
 </details>
 </details>
+<p></p>
+<hr>
 <p></p>
 <details>
     <summary>Decrypt the cRyPT0r 3</summary>
@@ -57,7 +59,7 @@ environment (e.g. VM) to prevent undesired system changes and to ensure it execu
 <p></p>
 The password to this zip file is infected.
 <p></p>
-Challenge File: <a href="https://drive.google.com/file/d/1Xdsjsk_2FfxgedfSNaXLJLgVYc36Ds2D/view?usp=sharing" rel="nofollow">Google Drive</a>
+Challenge File: <a href="https://drive.google.com/file/d/1pMqRc9RauW9MrL21HwBNhtwKHtGAJ7t6/view?usp=sharing" rel="nofollow">Google Drive</a>
 <p></p>
 <details>
     <summary>Walkthrough</summary>
@@ -65,6 +67,8 @@ Challenge File: <a href="https://drive.google.com/file/d/1Xdsjsk_2FfxgedfSNaXLJL
 
 </details>
 </details>
+<p></p>
+<hr>
 <p></p>
 <details>
     <summary>Decrypt the cRyPT0r 4</summary>
@@ -77,7 +81,7 @@ environment (e.g. VM) to prevent undesired system changes and to ensure it execu
 <p></p>
 The password to this zip file is infected.
 <p></p>
-Challenge File: <a href="https://drive.google.com/file/d/1Xdsjsk_2FfxgedfSNaXLJLgVYc36Ds2D/view?usp=sharing" rel="nofollow">Google Drive</a>
+Challenge File: <a href="https://drive.google.com/file/d/1pMqRc9RauW9MrL21HwBNhtwKHtGAJ7t6/view?usp=sharing" rel="nofollow">Google Drive</a>
 <p></p>
 <details>
     <summary>Walkthrough</summary>
@@ -85,6 +89,8 @@ Challenge File: <a href="https://drive.google.com/file/d/1Xdsjsk_2FfxgedfSNaXLJL
 
 </details>
 </details>
+<p></p>
+<hr>
 <p></p>
 <details>
     <summary>Decrypt the cRyPT0r 5</summary>
@@ -96,7 +102,7 @@ environment (e.g. VM) to prevent undesired system changes and to ensure it execu
 <p></p>
 The password to this zip file is infected.
 <p></p>
-Challenge File: <a href="https://drive.google.com/file/d/1Xdsjsk_2FfxgedfSNaXLJLgVYc36Ds2D/view?usp=sharing" rel="nofollow">Google Drive</a>
+Challenge File: <a href="https://drive.google.com/file/d/1pMqRc9RauW9MrL21HwBNhtwKHtGAJ7t6/view?usp=sharing" rel="nofollow">Google Drive</a>
 <p></p>
 <details>
     <summary>Walkthrough</summary>
