@@ -1,0 +1,38 @@
+<H1>Reverse Engineering</H1>
+<p></p>
+Reverse engineering refers to the duplication of another producer’s product following a thorough examination of its construction or composition. It involves taking apart the product to understand how it works so as to enhance or duplicate such a product. It makes it possible to understand the basic working principle and structure of the systems under study. The practice, which was copied from old industries, is now widely used in both computer hardware and software. Reverse engineering can be applied to different aspects of software as well as hardware development activities to convey various meaning. In the context of software engineering, reverse engineering entails taking a software system and analyzing it to trace it back to the original design and implementation information. It is used to fix certain bugs in software as well as to enhance product features in both hardware and software. For instance, a programmer writes codes in a sophisticated language like C, C++, Python, etc. and because computers do not speak these languages, the code written in these programming languages are assembled in a machine-specific format so as to interpret them into a low-level language that the machine could understand.
+<p></p>
+There are two forms of reverse engineering. Under the first, the source code is available, but the high-level aspects of the program are not. Therefore, efforts are made to discover the source code for the software under development. The efforts made in uncovering such source code are regarded as reverse engineering. In the second, the software’s source code is not available any longer. Consequent upon this, efforts are made to discover the possible source code. Such process is termed as reverse engineering. To help prevent copyright infringement, reverse engineering utilizes a technique known as clean room design. The main reasons for reverse engineering are to audit the security, take away the copy protection, modify the embedded systems, as well as include additional features not having to spend much alongside other related activities.
+<p></p>
+<H3>Reverse Engineering Tools</H3>
+<p></p>
+- Disassemblers. Disassemblers are used to disect binary codes into assembly codes. They are also employed in extracting strings, functions (both imported and exported), libraries, etc. they help to convert the machine language into a more user-friendly format. Different disassemblers are used for various purposes.
+<p></p>
+- Debuggers. Debuggers contribute to expanding the functionality of disassemblers by supporting the CPU registers, hex dumping of programs, view of the stack, among other things. Programmers use debuggers to set breakpoints as well as edit assembly codes at run time. They are used in analyzing binaries the same way disassemblers are. Also, they let the reverser step through the code by running a line at a time so as to investigate the results.
+<p></p>
+- Hex Editors. Hex editors allow programmers to view and edit binaries according to software requirements. They help make it possible to manipulate the fundamental binary data that makes up a computer file. Moreover, because they are used to edit binary files, they are sometimes referred to as a binary editor or a binary file editor.
+<p></p>
+- PE and Resource Viewer. This tool allows programmers to view and edit resources that are embedded in the EXE file. They let them change icons, edit menu, version information, dialog, etc. PE Explorer makes it easy to translate applications that do not have source codes. All that you need to do is replace text resources with their translated versions, then resize buttons, forms, etc.
+<p></p>
+<H2>Challenges</H2>
+<details>
+    <summary></summary>
+<p></p>
+<details>
+    <summary>CSC</summary>
+<p></p>
+<details>
+    <summary>CSC - 2020</summary>
+<p></p>
+<a href="https://github.com/Shadow-Admins/Cyber_Club/tree/main/Starting_Point/Crypto/Challenges/CSC_2020/Respond_Quickly_Or_The_Puppy_Gets_It" rel="nofollow">Respond Quickly Or The Puppy Gets It</a>
+<p></p>
+Respond Quickly Or The Puppy Gets It was a 50pt crypto challenge from the CSC 2020.
+<p></p>
+<hr>
+<p></p>
+<a href="https://github.com/Shadow-Admins/Cyber_Club/tree/main/Starting_Point/Crypto/Challenges/CSC_2020/Su-code-ku" rel="nofollow">Su-code-ku</a>
+<p></p>
+Su-code-ku was a 50pt crypto challenge from the CSC 2020.
+<p></p>
+<hr>
+<p></p>
