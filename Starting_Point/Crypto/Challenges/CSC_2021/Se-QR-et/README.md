@@ -1,6 +1,6 @@
 <H1>Se-QR-et</H1>
 <p></p>
-Proof Of Weak was a 600pt crypto challenge from the CSC 2021.
+Se-QR-et was a 600pt crypto challenge from the CSC 2021.
 <p></p>
 <H2>Challenge</H2>
 <details>

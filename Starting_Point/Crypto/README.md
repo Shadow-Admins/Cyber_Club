@@ -181,21 +181,33 @@ Intel Incoming was a 900pt crypto challenge from the CSC 2020.
 <details>
     <summary>CSC - 2021</summary>
 <p></p>
+<a href="https://github.com/Shadow-Admins/Cyber_Club/tree/main/Starting_Point/Crypto/Challenges/CSC_2021/Proof_Of_Weak" rel="nofollow">Proof Of Weak</a>
+<p></p>
+Proof Of Weak was a 150pt crypto challenge from the CSC 2021.
+<p></p>
+<hr>
+<p></p>
 <a href="https://github.com/Shadow-Admins/Cyber_Club/tree/main/Starting_Point/Crypto/Challenges/CSC_2021/9_Lives" rel="nofollow">9 Lives</a>
 <p></p>
 9 Lives was a 300pt crypto challenge from the CSC 2021.
 <p></p>
 <hr>
 <p></p>
-<a href="https://github.com/Shadow-Admins/Cyber_Club/tree/main/Starting_Point/Crypto/Challenges/HTB_Cyber_Apocalypse_2021/Message_From_The_Past" rel="nofollow">Message From The Past</a>
+<a href="https://github.com/Shadow-Admins/Cyber_Club/tree/main/Starting_Point/Crypto/Challenges/CSC_2021/Message_From_The_Past" rel="nofollow">Message From The Past</a>
 <p></p>
 Message From The Past was a 300pt crypto challenge from the CSC 2021.
 <p></p>
 <hr>
 <p></p>
-<a href="https://github.com/Shadow-Admins/Cyber_Club/tree/main/Starting_Point/Crypto/Challenges/HTB_Cyber_Apocalypse_2021/What_a_Mess" rel="nofollow">What a Mess</a>
+<a href="https://github.com/Shadow-Admins/Cyber_Club/tree/main/Starting_Point/Crypto/Challenges/CSC_2021/What_a_Mess" rel="nofollow">What a Mess</a>
 <p></p>
 What a Mess was a 600pt crypto challenge from the CSC 2021.
+<p></p>
+<hr>
+<p></p>
+<a href="https://github.com/Shadow-Admins/Cyber_Club/tree/main/Starting_Point/Crypto/Challenges/CSC_2021/Se-QR-et" rel="nofollow">Se-QR-et</a>
+<p></p>
+Se-QR-et was a 600pt crypto challenge from the CSC 2021.
 <p></p>
 </details>
 </details>
