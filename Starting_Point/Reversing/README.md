@@ -158,6 +158,7 @@ Some Art was a 600pt reversing challenge from the CSC 2021.
 Funkellally Hard was a 1800pt reversing challenge from the CSC 2021.
 <p></p>
 </details>
+</details>
 <details>
     <summary>HTB Cyber Apocalypse 2021</summary>
 <p></p>
