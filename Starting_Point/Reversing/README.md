@@ -24,15 +24,112 @@ There are two forms of reverse engineering. Under the first, the source code is 
 <details>
     <summary>CSC - 2020</summary>
 <p></p>
-<a href="https://github.com/Shadow-Admins/Cyber_Club/tree/main/Starting_Point/Crypto/Challenges/CSC_2020/Respond_Quickly_Or_The_Puppy_Gets_It" rel="nofollow">Respond Quickly Or The Puppy Gets It</a>
+<a href="https://github.com/Shadow-Admins/Cyber_Club/blob/d4e6c186cedba8482ca3125110e45d9c25b89f01/Starting_Point/Reversing/Challenges/CSC_2020/Fishing_Sweepstakes/README.md" rel="nofollow">Fishing Sweepstakes</a>
 <p></p>
-Respond Quickly Or The Puppy Gets It was a 50pt crypto challenge from the CSC 2020.
-<p></p>
-<hr>
-<p></p>
-<a href="https://github.com/Shadow-Admins/Cyber_Club/tree/main/Starting_Point/Crypto/Challenges/CSC_2020/Su-code-ku" rel="nofollow">Su-code-ku</a>
-<p></p>
-Su-code-ku was a 50pt crypto challenge from the CSC 2020.
+Fishing Sweepstakes was a 50pt reversing challenge from the CSC 2020.
 <p></p>
 <hr>
 <p></p>
+<a href="https://github.com/Shadow-Admins/Cyber_Club/blob/3194fad44d9a60aeb45b084be48ac2ca6764d4ed/Starting_Point/Reversing/Challenges/CSC_2020/Granpa/README.md" rel="nofollow">Grandpa</a>
+<p></p>
+Grandpa was a series of reversing challenge from the CSC 2020 that were both worth 50pts.
+<p></p>
+<hr>
+<p></p>
+<a href="https://github.com/Shadow-Admins/Cyber_Club/blob/3194fad44d9a60aeb45b084be48ac2ca6764d4ed/Starting_Point/Reversing/Challenges/CSC_2020/is-this-java-1/README.md" rel="nofollow">is-this-a-java-1</a>
+<p></p>
+is-this-a-java-1 was a 50pt reversing challenge from the CSC 2020.
+<p></p>
+<hr>
+<p></p>
+<a href="https://github.com/Shadow-Admins/Cyber_Club/blob/3194fad44d9a60aeb45b084be48ac2ca6764d4ed/Starting_Point/Reversing/Challenges/CSC_2020/Password_Manager_3000/README.md" rel="nofollow">Password Manager 3000</a>
+<p></p>
+Password Manager 3000 was a 50pt reversing challenge from the CSC 2020.
+<p></p>
+<hr>
+<p></p>
+<a href="https://github.com/Shadow-Admins/Cyber_Club/blob/3194fad44d9a60aeb45b084be48ac2ca6764d4ed/Starting_Point/Reversing/Challenges/CSC_2020/USPS/README.md" rel="nofollow">USPS</a>
+<p></p>
+USPS was a 50pt reversing challenge from the CSC 2020.
+<p></p>
+<hr>
+<p></p>
+<a href="https://github.com/Shadow-Admins/Cyber_Club/blob/3194fad44d9a60aeb45b084be48ac2ca6764d4ed/Starting_Point/Reversing/Challenges/CSC_2020/Obfuscation_is_the_new_encryption/README.md" rel="nofollow">Obfuscation is the new encryption</a>
+<p></p>
+Obfuscation is the new encryption was a 50pt reversing challenge from the CSC 2020.
+<p></p>
+<hr>
+<p></p>
+<a href="https://github.com/Shadow-Admins/Cyber_Club/blob/47f1fce3c066902b552d53213a994e865691d9bb/Starting_Point/Reversing/Challenges/CSC_2020/Certified_G/README.md" rel="nofollow">Certified G</a>
+<p></p>
+Certified G was a 50pt reversing challenge from the CSC 2020.
+<p></p>
+<hr>
+<p></p>
+<a href="https://github.com/Shadow-Admins/Cyber_Club/blob/3194fad44d9a60aeb45b084be48ac2ca6764d4ed/Starting_Point/Reversing/Challenges/CSC_2020/Magic_Numbers_are_the_best_numbers/README.md" rel="nofollow">Magic Numbers are the best numbers</a>
+<p></p>
+Magic Numbers are the best numbers was a 50pt reversing challenge from the CSC 2020.
+<p></p>
+<hr>
+<p></p>
+<a href="https://github.com/Shadow-Admins/Cyber_Club/blob/3194fad44d9a60aeb45b084be48ac2ca6764d4ed/Starting_Point/Reversing/Challenges/CSC_2020/She_sells_PowerShells/README.md" rel="nofollow">She sells PowerShells</a>
+<p></p>
+She sells PowerShells was a 50pt reversing challenge from the CSC 2020.
+<p></p>
+<hr>
+<p></p>
+<a href="https://github.com/Shadow-Admins/Cyber_Club/blob/7d7c9543373c262d1499724f7dda6dff3219f132/Starting_Point/Reversing/Challenges/CSC_2020/Client_Side_Controls/README.md" rel="nofollow">Client Side Controls</a>
+<p></p>
+Client Side Controls was a series of reversing challenge from the CSC 2020. The first challenge was worth 50pts and the second was worth 100pts.
+<p></p>
+<hr>
+<p></p>
+<a href="https://github.com/Shadow-Admins/Cyber_Club/blob/11555c1a3c7ffded3ba3d5653e6f9d080bb27cb6/Starting_Point/Reversing/Challenges/CSC_2020/Decrypt_the_cRyPT0r/README.md" rel="nofollow">Decrypt the cRyPT0r</a>
+<p></p>
+Decrypt the cRyPT0r was a series of 5 reversing challenges from the CSC 2020. They were worth 150pts, 100pts, 350pts, 300pts and 200pts respectively.
+<p></p>
+<hr>
+<p></p>
+<a href="https://github.com/Shadow-Admins/Cyber_Club/blob/3194fad44d9a60aeb45b084be48ac2ca6764d4ed/Starting_Point/Reversing/Challenges/CSC_2020/The_Flag_is_in_this_Binary/README.md" rel="nofollow">The Flag is in this Binary</a>
+<p></p>
+The Flag is in this Binary was a 100pt reversing challenge from the CSC 2020.
+<p></p>
+<hr>
+<p></p>
+<a href="https://github.com/Shadow-Admins/Cyber_Club/blob/3194fad44d9a60aeb45b084be48ac2ca6764d4ed/Starting_Point/Reversing/Challenges/CSC_2020/Squinting/README.md" rel="nofollow">Squinting</a>
+<p></p>
+Squinting was a 150pt reversing challenge from the CSC 2020.
+<p></p>
+<hr>
+<p></p>
+<a href="https://github.com/Shadow-Admins/Cyber_Club/blob/47f1fce3c066902b552d53213a994e865691d9bb/Starting_Point/Reversing/Challenges/CSC_2020/armed-and-ready/README.md" rel="nofollow">armed-and-ready</a>
+<p></p>
+armed-and-ready was a 300pt reversing challenge from the CSC 2020.
+<p></p>
+<hr>
+<p></p>
+<a href="https://github.com/Shadow-Admins/Cyber_Club/blob/3194fad44d9a60aeb45b084be48ac2ca6764d4ed/Starting_Point/Reversing/Challenges/CSC_2020/Rev_your_Engines/README.md" rel="nofollow">Rev your Engines</a>
+<p></p>
+Rev your Engines was a 350pt reversing challenge from the CSC 2020.
+<p></p>
+<hr>
+<p></p>
+<a href="https://github.com/Shadow-Admins/Cyber_Club/blob/3194fad44d9a60aeb45b084be48ac2ca6764d4ed/Starting_Point/Reversing/Challenges/CSC_2020/halfaesed/README.md" rel="nofollow">halfaesed</a>
+<p></p>
+halfaesed was a 400pt reversing challenge from the CSC 2020.
+<p></p>
+<hr>
+<p></p>
+<a href="https://github.com/Shadow-Admins/Cyber_Club/blob/3194fad44d9a60aeb45b084be48ac2ca6764d4ed/Starting_Point/Reversing/Challenges/CSC_2020/Identify_and_decrypt/README.md" rel="nofollow">Identify and decrypt</a>
+<p></p>
+Identify and decrypt was a 900pt reversing challenge from the CSC 2020.
+
+
+
+
+
+
+
+
+</details>
+</details>
