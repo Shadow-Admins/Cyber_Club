@@ -1,6 +1,6 @@
 <H1>Alienware</H1>
 <p></p>
-Authenticator was a 300pt reversing challenge from the Hack The Box Cyber Apocalypse 2021.
+Alienware was a 300pt reversing challenge from the Hack The Box Cyber Apocalypse 2021.
 <p></p>
 <H2>Challenge</H2>
 <details>

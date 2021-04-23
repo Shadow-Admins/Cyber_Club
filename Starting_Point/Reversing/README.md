@@ -125,9 +125,58 @@ halfaesed was a 400pt reversing challenge from the CSC 2020.
 Identify and decrypt was a 900pt reversing challenge from the CSC 2020.
 <p></p>
 </details>
+<p></p>
 <details>
     <summary>CSC - 2021</summary>
 <p></p>
-
+<a href="https://github.com/Shadow-Admins/Cyber_Club/blob/ce182fef59e32c51d868c2f71522df28f44ad94d/Starting_Point/Reversing/Challenges/CSC_2021/Meet_Me_At_The_Coffee_Shop/README.md" rel="nofollow">Meet Me At The Coffee Shop</a>
+<p></p>
+Meet Me At The Coffee Shop was a 50pt reversing challenge from the CSC 2021.
+<p></p>
+<hr>
+<p></p>
+<a href="https://github.com/Shadow-Admins/Cyber_Club/blob/ce182fef59e32c51d868c2f71522df28f44ad94d/Starting_Point/Reversing/Challenges/CSC_2021/Crypter/README.md" rel="nofollow">Crypter</a>
+<p></p>
+Crypter was a 100pt reversing challenge from the CSC 2021.
+<p></p>
+<hr>
+<p></p>
+<a href="https://github.com/Shadow-Admins/Cyber_Club/blob/ce182fef59e32c51d868c2f71522df28f44ad94d/Starting_Point/Reversing/Challenges/CSC_2021/RevDistractor/README.md" rel="nofollow">RevDistractor</a>
+<p></p>
+RevDistractor was a 450pt reversing challenge from the CSC 2021.
+<p></p>
+<hr>
+<p></p>
+<a href="https://github.com/Shadow-Admins/Cyber_Club/blob/ce182fef59e32c51d868c2f71522df28f44ad94d/Starting_Point/Reversing/Challenges/CSC_2021/Some_Art/README.md" rel="nofollow">Some Art</a>
+<p></p>
+Some Art was a 600pt reversing challenge from the CSC 2021.
+<p></p>
+<hr>
+<p></p>
+<a href="https://github.com/Shadow-Admins/Cyber_Club/blob/ce182fef59e32c51d868c2f71522df28f44ad94d/Starting_Point/Reversing/Challenges/CSC_2021/Funkellally_Hard/README.md" rel="nofollow">Funkellally Hard</a>
+<p></p>
+Funkellally Hard was a 1800pt reversing challenge from the CSC 2021.
+<p></p>
 </details>
+<details>
+    <summary>HTB Cyber Apocalypse 2021</summary>
+<p></p>
+<hr>
+<p></p>
+<a href="https://github.com/Shadow-Admins/Cyber_Club/blob/9cd3a371b43385e733f3835069e76d6b84ce6a26/Starting_Point/Reversing/Challenges/HTB_Cyber_apocalypse_2021/Alienware/README.md" rel="nofollow">Alienware</a>
+<p></p>
+Alienware was a 300pt reversing challenge from the Hack The Box Cyber Apocalypse 2021.
+<p></p>
+<hr>
+<p></p>
+<a href="https://github.com/Shadow-Admins/Cyber_Club/blob/9cd3a371b43385e733f3835069e76d6b84ce6a26/Starting_Point/Reversing/Challenges/HTB_Cyber_apocalypse_2021/Authenticator/README.md" rel="nofollow">Authenticator</a>
+<p></p>
+Authenticator was a 300pt reversing challenge from the Hack The Box Cyber Apocalypse 2021.
+<p></p>
+<hr>
+<p></p>
+<a href="https://github.com/Shadow-Admins/Cyber_Club/blob/9cd3a371b43385e733f3835069e76d6b84ce6a26/Starting_Point/Reversing/Challenges/HTB_Cyber_apocalypse_2021/Passphrase/README.md" rel="nofollow">Passphrase</a>
+<p></p>
+Passphrase was a 300pt reversing challenge from the Hack The Box Cyber Apocalypse 2021.
+<p></p>
 </details>
