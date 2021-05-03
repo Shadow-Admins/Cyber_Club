@@ -2579,9 +2579,57 @@ So what information can we pull from the hint?
 <details>
     <summary>Spoilers</summary>
 <p></p>
-- We need 
+- We need to get Rick's current password, we can either do it the same was as A Bob's Life 5 or we can use a custom plugin.
+<p></p>
+Since I have already explained how to do it via hash extraction I will go over the use of a custom plugin.
+</details>
+<p></p>
+<details>
+    <summary>Spoilers</summary>
+<p></p>
+So now we know what we are looking for how do we go about using a custom plugin?
+<br>
+The plugin we will use is called mimikatz which is a standalone program used to analyse memory on Windows machines however someone has written it as a plugin for volatility.
+<p></p>
+First we need to download the plugin:
+<p></p>
+
+```
+cd /usr/share/volatility
+```
+
+<p></p>
+
+```
+mkdir plugins
+```
+
+<p></p>
+
+```
+wget https://raw.githubusercontent.com/dfirfpi/hotoloti/master/volatility/mimikatz.py
+```
+
+<p></p>
+
+```
+apt-get install python-crypto
+```
+
+<p></p>
+
+Now that we have downloaded the plugin we can use it on the memory file.
+<p></p>
+We need to ensure that we use the <kbd>--plugins</kbd> flag as shown below.
+<p></p>
+<div align="center">
+<img src="https://github.com/Shadow-Admins/Cyber_Club/blob/main/Starting_Point/DFIR/Memory_Forensics/Volatility/images/image2.png" width="600"><br>
+</div>
+<p></p>
 
 
+
+<p></p>
 </details>
 </details>
 </details>
