@@ -2670,7 +2670,15 @@ First What information can we pull from the hint?
 - We need to find out what the computers name is
 <p></p>
 There are two seperate flags in this challenge, 1 is easy to locate the second requires more work and research.
-
+<br>
+We will start with finding the IP address followed by the hostname.
+</details>
+<p></p>
+<hr>
+<p></p>
+<details>
+    <summary>Spoilers</summary>
+<p></p>
 
 
 
