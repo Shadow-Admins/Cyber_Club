@@ -2623,7 +2623,7 @@ Now that we have downloaded the plugin we can use it on the memory file.
 We need to ensure that we use the <kbd>--plugins</kbd> flag as shown below.
 <p></p>
 <div align="center">
-<img src="https://github.com/Shadow-Admins/Cyber_Club/blob/main/Starting_Point/DFIR/Memory_Forensics/Volatility/images/image2.png" width="600"><br>
+<img src="https://github.com/Shadow-Admins/Cyber_Club/blob/main/Starting_Point/DFIR/Memory_Forensics/Volatility/images/image2.png"><br>
 </div>
 <p></p>
 
