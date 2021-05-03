@@ -2646,7 +2646,7 @@ CTF{MortyIsReallyAnOtter}
 </details>
 </details>
 </details>
-</details>
+
 
 
 
