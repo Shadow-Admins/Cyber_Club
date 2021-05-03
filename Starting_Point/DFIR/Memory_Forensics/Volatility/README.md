@@ -2485,12 +2485,80 @@ FLAG{8QUGzXSd2WXTHCe1ZW}
 <p></p>
 <hr>
 <p></p>
+
+
+
+
+
+
 <H3>Rick</H3>
 <p></p>
-Is a series of challenges from the OtterCTF from 2019, these challenges will use the file OtterCTF.vmem
+Is a series of challenges from the <a href="https://otterctf.com/" rel="nofollow">OtterCTF</a> from 2019, these challenges will use the file OtterCTF.vmem
+<p></p>
+Challenge File: <a href="https://drive.google.com/file/d/1yy7wWcRhQOlJLQPkWEuVlajEJueKMACz/view?usp=sharing" rel="nofollow">Google Drive</a>
+<p></p>
+<details>
+    <summary>Extracting the File</summary>
+<p></p>
+When you download it the file comes as OtterCTF.7z you can either extract it through an archive manager or through CLI which I will explain now.
+<p></p>
+The first thing you will need is to install p7zip-full if you haven't already. To do this run this command:
+<p></p>
+
+```
+sudo apt install p7zip-full
+```
+
+Now that's installed you can run this command on the file:
+
+```
+p7zip -d dump.7z
+```
+
+Which will output this and extract dump.vmem:
+
+```
+❯ p7zip -d OtterCTF.7z
+
+7-Zip (a) [64] 16.02 : Copyright (c) 1999-2016 Igor Pavlov : 2016-05-21
+p7zip Version 16.02 (locale=en_AU.UTF-8,Utf16=on,HugeFiles=on,64 bits,8 CPUs Intel(R) Core(TM) i7-8650U CPU @ 1.90GHz (806EA),ASM,AES-NI)
+
+Scanning the drive for archives:
+1 file, 507206872 bytes (484 MiB)
+
+Extracting archive: OtterCTF.7z
+--
+Path = OtterCTF.7z
+Type = 7z
+Physical Size = 507206872
+Headers Size = 130
+Method = LZMA2:24
+Solid = -
+Blocks = 1
+
+Everything is Ok    
+
+Size:       2147483648
+Compressed: 507206872
+```
+
+<p></p>
+Once we determine the image profile using <kbd>imageinfo</kbd> (refer to Getting your Foothold ) we can begin our analysis on OtterCTF.vmem
+<p></p>
+</details>
+<p></p>
 <details>
     <summary>Challenges</summary>
+<p></p>
 
+<p></p>
+<details>
+    <summary>What the Password</summary>
+<p></p>
+The first challenge we are given is:
+<p></p>
+You got a sample of rick's PC's memory. can you get his user password?
+</details>
 
 </details>
 
