@@ -2509,6 +2509,8 @@ Is a series of challenges from the <a href="https://otterctf.com/" rel="nofollow
 <p></p>
 Challenge File: <a href="https://drive.google.com/file/d/1yy7wWcRhQOlJLQPkWEuVlajEJueKMACz/view?usp=sharing" rel="nofollow">Google Drive</a>
 <p></p>
+The answers for these challenges are 'CTF{ANSWER}'
+<p></p>
 <details>
     <summary>Extracting the File</summary>
 <p></p>
