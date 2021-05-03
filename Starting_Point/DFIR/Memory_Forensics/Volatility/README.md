@@ -1628,8 +1628,20 @@ So what information can we pull from the hint?
 <p></p>
 - The attacker was using Tor, but what is Tor? 
     - Tor is free and open-source software for enabling anonymous communication by directing Internet traffic through a free, worldwide, volunteer overlay network consisting of more than seven thousand relays[5] in order to conceal a user's location and usage from anyone conducting network surveillance or traffic analysis. Using Tor makes it more difficult to trace the Internet activity to the user: this includes "visits to Web sites, online posts, instant messages, and other communication forms".
-<br>
+<p></p>
     - Onion routing is implemented by encryption in the application layer of a communication protocol stack, nested like the layers of an onion. Tor encrypts the data, including the next node destination IP address, multiple times and sends it through a virtual circuit comprising successive, random-selection Tor relays. Each relay decrypts a layer of encryption to reveal the next relay in the circuit to pass the remaining encrypted data on to it. The final relay decrypts the innermost layer of encryption and sends the original data to its destination without revealing or knowing the source IP address. Because the routing of the communication was partly concealed at every hop in the Tor circuit, this method eliminates any single point at which the communicating peers can be determined through network surveillance that relies upon knowing its source and destination.
+<p></p>
+<div align="center">
+<img src="https://github.com/Shadow-Admins/Cyber_Club/blob/main/Starting_Point/DFIR/Memory_Forensics/Volatility/images/file.None.0xfffffa80023b6d00.hacked.gif.dat" width="600"><br>
+</div>
+<p></p>
+<div align="center">
+<img src="https://github.com/Shadow-Admins/Cyber_Club/blob/main/Starting_Point/DFIR/Memory_Forensics/Volatility/images/file.None.0xfffffa80023b6d00.hacked.gif.dat" width="600"><br>
+</div>
+<p></p>
+<div align="center">
+<img src="https://github.com/Shadow-Admins/Cyber_Club/blob/main/Starting_Point/DFIR/Memory_Forensics/Volatility/images/file.None.0xfffffa80023b6d00.hacked.gif.dat" width="600"><br>
+</div>
 <p></p>
 So now that we know what Tor is and that it has to do with the internet and routing, we can start looking for options to analyse our file.
 <p></p>
@@ -2566,6 +2578,9 @@ So what information can we pull from the hint?
 <p></p>
 <details>
     <summary>Spoilers</summary>
+<p></p>
+- We need 
+
 
 </details>
 </details>
