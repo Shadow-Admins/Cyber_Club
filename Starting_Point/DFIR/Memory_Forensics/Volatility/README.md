@@ -2558,8 +2558,18 @@ Once we determine the image profile using <kbd>imageinfo</kbd> (refer to Getting
 The first challenge we are given is:
 <p></p>
 You got a sample of rick's PC's memory. can you get his user password?
-</details>
+<p></p>
+<details>
+    <summary>Walkthrough</summary>
+<p></p>
+So what information can we pull from the hint?
+<p></p>
+<details>
+    <summary>Spoilers</summary>
 
+</details>
+</details>
+</details>
 </details>
 
 
