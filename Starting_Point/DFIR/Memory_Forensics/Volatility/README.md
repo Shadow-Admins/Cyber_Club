@@ -2582,7 +2582,6 @@ So what information can we pull from the hint?
 - We need to get Rick's current password, we can either do it the same was as A Bob's Life 5 or we can use a custom plugin.
 <p></p>
 Since I have already explained how to do it via hash extraction I will go over the use of a custom plugin.
-</details>
 <p></p>
 <details>
     <summary>Spoilers</summary>
@@ -2622,14 +2621,26 @@ Now that we have downloaded the plugin we can use it on the memory file.
 <p></p>
 We need to ensure that we use the <kbd>--plugins</kbd> flag as shown below.
 <p></p>
+The command we will use is:
+<p></p>
+
+```
+sudo volatility --plugins=/usr/share/volatility/plugins --profile=Win7SP1x64 -f OtterCTF.vmem mimikatz
+```
+
+<p></p>
 <div align="center">
 <img src="https://github.com/Shadow-Admins/Cyber_Club/blob/main/Starting_Point/DFIR/Memory_Forensics/Volatility/images/image2.png"><br>
 </div>
 <p></p>
 
-
-
+Which gives us the answers
 <p></p>
+<details>
+    <summary>Answer</summary>
+<p></p>
+CTF{MortyIsReallyAnOtter}
+</details>
 </details>
 </details>
 </details>
