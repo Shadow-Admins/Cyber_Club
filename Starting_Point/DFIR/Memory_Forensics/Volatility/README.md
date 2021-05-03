@@ -68,7 +68,7 @@ Looking at this command we will unpack it and go through the basic syntax.
 ```
 </details>
 <br>
-This one command have us alot of info however we are looking for one specific piece of information, that is the suggested profiles.
+This one command gave us alot of info however we are looking for one specific piece of information, that is the suggested profiles.
 
 ```
 Suggested Profile(s) : Win7SP1x64, Win7SP0x64, Win2008R2SP0x64, Win2008R2SP1x64_23418, Win2008R2SP1x64, Win7SP1x64_23418
@@ -399,6 +399,8 @@ Title: Bob's Secret Blog - FLAG{encoded_secrets}
 Giving us the flag.
 <p>
 FLAG{encoded_secrets}
+<p></p>
+There is an alternate way to do this without using the <kbd>iehistory</kbd> option, the alternate way is the same as the method for A Bob's Life 3.
 
 </details>
 </details>
