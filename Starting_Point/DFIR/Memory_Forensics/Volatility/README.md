@@ -2643,15 +2643,22 @@ Which gives us the answers
 <p></p>
 CTF{MortyIsReallyAnOtter}
 </details>
-1
 </details>
-2
 </details>
-3
 </details>
-4
 </details>
-5
+<p></p>
+<hr>
+<p></p>
+<details>
+    <summary>General Info</summary>
+<p></p>
+The second challenge we are given is:
+<p></p>
+Let's start easy - whats the PC's name and IP address?
+<p></p>
+
+</details>
 </details>
 
 
