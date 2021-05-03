@@ -2485,6 +2485,26 @@ FLAG{8QUGzXSd2WXTHCe1ZW}
 <p></p>
 <hr>
 <p></p>
+<H3>Rick</H3>
+<p></p>
+Is a series of challenges from the OtterCTF from 2019, these challenges will use the file OtterCTF.vmem
+<details>
+    <summary>Challenges</summary>
+
+
+</details>
+
+
+
+
+
+
+
+
+
+<p></p>
+<hr>
+<p></p>
 <H3>MEMLABS</H3>
 <p></p>
 <details>
