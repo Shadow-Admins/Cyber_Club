@@ -2657,8 +2657,29 @@ The second challenge we are given is:
 <p></p>
 Let's start easy - whats the PC's name and IP address?
 <p></p>
+<details>
+    <summary>Walkthrough</summary>
+<p></p>
+First What information can we pull from the hint?
+<p></p>
+<details>
+    <summary>Spoilers</summary>
+<p></p>
+- We need to locate the computers IP address
+<br>
+- We need to find out what the computers name is
+<p></p>
+There are two seperate flags in this challenge, 1 is easy to locate the second requires more work and research.
+
+
+
 
 </details>
+</details>
+</details>
+
+
+
 </details>
 
 
