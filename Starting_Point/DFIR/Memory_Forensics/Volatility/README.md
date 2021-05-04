@@ -3484,7 +3484,7 @@ Lunar-4
 <p></p>
 Here we can see the user name straight after Lunar-3
 <p></p>
-</details>
+<details>
     <summary>Answer</summary>
 <p></p>
 CTF{0tt3r8r33z3}
