@@ -3100,8 +3100,9 @@ Resulting in us obtaining the same answer although much easier.
 </details>
 </details>
 </details>
-</details>
 1
+</details>
+
 
 
 
