@@ -3115,7 +3115,12 @@ The third challenge we are given is:
 Rick just loves to play some good old videogames. can you tell which game is he playing? whats the IP address of the server?
 <p></p>
 format: CTF{flag}
-
+<p></p>
+<details>
+    <summary>Walkthrough</summary>
+<p></p>
+1
+</details>
 
 
 </details>
