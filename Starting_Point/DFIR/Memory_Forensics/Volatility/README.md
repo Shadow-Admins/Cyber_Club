@@ -2679,7 +2679,9 @@ We will start with finding the IP address followed by the hostname.
 <details>
     <summary>Spoilers</summary>
 <p></p>
-First we need to find the IP address of the system, to do this we will need to use an option that looks at networking and TCP/UDP connections. There are multiple options for this however, because we know the system is Win7SP1x64 both connections and connscan willnot work so we will use netscan. The command looks like this:
+<H3>Finding the IP Address</H3>
+<p></p>
+First we need to find the IP address of the system, to do this we will need to use an option that looks at networking and TCP/UDP connections. There are multiple options for this however, because we know the system is Win7SP1x64 both connections and connscan will not work so we will use netscan. The command looks like this:
 <p></p>
 
 ```
@@ -2860,6 +2862,10 @@ Giving us our first answer.
 CTF{192.168.202.131}
 <p></p>
 </details>
+<p></p>
+<H3>Finding the PC Name</H3>
+<p></p>
+We will now go on with finding what the PC's name is, this is more difficult than running a single option and looking at the output and will require some research to complete.
 
 </details>
 </details>
