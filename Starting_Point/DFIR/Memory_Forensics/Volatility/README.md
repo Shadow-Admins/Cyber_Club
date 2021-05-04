@@ -3512,7 +3512,6 @@ CTF{0tt3r8r33z3}
 
 
 </details>
-</details>
 
 
 
