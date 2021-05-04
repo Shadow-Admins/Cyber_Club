@@ -3502,12 +3502,121 @@ CTF{0tt3r8r33z3}
 <p></p>
 <details>
     <summary>Name Game 2</summary>
+<p></p>
+The fifth challenge we are given is:
+<p></p>
+From a little research we found that the username of the logged on character is always after this signature: 0x64 0x??{6-8} 0x40 0x06 0x??{18} 0x5a 0x0c 0x00{2} What's rick's character's name? 
+<p></p>
+format: CTF{...}
+<p></p>
+<details>
+    <summary>Walkthrough</summary>
+<p></p>
+This challenge is a bit more obscure and there is a slow and fast way to go about it. The first thing we need to recognise is that the "signature" we are given is hex. This is our big clue on how we much progress. Now the first way you can go about this is by using <kbd>hexedit</kbd> and manually search through the file looking for something that resembles a username (takes forever!) the second and quicker/less painfull way is to utilise <kbd>xxd</kbd> and <kbd>grep</kbd> using the last part of the signature we are given. We will look at the <kbd>xxd<kbd> method now. 
+<p></p>
+First the final part of the signature looks like this "5a0c 0000" this is what we will grep for.
+<p></p>
+The command we will use is:
+<p></p>
 
+```
+xxd 708.dmp | grep "5a0c 0000"
+```
+
+<p></p>
+Which outputs:
+<p></p>
+
+```
+❯ xxd 708.dmp | grep "5a0c 0000"                                                                                                                                                              
+003ef0a0: 5a0c 0000 684e fe41 00e8 00b6 2900 59c3  Z...hN.A....).Y.                                                                                                                           
+0062fcc0: 5a0c 0000 0000 0000 63ae 0200 0000 0000  Z.......c.......                                                                                                                           
+01147d10: 880c 0000 5a0c 0000 4c00 0000 4d00 0000  ....Z...L...M...                                                                                                                           
+01148d50: b30b 0000 b30b 0000 5a0c 0000 a50c 0000  ........Z.......                                                                                                                           
+01479d80: 0000 ffff 00ff 0d09 5a0c 0000 1b2c 0000  ........Z....,..                                                                                                                           
+0210f4e0: 0704 0000 0000 ffff 00ff 0d09 5a0c 0000  ............Z...                                                                                                                           
+084ae150: 5a0c 0000 04f8 3e1f 1000 0000 0035 c150  Z.....>......5.P                                                                                                                           
+0871dd10: 5a0c 0000 2000 0000 0000 0000 a033 f949  Z... ........3.I                                                                                                                           
+08751740: 1000 0000 0035 c150 0000 0000 5a0c 0000  .....5.P....Z...                                                                                                                           
+0ac724c0: 1000 0000 0035 c150 0000 0000 5a0c 0000  .....5.P....Z...                                                                                                                           
+0b04a330: 5a0c 0000 700f 0320 1000 0000 0035 c150  Z...p.. .....5.P                                                                                                                           
+0b04ac60: 0000 0000 5a0c 0000 64c5 221e 1000 0000  ....Z...d.".....                                                                                                                           
+0c33a4a0: 9a23 3223 0b00 0001 5a0c 0000 4d30 7274  .#2#....Z...M0rt                                                                                                                           
+0e85cba0: 1000 0000 0035 c150 0000 0000 5a0c 0000  .....5.P....Z...                                                                                                                           
+0ecfa5c0: 0035 c150 0000 0000 5a0c 0000 b460 9047  .5.P....Z....`.G                                                                                                                           
+0ecfad80: 0000 0000 5a0c 0000 40f3 9047 1000 0000  ....Z...@..G....                                                                                                                           
+0ed06370: 1000 0000 0035 c150 b033 b046 5a0c 0000  .....5.P.3.FZ...                                                                                                                           
+0ed25c60: 1000 0000 0035 c150 0000 0000 5a0c 0000  .....5.P....Z...                                                                                                                           
+107ee770: 1000 0000 0035 c150 0000 0000 5a0c 0000  .....5.P....Z...                                                                                                                           
+109397e0: 5a0c 0000 3100 3000 3500 3200 3000 3000  Z...1.0.5.2.0.0.                                                                                                                           
+10b3ca20: 5a0c 0000 2000 0000 0000 0000 40a0 cd49  Z... .......@..I                                                                                                                           
+10f27d50: 0000 0000 5a0c 0000 50a9 df48 1000 0000  ....Z...P..H....                                                                                                                           
+111e3e60: 5a0c 0000 6d00 6100 7000 2f00 6f00 6200  Z...m.a.p./.o.b.
+122f9a00: 5a0c 0000 5300 7400 7200 6900 6e00 6700  Z...S.t.r.i.n.g.
+12cf83d0: 5a0c 0000 5300 6800 6100 7000 6500 3200  Z...S.h.a.p.e.2.
+12d183d0: 5a0c 0000 4500 7400 6300 2f00 4300 6f00  Z...E.t.c./.C.o.
+12d383d0: 5a0c 0000 5300 6800 6100 7000 6500 3200  Z...S.h.a.p.e.2.
+12d786f0: 5a0c 0000 4500 7400 6300 2f00 4300 6f00  Z...E.t.c./.C.o.
+12f38650: 5a0c 0000 7400 7200 6100 6400 6500 4100  Z...t.r.a.d.e.A.
+131582d0: 5a0c 0000 4500 7400 6300 2f00 4300 6f00  Z...E.t.c./.C.o.
+133c9870: 174c c31e 0000 0080 5a0c 0000 4500 7400  .L......Z...E.t.
+20b05fc0: b0e5 af00 5a0c 0000 4d30 7274 794c 304c  ....Z...M0rtyL0L
+21059040: 1800 0000 0000 0000 a8e5 985a 5a0c 0000  ...........ZZ...
+212437c0: 6918 9553 0000 0080 5a0c 0000 4500 6600  i..S....Z...E.f.
+212c3500: 5a0c 0000 4500 7400 6300 2f00 4300 6f00  Z...E.t.c./.C.o.
+21445530: 5a0c 0000 5300 6800 6100 7000 6500 3200  Z...S.h.a.p.e.2.
+21462b30: 788c 8150 0000 0000 30cb 354d 5a0c 0000  x..P....0.5MZ...
+21549530: d730 9b53 0000 0080 5a0c 0000 5300 6800  .0.S....Z...S.h.
+23f3a1a0: 5a0c 0000 3900 3900 3000 3100 3100 3100  Z...9.9.0.1.1.1.
+240161c0: 5a0c 0000 6900 6e00 6300 5300 5400 5200  Z...i.n.c.S.T.R.
+244ea4f0: 5a0c 0000 2000 0000 0000 0000 408d 0c5a  Z... .......@..Z
+25539020: 10e8 5a0c 0000 e947 edff ffff 75cc 56ff  ..Z....G....u.V.
+25d7e450: 6359 5a0c 0000 0080 2161 720d 0000 0080  cYZ.....!ar.....
+25d7e690: 63b9 5a0c 0000 60e6 63c9 8e0c 0000 50e6  c.Z...`.c.....P.
+25d7f050: 6319 5a0c 0000 f0e0 6329 b20c 0000 00e1  c.Z.....c)......
+25f93930: 5a0c 0000 da0e 0200 0000 0000 0000 0000  Z...............
+2891d760: 379c 5a0c 0000 0000 0000 0000 0000 0000  7.Z.............
+29238210: 4489 b424 540c 0000 66c7 8424 5a0c 0000  D..$T...f..$Z...
+2a01c5f0: 580c 0000 2e06 0000 5a0c 0000 2f06 0000  X.......Z.../...
+2dafe010: 0207 2801 480c 0001 5a0c 0000 0000 0100  ..(.H...Z.......
+2db054f0: 5a0c 0000 0000 0100 0000 0000 2003 0000  Z........... ...
+2edc74e0: 8003 0000 60b0 4f20 5a0c 0000 0000 0000  ....`.O Z.......
+2ee233d0: 0d01 0000 5a0c 0000 0100 0301 0000 0000  ....Z...........
+2eef6b80: 5a0c 0000 0000 0000 0000 0000 0000 0000  Z...............
+2f846960: 404b 4801 a0f8 ffff 5a0c 0000 0000 0040  @KH.....Z......@
+2f849ee0: 404b 4801 a0f8 ffff 5a0c 0000 0000 0040  @KH.....Z......@
+2f84d190: 404b 4801 a0f8 ffff 5a0c 0000 0000 0040  @KH.....Z......@
+2f886ad0: b902 0000 0000 0000 5a0c 0000 0000 0040  ........Z......@
+2f89c410: 40b1 6b01 a0f8 ffff 5a0c 0000 0000 0040  @.k.....Z......@
+2f8d8790: 40b1 6b01 a0f8 ffff 5a0c 0000 0000 0040  @.k.....Z......@
+2f8fcd50: 4021 aa01 a0f8 ffff 5a0c 0000 0000 0040  @!......Z......@
+2f9285b0: 70cc 6b01 a0f8 ffff 5a0c 0000 0000 0040  p.k.....Z......@
+2f9517a0: 40b1 6b01 a0f8 ffff 5a0c 0000 0000 0040  @.k.....Z......@
+2f959080: 7065 8703 a0f8 ffff 5a0c 0000 0000 0040  pe......Z......@
+2f9ebdd0: 7065 8703 a0f8 ffff 5a0c 0000 0000 0040  pe......Z......@
+2fa0abe0: 7065 8703 a0f8 ffff 5a0c 0000 0000 0040  pe......Z......@
+```
+
+<p></p>
+Giving us our answer:
+<p></p>
+<details>
+    <summary>Answer</summary>
+<p></p>
+CTF{M0rtyL0L}
+</details>
+</details>
+</details>
+<p></p>
+<hr>
+<p></p>
+<details>
+    <summary>Silly Rick</summary>
+<p></p>
+The sixth challenge we are given is:
+<p></p>
 
 </details>
-
-
-
 
 
 
