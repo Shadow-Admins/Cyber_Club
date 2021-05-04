@@ -2999,7 +2999,7 @@ Values:
 ```
 
 <p></p>
-This iutput shows us the ControlSet being listed as ControlSet001, we can now use this information to run the printkey command again giving us this output and the answer:
+This output shows us the ControlSet being listed as ControlSet001, we can now use this information to run the printkey command again giving us this output and the answer:
 <p></p>
 
 ```
