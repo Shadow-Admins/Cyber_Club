@@ -3492,7 +3492,14 @@ CTF{0tt3r8r33z3}
 </details>
 </details>
 </details>
+<p></p>
+<hr>
+<p></p>
+<details>
+    <summary>Name Game 2</summary>
 
+
+</details>
 
 
 
