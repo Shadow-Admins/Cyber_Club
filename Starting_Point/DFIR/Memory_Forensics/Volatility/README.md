@@ -3622,21 +3622,68 @@ format: CTF{ANSWER}
 <details>
     <summary>Walkthrough</summary>
 <p></p>
+This is a very easy challenge and only requires using one option and looking at the standard output that is the clipboard command. The command looks like this:
+<p></p>
+
+```
+sudo volatility -f OtterCTF.vmem --profile=Win7SP1x64 clipboard
+```
+
+<p></p>
+Which gives the following output:
+<p></p>
+
+```
+❯ sudo volatility -f OtterCTF.vmem --profile=Win7SP1x64 clipboard
+Volatility Foundation Volatility Framework 2.6
+Session    WindowStation Format                         Handle Object             Data                                              
+---------- ------------- ------------------ ------------------ ------------------ --------------------------------------------------
+         1 WinSta0       CF_UNICODETEXT                0x602e3 0xfffff900c1ad93f0 M@il_Pr0vid0rs                                    
+         1 WinSta0       CF_TEXT                          0x10 ------------------                                                   
+         1 WinSta0       0x150133L              0x200000000000 ------------------                                                   
+         1 WinSta0       CF_TEXT                           0x1 ------------------                                                   
+         1 ------------- ------------------           0x150133 0xfffff900c1c1adc0                                                   
+```
+
+<p></p>
+Giving us the answer:
+<p></p>
+<details>
+    <summary>Answer</summary>
+<p></p>
+CTF{M@il_Pr0vid0rs}
+</details>
+</details>
+</details>
+<p></p>
+<hr>
+<p></p>
+<details>
+    <summary>Hide and Seek</summary>
+<p></p>
+The seventh challenge we are given is:
+<p></p>
+The reason that we took rick's PC memory dump is because there was a malware infection. Please find the malware process name (including the extension)
+<p></p>
+BEAWARE! There are only 3 attempts to get the right flag!
+<p></p>
+format: CTF{flag}
+<p></p>
+<details>
+    <summary>Walkthrough</summary>
+<p></p>
+asdasd
+
+
+
+
+
+
+
+
+
 
 </details>
-
-
-
-</details>
-
-
-
-
-
-
-
-
-
 </details>
 
 
