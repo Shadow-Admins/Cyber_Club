@@ -3512,7 +3512,7 @@ format: CTF{...}
 <details>
     <summary>Walkthrough</summary>
 <p></p>
-This challenge is a bit more obscure and there is a slow and fast way to go about it. The first thing we need to recognise is that the "signature" we are given is hex. This is our big clue on how we much progress. Now the first way you can go about this is by using <kbd>hexedit</kbd> and manually search through the file looking for something that resembles a username (takes forever!) the second and quicker/less painfull way is to utilise <kbd>xxd</kbd> and <kbd>grep</kbd> using the last part of the signature we are given. We will look at the <kbd>xxd<kbd> method now. 
+This challenge is a bit more obscure and there is a slow and fast way to go about it. The first thing we need to recognise is that the "signature" we are given is hex. This is our big clue on how we much progress. Now the first way you can go about this is by using <kbd>hexedit</kbd> and manually search through the file looking for something that resembles a username (takes forever!) the second and quicker/less painfull way is to utilise <kbd>xxd</kbd> and <kbd>grep</kbd> using the last part of the signature we are given. We will look at the <kbd>xxd</kbd> method now. 
 <p></p>
 First the final part of the signature looks like this "5a0c 0000" this is what we will grep for.
 <p></p>
