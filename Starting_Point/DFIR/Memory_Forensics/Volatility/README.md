@@ -2865,7 +2865,238 @@ CTF{192.168.202.131}
 <p></p>
 <H3>Finding the PC Name</H3>
 <p></p>
-We will now go on with finding what the PC's name is, this is more difficult than running a single option and looking at the output and will require some research to complete.
+We will now go on with finding what the PC's name is (There is more than 1 way we will do the more difficult version first), this is more difficult than running a single option and looking at the output and will require some research to complete.
+<br>
+To do this we will need to look in the registry files to locate the computer name.
+<br>
+First we need to know where in the registry the computer name is located, a quick google search gives us our answer.
+<br>
+HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\ComputerName\ComputerName
+<br>
+Now that we know where it is located in the Registry we can use volatility to look at this information. First we need to list the hives IOT find the SYSTEM hive. We will use the following command:
+<p></p>
+
+```
+sudo volatility -f OtterCTF.vmem --profile=Win7SP1x64 hivelist
+```
+
+<p></p>
+Which outputs:
+<p></p>
+
+```
+❯ sudo volatility -f OtterCTF.vmem --profile=Win7SP1x64 hivelist
+Volatility Foundation Volatility Framework 2.6
+Virtual            Physical           Name
+------------------ ------------------ ----
+0xfffff8a00377d2d0 0x00000000624162d0 \??\C:\System Volume Information\Syscache.hve
+0xfffff8a00000f010 0x000000002d4c1010 [no name]
+0xfffff8a000024010 0x000000002d50c010 \REGISTRY\MACHINE\SYSTEM
+0xfffff8a000053320 0x000000002d5bb320 \REGISTRY\MACHINE\HARDWARE
+0xfffff8a000109410 0x0000000029cb4410 \SystemRoot\System32\Config\SECURITY
+0xfffff8a00033d410 0x000000002a958410 \Device\HarddiskVolume1\Boot\BCD
+0xfffff8a0005d5010 0x000000002a983010 \SystemRoot\System32\Config\SOFTWARE
+0xfffff8a001495010 0x0000000024912010 \SystemRoot\System32\Config\DEFAULT
+0xfffff8a0016d4010 0x00000000214e1010 \SystemRoot\System32\Config\SAM
+0xfffff8a00175b010 0x00000000211eb010 \??\C:\Windows\ServiceProfiles\NetworkService\NTUSER.DAT
+0xfffff8a00176e410 0x00000000206db410 \??\C:\Windows\ServiceProfiles\LocalService\NTUSER.DAT
+0xfffff8a002090010 0x000000000b92b010 \??\C:\Users\Rick\ntuser.dat
+0xfffff8a0020ad410 0x000000000db41410 \??\C:\Users\Rick\AppData\Local\Microsoft\Windows\UsrClass.dat
+```
+
+<p></p>
+The important information we need is this:
+<p></p>
+
+```
+Virtual            Physical           Name
+------------------ ------------------ ----
+0xfffff8a000024010 0x000000002d50c010 \REGISTRY\MACHINE\SYSTEM
+```
+
+<p></p>
+With this information (particularly the Virtual Offset) we can now use the <kbd>printkey</kbd> option to read the registry using the location we discovered before.
+<br>
+
+Option | Description
+-------|-------------
+printkey | Display the subkeys, values, data, and data types contained within a specified registry key, use the printkey command. By default, printkey will search all hives and print the key information (if found) for the requested key. Therefore, if the key is located in more than one hive, the information for the key will be printed for each hive that contains it. If you want to limit your search to a specific hive, printkey also accepts a virtual address to the hive. use the command with a <kbd>-o</kbd> flag specifying the virtual offset.
+
+<br>
+Since we know where the information we are looking for is located the command will look like this:
+<p></p>
+
+```
+sudo volatility -f OtterCTF.vmem --profile=Win7SP1x64 printkey -o 0xfffff8a000024010 -K 'ControlSet\Control\ComputerName\ComputerName'
+```
+
+<p></p>
+Which outputs this:
+<p></p>
+
+```
+❯ sudo volatility -f OtterCTF.vmem --profile=Win7SP1x64 printkey -o 0xfffff8a000024010 -K 'ControlSet\Control\ComputerName\ComputerName'
+Volatility Foundation Volatility Framework 2.6
+Legend: (S) = Stable   (V) = Volatile
+
+The requested key could not be found in the hive(s) searched
+```
+
+<p></p>
+This wasn't our expected output, the issue is the ControlSet we need to start with the first one but how can we find this information out? We can either run the <kbd>printkey</kbd> command only using the <kbd>-o</kbd> flag or by using the <kbd>handles</kbd> option: 
+<br>
+
+Option | Description
+-------|--------------
+handles | To display the open handles in a process, use the handles command. This applies to files, registry keys, mutexes, named pipes, events, window stations, desktops, threads, and all other types of securable executive objects. As of 2.1, the output includes handle value and granted access for each object. <p></p> You can display handles for a particular process by specifying --pid=PID or the physical offset of an _EPROCESS structure (--physical-offset=OFFSET). You can also filter by object type using -t or --object-type=OBJECTTYPE.
+
+<br>
+You can try using handles however I am going to use the <kbd>printkey</kbd> option only using the <kbd>-o</kbd> flag. The handles command looks like this:
+<p></p>
+
+```
+sudo volatility -f OtterCTF.vmem --profile=Win7SP1x64 handles -t Key
+```
+
+<p></p>
+We used the <kbd>-t Key</kbd> flag to return only the key values, which still outputs a stack of data but you can see that ControlSet001 is repeated throughout the output. Now that we have this information we can repeat the <kbd>printkey</kbd> option.
+<p></p>
+The <kbd>printkey</kbd> option looks like this:
+<p></p>
+
+```
+sudo volatility -f OtterCTF.vmem --profile=Win7SP1x64 printkey -o 0xfffff8a000024010
+```
+
+<p></p>
+We got the value for the <kbd>-o</kbd> flag from the <kbd>hivelist</kbd> output earlier.
+<br>
+This outputs the following:
+<p></p>
+
+```
+❯ sudo volatility -f OtterCTF.vmem --profile=Win7SP1x64 printkey -o 0xfffff8a000024010
+Volatility Foundation Volatility Framework 2.6
+Legend: (S) = Stable   (V) = Volatile
+
+----------------------------
+Registry: \REGISTRY\MACHINE\SYSTEM
+Key name: CMI-CreateHive{2A7FB991-7BBE-4F9D-B91E-7CB51D4737F5} (S)
+Last updated: 2018-08-04 19:25:54 UTC+0000
+
+Subkeys:
+  (S) ControlSet001
+  (S) ControlSet002
+  (S) MountedDevices
+  (S) RNG
+  (S) Select
+  (S) Setup
+  (S) Software
+  (S) WPA
+  (V) CurrentControlSet
+
+Values:
+```
+
+<p></p>
+This iutput shows us the ControlSet being listed as ControlSet001, we can now use this information to run the printkey command again giving us this output and the answer:
+<p></p>
+
+```
+❯ sudo volatility -f OtterCTF.vmem --profile=Win7SP1x64 printkey -K 'ControlSet001\Control\ComputerName\ComputerName'
+Volatility Foundation Volatility Framework 2.6
+Legend: (S) = Stable   (V) = Volatile
+
+----------------------------
+Registry: \REGISTRY\MACHINE\SYSTEM
+Key name: ComputerName (S)
+Last updated: 2018-06-02 19:23:00 UTC+0000
+
+Subkeys:
+
+Values:
+REG_SZ                        : (S) mnmsrvc
+REG_SZ        ComputerName    : (S) WIN-LO6FAF3DTFE
+```
+
+<p></p>
+Giving us our Answer.
+<p></p>
+<details>
+    <summary>Answer and Alternate method</summary>
+<p></p>
+CTF{WIN-LO6FAF3DTFE}
+<p></p>
+The alternate method is much easier however you wouldn't have learned how to interogate registry files, it uses the option <kbd>envars</kbd>. (We append it to a text file because of the size of the output and the increased speed using <kbd>grep</kbd> from a text file, I then use double ampersands (&&) to run a command on completion of the volatility output in this case we want to cat and then grep the output file). The command looks like this:
+<p></p>
+
+```
+sudo volatility -f OtterCTF.vmem --profile=Win7SP1x64 envars > envars.txt && cat envars.txt | grep -i computername
+```
+
+<p></p>
+Which outputs this:
+<p></p>
+
+```
+❯ sudo volatility -f OtterCTF.vmem --profile=Win7SP1x64 envars > envars.txt && cat envars.txt| grep -i computername                                                                  [20/4909]
+Volatility Foundation Volatility Framework 2.6                                                                                                                                                
+     396 wininit.exe          0x00000000002abae0 COMPUTERNAME                   WIN-LO6FAF3DTFE                                                                                               
+     432 winlogon.exe         0x00000000001afd70 COMPUTERNAME                   WIN-LO6FAF3DTFE                                                                                               
+     492 services.exe         0x0000000000091320 COMPUTERNAME                   WIN-LO6FAF3DTFE                                                                                               
+     500 lsass.exe            0x0000000000481320 COMPUTERNAME                   WIN-LO6FAF3DTFE                                                                                               
+     508 lsm.exe              0x00000000003d1320 COMPUTERNAME                   WIN-LO6FAF3DTFE                                                                                               
+     604 svchost.exe          0x0000000000251320 COMPUTERNAME                   WIN-LO6FAF3DTFE                                                                                               
+     668 vmacthlp.exe         0x0000000000421320 COMPUTERNAME                   WIN-LO6FAF3DTFE                                                                                               
+     712 svchost.exe          0x00000000002a1320 COMPUTERNAME                   WIN-LO6FAF3DTFE                                                                                               
+     808 svchost.exe          0x0000000000261320 COMPUTERNAME                   WIN-LO6FAF3DTFE                                                                                               
+     844 svchost.exe          0x00000000001b1320 COMPUTERNAME                   WIN-LO6FAF3DTFE                                                                                               
+     868 svchost.exe          0x0000000000341320 COMPUTERNAME                   WIN-LO6FAF3DTFE                                                                                               
+    1012 svchost.exe          0x0000000000241320 COMPUTERNAME                   WIN-LO6FAF3DTFE                                                                                               
+     620 svchost.exe          0x00000000002c1320 COMPUTERNAME                   WIN-LO6FAF3DTFE                                                                                               
+    1120 spoolsv.exe          0x0000000000131320 COMPUTERNAME                   WIN-LO6FAF3DTFE                                                                                               
+    1164 svchost.exe          0x0000000000291320 COMPUTERNAME                   WIN-LO6FAF3DTFE                                                                                               
+    1356 VGAuthService.       0x00000000002c1320 COMPUTERNAME                   WIN-LO6FAF3DTFE                                                                                               
+    1428 vmtoolsd.exe         0x0000000000341320 COMPUTERNAME                   WIN-LO6FAF3DTFE                                                                                               
+    1800 WmiPrvSE.exe         0x0000000000191320 COMPUTERNAME                   WIN-LO6FAF3DTFE                                                                                               
+    1948 svchost.exe          0x00000000003f1320 COMPUTERNAME                   WIN-LO6FAF3DTFE                                                                                               
+    1324 dllhost.exe          0x0000000000441320 COMPUTERNAME                   WIN-LO6FAF3DTFE
+    1436 msdtc.exe            0x0000000000321320 COMPUTERNAME                   WIN-LO6FAF3DTFE
+    2136 WmiPrvSE.exe         0x00000000001e1320 COMPUTERNAME                   WIN-LO6FAF3DTFE
+    2344 taskhost.exe         0x0000000000201320 COMPUTERNAME                   WIN-LO6FAF3DTFE
+    2500 sppsvc.exe           0x0000000000341320 COMPUTERNAME                   WIN-LO6FAF3DTFE
+    2704 dwm.exe              0x00000000001c1320 COMPUTERNAME                   WIN-LO6FAF3DTFE
+    2728 explorer.exe         0x00000000025e1a90 COMPUTERNAME                   WIN-LO6FAF3DTFE
+    2804 vmtoolsd.exe         0x0000000000341320 COMPUTERNAME                   WIN-LO6FAF3DTFE
+    2836 BitTorrent.exe       0x00000000001f1320 COMPUTERNAME                   WIN-LO6FAF3DTFE
+    3064 SearchIndexer.       0x00000000001bf170 COMPUTERNAME                   WIN-LO6FAF3DTFE
+    2308 bittorrentie.e       0x0000000000321320 COMPUTERNAME                   WIN-LO6FAF3DTFE
+    2624 bittorrentie.e       0x0000000000531320 COMPUTERNAME                   WIN-LO6FAF3DTFE
+     708 LunarMS.exe          0x00000000002f1320 COMPUTERNAME                   WIN-LO6FAF3DTFE
+     724 PresentationFo       0x00000000001a1320 COMPUTERNAME                   WIN-LO6FAF3DTFE
+     412 mscorsvw.exe         0x0000000000371320 COMPUTERNAME                   WIN-LO6FAF3DTFE
+     164 svchost.exe          0x0000000000241320 COMPUTERNAME                   WIN-LO6FAF3DTFE
+    3124 mscorsvw.exe         0x0000000000361320 COMPUTERNAME                   WIN-LO6FAF3DTFE
+    3196 svchost.exe          0x00000000003aeaa0 COMPUTERNAME                   WIN-LO6FAF3DTFE
+    4076 chrome.exe           0x0000000005f61240 COMPUTERNAME                   WIN-LO6FAF3DTFE
+    4084 chrome.exe           0x0000000000341320 COMPUTERNAME                   WIN-LO6FAF3DTFE
+     576 chrome.exe           0x0000000000471320 COMPUTERNAME                   WIN-LO6FAF3DTFE
+    1808 chrome.exe           0x00000000003b1320 COMPUTERNAME                   WIN-LO6FAF3DTFE
+    3924 chrome.exe           0x00000000004a1320 COMPUTERNAME                   WIN-LO6FAF3DTFE
+    2748 chrome.exe           0x0000000000571320 COMPUTERNAME                   WIN-LO6FAF3DTFE
+    3820 Rick And Morty       0x0000000000331320 COMPUTERNAME                   WIN-LO6FAF3DTFE
+    3720 vmware-tray.ex       0x0000000000331320 COMPUTERNAME                   WIN-LO6FAF3DTFE
+    3880 WebCompanionIn       0x0000000000401320 COMPUTERNAME                   WIN-LO6FAF3DTFE
+    3648 chrome.exe           0x0000000000541320 COMPUTERNAME                   WIN-LO6FAF3DTFE
+    1796 chrome.exe           0x00000000002a1320 COMPUTERNAME                   WIN-LO6FAF3DTFE
+    3496 Lavasoft.WCAss       0x0000000000311320 COMPUTERNAME                   WIN-LO6FAF3DTFE
+    3856 WebCompanion.e       0x0000000000151320 COMPUTERNAME                   WIN-LO6FAF3DTFE
+    3304 notepad.exe          0x0000000000301320 COMPUTERNAME                   WIN-LO6FAF3DTFE
+```
+
+<p></p>
+Resulting in us obtaining the same answer although much easier.
+</details>
 
 </details>
 </details>
