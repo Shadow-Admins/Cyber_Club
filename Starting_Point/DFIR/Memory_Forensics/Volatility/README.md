@@ -3615,8 +3615,25 @@ CTF{M0rtyL0L}
 <p></p>
 The sixth challenge we are given is:
 <p></p>
+Silly rick always forgets his email's password, so he uses a Stored Password Services online to store his password. He always copy and paste the password so he will not get it wrong. whats rick's email password?
+<p></p>
+format: CTF{ANSWER}
+<p></p>
+<details>
+    <summary>Walkthrough</summary>
+<p></p>
 
 </details>
+
+
+
+</details>
+
+
+
+
+
+
 
 
 
