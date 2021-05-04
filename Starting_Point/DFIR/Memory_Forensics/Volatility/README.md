@@ -3317,7 +3317,6 @@ CTF{77.102.199.102}
 </details>
 </details>
 </details>
-</details>
 <p></p>
 <hr>
 <p></p>
