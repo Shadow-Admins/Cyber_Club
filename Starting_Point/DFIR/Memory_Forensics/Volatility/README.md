@@ -3097,15 +3097,11 @@ Volatility Foundation Volatility Framework 2.6
 <p></p>
 Resulting in us obtaining the same answer although much easier.
 </details>
-
 </details>
 </details>
 </details>
-
-
-
 </details>
-
+1
 
 
 
