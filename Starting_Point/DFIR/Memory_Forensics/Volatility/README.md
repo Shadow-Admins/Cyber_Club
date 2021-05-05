@@ -52,9 +52,9 @@ This will set you up with a working executable of volatility ready for memory an
     <summary></summary>
 Volatility has a ton of options (flags) that can be used and can be overwhelming at the start.
 But once you work out a general road-map you can work through an analysis methodically. Once you have your initial foothold you can start searching for the information you need.
-<br>
+<p></p>
 If at any stage you don't know what command to run you can use the <kbd>-h</kbd> flag to print a list of commands you can use. This doesn't show all the commands and doesn't give the best explanation so I would recommend using this <a href="https://github.com/volatilityfoundation/volatility/wiki/Command-Reference" rel="nofollow">site</a> for command reference.
-<br>
+<p></p>
 We will use a series of challenges from different CTF's presented as a write ups IOT practice the use of volatility.
 </details>
 <hr>
