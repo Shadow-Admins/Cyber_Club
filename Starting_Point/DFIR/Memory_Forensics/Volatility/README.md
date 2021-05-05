@@ -53,9 +53,9 @@ This will set you up with a working executable of volatility ready for memory an
 Volatility has a ton of options (flags) that can be used and can be overwhelming at the start.
 But once you work out a general road-map you can work through an analysis methodically. Once you have your initial foothold you can start searching for the information you need.
 <br>
-If at any stage you dont know what command to run you can use the <kbd>-h</kbd> flag to print a list of commands you can use.
+If at any stage you don't know what command to run you can use the <kbd>-h</kbd> flag to print a list of commands you can use. This doesn't show all the commands and doesn't give the best explanation so I would recommend using this <a href="https://github.com/volatilityfoundation/volatility/wiki/Command-Reference" rel="nofollow">site</a> for command reference.
 <br>
-We will use a series of challenges (A Bob's Life... and Memory is RAM) from the CSC presented as a write up IOT practice the use of volatility.
+We will use a series of challenges from different CTF's presented as a write ups IOT practice the use of volatility.
 </details>
 <hr>
 
@@ -4144,6 +4144,70 @@ CTF{vmware-tray.exe}
 </details>
 </details>
 </details>
+<p></p>
+<hr>
+<p></p>
+<details>
+    <summary>Path To Glory</summary>
+<p></p>
+The eighth challenge we are given is:
+<p></p>
+How did the malware got to rick's PC? It must be one of rick old illegal habits...
+<p></p>
+format: CTF{...}
+<p></p>
+<details>
+    <summary>Walkthrough</summary>
+<p></p>
+If you completed the previous challenge this will be easy as we looked at the initial file that contained vmware-tray.exe that file was "Rick And Morty.exe" so lets go back and look at it. Last time we looked through the process memory dump of 'Rick And Morty' but this time we will dump the file and look through the actual file. To do this we will use the filescan.txt file we created and use <kbd>grep</kbd> to search for 'Rick And Morty':
+<p></p>
+
+```
+cat filescan.txt | grep -i 'rick and morty'
+```
+
+<p></p>
+Which outputs this (I have included the header lines so you can see what everything means):
+<p></p>
+
+```
+❯ cat filescan.txt | grep -i 'rick and morty'
+Offset(P)            #Ptr   #Hnd Access Name
+------------------ ------ ------ ------ ----
+0x000000007d63dbc0     10      0 R--r-d \Device\HarddiskVolume1\Torrents\Rick And Morty season 1 download.exe
+0x000000007d6b3a10     11      1 R--rw- \Device\HarddiskVolume1\Torrents\Rick and Morty - Season 3 (2017) [1080p]\Rick.and.Morty.S03E07.The.Ricklantis.Mixup.1080p.Amazon.WEB-DL.x264-Rapta.mkv
+0x000000007d7adb50     17      1 R--rw- \Device\HarddiskVolume1\Torrents\Rick and Morty - Season 3 (2017) [1080p]\Rick.and.Morty.S03E06.Rest.and.Ricklaxation.1080p.Amazon.WEB-DL.x264-Rapta.mkv
+0x000000007d8813c0      2      0 RW-rwd \Device\HarddiskVolume1\Users\Rick\Downloads\Rick And Morty season 1 download.exe.torrent
+0x000000007da56240      2      0 RW-rwd \Device\HarddiskVolume1\Torrents\Rick And Morty season 1 download.exe
+0x000000007dae9350      2      0 RWD--- \Device\HarddiskVolume1\Users\Rick\AppData\Roaming\BitTorrent\Rick And Morty season 1 download.exe.1.torrent
+0x000000007dcbf6f0      2      0 RW-rwd \Device\HarddiskVolume1\Users\Rick\AppData\Roaming\BitTorrent\Rick And Morty season 1 download.exe.1.torrent
+0x000000007e5f5d10      3      1 R--rw- \Device\HarddiskVolume1\Torrents\Rick and Morty Season 2 [WEBRIP] [1080p] [HEVC]\[pseudo] Rick and Morty S02E03 Auto Erotic Assimilation [1080p] [h.265].mkv
+0x000000007e710070      8      0 R--rwd \Device\HarddiskVolume1\Torrents\Rick And Morty season 1 download.exe
+0x000000007e7ae700      3      1 R--rw- \Device\HarddiskVolume1\Torrents\Rick and Morty Season 2 [WEBRIP] [1080p] [HEVC]\Sample\Screenshot 08.png
+```
+
+<p></p>
+We can see that there are other seasons etc in there but we are only interested in the season 1 dowload.exe, we can improve our grep to only show these results.
+<p></p>
+
+```
+❯ cat filescan.txt | grep -i 'rick and morty season 1'
+Offset(P)            #Ptr   #Hnd Access Name
+------------------ ------ ------ ------ ----
+0x000000007d63dbc0     10      0 R--r-d \Device\HarddiskVolume1\Torrents\Rick And Morty season 1 download.exe
+0x000000007d8813c0      2      0 RW-rwd \Device\HarddiskVolume1\Users\Rick\Downloads\Rick And Morty season 1 download.exe.torrent
+0x000000007da56240      2      0 RW-rwd \Device\HarddiskVolume1\Torrents\Rick And Morty season 1 download.exe
+0x000000007dae9350      2      0 RWD--- \Device\HarddiskVolume1\Users\Rick\AppData\Roaming\BitTorrent\Rick And Morty season 1 download.exe.1.torrent
+0x000000007dcbf6f0      2      0 RW-rwd \Device\HarddiskVolume1\Users\Rick\AppData\Roaming\BitTorrent\Rick And Morty season 1 download.exe.1.torrent
+0x000000007e710070      8      0 R--rwd \Device\HarddiskVolume1\Torrents\Rick And Morty season 1 download.exe
+```
+
+<p></p>
+Thats better 
+
+
+
+
 </details>
 
 
