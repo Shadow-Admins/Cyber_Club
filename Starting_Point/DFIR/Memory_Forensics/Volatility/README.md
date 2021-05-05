@@ -4064,10 +4064,49 @@ give you your files back once you pay and our server confrim that you pay.
 ```
 
 <p></p>
-It looks 
+It looks like we found the file we are looking for, but lets go one step further to confirm this, now we will dump the actual file and upload it to virus total. To dump the file we will use the following commands.
+<p></p>
+First we do a file scan to locate the file (I appended it to a text file as it is quicker to grep from, I did this in one line using double ampersands [&&] to fd a follow on command)
+<p></p>
 
+```
+sudo volatility -f OtterCTF.vmem --profile=Win7SP1x64 filescan > filescan.txt && cat filescan.txt | grep -i vmware-tray 
+```
 
+<p></p>
+Which returns:
+<p></p>
 
+```
+❯ cat filescan.txt | grep -i vmware-tray
+0x000000007daad840     16      0 -W-r-- \Device\HarddiskVolume1\Users\Rick\AppData\Local\Temp\RarSFX0\vmware-tray.exe
+0x000000007dc6cf20     13      0 R--r-d \Device\HarddiskVolume1\Users\Rick\AppData\Local\Temp\RarSFX0\vmware-tray.exe
+```
+
+<p></p>
+Next we will dump these files using the following command (the <kbd>-Q</kbd> flag points to the physical offsets, the <kbd>-D</kbd> flag points to directory we wish to dump the files to with '.' being the current working directory):
+<p></p>
+
+```
+sudo volatility -f OtterCTF.vmem --profile=Win7SP1x64 dumpfiles -Q 0x000000007daad840,0x000000007dc6cf20 -D .
+```
+
+<p></p>
+We are now left with two files (file.None.0xfffffa801ab15890.dat and file.None.0xfffffa801b494c30.img) you can run strings on these two which will give much the same output as when we ran strings on the process memory dump. But we are going to upload the .dat file to <a href="https://www.virustotal.com/gui/" rel="nofollow">VirusTotal</a>, and when we do that we see this:
+<p></p>
+<div align="center">
+<img src="https://github.com/Shadow-Admins/Cyber_Club/blob/main/Starting_Point/DFIR/Memory_Forensics/Volatility/images/pstree.jpg"><br>
+</div>
+<p></p>
+You can look through the page and see what registry keys it changes and deletes, what files it creates and the additional process' that spawned that we couldn't see were linked.
+<p></p>
+We have now confirmed what the ransomware is so we now have the answer. If we got to the end of this process and nothing looked malicious then we would move to another process that was running that may have been the malware untill we found the file.
+<p></p>
+<details>
+    <summary>Answer</summary>
+<p></p>
+CTF{vmware-tray.exe}
+</details>
 </details>
 </details>
 </details>
