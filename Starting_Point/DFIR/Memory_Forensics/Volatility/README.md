@@ -62,7 +62,7 @@ We will use a series of challenges from different CTF's presented as a write ups
 <H2>Getting your Foothold</H2>
 <details>
     <summary></summary>
-Assuming you already have a memory file (we will use 'bob.vmem' for this exercise as obtaining a memory file is another lesson) we need to identify what type of system (or profile) the memory is from.
+Assuming you already have a memory file (we will use 'bob.vmem' for this exercise [you can get this file from challenge A Bob's Life located in challenges] as obtaining a memory file is another lesson) we need to identify what type of system (or profile) the memory is from.
 
 ```
 sudo volatility -f bob.vmem imageinfo
