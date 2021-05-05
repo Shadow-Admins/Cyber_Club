@@ -3672,6 +3672,8 @@ format: CTF{flag}
 <details>
     <summary>Walkthrough</summary>
 <p></p>
+I have done a bit of a bigger write up on this challenge as malware forensics is a whole area in itself. I have tried to explaine the thought process and method of getting to an answer.
+<p></p>
 From the hint we can see that we need to find a process and we are looking for malware, so lets start with that, we will use <kbd>pstree</kbd> however any process listing option will work. The command looks like this:
 <p></p>
 
@@ -3794,9 +3796,275 @@ Which outputs a .jpg file for us to look at mapping the relationships of process
 </div>
 <p></p>
 Here we can see the physical relationship between the process' and how they have spawned.
+<p></p>
+Ok so we have a suspect lets use the <kbd>malfind</kbd> option (this finds hidden or injected code) to see if this is running any hidden code. The command looks like this:
+<p></p>
 
+```
+sudo volatility -f OtterCTF.vmem --profile=Win7SP1x64 malfind
+```
 
+<p></p>
+Which outputs this (I have only included the vmware-tray parts as it has a large output):
+<p></p>
 
+```
+Process: vmware-tray.ex Pid: 3720 Address: 0x670000
+Vad Tag: VadS Protection: PAGE_EXECUTE_READWRITE
+Flags: CommitCharge: 1, PrivateMemory: 1, Protection: 6
+
+0x00670000  9c 4c 5b ae 8c 8a 00 01 ee ff ee ff 00 00 00 00   .L[.............
+0x00670010  a8 00 67 00 a8 00 67 00 00 00 67 00 00 00 67 00   ..g...g...g...g.
+0x00670020  40 00 00 00 88 05 67 00 00 00 6b 00 3f 00 00 00   @.....g...k.?...
+0x00670030  01 00 00 00 00 00 00 00 f0 0f 67 00 f0 0f 67 00   ..........g...g.
+
+0x00670000 9c               PUSHF
+0x00670001 4c               DEC ESP
+0x00670002 5b               POP EBX
+0x00670003 ae               SCASB
+0x00670004 8c8a0001eeff     MOV [EDX-0x11ff00], CS
+0x0067000a ee               OUT DX, AL
+0x0067000b ff00             INC DWORD [EAX]
+0x0067000d 0000             ADD [EAX], AL
+0x0067000f 00a8006700a8     ADD [EAX-0x57ff9900], CH
+0x00670015 006700           ADD [EDI+0x0], AH
+0x00670018 0000             ADD [EAX], AL
+0x0067001a 670000           ADD [BX+SI], AL
+0x0067001d 006700           ADD [EDI+0x0], AH
+0x00670020 40               INC EAX
+0x00670021 0000             ADD [EAX], AL
+0x00670023 008805670000     ADD [EAX+0x6705], CL
+0x00670029 006b00           ADD [EBX+0x0], CH
+0x0067002c 3f               AAS
+0x0067002d 0000             ADD [EAX], AL
+0x0067002f 0001             ADD [ECX], AL
+0x00670031 0000             ADD [EAX], AL
+0x00670033 0000             ADD [EAX], AL
+0x00670035 0000             ADD [EAX], AL
+0x00670037 00f0             ADD AL, DH
+0x00670039 0f6700           PACKUSWB MM0, [EAX] 
+0x0067003c f00f6700         PACKUSWB MM0, [EAX] 
+
+Process: vmware-tray.ex Pid: 3720 Address: 0x510000                                                                                                                                           
+Vad Tag: VadS Protection: PAGE_EXECUTE_READWRITE                                                                                                                                              
+Flags: CommitCharge: 23, PrivateMemory: 1, Protection: 6
+
+0x00510000  f0 26 16 8e 6a 2f 00 01 ee ff ee ff 00 00 00 00   .&..j/..........
+0x00510010  a8 00 51 00 a8 00 51 00 00 00 51 00 00 00 51 00   ..Q...Q...Q...Q.
+0x00510020  40 00 00 00 88 05 51 00 00 00 55 00 29 00 00 00   @.....Q...U.)...
+0x00510030  01 00 00 00 00 00 00 00 f0 6f 52 00 f0 6f 52 00   .........oR..oR.
+
+0x00510000 f02616           PUSH SS
+0x00510003 8e6a2f           MOV GS, [EDX+0x2f]
+0x00510006 0001             ADD [ECX], AL
+0x00510008 ee               OUT DX, AL
+0x00510009 ff               DB 0xff
+0x0051000a ee               OUT DX, AL
+0x0051000b ff00             INC DWORD [EAX]
+0x0051000d 0000             ADD [EAX], AL
+0x0051000f 00a8005100a8     ADD [EAX-0x57ffaf00], CH
+0x00510015 005100           ADD [ECX+0x0], DL
+0x00510018 0000             ADD [EAX], AL
+0x0051001a 51               PUSH ECX
+0x0051001b 0000             ADD [EAX], AL
+0x0051001d 005100           ADD [ECX+0x0], DL
+0x00510020 40               INC EAX
+0x00510021 0000             ADD [EAX], AL
+0x00510023 008805510000     ADD [EAX+0x5105], CL
+0x00510029 005500           ADD [EBP+0x0], DL
+0x0051002c 2900             SUB [EAX], EAX
+0x0051002e 0000             ADD [EAX], AL
+0x00510030 0100             ADD [EAX], EAX
+0x00510032 0000             ADD [EAX], AL
+0x00510034 0000             ADD [EAX], AL
+0x00510036 0000             ADD [EAX], AL
+0x00510038 f06f             OUTS DX, DWORD [ESI]
+0x0051003a 52               PUSH EDX
+0x0051003b 00f0             ADD AL, DH
+0x0051003d 6f               OUTS DX, DWORD [ESI]
+0x0051003e 52               PUSH EDX
+0x0051003f 00               DB 0x0
+
+Process: vmware-tray.ex Pid: 3720 Address: 0xc00000
+Vad Tag: VadS Protection: PAGE_EXECUTE_READWRITE
+Flags: CommitCharge: 1, PrivateMemory: 1, Protection: 6
+
+0x00c00000  33 d2 3c f0 3c cf 00 01 ee ff ee ff 00 00 00 00   3.<.<...........
+0x00c00010  a8 00 c0 00 a8 00 c0 00 00 00 c0 00 00 00 c0 00   ................
+0x00c00020  40 00 00 00 88 05 c0 00 00 00 c4 00 3f 00 00 00   @...........?...
+0x00c00030  01 00 00 00 00 00 00 00 f0 0f c0 00 f0 0f c0 00   ................
+
+0x00c00000 33d2             XOR EDX, EDX
+0x00c00002 3cf0             CMP AL, 0xf0
+0x00c00004 3ccf             CMP AL, 0xcf
+0x00c00006 0001             ADD [ECX], AL
+0x00c00008 ee               OUT DX, AL
+0x00c00009 ff               DB 0xff
+0x00c0000a ee               OUT DX, AL
+0x00c0000b ff00             INC DWORD [EAX]
+0x00c0000d 0000             ADD [EAX], AL
+0x00c0000f 00a800c000a8     ADD [EAX-0x57ff4000], CH
+0x00c00015 00c0             ADD AL, AL
+0x00c00017 0000             ADD [EAX], AL
+0x00c00019 00c0             ADD AL, AL
+0x00c0001b 0000             ADD [EAX], AL
+0x00c0001d 00c0             ADD AL, AL
+0x00c0001f 004000           ADD [EAX+0x0], AL
+0x00c00022 0000             ADD [EAX], AL
+0x00c00024 8805c0000000     MOV [0xc0], AL
+0x00c0002a c400             LES EAX, [EAX]
+0x00c0002c 3f               AAS
+0x00c0002d 0000             ADD [EAX], AL
+0x00c0002f 0001             ADD [ECX], AL
+0x00c00031 0000             ADD [EAX], AL
+0x00c00033 0000             ADD [EAX], AL
+0x00c00035 0000             ADD [EAX], AL
+0x00c00037 00f0             ADD AL, DH
+0x00c00039 0fc000           XADD [EAX], AL
+0x00c0003c f00fc000         LOCK XADD [EAX], AL 
+
+Process: vmware-tray.ex Pid: 3720 Address: 0xa10000
+Vad Tag: VadS Protection: PAGE_EXECUTE_READWRITE
+Flags: CommitCharge: 1, PrivateMemory: 1, Protection: 6
+
+0x00a10000  12 d2 1f 89 e6 fd 00 01 ee ff ee ff 00 00 00 00   ................
+0x00a10010  a8 00 a1 00 a8 00 a1 00 00 00 a1 00 00 00 a1 00   ................
+0x00a10020  40 00 00 00 88 05 a1 00 00 00 a5 00 3f 00 00 00   @...........?...
+0x00a10030  01 00 00 00 00 00 00 00 f0 0f a1 00 f0 0f a1 00   ................
+
+0x00a10000 12d2             ADC DL, DL
+0x00a10002 1f               POP DS
+0x00a10003 89e6             MOV ESI, ESP
+0x00a10005 fd               STD
+0x00a10006 0001             ADD [ECX], AL
+0x00a10008 ee               OUT DX, AL
+0x00a10009 ff               DB 0xff
+0x00a1000a ee               OUT DX, AL
+0x00a1000b ff00             INC DWORD [EAX]
+0x00a1000d 0000             ADD [EAX], AL
+0x00a1000f 00a800a100a8     ADD [EAX-0x57ff5f00], CH
+0x00a10015 00a1000000a1     ADD [ECX-0x5f000000], AH
+0x00a1001b 0000             ADD [EAX], AL
+0x00a1001d 00a100400000     ADD [ECX+0x4000], AH
+0x00a10023 008805a10000     ADD [EAX+0xa105], CL
+0x00a10029 00a5003f0000     ADD [EBP+0x3f00], AH
+0x00a1002f 0001             ADD [ECX], AL
+0x00a10031 0000             ADD [EAX], AL
+0x00a10033 0000             ADD [EAX], AL
+0x00a10035 0000             ADD [EAX], AL
+0x00a10037 00f0             ADD AL, DH
+0x00a10039 0fa1             POP FS
+0x00a1003b 00f0             ADD AL, DH
+0x00a1003d 0fa1             POP FS
+0x00a1003f 00               DB 0x0
+```
+
+<p></p>
+The output we can see is called assembly language, there are some other process' that output from this command however some are system related and some are spawned from the malware we just can't prove/see that yet. So now that we know that this is doing something in the background se should definitely look at this further.
+<p></p>
+Now that we are honning in on our suspected file we should now dump the file and process memory to investigate further. First we will dump the process memory using the following command:
+<p></p>
+
+```
+sudo volatility -f OtterCTF.vmem --profile=Win7SP1x64 memdump -p 3720,3820 -D .
+```
+
+<p><p>
+In this command the <kbd>-p</kbd> flag points to the process ID (PID) and the <kbd>-D</kbd> flag points to the directory we want to dump the files to '.' is our current working directory.
+<p></p>
+We can then run <kbd>strings 3820.dmp | less</kbd> to look through the file. Bellow are the two interesting things that pop out:
+<p></p>
+
+```
+"C:\Torrents\Rick And Morty season 1 download.exe"
+
+vmware-tray.exe
+```
+
+<p></p>
+So first we can see that Rick was trying to download season 1 of Rick And Morty however it's a .exe file (not a folder with videos in it) second we can see that vmware-tray.exe is mentioned within the file. Now we can look at vmware-tray.exe using this command <kbd>strings 3720.dmp | less</kbd> and this time we find some very interesting information.
+<p></p>
+
+```
+C:\Users\Tyler\Desktop\hidden-tear-master\hidden-tear\hidden-tear\obj\Debug\VapeHacksLoader.pdb                                                                                               
+_CorExeMain                                                                                                                                                                                   
+mscoree.dll                                                                                                                                                                                   
+<?xml version="1.0" encoding="utf-8"?>                                                                                                                                                        
+<assembly manifestVersion="1.0" xmlns="urn:schemas-microsoft-com:asm.v1">                                                                                                                     
+  <assemblyIdentity version="1.0.0.0" name="MyApplication.app"/>                                                                                                                              
+  <trustInfo xmlns="urn:schemas-microsoft-com:asm.v2">                                                                                                                                        
+    <security>                                                                                                                                                                                
+      <requestedPrivileges xmlns="urn:schemas-microsoft-com:asm.v3">                                                                                                                          
+        <!-- UAC Manifest Options                                                                                                                                                             
+             If you want to change the Windows User Account Control level replace the                                                                                                         
+             requestedExecutionLevel node with one of the following.                                                                                                                          
+        <requestedExecutionLevel  level="asInvoker" uiAccess="false" />                                                                                                                       
+        <requestedExecutionLevel  level="requireAdministrator" uiAccess="false" />                                                                                                            
+        <requestedExecutionLevel  level="highestAvailable" uiAccess="false" />                                                                                                                
+            Specifying requestedExecutionLevel element will disable file and registry virtualization.                                                                                         
+            Remove this element if your application requires this virtualization for backwards                                                                                                
+            compatibility.                                                                                                                                                                    
+        -->                                                                                                                                                                                   
+        <requestedExecutionLevel level="requireAdministrator" uiAccess="false" />                                                                                                             
+      </requestedPrivileges>                                                                                                                                                                  
+    </security>                                                                                                                                                                               
+  </trustInfo>                                                                                                                                                                                
+  <compatibility xmlns="urn:schemas-microsoft-com:compatibility.v1">                                                                                                                          
+    <application>                                                                                                                                                                             
+      <!-- A list of the Windows versions that this application has been tested on and is                                                                                                     
+           is designed to work with. Uncomment the appropriate elements and Windows will                                                                                                      
+           automatically selected the most compatible environment. -->                                                                                                                        
+      <!-- Windows Vista -->                                                                                                                                                                  
+      <!--<supportedOS Id="{e2011457-1546-43c5-a5fe-008deee3d3f0}" />-->                                                                                                                      
+      <!-- Windows 7 -->
+      <!--<supportedOS Id="{35138b9a-5d96-4fbd-8e2d-a2440225f93a}" />-->
+      <!-- Windows 8 -->
+      <!--<supportedOS Id="{4a2f28e3-53b9-4441-ba9c-d69d4a4a6e38}" />-->
+     <!-- Windows 8.1 -->
+      <!--<supportedOS Id="{1f676c76-80e1-4239-95bb-83d0f6d0da78}" />-->
+      <!-- Windows 10 -->
+      <!--<supportedOS Id="{8e0f7a12-bfb3-4fe8-b9a5-48fd50a15a9a}" />-->
+    </application>
+  </compatibility>
+  <!-- Indicates that the application is DPI-aware and will not be automatically scaled by Windows at higher
+       DPIs. Windows Presentation Foundation (WPF) applications are automatically DPI-aware and do not need 
+       to opt in. Windows Forms applications targeting .NET Framework 4.6 that opt into this setting, should 
+       also set the 'EnableWindowsFormsHighDpiAutoResizing' setting to 'true' in their app.config. -->
+  <!--
+  <application xmlns="urn:schemas-microsoft-com:asm.v3">
+    <windowsSettings>
+      <dpiAware xmlns="http://schemas.microsoft.com/SMI/2005/WindowsSettings">true</dpiAware>
+    </windowsSettings>
+  </application>
+  -->
+  <!-- Enable themes for Windows common controls and dialogs (Windows XP and later) -->
+  <!--
+  <dependency>
+    <dependentAssembly>
+      <assemblyIdentity
+          type="win32"
+          name="Microsoft.Windows.Common-Controls"
+          version="6.0.0.0"
+          processorArchitecture="*"
+          publicKeyToken="6595b64144ccf1df"
+          language="*"
+        />
+    </dependentAssembly>
+  </dependency>
+  -->
+</assembly>
+```
+
+<p></p>
+
+```
+Your Files are locked. They are locked because you downloaded something with this file in it.
+This is Ransomware. It locks your files until you pay for them. Before you ask, Yes we will
+give you your files back once you pay and our server confrim that you pay.
+```
+
+<p></p>
+It looks 
 
 
 
