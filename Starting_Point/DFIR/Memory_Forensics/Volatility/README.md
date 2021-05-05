@@ -2604,7 +2604,7 @@ Once we determine the image profile using <kbd>imageinfo</kbd> (refer to Getting
 <details>
     <summary>What the Password</summary>
 <p></p>
-The first challenge we are given is:
+The first challenge we are given is [warning this challenge may be broken, it is unlikely you will be able to crack the hash and the plugin used to crack my require a custom python enviroment IOT run, feel free to skip to the next challenge]:
 <p></p>
 You got a sample of rick's PC's memory. can you get his user password?
 <p></p>
@@ -4203,11 +4203,82 @@ Offset(P)            #Ptr   #Hnd Access Name
 ```
 
 <p></p>
-Thats better 
+That's better, so you can see we have both the .exe and the .exe.torrent files.
+<br>
+But what is torrenting?
+<p></p>
+<details>
+    <summary>What is Torrenting?</summary>
+<p></p>
+Torrenting is the act of downloading and uploading files through the BitTorrent network. Instead of downloading files to a central server, torrenting involves downloading files from other users’ devices on the network. Conversely, users upload files from their own devices for other users to download.
+<p></p>
+Torrenting is the most popular form of peer-to-peer (P2P) file-sharing, and it requires torrent management software to connect to the BitTorrent network. Such software can be downloaded for free for a number of different devices.
+<p></p>
+Everyone downloading or uploading the same file is called a peer, and collectively they are known as a swarm. Because of how BitTorrent works, a peer can download a file from several other users at once, or upload a file to multiple other users simultaneously.
+<p></p>
+Torrenting is often associated with piracy because it’s frequently used to share files that are protected by copyright, including movies, games, music, and software. However, torrenting has many legitimate uses as well, such as lessening the load on centralized servers by distributing the hosting burden among users.
+</details>
+<p></p>
+We will look at the .exe file first. The first thing we need to do is dump the file using this command:
+<p></p>
+
+```
+sudo volatility -f OtterCTF.vmem --profile=Win7SP1x64 dumpfiles -n -Q 0x000000007d63dbc0 -D .
+```
+
+<p></p>
+Which outputs:
+<p></p>
+
+```
+❯ sudo volatility -f OtterCTF.vmem --profile=Win7SP1x64 dumpfiles -n -Q 0x000000007d63dbc0 -D .
+Volatility Foundation Volatility Framework 2.6
+ImageSectionObject 0x7d63dbc0   None   \Device\HarddiskVolume1\Torrents\Rick And Morty season 1 download.exe
+DataSectionObject 0x7d63dbc0   None   \Device\HarddiskVolume1\Torrents\Rick And Morty season 1 download.exe
+```
+
+<p></p>
+We can now run strings on these two files however it doesn't turn up anything of importance. So we will look at he .torrent files as we know this is how the files got onto Rick's computer in the first place. We will now dump the .torrent files using this command:
+<p></p>
+
+```
+sudo volatility -f OtterCTF.vmem --profile=Win7SP1x64 dumpfiles -n -Q 0x000000007d8813c0,0x000000007dae9350,0x000000007dcbf6f0 -D .
+```
+
+<p></p>
+Which outputs:
+<p></p>
+
+```
+❯ sudo volatility -f OtterCTF.vmem --profile=Win7SP1x64 dumpfiles -n -Q 0x000000007d8813c0,0x000000007dae9350,0x000000007dcbf6f0 -D .
+Volatility Foundation Volatility Framework 2.6
+DataSectionObject 0x7d8813c0   None   \Device\HarddiskVolume1\Users\Rick\Downloads\Rick And Morty season 1 download.exe.torrent
+DataSectionObject 0x7dae9350   None   \Device\HarddiskVolume1\Users\Rick\AppData\Roaming\BitTorrent\Rick And Morty season 1 download.exe.1.torrent
+DataSectionObject 0x7dcbf6f0   None   \Device\HarddiskVolume1\Users\Rick\AppData\Roaming\BitTorrent\Rick And Morty season 1 download.exe.1.torrent
+```
+
+<p></p>
+We now have 3 files we can analyse. We will start with the first one by running strings on the file, which returns:
+<p></p>
+
+```
+❯ strings file.None.0xfffffa801af10010.Rick\ And\ Morty\ season\ 1\ download.exe.torrent.dat
+[ZoneTransfer]
+ZoneId=3
+```
+
+<p></p>
+What does this mean?
+<br>
+zone 3 – Internet Zone, for Web sites on the Internet that do not belong to another zone;
+<br>
+So this means it was downloaded from the internet. Nothing else here so we will move to the next file.
+<p></p>
 
 
 
 
+</details>
 </details>
 
 
