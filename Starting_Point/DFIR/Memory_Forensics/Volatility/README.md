@@ -4095,7 +4095,7 @@ sudo volatility -f OtterCTF.vmem --profile=Win7SP1x64 dumpfiles -Q 0x000000007da
 We are now left with two files (file.None.0xfffffa801ab15890.dat and file.None.0xfffffa801b494c30.img) you can run strings on these two which will give much the same output as when we ran strings on the process memory dump. But we are going to upload the .dat file to <a href="https://www.virustotal.com/gui/" rel="nofollow">VirusTotal</a>, and when we do that we see this:
 <p></p>
 <div align="center">
-<img src="https://github.com/Shadow-Admins/Cyber_Club/blob/main/Starting_Point/DFIR/Memory_Forensics/Volatility/images/pstree.jpg"><br>
+<img src="https://github.com/Shadow-Admins/Cyber_Club/blob/main/Starting_Point/DFIR/Memory_Forensics/Volatility/images/Screenshot_2021-05-05%20VirusTotal_landing.png"><br>
 </div>
 <p></p>
 You can look through the page and see what registry keys it changes and deletes, what files it creates and the additional process' that spawned that we couldn't see were linked.
