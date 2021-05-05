@@ -11,6 +11,41 @@ Volatility is one of the best open source software programs for analyzing RAM in
 </p>
 </details>
 <hr>
+<H2>Installing Volatility</H2>
+<details>
+<summary></summary>
+<p></p>
+How to install volatility... currently the volatility website is down so I have uploaded the binary executable (linux) to the github.
+<br>
+The first thing you need to do is download the executable from <a href="https://github.com/Shadow-Admins/Cyber_Club/blob/06ad32bf1a36fa370da8b7fb637dec66fdcc54df/Starting_Point/DFIR/Memory_Forensics/Volatility/Files/volatility" rel="nofollow">here</a>.
+<p></p>
+Next you need to give it execute permissions using this command:
+<p></p>
+
+```
+sudo chmod +x volatility
+```
+
+<p></p>
+Finally you need to move it to the /bin directory using this command:
+<p></p>
+
+```
+sudo mv volatility /bin
+```
+
+<p></p>
+And then check that it is working using this command:
+<p></p>
+
+```
+sudo volatility -h
+```
+
+<p></p>
+This will set you up with a working executable of volatility ready for memory analysis.
+</details>
+<hr>
 
 <H2>Where do I Start?</H2>
 <details>
