@@ -4750,7 +4750,7 @@ If we look at this image using an image viewer we get the flag for this challeng
 <p></p>
 </details>
 </details>
-
+</details>
 
 
 
