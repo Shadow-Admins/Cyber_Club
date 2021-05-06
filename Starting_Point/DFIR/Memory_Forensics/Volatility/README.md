@@ -4752,6 +4752,21 @@ CTF{S0_Just_M0v3_Socy}
 </details>
 </details>
 </details>
+<p></p>
+<hr>
+<p></p>
+<details>
+    <summary>Recovery</summary>
+<p></p>
+The twelvth challenge we are given is:
+<p></p>
+Rick got to have his files recovered! What is the random password used to encrypt the files?
+<p></p>
+format: CTF{...}
+<p></p>
+<details>
+    <summary>Walkthrough</summary>
+<p></p>
 
 
 
@@ -4760,9 +4775,7 @@ CTF{S0_Just_M0v3_Socy}
 
 
 
-
-
-
+</details>
 
 
 
