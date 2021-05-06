@@ -4420,40 +4420,94 @@ Name                                                  Pid   PPid   Thds   Hnds T
 ```
 
 <p></p>
-So here we can see that chrome is the only browser that is running, but how do we see the history? (I'm sure there is a plugin someone has created to find this information but we will do it manually) We will need to locate the chrome history file within the memory dump using filescan.txt file we made earlier. (I have only shown the history file as there is a large output)
+So here we can see that chrome is the only browser that is running, lets dump all of the process memory and analyse that to see if we can find the torrent file.
+<p></p>
+To do this we will use <kbd>memdump</kbd>. Because there is a parent and many child process' we will output the dump to a directory. The command looks like this:
 <p></p>
 
 ```
-❯ cat filescan.txt | grep -i chrome                                                                                                                                                           
-0x000000007d45dcc0     18      1 RW-rw- \Device\HarddiskVolume1\Users\Rick\AppData\Local\Google\Chrome\User Data\Default\History                        
-```
-
-<p></p>
-We can now extract this file using <kbd>dumpfiles</kbd> the command looks like this:
-<p></p>
-
-```
-❯ sudo volatility -f OtterCTF.vmem --profile=Win7SP1x64 dumpfiles -n -Q 0x000000007d45dcc0 -D .
+❯ sudo volatility -f OtterCTF.vmem --profile=Win7SP1x64 memdump -p4084,1796,3924,3648,576,1808,2748 -D chrome_dump
 Volatility Foundation Volatility Framework 2.6
-DataSectionObject 0x7d45dcc0   None   \Device\HarddiskVolume1\Users\Rick\AppData\Local\Google\Chrome\User Data\Default\History
-SharedCacheMap 0x7d45dcc0   None   \Device\HarddiskVolume1\Users\Rick\AppData\Local\Google\Chrome\User Data\Default\History
+************************************************************************
+Writing chrome.exe [  4084] to 4084.dmp
+************************************************************************
+Writing chrome.exe [   576] to 576.dmp
+************************************************************************
+Writing chrome.exe [  1808] to 1808.dmp
+************************************************************************
+Writing chrome.exe [  3924] to 3924.dmp
+************************************************************************
+Writing chrome.exe [  2748] to 2748.dmp
+************************************************************************
+Writing chrome.exe [  3648] to 3648.dmp
+************************************************************************
+Writing chrome.exe [  1796] to 1796.dmp                 
 ```
 
 <p></p>
-We can now look at these files. If we run file on these two files we discover the file type that we have dumped.
+You can see that I outputed this using <kbd>-D</kbd> to a dump directory 'chrome_dump' that allows me to run strings on all files at the same time using the following command. We will search for the file extention we know was downloaded. "download.exe.torrent"
 <p></p>
 
 ```
-❯ file file.None.0xfffffa801a*
-file.None.0xfffffa801a4ec470.History.vacb: empty
-file.None.0xfffffa801a5193d0.History.dat:  SQLite 3.x database, last written using SQLite version 3023001
+❯ strings chrome_dump/* | grep "download.exe.torrent"
+Rick And Morty season 1 download.exe.torrent
 ```
 
 <p></p>
+So you can see the command strings is run agains the 'chrome_dump' directory and the wildcard '*' is added at the end to specify all files. We can see that we have found the file we are looking for but <kbd>grep</kbd> only prints the single line so lets modify our <kbd>grep</kbd> command to print the lines before and after. The command looks like this:
+<p></p>
 
+```
+strings chrome_dump/* | grep -B 15 -A 15 "download.exe.torrent"
+```
 
+<p></p>
+Here you can see we are using the <kbd>-B</kbd> which will print 15 lines before our found string and the <kbd>-A</kbd> flag which will print 15 lines after our found string. This command returns the following output:
+<p></p>
 
+```
+❯ strings chrome_dump/* | grep -B 15 -A 15 "download.exe.torrent"                                                                                     [5/4786]
+M8.81 5h2.4l-.18 7H8.98l-.17-7zM9 14h2v2H9z=                                                                                                                  
+simple-icon_mail-classification-feedbackmKw=                                                                                                                  
+form-composite-switchable-content_condition                                                                                                                   
+form-composite-addresschooser_textfieldc.com                                                                                                                  
+SPnvideo-label video-title trc_ellipsis  ]"sAE=                                                                                                               
+display:inline;width:56px;height:200px;m>
+Hum@n_I5_Th3_Weak3s7_Link_In_Th3_Ch@inYear
+//sec-s.uicdn.com/nav-cdn/home/preloader.gif
+simple-icon_toolbar-change-view-horizontal
+ nnx-track-sec-click-communication-inboxic.com
+nx-track-sec-click-dashboard-hide_smileyable
+Nftd-box stem-north big fullsize js-focusable
+js-box-flex need-overlay js-componentone
+Jhttps://search.mail.com/web [q origin ]Year
+ntrack-and-trace__delivery-info--has-iconf
+Rick And Morty season 1 download.exe.torrent
+tbl_1533411035475_7.0.1.40728_2033115181
+panel-mail-display-table-mail-default35"
+Cnpanel-mail-display-table-mail-horizontal.js
+trc_rbox text-links-a trc-content-sponsored 
+identity_OjpwcmVsb2FkZXIuaHRtbC50d2ln
+Move the widget to its desired position.3c8=
+Set-Cookie, no-store, proxy-revalidateHxRKw=
+Set-Cookie, no-store, proxy-revalidate143/
+tbl_1533411035475_7.0.9.40728_2033115181
+"mail.com Update" <service@corp.mail.com>e
+F'?Mhttps://www.mail.com/shareFeedback.htmluUAE=
+Ynapplication/javascript; charset=UTF-835".js
+nsection col-1 flexible component ui-sortable
+link-item navigation-item js-componentne
+m//www.googletagservices.com/tag/js/gpt.js80=
+```
 
+<p></p>
+From this return some 1337 speak should stick out which is our next flag.
+<p></p>
+<details>
+    <summary>Answer</summary>
+<p></p>
+CTF{Hum@n_I5_Th3_Weak3s7_Link_In_Th3_Ch@in}
+</details>
 </details>
 </details>
 
