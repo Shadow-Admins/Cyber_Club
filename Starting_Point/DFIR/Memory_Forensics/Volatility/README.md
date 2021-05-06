@@ -3704,6 +3704,8 @@ BEAWARE! There are only 3 attempts to get the right flag!
 <p></p>
 format: CTF{flag}
 <p></p>
+<H2>WARNING THIS IS LIVE RANSOMEWARE</H2>
+<p></p>
 <details>
     <summary>Walkthrough</summary>
 <p></p>
@@ -4522,18 +4524,106 @@ We've found out that the malware is a ransomware. Find the attacker's bitcoin ad
 <p></p>
 format: CTF{...}
 <p></p>
+<H2>WARNING THIS IS LIVE RANSOMEWARE</H2>
+<p></p>
 <details>
     <summary>Walkthrough</summary>
 <p></p>
+Lets have a look at that file that was on the desktop from Path to Glory we will cat the filescan.txt that we made and <kbd>grep</kbd> for "desktop". The command looks like this:
+<p></p>
 
+```
+cat filescan.txt | grep -i desktop
+```
 
+<p></p>
+This returns two files of interest.
+<p></p>
 
+```
+Offset(P)            #Ptr   #Hnd Access Name
+------------------ ------ ------ ------ ----
+0x000000007e410890     16      0 R--r-- \Device\HarddiskVolume1\Users\Rick\Desktop\Flag.txt
+0x000000007d660500      2      0 -W-r-- \Device\HarddiskVolume1\Users\Rick\Desktop\READ_IT.txt                                                                
+```
 
+<p></p>
+From here we can dump these two files to analyse them. The command looks like this:
+<p></p>
+
+```
+❯ sudo volatility -f OtterCTF.vmem --profile=Win7SP1x64 dumpfiles -n -Q 0x000000007e410890,0x000000007d660500 -D .
+Volatility Foundation Volatility Framework 2.6
+DataSectionObject 0x7e410890   None   \Device\HarddiskVolume1\Users\Rick\Desktop\Flag.txt
+DataSectionObject 0x7d660500   None   \Device\HarddiskVolume1\Users\Rick\Desktop\READ_IT.txt
+```
+
+<p></p>
+We can now <kbd>cat</kbd> these files.
+<p></p>
+
+```
+❯ cat file.None.0xfffffa801b0532e0.Flag.txt.dat
+{$V\C(l1Tr~{ƍШn>G
+                 %  
+```
+
+<p></p>
+
+```
+❯ cat file.None.0xfffffa801b2def10.READ_IT.txt.dat
+Your files have been encrypted.
+Read the Program for more information
+read program for more information.
+```
+
+<p></p>
+The first file doesn't make much sense but the second file READ_IT.txt looks like it could be pointing us somewhere.
+<p></p>
+Back in Hide and Seek we did a memdump of the vmware-tray process (Pid 3720) we can run <kbd>strings</kbd> on this file and pain stakingly go through the 1589147 lines or we can modify our <kbd>strings</kbd> command and use <kbd>grep</kbd>.
+<p></p>
+We need to modify our <kbd>strings</kbd> command so that it reads unicode we do this by using the flag <kbd>-e l</kbd> before piping to <kbd>grep</kbd>, the command looks like this:
+<p></p>
+
+```
+strings -e l 3720.dmp | grep -B 15 -A 15 -i "ransom" 
+```
+
+<p></p>
+But why do we have to make <kbd>strings</kbd> read unicode? We do this because we are running <kbd>strings</kbd> on a program (we have previously seen the assembely code from challenge Hide and Seek) if we run strings without telling it to run unicode it wont show our answer.
+<p></p>
+The output is (only showing the tail end of the output):
+<p></p>
+
+```
+Your Files are locked. They are locked because you downloaded something with this file in it.
+This is Ransomware. It locks your files until you pay for them. Before you ask, Yes we will
+give you your files back once you pay and our server confrim that you pay.
+Send 0.16 to the address below.
+e al
+I paid, Now give me back my files.
+1MmpEmebJkqXG8nQv4cjJSmxZQFVmFo63M
+he program you want to use to open this file:
+Flag.txt.WINDOWS
+MSCTFIME UI
+Cancel
+OleMainThreadWndName
+Rick And Morty season 1 download.exe - Add New Torrent
+hortcut
+&Medium icons
+cons
+arge icons
+```
+
+<p></p>
+That string after "I paid, Now give me back my files." looks interesting and is the flag for this challenge.
+<p></p>
+<details>
+    <summary>Answer</summary>
+<p></p>
+CTF{1MmpEmebJkqXG8nQv4cjJSmxZQFVmFo63M}
 </details>
-
-
-
-
+</details>
 </details>
 
 
