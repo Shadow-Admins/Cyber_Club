@@ -4803,7 +4803,7 @@ But looking through the program I could not find what unit param_1 or 2 were, th
 dotPeek loaded the program and showes us some other functions that weren't apparent in other decompilers
 <p></p>
 <div align="center">
-<img src="https://github.com/Shadow-Admins/Cyber_Club/blob/main/Starting_Point/DFIR/Memory_Forensics/Volatility/images/ghidra_create_pass.png"><br>
+<img src="https://github.com/Shadow-Admins/Cyber_Club/blob/1cf7b3ef2b5f78409d711586855621e394a20b0c/Starting_Point/DFIR/Memory_Forensics/Volatility/images/dotPeek_load.png"><br>
 </div>
 <p></p>
 
