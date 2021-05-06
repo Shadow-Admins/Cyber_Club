@@ -4625,6 +4625,136 @@ CTF{1MmpEmebJkqXG8nQv4cjJSmxZQFVmFo63M}
 </details>
 </details>
 </details>
+<p></p>
+<hr>
+<p></p>
+<details>
+    <summary>Graphic's For The Weak</summary>
+<p></p>
+The eleventh challenge we are given is:
+<p></p>
+There's something fishy in the malware's graphics.
+<p></p>
+format: CTF{...}
+<p></p>
+<deatils>
+    <summary>Walkthrough</summary>
+<p></p>
+From the challenge hint we know that we  are searching for some type of graphic or image within the malware file (vmware-tray.exe) whenever a forensic challenge calls for image/graphic recovery the two go to tools are binwalk and foremost (foremost soley for image recovery/extraction). First we will dump the entire executable using <kbd>procdump</kbd>. The command looks like this:
+<p></p>
+
+```
+❯ sudo volatility -f OtterCTF.vmem --profile=Win7SP1x64 procdump -p3720 -D .
+Volatility Foundation Volatility Framework 2.6
+Process(V)         ImageBase          Name                 Result
+------------------ ------------------ -------------------- ------
+0xfffffa801a4c5b30 0x0000000000ec0000 vmware-tray.ex       OK: executable.3720.exe
+```
+
+<p></p>
+We can now start extracting files from the executable, we will first use binwalk. The command looks like this:
+<p></p>
+
+```
+❯ binwalk executable.3720.exe
+
+DECIMAL       HEXADECIMAL     DESCRIPTION
+--------------------------------------------------------------------------------
+0             0x0             Microsoft executable, portable (PE)
+9178          0x23DA          Copyright string: "CopyrightAttribute"
+116288        0x1C640         PNG image, 4800 x 1454, 8-bit/color RGBA, non-interlaced
+116416        0x1C6C0         Zlib compressed data, compressed
+344098        0x54022         PNG image, 800 x 600, 8-bit colormap, non-interlaced
+344511        0x541BF         Zlib compressed data, best compression
+420575        0x66ADF         XML document, version: "1.0"
+```
+
+<p></p>
+This prints out what files can be extracted from the .exe and we can see that there are 2 .png images we will run it with flags IOT extract, (I usually use <kbd>-BAMe</kbd> when I am using binwalk to extract files), the command looks like this:
+<p></p>
+
+```
+❯ binwalk -BAMe executable.3720.exe                                                                                                                           
+                                                                                                                                                              
+Scan Time:     2021-05-06 12:22:27                                                                                                                            
+Target File:   /home/parrot/ctf/OtterCTF/Memory_Forensics/executable.3720.exe                                                                                 
+MD5 Checksum:  b40d8f9f7457d1e5adafb35e8063b100                                                                                                               
+Signatures:    423                                                                                                                                            
+                                                                                                                                                              
+DECIMAL       HEXADECIMAL     DESCRIPTION                                                                                                                     
+--------------------------------------------------------------------------------                                                                              
+0             0x0             Microsoft executable, portable (PE)
+9178          0x23DA          Copyright string: "CopyrightAttribute"
+116288        0x1C640         PNG image, 4800 x 1454, 8-bit/color RGBA, non-interlaced
+116416        0x1C6C0         Zlib compressed data, compressed
+344098        0x54022         PNG image, 800 x 600, 8-bit colormap, non-interlaced
+344511        0x541BF         Zlib compressed data, best compression
+420575        0x66ADF         XML document, version: "1.0"
+
+
+Scan Time:     2021-05-06 12:22:27
+Target File:   /home/parrot/ctf/OtterCTF/Memory_Forensics/_executable.3720.exe-0.extracted/1C6C0
+MD5 Checksum:  d41d8cd98f00b204e9800998ecf8427e
+Signatures:    423
+
+DECIMAL       HEXADECIMAL     DESCRIPTION
+--------------------------------------------------------------------------------
+
+
+Scan Time:     2021-05-06 12:22:27
+Target File:   /home/parrot/ctf/OtterCTF/Memory_Forensics/_executable.3720.exe-0.extracted/541BF
+MD5 Checksum:  c8046134f762f06d01ac6ec959db8769
+Signatures:    423
+
+DECIMAL       HEXADECIMAL     DESCRIPTION
+--------------------------------------------------------------------------------
+
+
+
+```
+
+<p></p>
+This creates a directory called "_executable.3720.exe.extracted" however when we look in the directory the PNG images weren't extracted, time to try <kbd>foremost</kbd> the command looks like this:
+<p></p>
+
+```
+❯ foremost executable.3720.exe
+Processing: executable.3720.exe
+|*|
+```
+
+<p></p>
+This creates a directory called "output" with a subdirectory called png with an image named 00000672.png.
+<p></p>
+
+
+```
+❯ tree output
+
+ ├──     audit.txt  
+ └──     exe/ 
+ │  └────     00000000.exe  
+ └──     png/ 
+ │  └────     00000672.png  
+```
+
+<p></p>
+If we look at this image using an image viewer we get the flag for this challenge.
+<p></p>
+<div align="center">
+<img src="https://github.com/Shadow-Admins/Cyber_Club/blob/main/Starting_Point/DFIR/Memory_Forensics/Volatility/images/00000672.png"><br>
+</div>
+<p></p>
+<details>
+    <summary>Answer</summary>
+<p></p>
+</details>
+</details>
+
+
+
+
+
 
 
 
