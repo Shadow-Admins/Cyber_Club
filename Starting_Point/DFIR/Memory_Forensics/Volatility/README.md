@@ -4767,8 +4767,38 @@ format: CTF{...}
 <details>
     <summary>Walkthrough</summary>
 <p></p>
+This challenge takes some research, I first started by running strings and grepping for password against the files that we mem and proc dumped. But had no returns, I then thought back to the last challenge and the text file on the desktop:
+<p></p>
 
+```
+❯ cat file.None.0xfffffa801b2def10.READ_IT.txt.dat
+Your files have been encrypted.
+Read the Program for more information
+read program for more information.
+```
 
+<p></p>
+So I figured I would look at the actual .exe in Ghidra (Ghidra is a free and open source reverse engineering tool developed by the National Security Agency of United States of America.) This is the import screen of Ghidra:
+<p></p>
+<div align="center">
+<img src="https://github.com/Shadow-Admins/Cyber_Club/blob/main/Starting_Point/DFIR/Memory_Forensics/Volatility/images/GhidraImportSummary.png"><br>
+</div>
+<p></p>
+Which when I looked through the program I found a function called CreatePassword.
+<p></p>
+<div align="center">
+<img src="https://github.com/Shadow-Admins/Cyber_Club/blob/main/Starting_Point/DFIR/Memory_Forensics/Volatility/images/ghidra_create_pass.png"><br>
+</div>
+<p></p>
+And I could see what the password would look like.
+<p></p>
+
+```
+CreatePassword-707-8848(uint param_1,uint *param_2)
+```
+
+<p></p>
+But 
 
 
 
