@@ -4637,7 +4637,7 @@ There's something fishy in the malware's graphics.
 <p></p>
 format: CTF{...}
 <p></p>
-<deatils>
+<details>
     <summary>Walkthrough</summary>
 <p></p>
 From the challenge hint we know that we  are searching for some type of graphic or image within the malware file (vmware-tray.exe) whenever a forensic challenge calls for image/graphic recovery the two go to tools are binwalk and foremost (foremost soley for image recovery/extraction). First we will dump the entire executable using <kbd>procdump</kbd>. The command looks like this:
