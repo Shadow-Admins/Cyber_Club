@@ -4741,13 +4741,14 @@ This creates a directory called "output" with a subdirectory called png with an 
 <p></p>
 If we look at this image using an image viewer we get the flag for this challenge.
 <p></p>
+<details>
+    <summary>Answer</summary>
+<p></p>
 <div align="center">
 <img src="https://github.com/Shadow-Admins/Cyber_Club/blob/main/Starting_Point/DFIR/Memory_Forensics/Volatility/images/00000672.png"><br>
 </div>
 <p></p>
-<details>
-    <summary>Answer</summary>
-<p></p>
+CTF{S0_Just_M0v3_Socy}
 </details>
 </details>
 </details>
