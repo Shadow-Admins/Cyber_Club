@@ -4510,7 +4510,31 @@ CTF{Hum@n_I5_Th3_Weak3s7_Link_In_Th3_Ch@in}
 </details>
 </details>
 </details>
+<p></p>
+<hr>
+<p></p>
+<details>
+    <summary>Bit 4 Bit</summary>
+<p></p>
+The tenth challenge we are given is:
+<p></p>
+We've found out that the malware is a ransomware. Find the attacker's bitcoin address.
+<p></p>
+format: CTF{...}
+<p></p>
+<details>
+    <summary>Walkthrough</summary>
+<p></p>
 
+
+
+
+</details>
+
+
+
+
+</details>
 
 
 
