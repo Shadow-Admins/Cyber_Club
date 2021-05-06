@@ -4798,15 +4798,21 @@ CreatePassword-707-8848(uint param_1,uint *param_2)
 ```
 
 <p></p>
-But 
-
+But looking through the program I could not find what unit param_1 or 2 were, this was the same on IDA and R2. I know I am in the right area I just need to find out what those parameters are. So I went back to researching, I now googled from the last chalenge $ucylocker from the image we dumped and found out that this ransomware is written in .NET so I would need a decompiler for .NET which is where I turned to "JetBrains dotPeek" running on a Windows VM (remember this is live ransomware).
+<p></p>
+dotPeek loaded the program and showes us some other functions that weren't apparent in other decompilers
+<p></p>
+<div align="center">
+<img src="https://github.com/Shadow-Admins/Cyber_Club/blob/main/Starting_Point/DFIR/Memory_Forensics/Volatility/images/ghidra_create_pass.png"><br>
+</div>
+<p></p>
 
 
 
 
 
 </details>
-
+</details>
 
 
 
