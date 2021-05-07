@@ -2538,7 +2538,7 @@ Is a series of challenges from the <a href="https://defcon2019.ctfd.io/" rel="no
 <p></p>
 Challenge File: <a href="" rel="nofollow">Google Drive</a>
 <p></p>
-The answers for these challenges are in the form 'flag<ANSWER>'
+The answers for these challenges are in the form ``` flag<ANSWER> ```
 <p></p>
 <details>
     <summary>Extracting the File</summary>
@@ -2595,6 +2595,17 @@ Once we determine the image profile using <kbd>imageinfo</kbd> (refer to Getting
 <p></p>
 <details>
     <summary>get your volatility on</summary>
+<p></p>
+The first challenge we are given is:
+<p></p>
+What is the SHA1 hash of triage.mem?
+<p></p>
+Flag Format-flag<xyz>
+Everything after the – is what you need to submit, your answer is the xyx.
+
+
+
+
 </details>
 <p></p>
 <hr>
