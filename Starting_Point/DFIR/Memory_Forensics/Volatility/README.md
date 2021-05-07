@@ -2789,6 +2789,25 @@ Name                                                  Pid   PPid   Thds   Hnds T
 
 <p></p>
 If we look through these processes we can see notepad is running.
+<p></p>
+
+```
+Name                                                  Pid   PPid   Thds   Hnds Time                                                                                                           
+-------------------------------------------------- ------ ------ ------ ------ ----                                                                                                           
+. 0xfffffa80054f9060:notepad.exe                     3032   1432      1     60 2019-03-22 05:32:22 UTC+0000
+```
+
+<p></p>
+Which gives us the Pid and our answer.
+<p></p>
+<details>
+    <summary>Answer</summary>
+<p></p>
+
+```
+flag<3032>
+```
+
 </details>
 
 <p></p>
