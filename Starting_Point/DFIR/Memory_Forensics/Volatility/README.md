@@ -3045,6 +3045,116 @@ flag<10.0.0.106>
 
 <details>
     <summary>i <3 windows dependencies</summary>
+<p></p>
+The seventh challenge we are given is:
+<p></p>
+What process name is VCRUNTIME140.dll associated with?
+<p></p>
+<details>
+    <summary>Walkthrough</summary>
+<p></p>
+First what is a .dll?
+<p></p>
+<details>
+    <summary>What is a .dll?</summary>
+<p></p>
+Dynamic-link library (DLL) is Microsoft's implementation of the shared library concept in the Microsoft Windows and OS/2 operating systems. These libraries usually have the file extension DLL, OCX (for libraries containing ActiveX controls), or DRV (for legacy system drivers). The file formats for DLLs are the same as for Windows EXE files – that is, Portable Executable (PE) for 32-bit and 64-bit Windows, and New Executable (NE) for 16-bit Windows. As with EXEs, DLLs can contain code, data, and resources, in any combination.
+<p></p>
+Data files with the same file format as a DLL, but with different file extensions and possibly containing only resource sections, can be called resource DLLs. Examples of such DLLs include icon libraries, sometimes having the extension ICL, and font files, having the extensions FON and FOT.
+<p></p>
+A DLL file is a library that contains a set of code and data for carrying out a particular activity in Windows. Apps can then call on those DLL files when they need that activity performed. DLL files are a lot like executable (EXE) files, except that DLL files cannot be directly executed in Windows. In other words, you can’t double-click a DLL file to run it the same way you would an EXE file. Instead, DLL files are designed to be called upon by other apps. In fact, they are designed to be called upon by multiple apps at once. The “link” part of the DLL name also suggests another important aspect. Multiple DLLs can be linked together so that when one DLL is called, a number of other DLLs are also called at the same time.
+</details>
+<p></p>
+So now that we know what a .dll is we can use the dlllist option in volatility to list all the .dll's and their associated processes.
+
+Option | Description
+-------|-------------------
+dlllist | To display a process's loaded DLLs, use the dlllist command. It walks the doubly-linked list of _LDR_DATA_TABLE_ENTRY structures which is pointed to by the PEB's InLoadOrderModuleList. DLLs are automatically added to this list when a process calls LoadLibrary (or some derivative such as LdrLoadDll) and they aren't removed until FreeLibrary is called and the reference count reaches zero. The load count column tells you if a DLL was statically loaded (i.e. as a result of being in the exe or another DLL's import table) or dynamically loaded. <p></p> To display the DLLs for a specific process instead of all processes, use the <kbd>-p</kbd>
+
+<p></p>
+The command we will use is bellow (note that I pipe (|) to tee and output to dlllist.txt for later use)
+
+```
+sudo volatility -f Triage-Memory.mem --profile=Win7SP1x64 dlllist | tee dlllist.txt
+```
+
+<p></p>
+We can see from the tail end of the output that the process is followed by all the linked .dll's We can now <kbd>grep</kbd> for VCRUNTIME140.dll
+<p></p>
+
+```
+❯ cat dlllist.txt | grep VCRUNTIME140.dll
+0x000007fefa5c0000            0x16000             0xffff C:\Program Files\Common Files\Microsoft Shared\ClickToRun\VCRUNTIME140.dll
+```
+
+<p></p>
+We can see we got a hit! Thinking back to the output we know that the .dll is located below the process we can see this by adding the <kbd>-B</kbd> flag and specifying lines before that we want to see.
+<p></p>
+
+```
+❯ cat dlllist.txt | grep -B 35 VCRUNTIME140.dll
+0x000007fef5300000             0xd000                0x1 C:\Windows\system32\wdiasqmmodule.dll
+0x000007fefcb90000            0x22000                0x1 C:\Windows\system32\bcrypt.dll
+************************************************************************
+OfficeClickToR pid:   1136
+Command line : "C:\Program Files\Common Files\Microsoft Shared\ClickToRun\OfficeClickToRun.exe" /service
+Service Pack 1
+
+Base                             Size          LoadCount Path
+------------------ ------------------ ------------------ ----
+0x000000013f420000           0xa9d000             0xffff C:\Program Files\Common Files\Microsoft Shared\ClickToRun\OfficeClickToRun.exe
+0x0000000077260000           0x1a9000             0xffff C:\Windows\SYSTEM32\ntdll.dll
+0x0000000077040000           0x11f000             0xffff C:\Windows\system32\kernel32.dll
+0x000007fefd380000            0x6c000             0xffff C:\Windows\system32\KERNELBASE.dll
+0x000007fefe970000            0xdb000             0xffff C:\Windows\system32\ADVAPI32.dll
+0x000007fefd6b0000            0x9f000             0xffff C:\Windows\system32\msvcrt.dll
+0x000007feff160000            0x1f000             0xffff C:\Windows\SYSTEM32\sechost.dll
+0x000007fefe7a0000           0x12d000             0xffff C:\Windows\system32\RPCRT4.dll
+0x000007fefef60000            0x67000             0xffff C:\Windows\system32\GDI32.dll
+0x0000000077160000            0xfa000             0xffff C:\Windows\system32\USER32.dll
+0x000007feff150000             0xe000             0xffff C:\Windows\system32\LPK.dll
+0x000007fefe5e0000            0xc9000             0xffff C:\Windows\system32\USP10.dll
+0x000007fefb140000            0x27000             0xffff C:\Windows\system32\IPHLPAPI.DLL
+0x000007fefe790000             0x8000             0xffff C:\Windows\system32\NSI.dll
+0x000007fefb100000             0xb000             0xffff C:\Windows\system32\WINNSI.DLL
+0x000007feff180000           0x203000             0xffff C:\Windows\system32\ole32.dll
+0x000007fefe6b0000            0xd7000             0xffff C:\Windows\system32\OLEAUT32.dll
+0x000007feff3f0000            0x4d000             0xffff C:\Windows\system32\WS2_32.dll
+0x000007fefa5e0000            0x1b000             0xffff C:\Windows\system32\Cabinet.dll
+0x000007fefd2a0000            0x3b000             0xffff C:\Windows\system32\WINTRUST.dll
+0x000007fefd3f0000           0x16d000             0xffff C:\Windows\system32\CRYPT32.dll
+0x000007fefd250000             0xf000             0xffff C:\Windows\system32\MSASN1.dll
+0x000007fefb2d0000            0x11000             0xffff C:\Windows\system32\WTSAPI32.dll
+0x000007fefed80000           0x1d7000             0xffff C:\Windows\system32\SETUPAPI.dll
+0x000007fefd260000            0x36000             0xffff C:\Windows\system32\CFGMGR32.dll
+0x000007fefd560000            0x1a000             0xffff C:\Windows\system32\DEVOBJ.dll
+0x000007fefa5c0000            0x16000             0xffff C:\Program Files\Common Files\Microsoft Shared\ClickToRun\VCRUNTIME140.dll
+```
+
+<p></p>
+Here we can see the process and the answer to the challenge.
+<p></p>
+<details>
+    <summary>Answer</summary>
+<p></p>
+Now if we put in OfficeClickToRun.exe it will not accept, however if we go back to the netscan we can see what the process is listed as:
+<p></p>
+
+```
+Offset(P)          Proto    Local Address                  Foreign Address      State            Pid      Owner          Created                                                              
+0x13e9cd730        UDPv4    127.0.0.1:57374                *:*                                   1136     OfficeClickToR 2019-03-22 05:32:18 UTC+0000                                         
+```
+
+<p></p>
+Which gives us the flag.
+<p></p>
+
+```
+flag<OfficeClickToR>
+```
+
+</details>
+</details>
 </details>
 
 <p></p>
