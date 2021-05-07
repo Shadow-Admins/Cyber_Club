@@ -2599,91 +2599,91 @@ Once we determine the image profile using <kbd>imageinfo</kbd> (refer to Getting
 <p></p>
 <hr>
 <p></p>
-<deatils>
+<details>
     <summary>pr0file</summary>
 </details>
 <p></p>
 <hr>
 <p></p>
-<deatils>
+<details>
     <summary>hey, write this down</summary>
 </details>
 <p></p>
 <hr>
 <p></p>
-<deatils>
+<details>
     <summary>wscript can haz children</summary>
 </details>
 <p></p>
 <hr>
 <p></p>
-<deatils>
+<details>
     <summary>tcpip settings</summary>
 </details>
 <p></p>
 <hr>
 <p></p>
-<deatils>
+<details>
     <summary>intel</summary>
 </details>
 <p></p>
 <hr>
 <p></p>
-<deatils>
+<details>
     <summary>i <3 windows dependencies</summary>
 </details>
 <p></p>
 <hr>
 <p></p>
-<deatils>
+<details>
     <summary>mal-ware-are-you</summary>
 </details>
 <p></p>
 <hr>
 <p></p>
-<deatils>
+<details>
     <summary>lm-get bobs hash</summary>
 </details>
 <p></p>
 <hr>
 <p></p>
-<deatils>
+<details>
     <summary>vad the impaler</summary>
 </details>
 <p></p>
 <hr>
 <p></p>
-<deatils>
+<details>
     <summary>more vads?!</summary>
 </details>
 <p></p>
 <hr>
 <p></p>
-<deatils>
+<details>
     <summary>vacation bible school</summary>
 </details>
 <p></p>
 <hr>
 <p></p>
-<deatils>
+<details>
     <summary>thx microsoft</summary>
 </details>
 <p></p>
 <hr>
 <p></p>
-<deatils>
+<details>
     <summary>lightbulb moment</summary>
 </details>
 <p></p>
 <hr>
 <p></p>
-<deatils>
+<details>
     <summary>8675309</summary>
 </details>
 <p></p>
 <hr>
 <p></p>
-<deatils>
+<details>
     <summary>whats-a-metasploit?</summary>
 </details>
 
