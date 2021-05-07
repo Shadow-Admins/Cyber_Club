@@ -3597,6 +3597,63 @@ From the output we could have also run the option shimcache and obtained the sam
 
 <details>
     <summary>lightbulb moment</summary>
+<p></p>
+The fourtheenth challenge we are given is:
+<p></p>
+What was written in notepad.exe in the time of the memory dump?
+<p></p>
+<details>
+    <summary>Walkthrough</summary>
+<p></p>
+IOT start this challenge we need to dump the memory of the process running at the time of the memory dump. To do this we will use the memdump option, but to use this option we need the Pid of the notepad.exe, we will get this from the pstree.txt we made earlier. (I have included the header line from pstree)
+<p></p>
+
+```
+❯ cat pstree.txt| grep notepad
+Name                                                  Pid   PPid   Thds   Hnds Time
+-------------------------------------------------- ------ ------ ------ ------ ----
+. 0xfffffa80054f9060:notepad.exe                     3032   1432      1     60 2019-03-22 05:32:22 UTC+0000
+```
+
+<p></p>
+So we have found the Pid, we will now use that in the memdump option.
+<p></p>
+
+```
+❯ sudo volatility -f Triage-Memory.mem --profile=Win7SP1x64 memdump -p 3032 -D .
+Volatility Foundation Volatility Framework 2.6
+************************************************************************
+Writing notepad.exe [  3032] to 3032.dmp
+```
+
+<p></p>
+With this command the <kbd>-p</kbd> flag points the the Pid and the <kbd>-D</kbd> flag points points to the directory we want to dump to '.' being the current working directory.
+<p></p>
+Now that we have the process memory dumped we can start running <kbd>strings</kbd> and <kbd>grep</kbd> to search the file for our challenge flag. When we run strings we need to use the <kbd>-e l</kbd> flag to extract all the human-readable little eddian strings and then we can pipe (|) to <kbd>grep</kbd> and search for what we know is in the flag.
+<p></p>
+
+```
+❯ strings -e l 3032.dmp | grep -i "flag<"
+flag<REDBULL_IS_LIFE>
+flag<Th>
+flag<Th>
+flag<TheK>
+flag<TheK>
+```
+
+<p></p>
+Here we can see the the output has returned the flag for this challenge.
+<p></p>
+<details>
+    <summary>Answer</summary>
+<p></p>
+
+```
+flag<REDBULL_IS_LIFE>
+```
+
+</details>
+</details>
 </details>
 
 <p></p>
