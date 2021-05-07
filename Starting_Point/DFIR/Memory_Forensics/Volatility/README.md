@@ -4939,6 +4939,7 @@ Once we have decrypted the file we can open it in a text reader to get our flag.
 <img src="https://github.com/Shadow-Admins/Cyber_Club/blob/main/Starting_Point/DFIR/Memory_Forensics/Volatility/images/flag.png"><br>
 </div>
 <p></p>
+CTF{Im_Th@_B3S7_RicK_0f_Th3m_4ll}
 </details>
 </details>
 </details>
