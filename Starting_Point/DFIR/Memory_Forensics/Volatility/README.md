@@ -4849,7 +4849,7 @@ CTF{aDOBofVYUNVnmp7}
     <summary>Closure</summary>
 <p></p>
 The thirteenth and final challenge we are given is:
-<pre></p>
+<p></p>
 Now that you extracted the password from the memory, could you decrypt rick's files?
 <p></p>
 format: CTF{ANSWER}
