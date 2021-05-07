@@ -3542,6 +3542,22 @@ flag<vhjReUDEuumrX>
 
 <details>
     <summary>thx microsoft</summary>
+<p></p>
+The thirteenth challenge we are given is:
+<p></p>
+An application was run at 2019-03-07 23:06:58 UTC, what is the name of the program? (Include extension)
+<p></p>
+<details>
+    <summary>Walkthrough</summary>
+<p></p>
+For this we will use a volatility option called timeliner, 
+
+Option | Description
+-------|--------------------------
+timeliner | This timeliner plugin creates a timeline from various artifacts in memory from the following sources (items in parenthesis are filters that may be used with the <kbd>--type</kbd> flag in order to obtain only items of that artifact):<p></p>- System time (ImageDate)<br>- Processes (Process)<br>-    Create and Exit times<br>-    LastTrimTime (XP and 2003 only)<br>- DLLs (Process, LoadTime)<br>-    LoadTime (Windows 7 and 8 only)<br>- PE Timestamps (TimeDateStamp)<br>-    Modules/Processes/DLLs<br>-    _IMAGE_FILE_HEADER<br>-    _IMAGE_DEBUG_DIRECTORY<br>-Threads (Thread)<br>-    Create and Exit times<br>-Sockets (Socket)<br>-    Create time<br>-Event logs (XP and 2003 only) (EvtLog)<br>- IE History (IEHistory)<br>- Registry hives (_CMHIVE and _HBASE_BLOCK)<br>- Registry keys<br>-    LastWriteTime of registry keys in _CMHIVE (Registry)<br>-    LastWriteTime of registry key objects referenced in the handle table (_CM_KEY_BODY)<br>- Embedded registry (filters below)<br>-    Userassist<br>-    Shimcache<br>- Timers (Timer)<br>-Symbolic links (Symlink)<p></p>You can filter for any of the above options in order to have more focused output using the --type flag.
+
+<p></p>
+
 </details>
 
 <p></p>
