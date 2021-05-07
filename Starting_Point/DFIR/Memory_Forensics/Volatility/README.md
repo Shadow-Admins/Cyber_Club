@@ -2538,7 +2538,12 @@ Is a series of challenges from the <a href="https://defcon2019.ctfd.io/" rel="no
 <p></p>
 Challenge File: <a href="" rel="nofollow">Google Drive</a>
 <p></p>
-The answers for these challenges are in the form ``` flag<ANSWER> ```
+The answers for these challenges are in the form:
+
+``` 
+flag<ANSWER> 
+```
+
 <p></p>
 <details>
     <summary>Extracting the File</summary>
