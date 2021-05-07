@@ -2593,14 +2593,99 @@ Once we determine the image profile using <kbd>imageinfo</kbd> (refer to Getting
 <details>
     <summary>Challenges</summary>
 <p></p>
-
-
-
-
-
-
-
-
+<details>
+    <summary>get your volatility on</summary>
+</details>
+<p></p>
+<hr>
+<p></p>
+<deatils>
+    <summary>pr0file</summary>
+</details>
+<p></p>
+<hr>
+<p></p>
+<deatils>
+    <summary>hey, write this down</summary>
+</details>
+<p></p>
+<hr>
+<p></p>
+<deatils>
+    <summary>wscript can haz children</summary>
+</details>
+<p></p>
+<hr>
+<p></p>
+<deatils>
+    <summary>tcpip settings</summary>
+</details>
+<p></p>
+<hr>
+<p></p>
+<deatils>
+    <summary>intel</summary>
+</details>
+<p></p>
+<hr>
+<p></p>
+<deatils>
+    <summary>i <3 windows dependencies</summary>
+</details>
+<p></p>
+<hr>
+<p></p>
+<deatils>
+    <summary>mal-ware-are-you</summary>
+</details>
+<p></p>
+<hr>
+<p></p>
+<deatils>
+    <summary>lm-get bobs hash</summary>
+</details>
+<p></p>
+<hr>
+<p></p>
+<deatils>
+    <summary>vad the impaler</summary>
+</details>
+<p></p>
+<hr>
+<p></p>
+<deatils>
+    <summary>more vads?!</summary>
+</details>
+<p></p>
+<hr>
+<p></p>
+<deatils>
+    <summary>vacation bible school</summary>
+</details>
+<p></p>
+<hr>
+<p></p>
+<deatils>
+    <summary>thx microsoft</summary>
+</details>
+<p></p>
+<hr>
+<p></p>
+<deatils>
+    <summary>lightbulb moment</summary>
+</details>
+<p></p>
+<hr>
+<p></p>
+<deatils>
+    <summary>8675309</summary>
+</details>
+<p></p>
+<hr>
+<p></p>
+<deatils>
+    <summary>whats-a-metasploit?</summary>
+</details>
 
 
 
