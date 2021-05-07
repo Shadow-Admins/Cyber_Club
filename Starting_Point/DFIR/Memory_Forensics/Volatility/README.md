@@ -3351,6 +3351,33 @@ flag<aad3b435b51404eeaad3b435b51404ee>
 
 <details>
     <summary>vad the impaler</summary>
+<p></p>
+The tenth challenge we are given is:
+<p></p>
+What protections does the VAD node at 0xfffffa800577ba10 have?
+<p></p>
+<details>
+    <summary>Walkthrough</summary>
+<p></p>
+First what is a VAD?
+<p></p>
+<details>
+    <summary>What is a VAD?</summary>
+<p></p>
+The Virtual Address Descriptor tree is used by the Windows memory manager to describe memory ranges used by a process as they are allocated. When a process allocates memory with VirutalAlloc, the memory manager creates an entry in the VAD tree. The corresponding page directory and page table entries are not created until the process tries to reference that memory page, which can provide signiﬁcant memory savings for processes that allocate a large amount of memory but access it sparsely.
+</details>
+<p></p>
+So now we know what a VAD is we can use the vadinfo option in volatility.
+<p></p>
+
+Option | Description
+-------|------------------
+vadinfo | The vadinfo command displays extended information about a process's VAD nodes. In particular, it shows:<p></p><br>- The address of the MMVAD structure in kernel memory<br>- The starting and ending virtual addresses in process memory that the MMVAD structure pertains to<br>- The VAD Tag<br>- The VAD flags, control flags, etc<br>- The name of the memory mapped file (if one exists)<br>- The memory protection constant (permissions). Note there is a difference between the original protection and current protection. The original protection is derived from the flProtect parameter to VirtualAlloc. For example you can reserve memory (MEM_RESERVE) with protection PAGE_NOACCESS (original protection). Later, you can call VirtualAlloc again to commit (MEM_COMMIT) and specify PAGE_READWRITE (becomes current protection). The vadinfo command shows the original protection only. Thus, just because you see PAGE_NOACCESS here, it doesn't mean code in the region cannot be read, written, or executed.
+
+
+
+
+
 </details>
 
 <p></p>
