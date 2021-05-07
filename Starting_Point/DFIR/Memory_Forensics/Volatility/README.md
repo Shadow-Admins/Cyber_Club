@@ -2534,9 +2534,9 @@ FLAG{8QUGzXSd2WXTHCe1ZW}
 <p></p>
 <H3>Memory Forensics</H3>
 <p></p>
-Is a series of challenges from the <a href="https://defcon2019.ctfd.io/" rel="nofollow">Defcon DFIR CTF</a> from 2019, these challenges will use the file Triage-Memory.mem
+Is a series of challenges from the <a href="https://defcon2019.ctfd.io/" rel="nofollow">Defcon DFIR CTF</a> from 2019, these challenges will use the file Triage-Memory.mem (the CTF site calles the file triage.mem)
 <p></p>
-Challenge File: <a href="" rel="nofollow">Google Drive</a>
+Challenge File: <a href="https://drive.google.com/file/d/1osfmnlXkexk219fv83QvAs-q4I3deFFT/view?usp=sharing" rel="nofollow">Google Drive</a>
 <p></p>
 The answers for these challenges are in the form:
 
@@ -2569,29 +2569,29 @@ Which will output this and extract Triage-Memory.mem:
 ❯ p7zip -d Triage.7z
 
 7-Zip (a) [64] 16.02 : Copyright (c) 1999-2016 Igor Pavlov : 2016-05-21
-p7zip Version 16.02 (locale=en_AU.UTF-8,Utf16=on,HugeFiles=on,64 bits,8 CPUs Intel(R) Core(TM) i7-8650U CPU @ 1.90GHz (806EA),ASM,AES-NI)
+p7zip Version 16.02 (locale=en_AU.UTF-8,Utf16=on,HugeFiles=on,64 bits,4 CPUs Intel(R) Core(TM) i7-7920HQ CPU @ 3.10GHz (906E9),ASM,AES-NI)
 
 Scanning the drive for archives:
-1 file, 507206872 bytes (484 MiB)
+1 file, 821288421 bytes (784 MiB)
 
-Extracting archive: OtterCTF.7z
+Extracting archive: Triage.7z
 --
-Path = OtterCTF.7z
+Path = Triage.7z
 Type = 7z
-Physical Size = 507206872
-Headers Size = 130
-Method = LZMA2:24
+Physical Size = 821288421
+Headers Size = 138
+Method = LZMA2:26
 Solid = -
 Blocks = 1
 
-Everything is Ok    
+Everything is Ok        
 
-Size:       2147483648
-Compressed: 507206872
+Size:       5368709120
+Compressed: 821288421
 ```
 
 <p></p>
-Once we determine the image profile using <kbd>imageinfo</kbd> (refer to Getting your Foothold ) we can begin our analysis on triage.mem
+Once we determine the image profile using <kbd>imageinfo</kbd> (refer to Getting your Foothold ) we can begin our analysis on Triage-Memory.mem
 <p></p>
 </details>
 <p></p>
@@ -2605,100 +2605,162 @@ The first challenge we are given is:
 <p></p>
 What is the SHA1 hash of triage.mem?
 <p></p>
-Flag Format-flag<xyz>
-Everything after the – is what you need to submit, your answer is the xyx.
-
-
-
-
-</details>
+<details>
+    <summary>Walkthrough</summary>
 <p></p>
-<hr>
+This one is fairly easy, and should be done whenever downloading a file and the file sum is provided (normally md5sum) you can google how to calculate the sum of a file. To calculate the sha1 hash of Triage-Memory.mem we will use a built in linux command <kbd>sha1sum</kbd>. The command looks like this and gives this output:
+<p></p>
+
+```
+❯ sha1sum Triage-Memory.mem
+c95e8cc8c946f95a109ea8e47a6800de10a27abd  Triage-Memory.mem
+```
+
+<p></p>
+Here we can see the sha1sum of the file and our first answer.
 <p></p>
 <details>
-    <summary>pr0file</summary>
+    <summary>Answer</summary>
+<p></p>
+
+```
+flag<c95e8cc8c946f95a109ea8e47a6800de10a27abd>
+```
+
 </details>
+
+
+
+</details>
+
 <p></p>
 <hr>
 <p></p>
+
+<details>
+    <summary>pr0file</summary>
+<p></p>
+The second challenge we are given is:
+<p></p>
+What profile is the most appropriate for this machine? (ex: Win10x86_14393)
+<p></p>
+<details>
+    <summary>Walkthrough</summary>
+<p></p>
+
+
+
+
+</details>
+
+<p></p>
+<hr>
+<p></p>
+
 <details>
     <summary>hey, write this down</summary>
 </details>
+
 <p></p>
 <hr>
 <p></p>
+
 <details>
     <summary>wscript can haz children</summary>
 </details>
+
 <p></p>
 <hr>
 <p></p>
+
 <details>
     <summary>tcpip settings</summary>
 </details>
+
 <p></p>
 <hr>
 <p></p>
+
 <details>
     <summary>intel</summary>
 </details>
+
 <p></p>
 <hr>
 <p></p>
+
 <details>
     <summary>i <3 windows dependencies</summary>
 </details>
+
 <p></p>
 <hr>
 <p></p>
+
 <details>
     <summary>mal-ware-are-you</summary>
 </details>
+
 <p></p>
 <hr>
 <p></p>
+
 <details>
     <summary>lm-get bobs hash</summary>
 </details>
+
 <p></p>
 <hr>
 <p></p>
+
 <details>
     <summary>vad the impaler</summary>
 </details>
+
 <p></p>
 <hr>
 <p></p>
+
 <details>
     <summary>more vads?!</summary>
 </details>
+
 <p></p>
 <hr>
 <p></p>
+
 <details>
     <summary>vacation bible school</summary>
 </details>
+
 <p></p>
 <hr>
 <p></p>
+
 <details>
     <summary>thx microsoft</summary>
 </details>
+
 <p></p>
 <hr>
 <p></p>
+
 <details>
     <summary>lightbulb moment</summary>
 </details>
+
 <p></p>
 <hr>
 <p></p>
+
 <details>
     <summary>8675309</summary>
 </details>
+
 <p></p>
 <hr>
 <p></p>
+
 <details>
     <summary>whats-a-metasploit?</summary>
 </details>
