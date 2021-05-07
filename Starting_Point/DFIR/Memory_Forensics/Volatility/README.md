@@ -2652,6 +2652,7 @@ What profile is the most appropriate for this machine? (ex: Win10x86_14393)
 
 
 </details>
+</details>
 
 <p></p>
 <hr>
