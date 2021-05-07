@@ -2608,7 +2608,7 @@ What is the SHA1 hash of triage.mem?
 <details>
     <summary>Walkthrough</summary>
 <p></p>
-This one is fairly easy, and should be done whenever downloading a file and the file sum is provided (normally md5sum) you can google how to calculate the sum of a file. To calculate the sha1 hash of Triage-Memory.mem we will use a built in linux command <kbd>sha1sum</kbd>. The command looks like this and gives this output:
+This one is fairly easy, and should be done whenever downloading a file and the file sum is provided (normally md5sum) you can google how to calculate the sum of a file. We calculate the hash of files to ensure we are downloading the file we intended, if the sum is different to the advertised hash we can assume that the file has been altered. To calculate the sha1 hash of Triage-Memory.mem we will use a built in linux command <kbd>sha1sum</kbd>. The command looks like this and gives this output:
 <p></p>
 
 ```
@@ -2628,7 +2628,7 @@ flag<c95e8cc8c946f95a109ea8e47a6800de10a27abd>
 ```
 
 </details>
-
+</details>
 
 
 </details>
