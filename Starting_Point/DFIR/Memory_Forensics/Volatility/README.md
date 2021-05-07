@@ -3431,6 +3431,48 @@ flag<PAGE_READONLY>
 
 <details>
     <summary>more vads?!</summary>
+<p></p>
+The eleventh challenge we are given is:
+<p></p>
+What protections did the VAD starting at 0x00000000033c0000 and ending at 0x00000000033dffff have?
+<p></p>
+<details>
+    <summary>Walkthrough</summary>
+<p></p>
+This is the same as the last challenge we just need to change the grep. The command and output look like this:
+<p></p>
+
+```
+❯ cat vadinfo.txt | grep -B 5 -A 5 -i "start 0x00000000033c0000 end 0x00000000033dffff"
+VAD node @ 0xfffffa80058d9e00 Start 0x0000000003280000 End 0x000000000337ffff Tag VadS
+Flags: CommitCharge: 4, PrivateMemory: 1, Protection: 4
+Protection: PAGE_READWRITE
+Vad Type: VadNone
+
+VAD node @ 0xfffffa80052652b0 Start 0x00000000033c0000 End 0x00000000033dffff Tag VadS
+Flags: CommitCharge: 32, PrivateMemory: 1, Protection: 24
+Protection: PAGE_NOACCESS
+Vad Type: VadNone
+
+VAD node @ 0xfffffa8003f416d0 Start 0x00000000033a0000 End 0x00000000033bffff Tag VadS
+```
+
+<p></p>
+We got the "start 0x00000000033c0000 end 0x00000000033dffff" from the last challenge when we searched the vadinfo.
+<br>
+The output gives us the flag for this challenge.
+<p></p>
+<details>
+    <summary>Answer</summary>
+<p></p>
+
+```
+flag<PAGE_NOACCESS>
+```
+
+
+</details>
+</details>
 </details>
 
 <p></p>
@@ -3439,6 +3481,59 @@ flag<PAGE_READONLY>
 
 <details>
     <summary>vacation bible school</summary>
+<p></p>
+The twelvth challenge we are given is:
+<p></p>
+There was a VBS script run on the machine. What is the name of the script? (submit without file extension)
+<p></p>
+<details>
+    <summary>Walkthrough</summary>
+<p></p>
+First what is a VBS script?
+<p></p>
+<details>
+    <summary>What is a VBS Script?</summary>
+<p></p>
+VBScript ("Microsoft Visual Basic Scripting Edition") is an Active Scripting language developed by Microsoft that is modeled on Visual Basic. It allows Microsoft Windows system administrators to generate powerful tools for managing computers with error handling, subroutines, and other advanced programming constructs. It can give the user complete control over many aspects of their computing environment.
+<p></p>
+VBScript uses the Component Object Model to access elements of the environment within which it is running; for example, the FileSystemObject (FSO) is used to create, read, update and delete files. VBScript has been installed by default in every desktop release of Microsoft Windows since Windows 98; in Windows Server since Windows NT 4.0 Option Pack; and optionally with Windows CE (depending on the device it is installed on).
+<p></p>
+A VBScript script must be executed within a host environment, of which there are several provided with Microsoft Windows, including: Windows Script Host (WSH), Internet Explorer (IE), and Internet Information Services (IIS). Additionally, the VBScript hosting environment is embeddable in other programs, through technologies such as the Microsoft Script Control (msscript.ocx).
+</details>
+<p></p>
+To see commands that are run using VBS we will use cmdline you can scroll through untill you have found what you are looking for however i have piped (|) to <kbd>grep</kbd> searching for vbs.
+<p></p>
+
+```
+❯ sudo volatility -f Triage-Memory.mem --profile=Win7SP1x64 cmdline | grep -B 5 -A 5 vbs
+Volatility Foundation Volatility Framework 2.6
+************************************************************************
+chrome.exe pid:   4688
+Command line : "C:\Program Files (x86)\Google\Chrome\Application\chrome.exe" --type=renderer --field-trial-handle=924,2132560186875629139,18153288653831290455,131072 --disable-gpu-compositing --service-pipe-token=2094820586012107996 --lang=en-US --enable-offline-auto-reload --enable-offline-auto-reload-visible-only --device-scale-factor=1 --num-raster-threads=1 --service-request-channel-token=2094820586012107996 --renderer-client-id=13 --no-v8-untrusted-code-mitigations --mojo-platform-channel-handle=3844 /prefetch:1
+************************************************************************
+wscript.exe pid:   5116
+Command line : "C:\Windows\System32\wscript.exe" //B //NOLOGO %TEMP%\vhjReUDEuumrX.vbs
+************************************************************************
+UWkpjFjDzM.exe pid:   3496
+Command line : "C:\Users\Bob\AppData\Local\Temp\rad93398.tmp\UWkpjFjDzM.exe" 
+************************************************************************
+cmd.exe pid:   4660
+```
+
+<p></p>
+Here you can see wscript.exe is running and the .vbs script it has run giving us the flag for this challenge.
+<p></p>
+<details>
+    <summary>Answer</summary>
+<p></p>
+
+```
+flag<vhjReUDEuumrX>
+```
+
+
+</details>
+</details>
 </details>
 
 <p></p>
