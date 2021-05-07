@@ -4842,7 +4842,104 @@ CTF{aDOBofVYUNVnmp7}
 </details>
 </details>
 </details>
+<p></p>
+<hr>
+<p></p>
+<details>
+    <summary>Closure</summary>
+<p></p>
+The thirteenth and final challenge we are given is:
+<pre></p>
+Now that you extracted the password from the memory, could you decrypt rick's files?
+<p></p>
+format: CTF{ANSWER}
+<p></p>
+<details>
+    <summary>Walkthrough</summary>
+<p></p>
+For this challenge we need to decrypt Rick's files using the password we found from the last challenge (aDOBofVYUNVnmp7) our best bet is to find a decryptor that has already been built for this ransomware, searching google for $ucylocker, vapehacksloader and hidden_tear turns up a <a href="https://www.bleepingcomputer.com/download/hidden-tear-decrypter/" rel="nofollow">page</a> with a decryptor.
+<p></p>
+From our previous reasearch on $ucyLocker we know that it only encrypts files located on the desktop and remembering back to when we looked on the desktop there were 2 files there, the "READ_ME.txt" that we used for the previous challenge and the "Flag.txt" that we saw.
+<p></p>
+First I renamed the file to make it easier to work with:
+<p></p>
 
+```
+❯ cp file.None.0xfffffa801b0532e0.Flag.txt.dat flag.txt
+```
+
+<p></p>
+
+```
+❯ cat flag.txt
+{�$V�\�C(��Ń�l1����T�r���~�{ƍШ���n>�G�
+                                      ��%   
+```
+
+<p></p>
+
+```
+❯ xxd flag.txt
+00000000: 7be6 2456 9e5c 0fef 8e43 28f7 e4c5 83ff  {.$V.\...C(.....
+00000010: 6c31 d7e6 1cda ea54 cf72 ddd6 ec7e b07b  l1.....T.r...~.{
+00000020: c68d d0a8 ccc2 ce6e 3eee 0347 c10b b3e8  .......n>..G....
+00000030: 0000 0000 0000 0000 0000 0000 0000 0000  ................
+00000040: 0000 0000 0000 0000 0000 0000 0000 0000  ................
+00000050: 0000 0000 0000 0000 0000 0000 0000 0000  ................
+00000060: 0000 0000 0000 0000 0000 0000 0000 0000  ................
+00000070: 0000 0000 0000 0000 0000 0000 0000 0000  ................
+00000080: 0000 0000 0000 0000 0000 0000 0000 0000  ................
+00000090: 0000 0000 0000 0000 0000 0000 0000 0000  ................
+000000a0: 0000 0000 0000 0000 0000 0000 0000 0000  ................
+000000b0: 0000 0000 0000 0000 0000 0000 0000 0000  ................
+000000c0: 0000 0000 0000 0000 0000 0000 0000 0000  ................
+```
+
+<p></p>
+Here you can see that I have run both <kbd>cat</kbd> and <kbd>xxd</kbd> on the flag.txt
+<br>
+When we ran <kbd>cat</kbd> on the file it is completely unreadable, and when we ran xxd to look at the individual bites we can see that there is only information at the start and the rest is buffered with null bytes. We can get rid of that empty space so we are only left with the actual bytes we need (If you attempt to decrypt with the null bytes present it wont decrypt) we do this by using <kbd>dd</kbd>, the command looks like this:
+<p></p>
+
+```
+❯ dd bs=1 count=48 if=flag.txt of=flag_dd.txt
+48+0 records in
+48+0 records out
+48 bytes copied, 0.000145241 s, 330 kB/s
+```
+
+<p></p>
+Unpacking this command <kbd>bs=1</kbd> tells dd to read 1 byte at a time, <kbd>if=</kbd> tells dd the input file, <kbd>of=</kbd> tells dd the uptput file to write to. You can see that it read 48 bytes and outputted them to the new file. If we re-run xxd you can see what the new file looks like this:
+<p></p>
+
+```
+❯ xxd flag_dd.txt
+00000000: 7be6 2456 9e5c 0fef 8e43 28f7 e4c5 83ff  {.$V.\...C(.....
+00000010: 6c31 d7e6 1cda ea54 cf72 ddd6 ec7e b07b  l1.....T.r...~.{
+00000020: c68d d0a8 ccc2 ce6e 3eee 0347 c10b b3e8  .......n>..G....
+```
+
+<p></p>
+We have now eliminated the null bytes and can now use the decoder (if you did this in your linux box like I did you will need a way of moving it to your Windows box, I used a python HTML server).
+<p></p>
+Now that the flag.txt is in our Windows box we can run decryptor on it.
+<p></p>
+<div align="center">
+<img src="https://github.com/Shadow-Admins/Cyber_Club/blob/main/Starting_Point/DFIR/Memory_Forensics/Volatility/images/decryptor.png"><br>
+</div>
+<p></p>
+Once we have decrypted the file we can open it in a text reader to get our flag.
+<p></p>
+<details>
+    <summary>Answer</summary>
+<p></p>
+<div align="center">
+<img src="https://github.com/Shadow-Admins/Cyber_Club/blob/main/Starting_Point/DFIR/Memory_Forensics/Volatility/images/flag.png"><br>
+</div>
+<p></p>
+</details>
+</details>
+</details>
 
 
 
