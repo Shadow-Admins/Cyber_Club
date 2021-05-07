@@ -4940,6 +4940,11 @@ Once we have decrypted the file we can open it in a text reader to get our flag.
 </div>
 <p></p>
 CTF{Im_Th@_B3S7_RicK_0f_Th3m_4ll}
+<p></p>
+After completing the series of Rick Challenges <a href="https://malwaretips.com/threads/the-ucylocker-ransomware.78330/" rel="nofollow">this page</a> is worth looking at,
+it is a write up on the $ucyLocker ransomware and explains what it is very well.
+<p></p>
+This series of challenges was very interesting and required a significant amount of research IOT solve each stage, it started easy and progressed to very difficult.
 </details>
 </details>
 </details>
