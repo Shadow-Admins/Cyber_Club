@@ -4806,13 +4806,47 @@ dotPeek loaded the program and showes us some other functions that weren't appar
 <img src="https://github.com/Shadow-Admins/Cyber_Club/blob/1cf7b3ef2b5f78409d711586855621e394a20b0c/Starting_Point/DFIR/Memory_Forensics/Volatility/images/dotPeek_load.png"><br>
 </div>
 <p></p>
+We have seen "hidden_tear" while we were looking through the files using strings etc. previously but hadn't seen it as a function, opening this function up and looking through we find the function "CreatePassword" and can now see what the password looks like:
+<p></p>
+<div align="center">
+<img src="https://github.com/Shadow-Admins/Cyber_Club/blob/1cf7b3ef2b5f78409d711586855621e394a20b0c/Starting_Point/DFIR/Memory_Forensics/Volatility/images/dotPeek_CreatePassword.png"><br>
+</div>
+<p></p>
+So we can see that the password looks like this "COMPUTERNAME-USERNAME PASSWORD" this looks like something we can search for within the file as we already know what the computer name (WIN-LO6FAF3DTFE) and username (Rick) is from our previous challenges.
+<p></p>
+From here we return to the memory dump of vmware-tray we extracted previously and run this command:
+<p></p>
 
+```
+❯ strings -e l 3720.dmp | grep -B 5 -A 5 WIN-LO6FAF3DTFE-Rick
+\Desktop\
+abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890*!=&?&/
+aDOBofVYUNVnmp7
+aDOBofVYUNVnmp7
+C:\Users\Rick\Desktop\
+WIN-LO6FAF3DTFE-Rick aDOBofVYUNVnmp7
+.txt
+.doc
+.docx
+.xls
+.xlsx
+```
 
-
-
-
+<p></p>
+And here we can see from the information we pulled from "CreatePassword" the answer.
+<p></p>
+<details>
+    <summary>Answer</summary>
+<p></p>
+CTF{aDOBofVYUNVnmp7}
 </details>
 </details>
+</details>
+
+
+
+
+
 
 
 
