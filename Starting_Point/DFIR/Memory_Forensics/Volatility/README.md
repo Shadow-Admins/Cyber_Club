@@ -3302,6 +3302,47 @@ flag<690ea20bc3bdfb328e23005d9a80c290>
 
 <details>
     <summary>lm-get bobs hash</summary>
+<p></p>
+The ninth challenge we are given is:
+<p></p>
+What is the LM hash of bobs account?
+<p></p>
+<details>
+    <summary>Walkthrough</summary>
+<p></p>
+First what is a LM Hash?
+<p></p>
+<details>
+    <summary>What is a LM Hash?</summary>
+<p></p>
+LM Hash is used in many versions of Windows to store user passwords that are fewer than 15 characters long. It is a fairly weak security implementation can be easily broken using standard dictionary lookups. More modern versions of Windows use SYSKEY to encrypt passwords.
+</details>
+<p></p>
+Ok now that we know what a LM hash is we can use the hashdump option to show us the hashes in the memory. The command looks like this (we pipe (|) to tee so we have the hashes for later):
+<p></p>
+
+```
+sudo volatility -f Triage-Memory.mem --profile=Win7SP1x64 hashdump | tee hash.hash
+Volatility Foundation Volatility Framework 2.6
+Administrator:500:aad3b435b51404eeaad3b435b51404ee:31d6cfe0d16ae931b73c59d7e0c089c0:::
+Guest:501:aad3b435b51404eeaad3b435b51404ee:31d6cfe0d16ae931b73c59d7e0c089c0:::
+Bob:1000:aad3b435b51404eeaad3b435b51404ee:31d6cfe0d16ae931b73c59d7e0c089c0:::
+```
+
+<p></p>
+We can see bobs hash and the answer to this challenge.
+<p></p>
+<details>
+    <summary>Answer</summary>
+<p></p>
+
+```
+flag<aad3b435b51404eeaad3b435b51404ee>
+```
+
+
+</details>
+</details>
 </details>
 
 <p></p>
