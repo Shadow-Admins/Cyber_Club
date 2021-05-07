@@ -3374,10 +3374,55 @@ Option | Description
 -------|------------------
 vadinfo | The vadinfo command displays extended information about a process's VAD nodes. In particular, it shows:<p></p>- The address of the MMVAD structure in kernel memory<br>- The starting and ending virtual addresses in process memory that the MMVAD structure pertains to<br>- The VAD Tag<br>- The VAD flags, control flags, etc<br>- The name of the memory mapped file (if one exists)<br>- The memory protection constant (permissions). Note there is a difference between the original protection and current protection. The original protection is derived from the flProtect parameter to VirtualAlloc. For example you can reserve memory (MEM_RESERVE) with protection PAGE_NOACCESS (original protection). Later, you can call VirtualAlloc again to commit (MEM_COMMIT) and specify PAGE_READWRITE (becomes current protection). The vadinfo command shows the original protection only. Thus, just because you see PAGE_NOACCESS here, it doesn't mean code in the region cannot be read, written, or executed.
 
+<p></p>
+The command looks like this (you can see I have appended to a .txt file again for later use and so I can run grep multiple times):
+<p></p>
 
+```
+sudo volatility -f Triage-Memory.mem --profile=Win7SP1x64 vadinfo > vadinfo.txt
+```
 
+<p></p>
+From here we can grep for the info in the hint, the command looks like this:
+<p></p>
 
+```
+❯ cat vadinfo.txt | grep 0xfffffa800577ba10
+VAD node @ 0xfffffa800577ba10 Start 0x0000000000030000 End 0x0000000000033fff Tag Vad 
+```
 
+<p></p>
+So we can see we have found it but we need to see information above and below it so we will add the <kbd>-B</kbd> and <kbd>-A</kbd> flags.
+<p></p>
+
+```
+❯ cat vadinfo.txt | grep -B 5 -A 5 0xfffffa800577ba10
+NumberOfMappedViews:                2 NumberOfUserReferences:          3
+Control Flags: Commit: 1
+First prototype PTE: fffff8a001021f78 Last contiguous PTE: fffff8a001021ff0
+Flags2: 
+
+VAD node @ 0xfffffa800577ba10 Start 0x0000000000030000 End 0x0000000000033fff Tag Vad 
+Flags: NoChange: 1, Protection: 1
+Protection: PAGE_READONLY
+Vad Type: VadNone
+ControlArea @fffffa8005687a50 Segment fffff8a000c4f870
+NumberOfSectionReferences:          1 NumberOfPfnReferences:           0
+```
+
+<p></p>
+Here we can see the protection and the flag to this challenge.
+<p></p>
+<details>
+    <summary>Answer</summary>
+<p></p>
+
+```
+flag<PAGE_READONLY>
+```
+
+</details>
+</details>
 </details>
 
 <p></p>
