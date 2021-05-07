@@ -2704,11 +2704,11 @@ What was the process ID of notepad.exe?
 <details>
     <summary>Walkthrough</summary>
 <p></p>
-To find the Pid of notepad we will list all processes using the volatility option <kbd>pstree</kbd>. The command looks like this:
+To find the Pid of notepad we will list all processes using the volatility option <kbd>pstree</kbd> I like to append it to a .txt file incase I need to look at the process tree later in the analysis. The command looks like this:
 <p></p>
 
 ```
-sudo volatility -f Triage-Memory.mem --profile=Win7SP1x64 pstree
+sudo volatility -f Triage-Memory.mem --profile=Win7SP1x64 pstree > pstree.txt
 ```
 
 <p></p>
@@ -2716,7 +2716,7 @@ Which outputs this:
 <p></p>
 
 ```
-❯ sudo volatility -f Triage-Memory.mem --profile=Win7SP1x64 pstree                                                                                                                            
+❯ sudo volatility -f Triage-Memory.mem --profile=Win7SP1x64 pstree > pstree.txt                                                                                                               
 Volatility Foundation Volatility Framework 2.6                                                                                                                                                
 Name                                                  Pid   PPid   Thds   Hnds Time                                                                                                           
 -------------------------------------------------- ------ ------ ------ ------ ----                                                                                                           
@@ -2818,6 +2818,48 @@ flag<3032>
 
 <details>
     <summary>wscript can haz children</summary>
+<p></p>
+The fourth challenge we are given is:
+<p></p>
+Name the child processes of wscript.exe
+<p></p>
+<details>
+    <summary>Walkthrough</summary>
+<p></p>
+We can get this answer from the pstree.txt file we made in the previous challenge.
+<p></p>
+
+```
+Name                                                  Pid   PPid   Thds   Hnds Time                                                                                                           
+-------------------------------------------------- ------ ------ ------ ------ ----                                                                                                           
+.. 0xfffffa8005a80060:wscript.exe                    5116   3952      8    312 2019-03-22 05:35:32 UTC+0000                                                                                   
+... 0xfffffa8005a1d9e0:UWkpjFjDzM.exe                3496   5116      5    109 2019-03-22 05:35:33 UTC+0000                                                                                   
+```
+
+<p></p>
+The bonus of using pstree over other process listing options is it showes child/parent process relationships the '.' '..' '...' show how the processes are related we can also visualise this with this command:
+<p></p>
+
+```
+❯ sudo volatility -f Triage-Memory.mem --profile=Win7SP1x64 pstree --output=dot --output-file=pstree.dot
+Volatility Foundation Volatility Framework 2.6
+Outputting to: pstree.dot
+```
+
+<p></p>
+
+```
+dot -Tjpg pstree.dot -o pstree.jpg
+```
+
+<p></p>
+<div align="center">
+<img src="https://github.com/Shadow-Admins/Cyber_Club/blob/main/Starting_Point/DFIR/Memory_Forensics/Volatility/images/pstree_triage.jpg"><br>
+</div>
+<p></p>
+
+
+</details>
 </details>
 
 <p></p>
