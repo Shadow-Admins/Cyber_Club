@@ -3010,6 +3010,33 @@ flag<10.0.0.101>
 
 <details>
     <summary>intel</summary>
+<p></p>
+The sixth challenge we are given is:
+<p></p>
+Based on the answer regarding to the infected PID, can you determine what the IP of the attacker was?
+<p></p>
+<details>
+    <summary>Walkthrough</summary>
+<p></p>
+For this challenge we can have a look at the netscan.txt file we created and look for the file we found in 'wscript can haz children' (UWkpjFjDzM.exe) if we go through the network connections we look for that file and look in the foreign address column for our answer.
+<p></p>
+<details>
+    <summary>Answer</summary>
+<p></p>
+
+```
+Offset(P)          Proto    Local Address                  Foreign Address      State            Pid      Owner          Created                                                              
+0x13e397190        TCPv4    10.0.0.101:49217               10.0.0.106:4444      ESTABLISHED      3496     UWkpjFjDzM.exe 
+```
+
+<p></p>
+
+```
+flag<10.0.0.106>
+```
+
+</details>
+</details>
 </details>
 
 <p></p>
