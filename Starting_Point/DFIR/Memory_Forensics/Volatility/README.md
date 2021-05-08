@@ -3662,6 +3662,23 @@ flag<REDBULL_IS_LIFE>
 
 <details>
     <summary>8675309</summary>
+<p></p>
+The fifteenth challenge we are given is:
+<p></p>
+What is the shortname of the file at file record 59045?
+<p></p>
+<details>
+    <summary>Walkthrough</summary>
+<p></p>
+
+install.packages("checkdown")
+LoadLibrary(checkdown)
+library(checkdown)
+
+check_question(answer = 4)
+
+
+
 </details>
 
 <p></p>
