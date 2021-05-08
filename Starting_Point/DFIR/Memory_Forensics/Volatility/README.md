@@ -3670,15 +3670,27 @@ What is the shortname of the file at file record 59045?
 <details>
     <summary>Walkthrough</summary>
 <p></p>
+Details about file records are held in the Master File Table (MFT) and can be extracted from the memory dump using the mftparser option.
+<p></p>
+<details>
+    <summary>mftparser</summary>
+<p></p>
+This plugin scans for potential Master File Table (MFT) entries in memory (using "FILE" and "BAAD" signatures) and prints out information for certain attributes, currently: <kbd>$FILE_NAME</kbd> (<kbd>$FN</kbd>), <kbd>$STANDARD_INFORMATION</kbd> (<kbd>$SI</kbd>), <kbd>$FN</kbd> and <kbd>$SI</kbd> attributes from the <kbd>$ATTRIBUTE_LIST</kbd>, <kbd>$OBJECT_ID</kbd> (default output only) and resident <kbd>$DATA</kbd>.
+<p></p>
+ Options of interest include:
+<p></p>
+<br>-<kbd>-machine</kbd> - Machine name to add to timeline header (useful when combining timelines from multiple machines)
+<br>-<kbd>-D/--dump-dir</kbd> - Output directory to which resident data files are dumped
+<br>-<kbd>-output=body</kbd> - print output in Sleuthkit 3.X body format
+<br>-<kbd>-no-check</kbd> - Prints out all entries including those with null timestamps
+<br>-<kbd>-E/--entry-size</kbd> - Changes the default 1024 byte MFT entry size.
+<br>-<kbd>-o/--offset</kbd> - Prints out the MFT entry at a give offset (comma delimited)
+</details>
+<p></p>
 
-install.packages("checkdown")
-LoadLibrary(checkdown)
-library(checkdown)
-
-check_question(answer = 4)
 
 
-
+</details>
 </details>
 
 <p></p>
