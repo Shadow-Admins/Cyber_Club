@@ -3802,6 +3802,179 @@ flag<EMPLOY~1.XLS>
 
 <details>
     <summary>whats-a-metasploit?</summary>
+<p></p>
+The sixteenth and final challenge we are given is:
+<p></p>
+This box was exploited and is running meterpreter. What PID was infected?
+<p></p>
+<details>
+    <summary>Walkthrough</summary>
+<p></p>
+Thinking back to our previous challenges we found a strance process running (UWkpjFjDzM.exe with a Pid of 3496) we can confirm this by dumping the process IOT upload it to <a href="https://www.virustotal.com/gui/" rel="nofollow">VirusTotal</a> to do this we will use the procdump option. The command looks like this:
+<p></p>
+
+```
+❯ sudo volatility -f Triage-Memory.mem --profile=Win7SP1x64 procdump -p 3496 -D .
+Volatility Foundation Volatility Framework 2.6
+Process(V)         ImageBase          Name                 Result
+------------------ ------------------ -------------------- ------
+0xfffffa8005a1d9e0 0x0000000000400000 UWkpjFjDzM.exe       OK: executable.3496.exe
+```
+
+<p></p>
+With this command the <kbd>-p</kbd> flag points to the Pid and the <kbd>-D</kbd> flag points to directory we want to dump the file to, '.' being the current working directory.
+<br>
+We can now upload this file to <a href="https://www.virustotal.com/gui/" rel="nofollow">VirusTotal</a>.
+<p></p>
+Which got a hit!
+<p></p>
+<div align="center">
+<img src="https://github.com/Shadow-Admins/Cyber_Club/blob/main/Starting_Point/DFIR/Memory_Forensics/Volatility/images/metasploit.jpg"><br>
+</div>
+<p></p>
+After that I also ran it through a application called <a href="https://www.nextron-systems.com/thor-lite/" rel="nofollow">thor-lite</a>, it is a free APT and IOC scanner. I have included the output bellow (minus my pers details and some system information)
+<p></p>
+
+```
+❯ sudo ./thor-lite-linux -p ~/ctf/Defcon_DFIR_CTF/Memory_Forensics/exe --allreasons | tee thor.txt
+
+   ###++++++   ________ ______  ___
+   ###++++++  /_  __/ // / __ \/ _ \
+   ###   +++   / / / _  / /_/ / , _/
+   ###   +++  /_/ /_//_/\____/_/|_|  Lite
+   ######+++ 
+   ######+++  APT Scanner
+
+> Scan Information ------------------------------------------------------------
+Info: Startup Thor Version: 10.5.16
+Info: Startup Thor Build: f4732fc (2021-05-05 13:21:43)
+Info: Startup Run on system: parrot
+Info: Startup Running as user: root
+Info: Startup User has admin rights: yes
+Info: Startup Working Directory: /home/parrot/MyTools
+Info: Startup Thor Scan started TIME: Sat May  8 12:42:20 2021 HOSTNAME: parrot
+Info: Startup Effective argument list: [--allreasons true --path /home/parrot/ctf/Defcon_DFIR_CTF/Memory_Forensics/exe --dbfile /var/lib/thor/thor10-lite.db]
+Info: Startup Platform: Parrot OS 4.11
+Info: Startup Platform DeepEval NAME: Parrot OS 4.11 KERNEL_NAME: Linux KERNEL_VERSION: 5.10.0-6parrot1-amd64 PROC: unknown ARCH: x86_64
+Info: Startup Language: en_AU, Zone: AEST
+Info: Startup System Uptime: 0.45 days
+Info: Startup CPU Count: 4
+Info: Startup Memory in Megabyte: 3900
+Info: Startup Signature Database: 2021/05/05-092341
+Info: Startup Successfully compiled 0 false positive filters TYPE: log filter
+Info: Startup Writing report file to: parrot_thor_2021-05-08_1242.txt
+Info: Startup Writing csv report file to: parrot_files_md5s.csv
+Info: Startup No json report file will be written
+Info: Startup Writing html report file to: parrot_thor_2021-05-08_1242.html
+Info: Startup Syslog Export: off
+Info: Startup IP Address 1: 192.168.234.131
+Info: Startup ScanID: S-yQ1AKSfYPHM
+Info: Startup System is not a domain controller
+Info: Init Max. file size to be scanned is 12.0 MB, use --max_file_size to increase the limit
+Info: Init Selected modules: Autoruns, EnvCheck, Filescan, Firewall, Hosts, LoggedIn, OpenFiles, ProcessCheck, ServiceCheck, UserDir, Users
+Info: Init Deselected modules: DeepDive, Dropzone
+Info: Init Selected features: Amcache, Archive, ArchiveScan, AtJobs, Bifrost2, C2, CPULimit, CheckString, DoublePulsar, EVTX, ExeDecompress, FilenameIOCs, Filescan, GroupsXML, KeywordIOCs, Lnk, LogScan, Prefetch, ProcessConnections, ProcessHandles, RegistryHive, Rescontrol, SHIMCache, SignalHandler, Stix, TeamViewer, ThorDB, Timestomp, VulnerabilityCheck, WER, WMIPersistence, WebdirScan, Yara
+Info: Init Deselected features: Action, Bifrost, DumpScan, Sigma
+Info: Init System Type: Server
+
+> Reading YARA signatures and IOC files ... -----------------------------------
+Info: Init Adding rule set from thor-lite-all.yas as 'default' type
+Info: Init Adding rule set from thor-lite-keywords.yas as 'keyword' type
+Info: Init Adding rule set from thor-lite-log-sigs.yas as 'log' type
+Info: Init Adding rule set from thor-lite-process-memory-sigs.yas as 'process' type
+Info: Init Ignoring rule set from thor-lite-registry.yas due to operating system type
+Info: Init Successfully compiled 4115 default YARA rules TYPE: YARA
+Info: Init Successfully compiled 7 log YARA rules TYPE: YARA
+Info: Init Successfully compiled 0 keyword YARA rules TYPE: YARA
+Info: Init Successfully compiled 1653 process YARA rules TYPE: YARA
+Info: Init Successfully compiled 0 custom default YARA rules TYPE: YARA
+Info: Init Skip sigma initialization, use '--sigma' flag to scan with sigma
+Info: Init Reading iocs from /home/parrot/MyTools/signatures/iocs/c2-iocs.dat as 'domains' type
+Info: Init Reading iocs from /home/parrot/MyTools/signatures/iocs/falsepositive-hashes.dat as false positive 'hash' type
+Info: Init Reading iocs from /home/parrot/MyTools/signatures/iocs/filename-iocs.dat as 'filename' type
+Info: Init Reading iocs from /home/parrot/MyTools/signatures/iocs/hash-iocs.dat as 'hash' type
+Info: Init Reading iocs from /home/parrot/MyTools/signatures/iocs/keywords.dat as 'keyword' type
+Info: Init Reading iocs from /home/parrot/MyTools/signatures/iocs/otx-hash-iocs.dat as 'hash' type
+Info: Init Reading iocs from /home/parrot/MyTools/signatures/misc/file-type-signatures.dat as 'file-type-signatures' type
+Info: Init Successfully compiled 25 keyword ioc strings TYPE: IOC
+Info: Init Successfully compiled 2239 filename ioc strings and 428 filename ioc regexs TYPE: IOC
+Info: Init Successfully compiled 49395 malware and 30 false positive hashes TYPE: IOC
+Info: Init Successfully compiled 1548 malware domains TYPE: IOC
+Info: Init Successfully compiled 0 malicious handles and 0 regex malicious handles TYPE: IOC
+Info: Init Successfully compiled 0 named pipe ioc strings and 0 named pipe ioc regexs TYPE: IOC
+Info: Init Successfully compiled 75 file type signatures TYPE: IOC
+Info: Init No custom registry excludes defined
+Info: Init No custom eventlog excludes defined
+Info: Init Successfully opened ThorDB PATH: /var/lib/thor/thor10-lite.db ENTRIES: 44
+Info: Init Adding 1548 malware domains to yara process memory and log scans
+Info: Control Found last scan start with same context TIME: Sat May  8 02:38:38 2021 CONTEXT: -p /home/parrot/ctf/Defcon_DFIR_CTF/Memory_Forensics/exe --allreasons
+Info: Control Found last scan finished with same context TIME: Sat May  8 02:38:45 2021 CONTEXT: -p /home/parrot/ctf/Defcon_DFIR_CTF/Memory_Forensics/exe --allreasons
+
+> 1/3 > Running module 'Autoruns' ---------------------------------------------
+Info: Autoruns Starting module
+Info: Autoruns Finished module TOOK: 0 hours 0 mins 0 secs
+
+> 2/3 > Running module 'ProcessCheck' -----------------------------------------
+
+> 3/3 > Running module 'Filesystem Checks' ------------------------------------
+Info: Filescan Starting module
+Info: Filescan The following paths will be scanned: /home/parrot/ctf/Defcon_DFIR_CTF/Memory_Forensics/exe
+Info: Filescan Scanning /home/parrot/ctf/Defcon_DFIR_CTF/Memory_Forensics/exe RECURSIVE
+Warning: Filescan Possibly Dangerous file found
+FILE: /home/parrot/ctf/Defcon_DFIR_CTF/Memory_Forensics/exe/executable.3496.exe EXT: .exe SCORE: 75
+SIZE: 73728
+CREATED: Fri May  7 18:58:19.889 2021 CHANGED: Sat May  8 12:34:30.802 2021 MODIFIED: Sat May  8 12:06:23.389 2021 ACCESSED: Fri May  7 18:58:19.889 2021 PERMISSIONS: -rw-r--r-- OWNER: root
+MD5: 690ea20bc3bdfb328e23005d9a80c290
+SHA1: ab120a232492dcfe8ff49e13f5720f63f0545dc2
+SHA256: b6bdfee2e621949deddfc654dacd7bb8fce78836327395249e1f9b7b5ebfcfb1 TYPE: EXE FIRSTBYTES: 4d5a90000300000004000000ffff0000b8000000 / MZ
+REASON_1: YARA rule Hunting_Rule_ShikataGaNai / - SUBSCORE_1: 75 REF_1: https://www.fireeye.com/blog/threat-research/2019/10/shikata-ga-nai-encoder-still-going-strong.html MATCHED_1: Str1: { d9 74 24 f4 bb be 7a 43 19 5a 29 c9 b1 47 31 5a 18 } TAGS_1:  RULEDATE_1: 1970-01-01 SIGTYPE_1: internal
+Info: Filescan Finished module TOOK: 0 hours 0 mins 0 secs
+
+Results -----------------------------------------------------------------------
+Info: Report Results ALERTS: 0 WARNINGS: 1 ERRORS: 0
+Info: Report For details see the log files written to ["parrot_thor_2021-05-08_1242.txt" "parrot_thor_2021-05-08_1242.html"]
+Info: Report Begin Time: Sat May  8 12:42:23 2021
+Info: Report End Time: Sat May  8 12:42:29 2021
+Info: Report Scan took 0 hours 0 mins 6 secs
+Notice: Report Thor Scan finished TIME: Sat May  8 12:42:29 2021 ALERTS: 0 WARNINGS: 1 NOTICES: 1 ERRORS: 0
+Info: ThorDB Successfully closed ThorDB
+```
+
+<p></p>
+If we look specifically at the 'Filesystem Checks' we can see a warning and a website.
+<p></p>
+
+```
+> 3/3 > Running module 'Filesystem Checks' ------------------------------------
+Info: Filescan Starting module
+Info: Filescan The following paths will be scanned: /home/parrot/ctf/Defcon_DFIR_CTF/Memory_Forensics/exe
+Info: Filescan Scanning /home/parrot/ctf/Defcon_DFIR_CTF/Memory_Forensics/exe RECURSIVE
+Warning: Filescan Possibly Dangerous file found
+FILE: /home/parrot/ctf/Defcon_DFIR_CTF/Memory_Forensics/exe/executable.3496.exe EXT: .exe SCORE: 75
+SIZE: 73728
+CREATED: Fri May  7 18:58:19.889 2021 CHANGED: Sat May  8 12:34:30.802 2021 MODIFIED: Sat May  8 12:06:23.389 2021 ACCESSED: Fri May  7 18:58:19.889 2021 PERMISSIONS: -rw-r--r-- OWNER: root
+MD5: 690ea20bc3bdfb328e23005d9a80c290
+SHA1: ab120a232492dcfe8ff49e13f5720f63f0545dc2
+SHA256: b6bdfee2e621949deddfc654dacd7bb8fce78836327395249e1f9b7b5ebfcfb1 TYPE: EXE FIRSTBYTES: 4d5a90000300000004000000ffff0000b8000000 / MZ
+REASON_1: YARA rule Hunting_Rule_ShikataGaNai / - SUBSCORE_1: 75 REF_1: https://www.fireeye.com/blog/threat-research/2019/10/shikata-ga-nai-encoder-still-going-strong.html MATCHED_1: Str1: { d9 74 24 f4 bb be 7a 43 19 5a 29 c9 b1 47 31 5a 18 } TAGS_1:  RULEDATE_1: 1970-01-01 SIGTYPE_1: internal
+Info: Filescan Finished module TOOK: 0 hours 0 mins 0 secs
+```
+
+<p></p>
+And if we visit that <a href="https://www.fireeye.com/blog/threat-research/2019/10/shikata-ga-nai-encoder-still-going-strong.html" rel="nofollow">website</a> we get a direct reference to Metasploit.
+<p></p>
+This was enough for me to enter this .exe's Pid as the flag and get our final answer.
+<p></p>
+<details>
+    <summary>Answer</summary>
+<p></p>
+
+```
+flag<3496>
+```
+
+</details>
+</details>
 </details>
 
 
