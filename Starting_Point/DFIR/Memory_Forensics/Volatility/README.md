@@ -3687,9 +3687,112 @@ This plugin scans for potential Master File Table (MFT) entries in memory (using
 <br>- <kbd>-o/--offset</kbd> - Prints out the MFT entry at a give offset (comma delimited)
 </details>
 <p></p>
+The first thing we will do is run mftparser and pipe (|) it to tee so we have a .txt file we can run <kbd>grep</kbd> on multiple times. The command looks like this:
+<p></p>
+
+```
+sudo volatility -f Triage-Memory.mem --profile=Win7SP1x64 mftparser | tee mftparser.txt
+```
+
+<p></p>
+This is the final entry from mftparser.
+<p></p>
+
+```
+***************************************************************************
+***************************************************************************
+MFT entry found at offset 0x13dbcdc78
+Attribute: In Use & File
+Record Number: 77271
+Link count: 2
 
 
+$STANDARD_INFORMATION
+Creation                       Modified                       MFT Altered                    Access Date                    Type
+------------------------------ ------------------------------ ------------------------------ ------------------------------ ----
+2019-03-22 01:29:14 UTC+0000 2019-03-22 01:29:14 UTC+0000   2019-03-22 01:29:14 UTC+0000   2019-03-22 01:29:14 UTC+0000   Archive & Content not indexed
 
+$FILE_NAME
+Creation                       Modified                       MFT Altered                    Access Date                    Name/Path
+------------------------------ ------------------------------ ------------------------------ ------------------------------ ---------
+2019-03-22 01:29:14 UTC+0000 2019-03-22 01:29:14 UTC+0000   2019-03-22 01:29:14 UTC+0000   2019-03-22 01:29:14 UTC+0000   Users\Bob\AppData\Local\Temp\UIHLZO~1.PSM
+
+$FILE_NAME
+Creation                       Modified                       MFT Altered                    Access Date                    Name/Path
+------------------------------ ------------------------------ ------------------------------ ------------------------------ ---------
+2019-03-22 01:29:14 UTC+0000 2019-03-22 01:29:14 UTC+0000   2019-03-22 01:29:14 UTC+0000   2019-03-22 01:29:14 UTC+0000   Users\Bob\AppData\Local\Temp\uihlzovb.nhj.p좃m1
+
+$DATA
+
+
+***************************************************************************
+```
+
+<p></p>
+Looking at this we can see:
+<p></p>
+
+```
+***************************************************************************
+***************************************************************************
+MFT entry found at offset 0x13dbcdc78
+Attribute: In Use & File
+Record Number: 77271
+Link count: 2
+```
+
+<p></p>
+Here we can see the record number and then all the information comes post record number, this informs our grep so we know we need to include lines after our found record. The command looks like this:
+<p></p>
+
+```
+cat mftparser.txt | grep -B 4 -A 20 "59045"
+```
+
+<p></p>
+Which returns:
+<p></p>
+
+```
+***************************************************************************
+***************************************************************************
+MFT entry found at offset 0x2193d400
+Attribute: In Use & File
+Record Number: 59045
+Link count: 2
+
+
+$STANDARD_INFORMATION
+Creation                       Modified                       MFT Altered                    Access Date                    Type
+------------------------------ ------------------------------ ------------------------------ ------------------------------ ----
+2019-03-17 06:50:07 UTC+0000 2019-03-17 07:04:43 UTC+0000   2019-03-17 07:04:43 UTC+0000   2019-03-17 07:04:42 UTC+0000   Archive
+
+$FILE_NAME
+Creation                       Modified                       MFT Altered                    Access Date                    Name/Path
+------------------------------ ------------------------------ ------------------------------ ------------------------------ ---------
+2019-03-17 06:50:07 UTC+0000 2019-03-17 07:04:43 UTC+0000   2019-03-17 07:04:43 UTC+0000   2019-03-17 07:04:42 UTC+0000   Users\Bob\DOCUME~1\EMPLOY~1\EMPLOY~1.XLS
+
+$FILE_NAME
+Creation                       Modified                       MFT Altered                    Access Date                    Name/Path
+------------------------------ ------------------------------ ------------------------------ ------------------------------ ---------
+2019-03-17 06:50:07 UTC+0000 2019-03-17 07:04:43 UTC+0000   2019-03-17 07:04:43 UTC+0000   2019-03-17 07:04:42 UTC+0000   Users\Bob\DOCUME~1\EMPLOY~1\EmployeeInformation.xlsx
+
+$OBJECT_ID
+Object ID: 00fe50d2-4841-e911-8751-000c2958bc5f
+```
+
+<p></p>
+Giving us the flag for this challenge.
+<p></p>
+<details>
+    <summary>Answer</summary>
+<p></p>
+
+```
+flag<EMPLOY~1.XLS>
+```
+
+</details>
 </details>
 </details>
 
