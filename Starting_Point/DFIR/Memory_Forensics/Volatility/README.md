@@ -3679,7 +3679,7 @@ This plugin scans for potential Master File Table (MFT) entries in memory (using
 <p></p>
  Options of interest include:
 <p></p>
-<br>- <kbd>-machine</kbd> - Machine name to add to timeline header (useful when combining timelines from multiple machines)
+- <kbd>-machine</kbd> - Machine name to add to timeline header (useful when combining timelines from multiple machines)
 <br>- <kbd>-D/--dump-dir</kbd> - Output directory to which resident data files are dumped
 <br>- <kbd>-output=body</kbd> - print output in Sleuthkit 3.X body format
 <br>- <kbd>-no-check</kbd> - Prints out all entries including those with null timestamps
