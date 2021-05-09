@@ -2529,9 +2529,102 @@ FLAG{8QUGzXSd2WXTHCe1ZW}
 </details>
 </details>
 </details>
+
 <p></p>
 <hr>
 <p></p>
+
+<H3>Memory Forensics</H3>
+<p></p>
+Is a series of challenges from the <a href="https://ctf.hackfest.tn/" rel="nofollow">Hackfest</a> from 2019, these challenges will use the file lab.raw
+<p></p>
+Challenge File: <a href="https://drive.google.com/file/d/1osfmnlXkexk219fv83QvAs-q4I3deFFT/view?usp=sharing" rel="nofollow">Google Drive</a>
+<p></p>
+The answers for these challenge do not have 'flag' infront of them and simply require subbmitting the answer into the answer box on the ctf site.
+<p></p>
+<details>
+    <summary>Extracting the File</summary>
+<p></p>
+When you download it the file comes as memlab_c5f3774eb6ce36405d9a2f8ecb45ef71b3a0a702660587a6b6a357b12d6171f6.7z you can either extract it through an archive manager or through CLI which I will explain now.
+<p></p>
+The first thing you will need is to install p7zip-full if you haven't already. To do this run this command:
+<p></p>
+
+```
+sudo apt install p7zip-full
+```
+
+Now that's installed you can run this command on the file:
+
+```
+p7zip -d memlab_c5f3774eb6ce36405d9a2f8ecb45ef71b3a0a702660587a6b6a357b12d6171f6.7z
+```
+
+Which will output this and extract lab.raw:
+
+```
+❯ p7zip -d memlab_c5f3774eb6ce36405d9a2f8ecb45ef71b3a0a702660587a6b6a357b12d6171f6.7z
+
+7-Zip (a) [64] 16.02 : Copyright (c) 1999-2016 Igor Pavlov : 2016-05-21
+p7zip Version 16.02 (locale=en_AU.UTF-8,Utf16=on,HugeFiles=on,64 bits,4 CPUs Intel(R) Core(TM) i7-7920HQ CPU @ 3.10GHz (906E9),ASM,AES-NI)
+
+Scanning the drive for archives:
+1 file, 392775032 bytes (375 MiB)
+
+Extracting archive: memlab_c5f3774eb6ce36405d9a2f8ecb45ef71b3a0a702660587a6b6a357b12d6171f6.7z
+--
+Path = memlab_c5f3774eb6ce36405d9a2f8ecb45ef71b3a0a702660587a6b6a357b12d6171f6.7z
+Type = 7z
+Physical Size = 392775032
+Headers Size = 122
+Method = LZMA2:24
+Solid = -
+Blocks = 1
+
+Everything is Ok
+
+Size:       2147418112
+Compressed: 392775032
+```
+
+<p></p>
+Once we determine the image profile using <kbd>imageinfo</kbd> (refer to Getting your Foothold ) we can begin our analysis on lab.raw
+<p></p>
+</details>
+
+<details>
+    <summary>Challenges</summary>
+<p></p>
+<details>
+    <summary>Memory Forensics Lab - Question 1</summary>
+<p></p>
+<b>Overview:</b>
+<br>
+Memory forensic refers to the process of investigating a memory dump to locate malicious behaviors. The dump is a snapshot capture of RAM memory at a specific point of time; it can be a full physical memory dump, a crash dump or a hibernation file.
+<br>
+As investigator, this lab will guide you to extract useful artifacts from a given memory snapshot, including running processes, URLs, passwords, encryption keys, open sockets and active connections, open registry keys. That information can be accessed by obtaining and analyzing the attached memory dump.
+Memory dump acquisition for this lab has been performed using "DumpIt" program which has been already installed on the system where the memory dump has been acquired.
+<br>
+<b>Scenario:</b>
+<br>
+A machine has been compromised by a malware and important files have been encrypted. Our job as memory forensics experts is to determine how the malware went into the machine, understand its internal and attempt to recover the important file.
+<br>
+<b>Question:</b>
+<br>
+For verification purpose, what is the SHA256 sum of the attached file ?
+c5f377.. 
+
+
+
+
+
+
+</details>
+
+<p></p>
+<hr>
+<p></p>
+
 <H3>Memory Forensics</H3>
 <p></p>
 Is a series of challenges from the <a href="https://defcon2019.ctfd.io/" rel="nofollow">Defcon DFIR CTF</a> from 2019, these challenges will use the file Triage-Memory.mem (the CTF site calles the file triage.mem)
@@ -2540,8 +2633,8 @@ Challenge File: <a href="https://drive.google.com/file/d/1osfmnlXkexk219fv83QvAs
 <p></p>
 The answers for these challenges are in the form:
 
-``` 
-flag<ANSWER> 
+```
+flag<ANSWER>
 ```
 
 <p></p>
