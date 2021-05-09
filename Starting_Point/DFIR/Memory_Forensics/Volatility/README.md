@@ -3096,6 +3096,195 @@ mirc
 <details>
     <summary>Memory Forensics Lab - Question 7</summary>
 <p></p>
+What is the user's IRC account Password ?
+<br>
+Hint: Clipboard contents are critical to forensic analysis. It often provides valuable forensic information, including user passwords.
+<p></p>
+<details>
+    <summary>Walkthrough</summary>
+<p></p>
+</details>
+</details>
+
+<p></p>
+<hr>
+<p></p>
+
+<details>
+    <summary>Memory Forensics Lab - Question 8</summary>
+<p></p>
+What is the IRC server and channel ?
+<p></p>
+<details>
+    <summary>Walkthrough</summary>
+<p></p>
+</details>
+</details>
+
+<p></p>
+<hr>
+<p></p>
+
+<details>
+    <summary>Memory Forensics Lab - Question 9</summary>
+<p></p>
+What is the Nickname of the attacker ?
+<p></p>
+<details>
+    <summary>Walkthrough</summary>
+<p></p>
+</details>
+</details>
+
+<p></p>
+<hr>
+<p></p>
+
+<details>
+    <summary>Memory Forensics Lab - Question 10</summary>
+<p></p>
+What is the suspicious URL visited by the victim ?
+<p></p>
+<details>
+    <summary>Walkthrough</summary>
+<p></p>
+</details>
+</details>
+
+<p></p>
+<hr>
+<p></p>
+
+<details>
+    <summary>Memory Forensics Lab - Question 11</summary>
+<p></p>
+What is the file that has been downloaded ?
+<p></p>
+<details>
+    <summary>Walkthrough</summary>
+<p></p>
+</details>
+</details>
+
+<p></p>
+<hr>
+<p></p>
+
+<details>
+    <summary>Memory Forensics Lab - Question 12</summary>
+<p></p>
+What is the torrent site ?
+<p></p>
+<details>
+    <summary>Walkthrough</summary>
+<p></p>
+</details>
+</details>
+
+<p></p>
+<hr>
+<p></p>
+
+<details>
+    <summary>Memory Forensics Lab - Question 13</summary>
+<p></p>
+What is the malware process name ?
+<p></p>
+<details>
+    <summary>Walkthrough</summary>
+<p></p>
+</details>
+</details>
+
+<p></p>
+<hr>
+<p></p>
+
+<details>
+    <summary>Memory Forensics Lab - Question 14</summary>
+<p></p>
+What is the type of this malware ?
+<p></p>
+<details>
+    <summary>Walkthrough</summary>
+<p></p>
+</details>
+</details>
+
+<p></p>
+<hr>
+<p></p>
+
+<details>
+    <summary>Memory Forensics Lab - Question 15</summary>
+<p></p>
+Is the malware known ? what is its name ?
+<p></p>
+<details>
+    <summary>Walkthrough</summary>
+<p></p>
+</details>
+</details>
+
+<p></p>
+<hr>
+<p></p>
+
+<details>
+    <summary>Memory Forensics Lab - Question 16</summary>
+<p></p>
+What is the Bitcoin address of the attacker?
+<p></p>
+<details>
+    <summary>Walkthrough</summary>
+<p></p>
+</details>
+</details>
+
+<p></p>
+<hr>
+<p></p>
+
+<details>
+    <summary>Memory Forensics Lab - Question 17</summary>
+<p></p>
+What is the malware's control server ?
+<p></p>
+<details>
+    <summary>Walkthrough</summary>
+<p></p>
+</details>
+</details>
+
+<p></p>
+<hr>
+<p></p>
+
+<details>
+    <summary>Memory Forensics Lab - Question 18</summary>
+<p></p>
+What is the Encryption password?
+<p></p>
+<details>
+    <summary>Walkthrough</summary>
+<p></p>
+</details>
+</details>
+
+<p></p>
+<hr>
+<p></p>
+
+<details>
+    <summary>Memory Forensics Lab - Question 19</summary>
+<p></p>
+Recover the secret
+<p></p>
+<details>
+    <summary>Walkthrough</summary>
+<p></p>
+</details>
+</details>
 
 
 
@@ -3114,12 +3303,6 @@ mirc
 
 
 
-
-
-
-
-
-</details>
 
 <p></p>
 <hr>
