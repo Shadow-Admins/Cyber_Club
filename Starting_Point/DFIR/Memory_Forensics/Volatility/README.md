@@ -2542,6 +2542,8 @@ Challenge File: <a href="https://drive.google.com/file/d/1lPkhMQa4vFLyteN2p1yT27
 <p></p>
 The answers for these challenge do not have 'flag' infront of them and simply require subbmitting the answer into the answer box on the ctf site.
 <p></p>
+<b>Do the first challenge before extracting the file.</b>
+<p></p>
 <details>
     <summary>Extracting the File</summary>
 <p></p>
@@ -2634,6 +2636,258 @@ Which gives us the flag for this challenge.
     <summary>Answer</summary>
 <p></p>
 c5f3774eb6ce36405d9a2f8ecb45ef71b3a0a702660587a6b6a357b12d6171f6
+
+</details>
+</details>
+</details>
+
+<p></p>
+<hr>
+<p></p>
+
+<details>
+    <summary>Memory Forensics Lab - Question 2</summary>
+<p></p>
+ What is the Operating System of the machine being investigated?
+<p></p>
+<details>
+    <summary>Walkthrough</summary>
+<p></p>
+To get the flag for this challenge we weed to run the imageinfo option to discover what the image OS is. The command and output looks like this:
+<p></p>
+
+```
+sudo volatility -f lab.raw imageinfo
+```
+
+<p></p>
+Which outputs:
+<p></p>
+
+```
+❯ sudo volatility -f lab.raw imageinfo
+Volatility Foundation Volatility Framework 2.6
+INFO    : volatility.debug    : Determining profile based on KDBG search...
+          Suggested Profile(s) : Win7SP1x64, Win7SP0x64, Win2008R2SP0x64, Win2008R2SP1x64_23418, Win2008R2SP1x64, Win7SP1x64_23418
+                     AS Layer1 : WindowsAMD64PagedMemory (Kernel AS)
+                     AS Layer2 : FileAddressSpace (/home/parrot/ctf/hackfest/Memory_Forensics/lab.raw)
+                      PAE type : No PAE
+                           DTB : 0x187000L
+                          KDBG : 0xf80002846070L
+          Number of Processors : 1
+     Image Type (Service Pack) : 0
+                KPCR for CPU 0 : 0xfffff80002847d00L
+             KUSER_SHARED_DATA : 0xfffff78000000000L
+           Image date and time : 2019-12-06 19:54:14 UTC+0000
+     Image local date and time : 2019-12-06 11:54:14 -0800
+```
+
+<p></p>
+Looking through the output we go to the suggested profiles and use the first suggested profile. The flag is the whole name of the OS.
+<p></p>
+<details>
+    <summary>Answer</summary>
+<p></p>
+Windows 7
+
+</details>
+</details>
+</details>
+
+<p></p>
+<hr>
+<p></p>
+
+<details>
+    <summary>Memory Forensics Lab - Question 3</summary>
+<p></p>
+ What is the computer Name ?
+<p></p>
+<details>
+    <summary>Walkthrough</summary>
+<p></p>
+There are two methods to obtain the flag for this challenge, the first and simpler way is using the envars option and the second is pulling the registry sub key that contains the computer name. I will go over the envars method first. The command looks like this:
+<p></p>
+
+```
+sudo volatility -f lab.raw --profile=Win7SP1x64 envars | tee envars.txt
+```
+
+<p></p>
+You can see that I piped (|) the output to tee and a .txt file, this is so I can see the output (So I know what the file looks like, and I can better structure my grep command). Now that we have a .txt file we can run <kbd>grep</kbd> against the file ans search for the computer name. The command looks like this:
+<p></p>
+
+```
+cat envar.txt | grep -i computername
+```
+
+<p></p>
+Which outputs:
+<p></p>
+
+```
+❯ cat envars.txt| grep -i computername                                                                                                                                                        
+     380 wininit.exe          0x0000000000299ae0 COMPUTERNAME                   LAB-VM-C57C                                                                                                   
+     432 winlogon.exe         0x000000000036e490 COMPUTERNAME                   LAB-VM-C57C                                                                                                   
+     476 services.exe         0x0000000000111320 COMPUTERNAME                   LAB-VM-C57C                                                                                                   
+     484 lsass.exe            0x0000000000331320 COMPUTERNAME                   LAB-VM-C57C
+     492 lsm.exe              0x0000000000261320 COMPUTERNAME                   LAB-VM-C57C
+     596 svchost.exe          0x00000000002a1320 COMPUTERNAME                   LAB-VM-C57C
+     656 VBoxService.ex       0x0000000000071320 COMPUTERNAME                   LAB-VM-C57C
+     712 svchost.exe          0x0000000000211320 COMPUTERNAME                   LAB-VM-C57C
+     768 svchost.exe          0x0000000000121320 COMPUTERNAME                   LAB-VM-C57C
+     892 svchost.exe          0x0000000000441320 COMPUTERNAME                   LAB-VM-C57C
+     920 svchost.exe          0x00000000003e1320 COMPUTERNAME                   LAB-VM-C57C
+     340 svchost.exe          0x0000000000351320 COMPUTERNAME                   LAB-VM-C57C
+     372 svchost.exe          0x0000000000271320 COMPUTERNAME                   LAB-VM-C57C
+    1132 dwm.exe              0x0000000000371320 COMPUTERNAME                   LAB-VM-C57C
+    1144 explorer.exe         0x0000000003970b10 COMPUTERNAME                   LAB-VM-C57C
+    1200 spoolsv.exe          0x0000000000321320 COMPUTERNAME                   LAB-VM-C57C
+    1256 taskhost.exe         0x0000000000281320 COMPUTERNAME                   LAB-VM-C57C
+    1284 svchost.exe          0x0000000000291320 COMPUTERNAME                   LAB-VM-C57C
+    1404 svchost.exe          0x0000000000261320 COMPUTERNAME                   LAB-VM-C57C
+    1556 VBoxTray.exe         0x0000000000321320 COMPUTERNAME                   LAB-VM-C57C
+    1564 BitTorrent.exe       0x0000000000291320 COMPUTERNAME                   LAB-VM-C57C
+    1572 StikyNot.exe         0x0000000000151320 COMPUTERNAME                   LAB-VM-C57C
+    1608 SearchIndexer.       0x00000000001ea9e0 COMPUTERNAME                   LAB-VM-C57C
+    2160 bittorrentie.e       0x0000000000091320 COMPUTERNAME                   LAB-VM-C57C
+    2200 bittorrentie.e       0x0000000000581320 COMPUTERNAME                   LAB-VM-C57C
+    2268 GoogleCrashHan       0x0000000000161320 COMPUTERNAME                   LAB-VM-C57C
+    2276 GoogleCrashHan       0x0000000000411320 COMPUTERNAME                   LAB-VM-C57C
+    2488 wmpnetwk.exe         0x00000000000f3740 COMPUTERNAME                   LAB-VM-C57C
+    3052 cmd.exe              0x0000000000278ab0 COMPUTERNAME                   LAB-VM-C57C
+    2796 regedit.exe          0x0000000000111320 COMPUTERNAME                   LAB-VM-C57C
+    2396 chrome.exe           0x0000000000bf4e20 COMPUTERNAME                   LAB-VM-C57C
+    2876 chrome.exe           0x0000000000af1320 COMPUTERNAME                   LAB-VM-C57C
+    2856 chrome.exe           0x0000000000a61320 COMPUTERNAME                   LAB-VM-C57C
+    3032 chrome.exe           0x0000000000061320 COMPUTERNAME                   LAB-VM-C57C
+    1092 chrome.exe           0x0000000000b61320 COMPUTERNAME                   LAB-VM-C57C
+    3204 chrome.exe           0x0000000000b31320 COMPUTERNAME                   LAB-VM-C57C
+    3492 chrome.exe           0x0000000000a61320 COMPUTERNAME                   LAB-VM-C57C
+    3576 chrome.exe           0x0000000000941320 COMPUTERNAME                   LAB-VM-C57C
+    3688 WmiPrvSE.exe         0x0000000000361320 COMPUTERNAME                   LAB-VM-C57C
+    3960 sppsvc.exe           0x00000000002e1320 COMPUTERNAME                   LAB-VM-C57C
+    1960 svchost.exe          0x000000000039c3c0 COMPUTERNAME                   LAB-VM-C57C
+    1592 mirc.exe             0x0000000001631320 COMPUTERNAME                   LAB-VM-C57C
+    3660 WmiApSrv.exe         0x0000000000251320 COMPUTERNAME                   LAB-VM-C57C
+    1492 wuauclt.exe          0x0000000000291320 COMPUTERNAME                   LAB-VM-C57C
+    2128 SearchProtocol       0x0000000000301320 COMPUTERNAME                   LAB-VM-C57C
+    3424 crypt0r.exe          0x00000000003b1320 COMPUTERNAME                   LAB-VM-C57C
+    1528 SearchFilterHo       0x0000000000381320 COMPUTERNAME                   LAB-VM-C57C
+     376 notepad.exe          0x0000000000321320 COMPUTERNAME                   LAB-VM-C57C
+    3820 notepad.exe          0x00000000002a1320 COMPUTERNAME                   LAB-VM-C57C
+    3076 DumpIt.exe           0x0000000000251320 COMPUTERNAME                   LAB-VM-C57C
+```
+
+<p></p>
+Here we can see the computer name and the flag for this challenge.
+<p></p>
+I will now go over pulling the registry sub key that contains the computer name. First we need to discover where in the registry the computer name is held. A quick google shows:
+<p></p>
+"This key shows computer name in all Windows versions – Windows 7, 8 and 10. HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\ComputerName\ActiveComputerName"
+<p></p>
+Now that we know where the registry key is located we need to list the registry hives using the hivelist option. The command looks like this:
+<p></p>
+
+```
+sudo volatility -f lab.raw --profile=Win7SP1x64 hivelist
+```
+
+<p></p>
+Which outputs this:
+<p></p>
+
+```
+❯ sudo volatility -f lab.raw --profile=Win7SP1x64 hivelist
+Volatility Foundation Volatility Framework 2.6
+Virtual            Physical           Name
+------------------ ------------------ ----
+0xfffff8a00000d010 0x000000002d5b3010 [no name]
+0xfffff8a000024010 0x000000002d4d8010 \REGISTRY\MACHINE\SYSTEM
+0xfffff8a00004e010 0x000000002d4c2010 \REGISTRY\MACHINE\HARDWARE
+0xfffff8a00011f010 0x000000002b229010 \SystemRoot\System32\Config\SECURITY
+0xfffff8a0001af010 0x000000002920a010 \SystemRoot\System32\Config\SOFTWARE
+0xfffff8a000dcd420 0x000000001e5d8420 \??\C:\Windows\ServiceProfiles\NetworkService\NTUSER.DAT
+0xfffff8a000e5a010 0x0000000021de6010 \??\C:\Windows\ServiceProfiles\LocalService\NTUSER.DAT
+0xfffff8a00100e3f0 0x000000001d5eb3f0 \??\C:\Users\maro\AppData\Local\Microsoft\Windows\UsrClass.dat
+0xfffff8a0014c7010 0x00000000211ba010 \??\C:\System Volume Information\Syscache.hve
+0xfffff8a0036ab010 0x000000002827d010 \SystemRoot\System32\Config\DEFAULT
+0xfffff8a0036bf010 0x00000000281ed010 \SystemRoot\System32\Config\SAM
+0xfffff8a005d2f420 0x0000000018fc8420 \??\C:\Users\maro\ntuser.dat
+0xfffff8a005dcc420 0x00000000290e8420 \Device\HarddiskVolume1\Boot\BCD
+```
+
+<p></p>
+We know from our research that the key is located in the SYSTEM hive, we will use this information in the next step using the printkey option. The command looks like this:
+<p></p>
+
+```
+sudo volatility -f lab.raw --profile=Win7SP1x64 printkey -o 0xfffff8a000024010
+```
+
+<p></p>
+which outputs:
+<p></p>
+
+```
+❯ sudo volatility -f lab.raw --profile=Win7SP1x64 printkey -o 0xfffff8a000024010
+Volatility Foundation Volatility Framework 2.6
+Legend: (S) = Stable   (V) = Volatile
+
+----------------------------
+Registry: \REGISTRY\MACHINE\SYSTEM
+Key name: CMI-CreateHive{2A7FB991-7BBE-4F9D-B91E-7CB51D4737F5} (S)
+Last updated: 2019-12-06 19:47:06 UTC+0000
+
+Subkeys:
+  (S) ControlSet001
+  (S) ControlSet002
+  (S) MountedDevices
+  (S) RNG
+  (S) Select
+  (S) Setup
+  (S) WPA
+  (V) CurrentControlSet
+
+Values:
+```
+
+<p></p>
+Here we can see the subkeys listed, we do this step so that we can see the ControlSet001 subkey which we need to use with the research we did earlier, the next command looks like this:
+<p></p>
+
+```
+sudo volatility -f lab.raw --profile=Win7SP1x64 printkey -o 0xfffff8a000024010 -K 'ControlSet001\Control\ComputerName\ComputerName'
+```
+
+<p></p>
+Which outputs this:
+<p></p>
+
+```
+❯ sudo volatility -f lab.raw --profile=Win7SP1x64 printkey -o 0xfffff8a000024010 -K 'ControlSet001\Control\ComputerName\ComputerName'
+Volatility Foundation Volatility Framework 2.6
+Legend: (S) = Stable   (V) = Volatile
+
+----------------------------
+Registry: \REGISTRY\MACHINE\SYSTEM
+Key name: ComputerName (S)
+Last updated: 2019-12-06 15:21:08 UTC+0000
+
+Subkeys:
+
+Values:
+REG_SZ                        : (S) mnmsrvc
+REG_SZ        ComputerName    : (S) LAB-VM-C57C
+```
+
+<p></p>
+Here we can see the computername in the output, giving us the answer.
+<p></p>
+<details>
+    <summary>Answer</summary>
+<p></p>
+LAB-VM-C57C
 
 </details>
 </details>
