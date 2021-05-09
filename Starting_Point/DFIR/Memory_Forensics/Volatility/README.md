@@ -2604,15 +2604,28 @@ Memory forensic refers to the process of investigating a memory dump to locate m
 <br>
 As investigator, this lab will guide you to extract useful artifacts from a given memory snapshot, including running processes, URLs, passwords, encryption keys, open sockets and active connections, open registry keys. That information can be accessed by obtaining and analyzing the attached memory dump.
 Memory dump acquisition for this lab has been performed using "DumpIt" program which has been already installed on the system where the memory dump has been acquired.
-<br>
+<p></p>
 <b>Scenario:</b>
 <br>
 A machine has been compromised by a malware and important files have been encrypted. Our job as memory forensics experts is to determine how the malware went into the machine, understand its internal and attempt to recover the important file.
-<br>
+<p></p>
 <b>Question:</b>
 <br>
 For verification purpose, what is the SHA256 sum of the attached file ?
 c5f377.. 
+<p></p>
+<details>
+    <summary>Walkthrough</summary>
+<p></p>
+
+
+
+
+
+</details>
+
+
+
 
 
 
