@@ -2538,12 +2538,14 @@ FLAG{8QUGzXSd2WXTHCe1ZW}
 <p></p>
 Is a series of challenges from the <a href="https://ctf.hackfest.tn/" rel="nofollow">Hackfest</a> from 2019, these challenges will use the file lab.raw
 <p></p>
-Challenge File: <a href="https://drive.google.com/file/d/1osfmnlXkexk219fv83QvAs-q4I3deFFT/view?usp=sharing" rel="nofollow">Google Drive</a>
+Challenge File: <a href="https://drive.google.com/file/d/1lPkhMQa4vFLyteN2p1yT27wVsZtMVFAI/view?usp=sharing" rel="nofollow">Google Drive</a>
 <p></p>
 The answers for these challenge do not have 'flag' infront of them and simply require subbmitting the answer into the answer box on the ctf site.
 <p></p>
 <details>
     <summary>Extracting the File</summary>
+<p></p>
+<b>Do the first challenge before extracting the file.</b>
 <p></p>
 When you download it the file comes as memlab_c5f3774eb6ce36405d9a2f8ecb45ef71b3a0a702660587a6b6a357b12d6171f6.7z you can either extract it through an archive manager or through CLI which I will explain now.
 <p></p>
@@ -2612,15 +2614,28 @@ A machine has been compromised by a malware and important files have been encryp
 <b>Question:</b>
 <br>
 For verification purpose, what is the SHA256 sum of the attached file ?
-c5f377.. 
+c5f377..
 <p></p>
 <details>
     <summary>Walkthrough</summary>
 <p></p>
+To do this we run <kbd>sha256sum</kbd> on memlab_c5f3774eb6ce36405d9a2f8ecb45ef71b3a0a702660587a6b6a357b12d6171f6.7z the command and output looks like this:
+<p></p>
 
+```
+❯ sha256sum memlab_c5f3774eb6ce36405d9a2f8ecb45ef71b3a0a702660587a6b6a357b12d6171f6.7z                                                                                                        
+c5f3774eb6ce36405d9a2f8ecb45ef71b3a0a702660587a6b6a357b12d6171f6  memlab_c5f3774eb6ce36405d9a2f8ecb45ef71b3a0a702660587a6b6a357b12d6171f6.7z                                                  
+```
 
+<p></p>
+Which gives us the flag for this challenge.
+<p></p>
+<details>
+    <summary>Answer</summary>
+<p></p>
+c5f3774eb6ce36405d9a2f8ecb45ef71b3a0a702660587a6b6a357b12d6171f6
 
-
+</details>
 </details>
 </details>
 
