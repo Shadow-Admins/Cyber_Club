@@ -2706,7 +2706,7 @@ Windows 7
 <details>
     <summary>Walkthrough</summary>
 <p></p>
-There are two methods to obtain the flag for this challenge, the first and simpler way is using the envars option and the second is pulling the registry sub key that contains the computer name. I will go over the envars method first. The command looks like this:
+There are two methods to obtain the flag for this challenge, the first and simpler way is using the envars option and the second is pulling the registry sub key that contains the computer name (I have written a better explaination of pulling registry subkeys in the Rick-GeneralInfo challenge). I will go over the envars method first. The command looks like this:
 <p></p>
 
 ```
@@ -2892,6 +2892,224 @@ LAB-VM-C57C
 </details>
 </details>
 </details>
+
+<p></p>
+<hr>
+<p></p>
+
+<details>
+    <summary>Memory Forensics Lab - Question 4</summary>
+<p></p>
+</details>
+
+<p></p>
+<hr>
+<p></p>
+
+<details>
+    <summary>Memory Forensics Lab - Question 5</summary>
+<p></p>
+What is the IP address of the machine?
+<p></p>
+<details>
+    <summary>Walkthrough</summary>
+<p></p>
+IOT get the flag for this challenge we need to list all the network connection, we will do this using the netscan option. The command looks like this:
+<p></p>
+
+```
+sudo volatility -f lab.raw --profile=Win7SP1x64 netscan
+```
+
+<p></p>
+Which outputs:
+<p></p>
+
+```
+❯ sudo volatility -f lab.raw --profile=Win7SP1x64 netscan                                                                                                                            [50/3469]
+Volatility Foundation Volatility Framework 2.6                                                                                                                                                
+Offset(P)          Proto    Local Address                  Foreign Address      State            Pid      Owner          Created                                                              
+0x7dc293f0         UDPv6    fe80::a0e4:262f:80eb:3d68:1900 *:*                                   1404     svchost.exe    2019-12-06 19:47:15 UTC+0000                                         
+0x7dc34d00         UDPv4    10.0.2.15:1900                 *:*                                   1404     svchost.exe    2019-12-06 19:47:15 UTC+0000                                         
+0x7dc6b460         UDPv4    0.0.0.0:3702                   *:*                                   340      svchost.exe    2019-12-06 19:47:17 UTC+0000                                         
+0x7dc6b460         UDPv6    :::3702                        *:*                                   340      svchost.exe    2019-12-06 19:47:17 UTC+0000                                         
+0x7dc71d00         UDPv4    127.0.0.1:64509                *:*                                   1404     svchost.exe    2019-12-06 19:47:15 UTC+0000                                         
+0x7dc782d0         UDPv4    10.0.2.15:64508                *:*                                   1404     svchost.exe    2019-12-06 19:47:15 UTC+0000                                         
+0x7dc79a40         UDPv6    fe80::a0e4:262f:80eb:3d68:64506 *:*                                   1404     svchost.exe    2019-12-06 19:47:15 UTC+0000                                        
+0x7dc7a380         UDPv4    127.0.0.1:1900                 *:*                                   1404     svchost.exe    2019-12-06 19:47:15 UTC+0000                                         
+0x7dcee460         UDPv4    0.0.0.0:3702                   *:*                                   1404     svchost.exe    2019-12-06 19:47:17 UTC+0000                                         
+0x7dcee460         UDPv6    :::3702                        *:*                                   1404     svchost.exe    2019-12-06 19:47:17 UTC+0000                                         
+0x7dcef010         UDPv4    0.0.0.0:57684                  *:*                                   340      svchost.exe    2019-12-06 19:47:18 UTC+0000                                         
+0x7dcf1550         UDPv4    0.0.0.0:63041                  *:*                                   340      svchost.exe    2019-12-06 19:47:16 UTC+0000                                         
+0x7dcf3bb0         UDPv4    0.0.0.0:63042                  *:*                                   340      svchost.exe    2019-12-06 19:47:16 UTC+0000                                         
+0x7dcf3bb0         UDPv6    :::63042                       *:*                                   340      svchost.exe    2019-12-06 19:47:16 UTC+0000                                         
+0x7dcfb9e0         UDPv4    0.0.0.0:57685                  *:*                                   340      svchost.exe    2019-12-06 19:47:18 UTC+0000                                         
+0x7dcfb9e0         UDPv6    :::57685                       *:*                                   340      svchost.exe    2019-12-06 19:47:18 UTC+0000                                         
+0x7dcfbb30         UDPv4    0.0.0.0:3702                   *:*                                   1404     svchost.exe    2019-12-06 19:47:17 UTC+0000                                         
+0x7dcfbcb0         UDPv4    0.0.0.0:3702                   *:*                                   340      svchost.exe    2019-12-06 19:47:17 UTC+0000                                         
+0x7dd48360         UDPv4    0.0.0.0:64770                  *:*                                   2160     bittorrentie.e 2019-12-06 19:47:41 UTC+0000                                         
+0x7dd48360         UDPv6    :::64770                       *:*                                   2160     bittorrentie.e 2019-12-06 19:47:41 UTC+0000                                         
+0x7dd484b0         UDPv4    127.0.0.1:55621                *:*                                   2160     bittorrentie.e 2019-12-06 19:47:41 UTC+0000                                         
+0x7dfd47e0         UDPv4    0.0.0.0:3702                   *:*                                   1404     svchost.exe    2019-12-06 19:47:17 UTC+0000                                         
+0x7dfe9010         UDPv4    10.0.2.15:6771                 *:*                                   1564     BitTorrent.exe 2019-12-06 19:47:13 UTC+0000                                         
+0x7dffd8f0         UDPv4    0.0.0.0:0                      *:*                                   372      svchost.exe    2019-12-06 19:47:13 UTC+0000                                         
+0x7dffd8f0         UDPv6    :::0                           *:*                                   372      svchost.exe    2019-12-06 19:47:13 UTC+0000                                         
+0x7e145b30         UDPv4    0.0.0.0:5355                   *:*                                   372      svchost.exe    2019-12-06 19:47:15 UTC+0000                                         
+0x7e1dc820         UDPv4    10.0.2.15:137                  *:*                                   4        System         2019-12-06 19:47:13 UTC+0000                                         
+0x7e27e240         UDPv4    0.0.0.0:46690                  *:*                                   1564     BitTorrent.exe 2019-12-06 19:47:11 UTC+0000                                         
+0x7e296c20         UDPv4    0.0.0.0:0                      *:*                                   656      VBoxService.ex 2019-12-06 19:54:14 UTC+0000                                         
+0x7e32a8b0         UDPv6    ::1:64507                      *:*                                   1404     svchost.exe    2019-12-06 19:47:15 UTC+0000                                         
+0x7e3612b0         UDPv4    127.0.0.1:6771                 *:*                                   1564     BitTorrent.exe 2019-12-06 19:47:13 UTC+0000                                         
+0x7e375b80         UDPv4    0.0.0.0:0                      *:*                                   1564     BitTorrent.exe 2019-12-06 19:47:31 UTC+0000                                         
+0x7e3d36d0         UDPv4    0.0.0.0:5353                   *:*                                   2396     chrome.exe     2019-12-06 19:48:01 UTC+0000
+0x7e3f75c0         UDPv4    0.0.0.0:3702                   *:*                                   1404     svchost.exe    2019-12-06 19:47:17 UTC+0000
+0x7e3f75c0         UDPv6    :::3702                        *:*                                   1404     svchost.exe    2019-12-06 19:47:17 UTC+0000
+0x7dc22010         TCPv4    0.0.0.0:49164                  0.0.0.0:0            LISTENING        484      lsass.exe      
+0x7dc22010         TCPv6    :::49164                       :::0                 LISTENING        484      lsass.exe      
+0x7dc47ce0         TCPv4    0.0.0.0:49164                  0.0.0.0:0            LISTENING        484      lsass.exe      
+0x7e0008b0         TCPv4    0.0.0.0:49154                  0.0.0.0:0            LISTENING        920      svchost.exe    
+0x7e0008b0         TCPv6    :::49154                       :::0                 LISTENING        920      svchost.exe    
+0x7e219360         TCPv4    0.0.0.0:135                    0.0.0.0:0            LISTENING        712      svchost.exe    
+0x7e228d30         TCPv4    0.0.0.0:135                    0.0.0.0:0            LISTENING        712      svchost.exe    
+0x7e228d30         TCPv6    :::135                         :::0                 LISTENING        712      svchost.exe    
+0x7e2322b0         TCPv4    0.0.0.0:49152                  0.0.0.0:0            LISTENING        380      wininit.exe    
+0x7e234e60         TCPv4    0.0.0.0:49152                  0.0.0.0:0            LISTENING        380      wininit.exe    
+0x7e234e60         TCPv6    :::49152                       :::0                 LISTENING        380      wininit.exe    
+0x7e281770         TCPv4    0.0.0.0:46690                  0.0.0.0:0            LISTENING        1564     BitTorrent.exe 
+0x7e2b8680         TCPv4    0.0.0.0:49153                  0.0.0.0:0            LISTENING        768      svchost.exe    
+0x7e2b8680         TCPv6    :::49153                       :::0                 LISTENING        768      svchost.exe    
+0x7e2bc480         TCPv4    0.0.0.0:49153                  0.0.0.0:0            LISTENING        768      svchost.exe    
+0x7e3406f0         TCPv4    0.0.0.0:49155                  0.0.0.0:0            LISTENING        476      services.exe   
+0x7e342a80         TCPv4    0.0.0.0:49155                  0.0.0.0:0            LISTENING        476      services.exe   
+0x7e342a80         TCPv6    :::49155                       :::0                 LISTENING        476      services.exe   
+0x7e365cd0         TCPv4    0.0.0.0:5357                   0.0.0.0:0            LISTENING        4        System         
+0x7e365cd0         TCPv6    :::5357                        :::0                 LISTENING        4        System         
+0x7e3fb280         TCPv4    0.0.0.0:49154                  0.0.0.0:0            LISTENING        920      svchost.exe    
+0x7dc0c980         TCPv4    10.0.2.15:49206                94.125.182.252:6697  ESTABLISHED      1592     mirc.exe       
+0x7dc49290         TCPv4    10.0.2.15:49219                193.70.38.49:80      CLOSE_WAIT       3424     crypt0r.exe    
+0x7dd3b510         TCPv6    -:0                            387b:4803:80fa:ffff:387b:4803:80fa:ffff:0 CLOSED           1564     BitTorrent.exe 
+0x7dd63010         TCPv4    -:0                            56.123.72.3:0        CLOSED           1564     BitTorrent.exe 
+0x7df76cf0         TCPv6    -:0                            385b:3003:80fa:ffff:d063:a302:80fa:ffff:0 CLOSED           340      svchost.exe    
+0x7df92cf0         TCPv4    -:0                            56.91.48.3:0         CLOSED           1564     BitTorrent.exe 
+0x7dfe24f0         TCPv4    10.0.2.15:49221                216.58.213.163:443   ESTABLISHED      3032     chrome.exe     
+0x7e113010         TCPv4    -:0                            56.123.72.3:0        CLOSED           3032     chrome.exe     
+0x7e1f0940         TCPv4    10.0.2.15:49203                50.28.34.67:443      CLOSE_WAIT       1592     mirc.exe       
+0x7e2d5010         TCPv4    10.0.2.15:49220                216.58.213.163:443   ESTABLISHED      3032     chrome.exe     
+0x7e4a9370         UDPv4    0.0.0.0:5353                   *:*                                   2396     chrome.exe     2019-12-06 19:48:01 UTC+0000
+0x7e4a9370         UDPv6    :::5353                        *:*                                   2396     chrome.exe     2019-12-06 19:48:01 UTC+0000
+0x7e62c950         UDPv4    0.0.0.0:5355                   *:*                                   372      svchost.exe    2019-12-06 19:47:15 UTC+0000
+0x7e62c950         UDPv6    :::5355                        *:*                                   372      svchost.exe    2019-12-06 19:47:15 UTC+0000
+0x7e64eec0         UDPv4    0.0.0.0:3702                   *:*                                   340      svchost.exe    2019-12-06 19:47:17 UTC+0000
+0x7e64eec0         UDPv6    :::3702                        *:*                                   340      svchost.exe    2019-12-06 19:47:17 UTC+0000
+0x7e655e40         UDPv4    0.0.0.0:3702                   *:*                                   340      svchost.exe    2019-12-06 19:47:17 UTC+0000
+0x7e705810         UDPv4    127.0.0.1:62228                *:*                                   1564     BitTorrent.exe 2019-12-06 19:47:12 UTC+0000
+0x7e440700         TCPv6    -:0                            387b:4803:80fa:ffff:387b:4803:80fa:ffff:0 CLOSED           1564     BitTorrent.exe 
+0x7ee02010         UDPv4    0.0.0.0:65081                  *:*                                   1404     svchost.exe    2019-12-06 19:47:11 UTC+0000
+0x7ee02010         UDPv6    :::65081                       *:*                                   1404     svchost.exe    2019-12-06 19:47:11 UTC+0000
+0x7ee967e0         UDPv6    ::1:1900                       *:*                                   1404     svchost.exe    2019-12-06 19:47:15 UTC+0000
+0x7eeba730         UDPv4    0.0.0.0:1900                   *:*                                   1564     BitTorrent.exe 2019-12-06 19:47:12 UTC+0000
+0x7eed1b70         UDPv4    10.0.2.15:138                  *:*                                   4        System         2019-12-06 19:47:13 UTC+0000
+0x7f1fc880         UDPv4    0.0.0.0:65080                  *:*                                   1404     svchost.exe    2019-12-06 19:47:11 UTC+0000
+0x7ee470f0         TCPv4    0.0.0.0:445                    0.0.0.0:0            LISTENING        4        System         
+0x7ee470f0         TCPv6    :::445                         :::0                 LISTENING        4        System         
+0x7fc88560         UDPv4    0.0.0.0:0                      *:*                                   656      VBoxService.ex 2019-12-06 19:54:29 UTC+0000
+0x7fcb3220         UDPv4    0.0.0.0:0                      *:*                                   3424     crypt0r.exe    2019-12-06 19:53:46 UTC+0000
+0x7fd10920         UDPv6    fe80::a0e4:262f:80eb:3d68:546  *:*                                   768      svchost.exe    2019-12-06 19:54:28 UTC+0000
+0x7fd50550         UDPv4    0.0.0.0:0                      *:*                                   3424     crypt0r.exe    2019-12-06 19:53:46 UTC+0000
+0x7fdadac0         UDPv4    0.0.0.0:0                      *:*                                   3424     crypt0r.exe    2019-12-06 19:53:46 UTC+0000
+0x7fdadac0         UDPv6    :::0                           *:*                                   3424     crypt0r.exe    2019-12-06 19:53:46 UTC+0000
+0x7fdafec0         UDPv4    0.0.0.0:0                      *:*                                   3424     crypt0r.exe    2019-12-06 19:53:46 UTC+0000
+0x7fdafec0         UDPv6    :::0                           *:*                                   3424     crypt0r.exe    2019-12-06 19:53:46 UTC+0000
+0x7fee1ce0         TCPv4    10.0.2.15:139                  0.0.0.0:0            LISTENING        4        System         
+0x7fd50cf0         TCPv4    10.0.2.15:49222                216.239.34.117:443   ESTABLISHED      3032     chrome.exe     
+0x7fd58cf0         TCPv4    10.0.2.15:49217                172.217.22.131:443   CLOSED           3032     chrome.exe     
+```
+
+<p></p>
+Normally I go stright to system and look at the local ip address as this normally shows the system ip. we can see that in the output.
+<p></p>
+
+```
+Offset(P)          Proto    Local Address                  Foreign Address      State            Pid      Owner          Created                                                              
+0x7e1dc820         UDPv4    10.0.2.15:137                  *:*                                   4        System         2019-12-06 19:47:13 UTC+0000                                         
+```
+
+<p></p>
+Which gives us the flag for this challenge.
+<p></p>
+<details>
+    <summary>Answer</summary>
+<p></p>
+10.0.2.15
+</details>
+</details>
+</details>
+
+<p></p>
+<hr>
+<p></p>
+
+<details>
+    <summary>Memory Forensics Lab - Question 6</summary>
+<p></p>
+What is the IRC client Software used by the user ?
+<p></p>
+<details>
+    <summary>Walkthrough</summary>
+<p></p>
+To get the flag for this challenge we will list all the processes running on the system and see if we can see anything, we will use pstree but any process listing option will work(again I pipe (|) to tee for later use). The command looks like this:
+<p></p>
+
+```
+sudo volatility -f lab.raw --profile=Win7SP1x64 pstree | tee pstree.txt
+```
+
+<p></p>
+We can see in the output:
+<p></p>
+
+```
+Name                                                  Pid   PPid   Thds   Hnds Time                                                                                                           
+-------------------------------------------------- ------ ------ ------ ------ ----                                                                                                           
+. 0xfffffa80039879d0:mirc.exe                        1592   1144      9    424 2019-12-06 19:49:47 UTC+0000
+```
+
+<p></p>
+If we google this:
+<p></p>
+"mIRC is a popular Internet Relay Chat client used by individuals and organizations to communicate, share, play and work with each other on IRC networks around the world."
+<p></p>
+Which proves this is the answer for this challenge.
+<p></p>
+<details>
+    <summary>Answer</summary>
+<p></p>
+mirc
+</details>
+</details>
+</details>
+
+<p></p>
+<hr>
+<p></p>
+
+<details>
+    <summary>Memory Forensics Lab - Question 7</summary>
+<p></p>
+
+
+
+
+
+
+
+
+</details>
+
+
+
+
+
 
 
 
