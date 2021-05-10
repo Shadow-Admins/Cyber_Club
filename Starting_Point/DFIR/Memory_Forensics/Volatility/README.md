@@ -3703,6 +3703,11 @@ What is the malware process name ?
 <details>
     <summary>Walkthrough</summary>
 <p></p>
+For this challenge if we take the challenge question and see "process name" we can go straight to our pstree.txt and look for any strange process names.
+
+
+
+
 </details>
 </details>
 
