@@ -3146,8 +3146,199 @@ What is the IRC server and channel ?
 <details>
     <summary>Walkthrough</summary>
 <p></p>
-\Users\maro\AppData\Roaming\mIRC\logs\bitsmasher.freenode.log
+This one requires alot of searching using grep. A good starting place is to do a filescan and then grep for mIRC. the initial command looks like this:
+<p></p>
 
+```
+sudo volatility -f lab.raw --profile=Win7SP1x64 filescan > filescan.txt
+```
+
+<p></p>
+This gives us a file we can now grep multiple times. We will now grep for mIRC. The command and output looks like this:
+<p></p>
+
+```
+❯ cat filescan.txt | grep -i mirc
+0x00000000059fdc50     16      0 R--rwd \Device\HarddiskVolume2\Users\maro\AppData\Roaming\mIRC\scripts\popups.ini
+0x00000000059fdf20     16      0 R--rwd \Device\HarddiskVolume2\Users\maro\AppData\Roaming\mIRC\scripts\aliases.ini
+0x000000007dd51920      2      1 R--rwd \Device\HarddiskVolume2\Users\maro\AppData\Roaming\mIRC
+0x000000007dea6a10     16      0 R--rw- \Device\HarddiskVolume2\Users\maro\AppData\Roaming\mIRC\logs\#infosec.freenode.log
+0x000000007dea8840      1      1 RW-rw- \Device\HarddiskVolume2\Users\maro\AppData\Roaming\mIRC\logs\bitsmasher.freenode.log
+0x000000007dfa3940     16      0 R----- \Device\HarddiskVolume2\Windows\Prefetch\MIRC.EXE-6DA58AAF.pf
+0x000000007e05e7e0     14      0 R--r-d \Device\HarddiskVolume2\Users\maro\Downloads\mirc.exe
+0x000000007e111c20      2      0 RW-rw- \Device\HarddiskVolume2\Users\maro\AppData\Roaming\mIRC\logs\#infosec.freenode.log
+0x000000007e18d8d0     16      0 RW-rw- \Device\HarddiskVolume2\Users\maro\AppData\Roaming\mIRC\logs\status.Freenode.log
+0x000000007e1c39e0     12      0 R--r-- \Device\HarddiskVolume2\Program Files (x86)\mIRC\mirc.exe
+0x000000007e277070     16      0 R--rw- \Device\HarddiskVolume2\Users\maro\AppData\Roaming\mIRC\logs\bitsmasher.freenode.log
+0x000000007e524950      2      1 R--rwd \Device\HarddiskVolume2\Users\maro\AppData\Roaming\mIRC
+0x000000007fc44f20     15      0 R--rwd \Device\HarddiskVolume2\Users\maro\AppData\Roaming\mIRC\logs\status.Freenode.log
+0x000000007fc836a0      1      1 RW-rw- \Device\HarddiskVolume2\Users\maro\AppData\Roaming\mIRC\logs\#infosec.freenode.log
+0x000000007fcd61e0      9      0 R--r-d \Device\HarddiskVolume2\Program Files (x86)\mIRC\mirc.exe
+0x000000007fcd6330     14      0 R--r-d \Device\HarddiskVolume2\Program Files (x86)\mIRC\uninstall.exe
+0x000000007fcd69d0     16      0 R--r-- \Device\HarddiskVolume2\Program Files (x86)\mIRC\uninstall.exe
+0x000000007fcd7730     15      0 R--rw- \Device\HarddiskVolume2\Users\maro\AppData\Roaming\mIRC\cacert.pem
+0x000000007fcd9490      2      1 R--rwd \Device\HarddiskVolume2\Users\maro\AppData\Roaming\mIRC\scripts
+0x000000007fd1f8a0      2      1 R--rwd \Device\HarddiskVolume2\Users\maro\AppData\Roaming\mIRC\logs
+0x000000007fd54f20      1      1 RW-rw- \Device\HarddiskVolume2\Users\maro\AppData\Roaming\mIRC\logs\status.Freenode.log
+0x000000007fee9470      1      1 R--rw- \Device\HarddiskVolume2\Program Files (x86)\mIRC
+0x000000007fee9c50     16      0 R--rwd \Device\HarddiskVolume2\Users\maro\AppData\Roaming\mIRC\urls.ini
+0x000000007feef8f0      2      1 R--rwd \Device\HarddiskVolume2\Users\maro\AppData\Roaming\mIRC\logs
+```
+
+<p></p>
+The interesting thing we can see here is all the log files. Lets isolate the log files using this command:
+<p></p>
+
+```
+❯ cat filescan.txt | grep -i mirc | grep -i log
+0x000000007dea6a10     16      0 R--rw- \Device\HarddiskVolume2\Users\maro\AppData\Roaming\mIRC\logs\#infosec.freenode.log
+0x000000007dea8840      1      1 RW-rw- \Device\HarddiskVolume2\Users\maro\AppData\Roaming\mIRC\logs\bitsmasher.freenode.log
+0x000000007e111c20      2      0 RW-rw- \Device\HarddiskVolume2\Users\maro\AppData\Roaming\mIRC\logs\#infosec.freenode.log
+0x000000007e18d8d0     16      0 RW-rw- \Device\HarddiskVolume2\Users\maro\AppData\Roaming\mIRC\logs\status.Freenode.log
+0x000000007e277070     16      0 R--rw- \Device\HarddiskVolume2\Users\maro\AppData\Roaming\mIRC\logs\bitsmasher.freenode.log
+0x000000007fc44f20     15      0 R--rwd \Device\HarddiskVolume2\Users\maro\AppData\Roaming\mIRC\logs\status.Freenode.log
+0x000000007fc836a0      1      1 RW-rw- \Device\HarddiskVolume2\Users\maro\AppData\Roaming\mIRC\logs\#infosec.freenode.log
+0x000000007fd1f8a0      2      1 R--rwd \Device\HarddiskVolume2\Users\maro\AppData\Roaming\mIRC\logs
+0x000000007fd54f20      1      1 RW-rw- \Device\HarddiskVolume2\Users\maro\AppData\Roaming\mIRC\logs\status.Freenode.log
+0x000000007feef8f0      2      1 R--rwd \Device\HarddiskVolume2\Users\maro\AppData\Roaming\mIRC\logs
+```
+
+<p></p>
+Now that we can see these log files we can dump them using the volatility option dumpfiles. The command looks like this:
+<p></p>
+
+```
+❯ sudo volatility -f lab.raw --profile=Win7SP1x64 dumpfiles -n -Q 0x000000007dea6a10,0x000000007dea8840,0x000000007e111c20,0x000000007e18d8d0,0x000000007e277070,0x000000007fc44f20,0x000000007fc836a0,0x000000007fd1f8a0,0x000000007fd54f20,0x000000007feef8f0 -D dump
+Volatility Foundation Volatility Framework 2.6
+DataSectionObject 0x7dea6a10   None   \Device\HarddiskVolume2\Users\maro\AppData\Roaming\mIRC\logs\#infosec.freenode.log
+SharedCacheMap 0x7dea6a10   None   \Device\HarddiskVolume2\Users\maro\AppData\Roaming\mIRC\logs\#infosec.freenode.log
+DataSectionObject 0x7dea8840   None   \Device\HarddiskVolume2\Users\maro\AppData\Roaming\mIRC\logs\bitsmasher.freenode.log
+DataSectionObject 0x7e18d8d0   None   \Device\HarddiskVolume2\Users\maro\AppData\Roaming\mIRC\logs\status.Freenode.log
+SharedCacheMap 0x7e18d8d0   None   \Device\HarddiskVolume2\Users\maro\AppData\Roaming\mIRC\logs\status.Freenode.log
+```
+
+<p></p>
+In this command the <kbd>-n</kbd> flag tells volatility to add the name of the file to the output, the <kbd>-Q</kbd> flag points to the physical address of the file we want to dump and the <kbd>-D</kbd> flag points to the directory we want to dump the files to. We can now cat the files to see what information is contained within.
+<p></p>
+Looking through these, status.Freenode.log is designed to lead you down a rabbit hole as the server/channels are about authours 'Tolkein' etc. however the #infosec and bitsmasher logs look more like the information we require.
+<p></p>
+
+```
+❯ cat file.None.0xfffffa8001a878f0.\#infosec.freenode.log.dat
+
+Session Start: Fri Dec 06 04:44:41 2019
+Session Ident: #infosec
+03[04:44] * Now talking in #infosec
+03[04:45] * bitsmasher (~bitdefeat@90.85.138.133) has joined #infosec
+03[05:22] * bitsmasher (~bitdefeat@90.85.138.133) has left #infosec
+Session Close: Fri Dec 06 05:23:09 2019
+
+Session Start: Fri Dec 06 05:24:27 2019
+Session Ident: #infosec
+03[05:24] * Now talking in #infosec
+Session Close: Fri Dec 06 05:25:15 2019
+
+Session Start: Fri Dec 06 05:25:46 2019
+Session Ident: #infosec
+03[05:25] * Now talking in #infosec
+
+Session Start: Fri Dec 06 06:42:42 2019
+Session Ident: #infosec
+03[06:42] * Now talking in #infosec
+03[06:43] * bitsmasher (~bitdefeat@90.85.138.133) has joined #infosec
+03[07:41] * drale2k (~drale2k@212-186-241-203.static.upcbusiness.at) has joined #infosec
+
+Session Start: Fri Dec 06 11:24:10 2019
+Session Ident: #infosec
+03[11:24] * Now talking in #infosec
+03[11:24] * bitsmasher (~bitdefeat@58.188.158.77.rev.sfr.net) has joined #infosec
+
+Session Start: Fri Dec 06 11:51:54 2019
+Session Ident: #infosec
+03[11:51] * Now talking in #infosec
+```
+
+<p></p>
+
+```
+❯ cat file.None.0xfffffa8001b60260.bitsmasher.freenode.log.dat
+
+Session Start: Fri Dec 06 04:45:49 2019
+Session Ident: bitsmasher
+[04:45] Session Ident: bitsmasher (freenode, codewaver) (~bitdefeat@90.85.138.133)
+[04:45] <bitsmasher> Hi !
+[04:46] <bitsmasher> Hello :)
+Session Close: Fri Dec 06 05:23:06 2019
+
+Session Start: Fri Dec 06 05:26:05 2019
+Session Ident: bitsmasher
+[05:26] Session Ident: bitsmasher (freenode, codewaver) (~bitdefeat@90.85.138.133)
+[05:26] <bitsmasher> Hi !
+01[05:26] <codewaver> Hi @bitsmasher 
+[05:27] <bitsmasher> I saw your message in the chatroom
+[05:27] <bitsmasher> Actually I have what you are looking for 
+[05:28] <bitsmasher> I have a ton eBooks about CyberSecurity available for download ! I can share it with you ...
+01[05:28] <codewaver> Ah That would be awesome 
+01[05:28] <codewaver> Could you kindely share the download link with me ?
+[05:29] <bitsmasher> sure ! here it is https://file.io/yBBkJc
+01[05:29] <codewaver> Appreciated !
+
+Session Start: Fri Dec 06 06:43:42 2019
+Session Ident: bitsmasher
+[06:43] <bitsmasher> :)
+
+Session Start: Fri Dec 06 11:51:56 2019
+Session Ident: bitsmasher
+```
+
+<p></p>
+Here we can see connection to a channel and the conversation that occured. We can use this information to inform our next grep on the process memory dump. First we need to dump the process memory using the volatility option memdump. The command and output looks like this:
+<p></p>
+
+```
+❯ sudo volatility -f lab.raw --profile=Win7SP1x64 memdump -p 1592 -D .
+Volatility Foundation Volatility Framework 2.6
+************************************************************************
+Writing mirc.exe [  1592] to 1592.dmp
+```
+
+<p></p>
+In this command you can see the <kbd>-p</kbd> flag points to the Pid we found from our pstree earlier in the challenge, the <kbd>-D</kbd> flag points to the directory we want to dump the file to.
+<p></p>
+We can now run strings and grep for the information we found in the log files.
+<p></p>
+To start with I ran this (excerpt from the output):
+<p></p>
+
+```
+strings -e l 1592.dmp | grep -B 5 -A 5 -i '#infosec'
+
+--
+"ircsupport
+Beginner
+IRCAddicts
+Query: 1
+Channel: 1
+#infosec
+^TeenParty
+bitsmasher
+RTeenWorld
+bTeenLounge
+fSpeakEasy
+--
+```
+
+<p></p>
+With this command strings uses the <kbd>-e l</kbd> flag to tell it to read unicode strings, the <kbd>-B</kbd> flag and <kbd>-A</kbd> flag tells grep to ooutput the 5 lines before and after #infosec and the <kbd>-i</kbd> flag tells grep to be case insensitive. This output lets us know we have found the channel. Now for the server, from here I changed my grep to different itterations of strings with and without the <kbd>-e</kbd> flag, and grep's for different itterations of infosec.freenode, .freenode etc.
+<p></p>
+The output from these searches led me to thinking that the flag should look a certain way and upon trying I was correct.
+<p></p>
+<details>
+    <summary>Answer</summary>
+<p></p>
+#infosec.freenode.com 1
+
+</details>
 </details>
 </details>
 
