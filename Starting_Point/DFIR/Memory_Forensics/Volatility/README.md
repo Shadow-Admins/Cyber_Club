@@ -3109,14 +3109,28 @@ Hint: Clipboard contents are critical to forensic analysis. It often provides va
 <details>
     <summary>Walkthrough</summary>
 <p></p>
+This challenge hint basically gives us the method to solve this question as there is a volatility optionaclled clipboard that prints out the clipboard history. The command and output looks like this:
 
 ```
-Administrator:500:aad3b435b51404eeaad3b435b51404ee:31d6cfe0d16ae931b73c59d7e0c089c0:::
-Guest:501:aad3b435b51404eeaad3b435b51404ee:31d6cfe0d16ae931b73c59d7e0c089c0:::
-maro:1000:aad3b435b51404eeaad3b435b51404ee:346b0c71fbcf795e42321f081c16ce17:::
+❯ sudo volatility -f lab.raw --profile=Win7SP1x64 clipboard
+Volatility Foundation Volatility Framework 2.6
+Session    WindowStation Format                         Handle Object             Data                                              
+---------- ------------- ------------------ ------------------ ------------------ --------------------------------------------------
+         1 WinSta0       CF_UNICODETEXT               0x2102fb 0xfffff900c23c6250 uFB646Vm9CscCwzR                                  
+         1 WinSta0       CF_TEXT                          0x10 ------------------                                                   
+         1 WinSta0       0x3306f1L              0x200000000000 ------------------                                                   
+         1 WinSta0       CF_TEXT                           0x1 ------------------                                                   
+         1 ------------- ------------------           0x3306f1 0xfffff900c2167350                                                   
 ```
 
-
+<p></p>
+The data column gives us the flag for this question.
+<p></p>
+<details>
+    <summary>Answer</summary>
+<p></p>
+uFB646Vm9CscCwzR
+</details>
 </details>
 </details>
 
@@ -3132,6 +3146,8 @@ What is the IRC server and channel ?
 <details>
     <summary>Walkthrough</summary>
 <p></p>
+\Users\maro\AppData\Roaming\mIRC\logs\bitsmasher.freenode.log
+
 </details>
 </details>
 
