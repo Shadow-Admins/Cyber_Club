@@ -3602,6 +3602,92 @@ What is the torrent site ?
 <details>
     <summary>Walkthrough</summary>
 <p></p>
+This one took a while to figure out, to start with we grep our filescan.txt for "CyberSecurity_Books_Courses_Tutorials.exe.torrent"
+<p></p>
+
+```
+❯ cat filescan.txt | grep CyberSecurity_Books_Courses_Tutorials.exe.torrent
+0x000000007dfce930      2      0 R--rw- \Device\HarddiskVolume2\Users\maro\AppData\Roaming\BitTorrent\CyberSecurity_Books_Courses_Tutorials.exe.torrent
+```
+
+<p></p>
+Once we find the .torrent file we can use the volatility option dumpfile to dump the file.
+<p></p>
+
+```
+❯ sudo volatility -f lab.raw --profile=Win7SP1x64 dumpfiles -n -Q 0x000000007dfce930 -D .
+Volatility Foundation Volatility Framework 2.6
+DataSectionObject 0x7dfce930   None   \Device\HarddiskVolume2\Users\maro\AppData\Roaming\BitTorrent\CyberSecurity_Books_Courses_Tutorials.exe.torrent
+```
+
+<p></p>
+We can now cat this file.
+<p></p>
+
+```
+❯ cat file.None.0xfffffa80039ce230.CyberSecurity_Books_Courses_Tutorials.exe.torrent.dat
+d10:created by33:kimbatt.github.io/torrent-creator13:creation datei1575576825e4:infod6:lengthi100685e4:name41:CyberSecurity_Books_Courses_Tutorials.exe12:piece lengthi16384e6:pieces140:��EP��VE�-����J4��Zɨ�����Q��/Ò�-E�.bܔ�W��T$t?�<�S�ڊW)]m��*��r�ŅR�R���
+	������.n�a��C��7#�dZ
+                            �H`R�s�q2s���e�H#^+��j��ee%                                                                                                       
+```
+
+<p></p>
+From this output we can see a link to a github page, "kimbatt.github.io/torrent-creator" and if we navigate there we can see that this creates torrent files online.
+<p></p>
+Now that we know that we will dump the process memory of bittorrent that we saw running in pstree.
+<p></p>
+
+```
+❯ cat pstree.txt | grep -i torrent
+. 0xfffffa80037bf6c0:BitTorrent.exe                  1564   1144     22    494 2019-12-06 19:47:10 UTC+0000
+.. 0xfffffa80039b1b30:bittorrentie.e                 2200   1564      9    129 2019-12-06 19:47:11 UTC+0000
+.. 0xfffffa800347f060:bittorrentie.e                 2160   1564     14    323 2019-12-06 19:47:11 UTC+0000
+```
+
+<p></p>
+
+```
+❯ sudo volatility -f lab.raw --profile=Win7SP1x64 memdump -p 1564,2200,2160 -D bittorrent
+Volatility Foundation Volatility Framework 2.6
+************************************************************************
+Writing BitTorrent.exe [  1564] to 1564.dmp
+************************************************************************
+Writing bittorrentie.e [  2160] to 2160.dmp
+************************************************************************
+Writing bittorrentie.e [  2200] to 2200.dmp
+```
+
+<p></p>
+We now have the BitTorrent process memory dumped we can use strings and grep for .torrent
+<p></p>
+
+```
+strings bittorrent/* | grep .torrent 
+```
+
+<p></p>
+If we look at the output at the tail end we can see:
+<p></p>
+
+```
+application/x-bittorrent-appinst
+application/x-bittorrent-key&
+d10:created by33:bit.smasher.io/torrent-infected-k19:creation datei1575576825e4:infod6:lengthi100685e4:name41:CyberSecurity_Books_Courses_Tutorials.exe12:piece lengthi16384e6:pieces140:
+J1CyberSecurity_Books_Courses_Tutorials.exe.torrentP
+s/CyberSecurity_Books_Courses_Tutorials.exe.torrent
+d10:created by33:kimbatt.github.io/torrent-creator13:creation datei1575576825e4:infod6:lengthi100685e4:name41:CyberSecurity_Books_Courses_Tutorials.exe12:piece lengthi16384e6:pieces140:
+bittorrentie.exe
+bittorrentie.exe
+```
+
+<p></p>
+Here we can see the github we looked at before and above it we can see our attacker we found earlier. and the website which is the answer to this question.
+<p></p>
+<details>
+    <summary>Answer</summary>
+<p></p>
+bit.smasher.io/torrent-infected-k19
+</details>
 </details>
 </details>
 
