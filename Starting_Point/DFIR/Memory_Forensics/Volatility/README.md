@@ -3473,6 +3473,120 @@ What is the file that has been downloaded ?
 <details>
     <summary>Walkthrough</summary>
 <p></p>
+For this challenge I started by running strings on the entire memory dump and appending it to a .txt file.
+<p></p>
+
+```
+strings -a -td lab.raw > lab_strings.txt
+```
+
+<p></p>
+Followed by:
+<p></p>
+
+```
+strings -a -td -el lab.raw >> lab_strings.txt
+```
+
+<p></p>
+You can see with these two commands that I used the -td flags to get the decimal offset and made a second pass with the -el flags in order to get (little endian) Unicode strings. Notice that the second pass appends (>>) to the existing file
+<p></p>
+Now that we have a strings file we can run <kbd>grep</kbd> on the file and search for the link previously given:
+<p></p>
+
+```
+❯ cat lab_strings.txt| grep https://file.io/yBBkJc
+597159888 https://file.io/yBBkJc
+1000960500 https://file.io/yBBkJc
+1000961060 https://file.io/yBBkJcor
+1353483076 [05:29] <bitsmasher> sure ! here it is https://file.io/yBBkJc
+1450428034 ure ! here it is https://file.io/yBBkJc
+1450530858 https://file.io/yBBkJcapplication/x-bittorrentapplication/x-bittorrentp
+1476252944 https://file.io/yBBkJc
+1476253584 https://file.io/yBBkJc
+1476253680 https://file.io/yBBkJc
+1476253776 https://file.io/yBBkJc
+1508595114 https://file.io/yBBkJc
+1508595179 https://file.io/yBBkJc
+1508595223 https://file.io/yBBkJc
+1508595333 https://file.io/yBBkJc
+1519366154 https://file.io/yBBkJc
+1519366219 https://file.io/yBBkJc
+1519366263 https://file.io/yBBkJc
+1519366373 https://file.io/yBBkJc
+1530919694 	8b670940-efa6-4223-a711-50a7470b6d13https://file.io/yBBkJchttps://file.io/yBBkJchttps://file.io/yBBkJchttps://file.io/yBBkJc0,1
+1559127851 mhttps://file.io/yBBkJcyragee
+1568852174 	8b670940-efa6-4223-a711-50a7470b6d13https://file.io/yBBkJchttps://file.io/yBBkJchttps://file.io/yBBkJchttps://file.io/yBBkJc0,1
+1572020886 https://file.io/yBBkJc
+1717557680 https://file.io/yBBkJc
+1725194080 https://file.io/yBBkJc
+1752996468 https://file.io/yBBkJc
+1832815400 https://file.io/yBBkJc
+1841253725 https://file.io/yBBkJc
+1841253753 https://file.io/yBBkJc*
+1841254309 https://file.io/yBBkJc
+1841254337 https://file.io/yBBkJc*
+1847009735 https://file.io/yBBkJc
+1847009763 https://file.io/yBBkJc*
+1851250250 https://file.io/yBBkJcapplication/x-bittorrentapplication/x-bittorrent
+1995644858 https://file.io/yBBkJcapplication/x-bittorrentapplication/x-bittorrent
+2008231913 9https://file.io/yBBkJc
+5706888 <bitsmasher> sure ! here it is https://file.io/yBBkJc
+381135264 <bitsmasher> sure ! here it is https://file.io/yBBkJc
+397106088 <bitsmasher> sure ! here it is https://file.io/yBBkJc
+725610818 05:29] <bitsmasher> sure ! here it is https://file.io/yBBkJc
+934812504 <bitsmasher> sure ! here it is https://file.io/yBBkJc
+1345086920 [05:29] <bitsmasher> sure ! here it is https://file.io/yBBkJc
+1411580464 [05:29] <bitsmasher> sure ! here it is https://file.io/yBBkJc
+1425714952 <bitsmasher> sure ! here it is https://file.io/yBBkJc
+1442803464 [05:29] <bitsmasher> sure ! here it is https://file.io/yBBkJc
+1573335680 https://file.io/yBBkJc
+1573335744 https://file.io/yBBkJc
+1573335808 https://file.io/yBBkJc
+```
+
+<p></p>
+From this output we can see reference to bittorrent, this informs our next search where we use the filescan.txt file we made at the start of the challenges and grep for .torrent.
+<p></p>
+
+```
+❯ cat filescan.txt | grep -i .torrent
+0x000000007de17f20     16      0 RW-rw- \Device\HarddiskVolume2\Users\maro\AppData\Roaming\BitTorrent\dht_feed.dat.new
+0x000000007de4f230     16      0 R--rw- \Device\HarddiskVolume2\Users\maro\AppData\Roaming\BitTorrent\settings.dat
+0x000000007deafca0      2      0 R--rw- \Device\HarddiskVolume2\Users\maro\AppData\Roaming\BitTorrent\dht.dat
+0x000000007deb64e0      2      0 R--rw- \Device\HarddiskVolume2\Users\maro\AppData\Roaming\BitTorrent\dht_feed.dat
+0x000000007df94c80     15      0 R--r-- \Device\HarddiskVolume2\Users\maro\AppData\Roaming\BitTorrent\updates\7.10.5_45272\bittorrentie.exe
+0x000000007dfa1390      3      1 ------ \Device\NamedPipe\BitTorrent_1564_0394AC28_1532450063
+0x000000007dfb08c0      3      1 ------ \Device\NamedPipe\BitTorrent_1564_0394ADF0_1564602137
+0x000000007dfb5c20      3      1 ------ \Device\NamedPipe\BitTorrent_1564_0394ADF0_1564602137
+0x000000007dfb9520     16      1 RW-r-- \Device\HarddiskVolume2\Users\maro\AppData\LocalLow\BitTorrent\BitTorrent_1564_0394ADF0_1564602137
+0x000000007dfc8e60      2      0 R--rw- \Device\HarddiskVolume2\Users\maro\AppData\Roaming\BitTorrent\rss.dat
+0x000000007dfca430     16      0 R--rwd \Device\HarddiskVolume2\Users\maro\AppData\Roaming\Microsoft\Windows\Start Menu\BitTorrent.lnk
+0x000000007dfce930      2      0 R--rw- \Device\HarddiskVolume2\Users\maro\AppData\Roaming\BitTorrent\CyberSecurity_Books_Courses_Tutorials.exe.torrent
+0x000000007e098d10     16      1 RW-r-- \Device\HarddiskVolume2\Users\maro\AppData\LocalLow\BitTorrent\BitTorrent_1564_0394AC28_1532450063
+0x000000007e0d53b0     16      0 R--rw- \Device\HarddiskVolume2\Users\maro\AppData\Roaming\BitTorrent\updates.dat
+0x000000007e1c0f20     15      0 R--r-d \Device\HarddiskVolume2\Users\maro\AppData\Roaming\BitTorrent\BitTorrent.exe
+0x000000007e1c2f20     12      0 R--r-- \Device\HarddiskVolume2\Users\maro\AppData\Roaming\BitTorrent\BitTorrent.exe
+0x000000007e1e9b40     16      0 RW-rw- \Device\HarddiskVolume2\Users\maro\AppData\Roaming\BitTorrent\settings.dat.new
+0x000000007e25ff20      3      1 ------ \Device\NamedPipe\BitTorrent_1564_0394AC28_1532450063
+0x000000007e261130     16      0 RW-rw- \Device\HarddiskVolume2\Users\maro\AppData\Roaming\BitTorrent\resume.dat.old
+0x000000007e27ca20     10      0 R--r-d \Device\HarddiskVolume2\Users\maro\AppData\Roaming\BitTorrent\updates\7.10.5_45272\bittorrentie.exe
+0x000000007e43e3a0     15      0 R--r-d \Device\HarddiskVolume2\Users\maro\AppData\Roaming\BitTorrent\maindoc.ico
+0x000000007e63e3d0     15      0 R--rw- \Device\HarddiskVolume2\Users\maro\Desktop\BitTorrent.lnk
+0x000000007fca4c40     15      0 R--rwd \Device\HarddiskVolume2\Users\maro\Downloads\BitTorrent.exe
+0x000000007fced7b0     16      0 RW-rw- \Device\HarddiskVolume2\Users\maro\AppData\Roaming\BitTorrent\resume.dat.new
+0x000000007fdaa4b0     14      0 R--r-- \Device\HarddiskVolume2\Windows\Prefetch\BITTORRENT.EXE-5495F912.pf
+```
+
+<p></p>
+This output showes us a book however its a .exe file which is a bit strange, giving us the answer for this challenge.
+<p></p>
+<details>
+    <summary>Answer</summary>
+<p></p>
+CyberSecurity_Books_Courses_Tutorials.exe.torrent
+
+</details>
 </details>
 </details>
 
