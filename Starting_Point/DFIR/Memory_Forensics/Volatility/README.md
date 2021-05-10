@@ -3331,6 +3331,35 @@ fSpeakEasy
 <p></p>
 With this command strings uses the <kbd>-e l</kbd> flag to tell it to read unicode strings, the <kbd>-B</kbd> flag and <kbd>-A</kbd> flag tells grep to ooutput the 5 lines before and after #infosec and the <kbd>-i</kbd> flag tells grep to be case insensitive. This output lets us know we have found the channel. Now for the server, from here I changed my grep to different itterations of strings with and without the <kbd>-e</kbd> flag, and grep's for different itterations of infosec.freenode, .freenode etc.
 <p></p>
+
+```
+strings 1592.dmp | grep -i freenode | grep "#"
+```
+
+<p></p>
+Which outputs:
+<p></p>
+
+```
+❯ strings 1592.dmp | grep -i freenode | grep "#"
+dams.freenode.net 366 codewaver #infosec :End of /NAMES list.
+:adams.freenode.net 372 codewaver :- and everyone else who made this year's freenode #live conference amazing.
+:adams.freenode.net 366 codewaver #infosec :End of /NAMES list.
+:adams.freenode.net 372 codewaver :- and everyone else who made this year's freenode #live conference amazing.
+K&1:51] - #freenode and using the '/who freenode/staff/*' command. You may message
+#infosec.freenode.lnk
+#infosec.freenode.lnk
+[04:44] CHANTYPES=# EXCEPTS INVEX CHANMODES=eIbq,k,flj,CFLMPQScgimnprstuz CHANLIMIT=#:120 PREFIX=(ov)@+ MAXLIST=bqeI:100 MODES=4 NETWORK=freenode STATUSMSG=@+ CALLERID=g CASEMAPPING=rfc1459 are supported by this server
+[04:44] - #freenode and using the '/who freenode/staff/*' command. You may message
+[11:24] - and everyone else who made this year's freenode #live conference amazing.
+02[11:50] * Connect retry #1 chat.freenode.net (+6697) (dns pool)
+02[11:51] * Connect retry #2 chat.freenode.net (+6697) (dns pool)
+[11:51] CHANTYPES=# EXCEPTS INVEX CHANMODES=eIbq,k,flj,CFLMPQScgimnprstuz CHANLIMIT=#:120 PREFIX=(ov)@+ MAXLIST=bqeI:100 MODES=4 NETWORK=freenode STATUSMSG=@+ CALLERID=g CASEMAPPING=rfc1459 are supported by this server
+[11:51] - #freenode and using the '/who freenode/staff/*' command. You may message
+[11:51] - and everyone else who made this year's freenode #live conference amazing.
+```
+
+<p></p>
 The output from these searches led me to thinking that the flag should look a certain way and upon trying I was correct.
 <p></p>
 <details>
@@ -3354,6 +3383,23 @@ What is the Nickname of the attacker ?
 <details>
     <summary>Walkthrough</summary>
 <p></p>
+This challenge is made easy for us from our last challenge and dumping the log files of the conversation, if we look at file.None.0xfffffa8001b60260.bitsmasher.freenode.log.dat we can see the two people in the conversation.
+<p></p>
+
+```
+<bitsmasher>
+<codewaver>
+```
+
+<p></p>
+Entering these names gives us the flag for this challenge.
+<p></p>
+<details>
+    <summary>Answer</summary>
+<p></p>
+bitsmasher
+
+</details>
 </details>
 </details>
 
@@ -3369,6 +3415,49 @@ What is the suspicious URL visited by the victim ?
 <details>
     <summary>Walkthrough</summary>
 <p></p>
+Again the log dump we did in question 8 gives us the answer.
+<p></p>
+
+```
+❯ cat file.None.0xfffffa8001b60260.bitsmasher.freenode.log.dat
+
+Session Start: Fri Dec 06 04:45:49 2019
+Session Ident: bitsmasher
+[04:45] Session Ident: bitsmasher (freenode, codewaver) (~bitdefeat@90.85.138.133)
+[04:45] <bitsmasher> Hi !
+[04:46] <bitsmasher> Hello :)
+Session Close: Fri Dec 06 05:23:06 2019
+
+Session Start: Fri Dec 06 05:26:05 2019
+Session Ident: bitsmasher
+[05:26] Session Ident: bitsmasher (freenode, codewaver) (~bitdefeat@90.85.138.133)
+[05:26] <bitsmasher> Hi !
+01[05:26] <codewaver> Hi @bitsmasher 
+[05:27] <bitsmasher> I saw your message in the chatroom
+[05:27] <bitsmasher> Actually I have what you are looking for 
+[05:28] <bitsmasher> I have a ton eBooks about CyberSecurity available for download ! I can share it with you ...
+01[05:28] <codewaver> Ah That would be awesome 
+01[05:28] <codewaver> Could you kindely share the download link with me ?
+[05:29] <bitsmasher> sure ! here it is https://file.io/yBBkJc
+01[05:29] <codewaver> Appreciated !
+
+Session Start: Fri Dec 06 06:43:42 2019
+Session Ident: bitsmasher
+[06:43] <bitsmasher> :)
+
+Session Start: Fri Dec 06 11:51:56 2019
+Session Ident: bitsmasher
+```
+
+<p></p>
+Here we can see the download link the attacker gave.
+<p></p>
+<details>
+    <summary>Answer</summary>
+<p></p>
+https://file.io/yBBkJc
+
+</details>
 </details>
 </details>
 
