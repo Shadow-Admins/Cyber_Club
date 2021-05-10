@@ -3703,11 +3703,74 @@ What is the malware process name ?
 <details>
     <summary>Walkthrough</summary>
 <p></p>
-For this challenge if we take the challenge question and see "process name" we can go straight to our pstree.txt and look for any strange process names.
+For this challenge if we take the challenge question and see "process name" we can go straight to our pstree.txt and look for any strange process names one sticks out.
+<p></p>
 
+```
+❯ cat pstree.txt
+Name                                                  Pid   PPid   Thds   Hnds Time
+-------------------------------------------------- ------ ------ ------ ------ ----
+ 0xfffffa8001b9ab30:crypt0r.exe                      3424   3468     12    265 2019-12-06 19:53:45 UTC+0000
+```
 
+<p></p>
+This process doesnt look right, lets investigate it. First we will dump the process using this command.
+<p></p>
 
+```
+❯ sudo volatility -f lab.raw --profile=Win7SP1x64 procdump -p 3424 -D exe
+[sudo] password for parrot: 
+Volatility Foundation Volatility Framework 2.6
+Process(V)         ImageBase          Name                 Result
+------------------ ------------------ -------------------- ------
+0xfffffa8001b9ab30 0x0000000001050000 crypt0r.exe          OK: executable.3424.exe
+```
 
+<p></p>
+We can now run this through a program called thor-lite. The command looks like this:
+<p></p>
+
+```
+~/Mytools/thor-lite/thor-lite-linux -p ~/ctf/hackfest/Memory_Forensics/exe --allreasons | tee thor.txt
+```
+
+<p></p>
+The important part of the output is this:
+<p></p>
+
+```
+> 3/3 > Running module 'Filesystem Checks' ------------------------------------
+Info: Filescan Starting module
+Info: Filescan The following paths will be scanned: /home/parrot/ctf/hackfest/Memory_Forensics/exe
+Info: Filescan Scanning /home/parrot/ctf/hackfest/Memory_Forensics/exe RECURSIVE
+Warning: Filescan Possibly Dangerous file found
+FILE: /home/parrot/ctf/hackfest/Memory_Forensics/exe/executable.3424.exe EXT: .exe SCORE: 75
+SIZE: 305664
+CREATED: Tue May 11 09:13:47.011 2021 CHANGED: Tue May 11 09:13:47.051 2021 MODIFIED: Tue May 11 09:13:47.051 2021 ACCESSED: Tue May 11 09:13:47.011 2021 PERMISSIONS: -rw-r--r-- OWNER: root
+MD5: 0633635245838db24ae8a34eeaa3d05d
+SHA1: 1d9e2edebb4044a336ac71121d0932a5527cdb78
+SHA256: d1b433eb609cdea1e16e02d50b18dcba1ad446fa0d29b6b5b00849d3f3b2bef7 TYPE: EXE FIRSTBYTES: 4d5a90000300000004000000ffff0000b8000000 / MZ
+REASON_1: YARA rule MAL_RANSOM_COVID19_Apr20_1 / Detects ransomware distributed in COVID-19 theme SUBSCORE_1: 75 REF_1: https://unit42.paloaltonetworks.com/covid-19-themed-cyber-attacks-target-government-and-medical-organizations/ MATCHED_1: Str1: { 60 2e 2e 2e af 34 34 34 b8 34 34 34 b8 34 34 34 } Str2: { 1f 07 1a 37 85 05 05 36 83 05 05 36 83 05 05 34 } TAGS_1: EXE, FILE, T1136 RULEDATE_1: 2020-04-15 SIGTYPE_1: internal
+Info: Filescan Finished module TOOK: 0 hours 0 mins 0 secs
+```
+
+<p></p>
+Here we can see that it has detected this file as ransomware if we follow the <a href="https://unit42.paloaltonetworks.com/covid-19-themed-cyber-attacks-target-government-and-medical-organizations/" rel="nofollow">link</a> we can read up on the malware information and how it works.
+<p></p>
+We can use another method to see if this is malware and this is by using the website <a href="https://www.virustotal.com/gui/" rel="nofollow">VirusTotal</a> with this page we upload the .exe and we are returned this:
+<p></p>
+<div align="center">
+<img src="https://github.com/Shadow-Admins/Cyber_Club/blob/main/Starting_Point/DFIR/Memory_Forensics/Volatility/images/VirusTotal.jpg"><br>
+</div>
+<p></p>
+This page tells us lots of information about the malware aswell. These results make me comfortable submitting this as the answer to this challenge.
+<p></p>
+<details>
+    <summary>Answer</summary>
+<p></p>
+crypt0r.exe
+
+</details>
 </details>
 </details>
 
@@ -3723,6 +3786,14 @@ What is the type of this malware ?
 <details>
     <summary>Walkthrough</summary>
 <p></p>
+From our research from the previous question we have already found the answer to this question.
+<p></p>
+<details>
+    <summary>Answer</summary>
+<p></p>
+ransomware
+
+</details>
 </details>
 </details>
 
