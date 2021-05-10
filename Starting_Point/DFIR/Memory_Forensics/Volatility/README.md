@@ -2900,6 +2900,12 @@ LAB-VM-C57C
 <details>
     <summary>Memory Forensics Lab - Question 4</summary>
 <p></p>
+What is the user's system password ?
+<p></p>
+<details>
+    <summary>Walkthrough</summary>
+<p></p>
+</details>
 </details>
 
 <p></p>
@@ -3103,6 +3109,14 @@ Hint: Clipboard contents are critical to forensic analysis. It often provides va
 <details>
     <summary>Walkthrough</summary>
 <p></p>
+
+```
+Administrator:500:aad3b435b51404eeaad3b435b51404ee:31d6cfe0d16ae931b73c59d7e0c089c0:::
+Guest:501:aad3b435b51404eeaad3b435b51404ee:31d6cfe0d16ae931b73c59d7e0c089c0:::
+maro:1000:aad3b435b51404eeaad3b435b51404ee:346b0c71fbcf795e42321f081c16ce17:::
+```
+
+
 </details>
 </details>
 
