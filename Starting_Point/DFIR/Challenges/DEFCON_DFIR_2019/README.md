@@ -42,7 +42,7 @@ On the homepage you will notice the Champlain College Digital Forensics Associat
 <hr>
 <p></p>
 
-<H2>Deadbox Forensics</H2>
+<H3>Deadbox Forensics</H3>
 <p></p>
 <details>
     <summary>Challenges</summary>
@@ -906,6 +906,36 @@ Based on the bash history, what is the current working directory?
 <p></p>
 <hr>
 <p></p>
+
+<H2>Memory Forensics</H2>
+<p></p>
+https://github.com/Shadow-Admins/Cyber_Club/blob/9d35a7b557347bf0b08ce79a4e6fe2701a728c1f/Starting_Point/DFIR/Memory_Forensics/Volatility/README.md
+
+
+<p></p>
+<hr>
+<p></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
