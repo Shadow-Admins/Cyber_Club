@@ -909,8 +909,7 @@ Based on the bash history, what is the current working directory?
 
 <H2>Memory Forensics</H2>
 <p></p>
-https://github.com/Shadow-Admins/Cyber_Club/Starting_Point/DFIR/Memory_Forensics/Volatility/README.md
-
+https://github.com/Shadow-Admins/Cyber_Club/tree/main/Starting_Point/DFIR/Memory_Forensics/Volatility
 
 <p></p>
 <hr>
