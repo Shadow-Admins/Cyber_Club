@@ -3902,6 +3902,21 @@ What is the malware's control server ?
 <p></p>
 IOT solve this question I extracted the process in a Winfdos VM and inspected it with dotPeek, (you can run strings on a memory dump of the process and you will eventually find the answer however this method is more straight forward). Once you have used procdump to dump the process you can open the exectuatble in dot peek and inspect the program. But how did I know to use dotPeek? Well after looking through the virus total results you see reference to the file being a .NET file and IOT decompile it to view you need to use a .NET decompiler, dot eek is the best I have used and its free!
 <p></p>
+<div align="center">
+<img src="https://github.com/Shadow-Admins/Cyber_Club/blob/556fbce2bf0f916fd2eea172b99a01fbbfb91617/Starting_Point/DFIR/Memory_Forensics/Volatility/images/hackfest-dotpeek.jpg"><br>
+</div>
+<p></p>
+As you can see in the screenshot we can see the target url and entering this gives us the flag for this challenge.
+<p></p>
+<details>
+    <summary>Answer</summary>
+<p></p>
+
+```
+http://www.bitsmasher.me/victimes.php?info=
+```
+
+</details>
 </details>
 </details>
 
