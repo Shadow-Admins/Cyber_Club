@@ -57,10 +57,26 @@ What is the name of the examiner who created the E01?
     <summary>Walkthrough</summary>
 <p></p>
 
+<details>
+    <summary>Answer</summary>
+<p></p>
 
+</details>
+</details>
+</details>
 
+<p></p>
+<hr>
+<p></p>
 
-
+<details>
+    <summary>Who owns it?</summary>
+<p></p>
+What is the username of the primary user of the machine?
+<p></p>
+<details>
+    <summary>Walkthrough</summary>
+<p></p>
 
 <details>
     <summary>Answer</summary>
@@ -69,6 +85,23 @@ What is the name of the examiner who created the E01?
 </details>
 </details>
 </details>
+
+<p></p>
+<hr>
+<p></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
