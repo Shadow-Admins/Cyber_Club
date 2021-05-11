@@ -921,13 +921,5 @@ https://github.com/Shadow-Admins/Cyber_Club/tree/main/Starting_Point/DFIR/Memory
 <details>
     <summary>Challenges</details>
 <p></p>
-
-abcd
-
-
-
-
-
-
-
+hello
 </details>
