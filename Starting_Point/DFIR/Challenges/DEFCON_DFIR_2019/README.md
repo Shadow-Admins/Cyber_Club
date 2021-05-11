@@ -936,25 +936,11 @@ What is the name of the user?
 
 </details>
 </details>
-
+</details>
 
 <p></p>
 <hr>
 <p></p>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
