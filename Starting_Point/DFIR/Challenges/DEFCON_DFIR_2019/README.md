@@ -957,7 +957,6 @@ What is the name of the user?
 
 
 
-</details>
 
 
 
