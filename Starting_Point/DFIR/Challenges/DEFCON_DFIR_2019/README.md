@@ -47,6 +47,7 @@ On the homepage you will notice the Champlain College Digital Forensics Associat
 <details>
     <summary>Challenges</summary>
 <p></p>
+
 <details>
     <summary>Hello, my name is...</summary>
 <p></p>
@@ -56,7 +57,28 @@ What is the name of the examiner who created the E01?
     <summary>Walkthrough</summary>
 <p></p>
 
+
+
+
+
+
+<details>
+    <summary>Answer</summary>
+<p></p>
+
 </details>
+</details>
+</details>
+
+
+
+
+
+
+
+
+
+
 
 
 
