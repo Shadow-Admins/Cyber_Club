@@ -3900,7 +3900,7 @@ What is the malware's control server ?
 <details>
     <summary>Walkthrough</summary>
 <p></p>
-IOT solve this question I extracted the process in a Winfdos VM and inspected it with dotPeek, (you can run strings on a memory dump of the process and you will eventually find the answer however this method is more straight forward). Once you have used procdump to dump the process you can open the exectuatble in dot peek and inspect the program. But how did I know to use dotPeek? Well after looking through the virus total results you see reference to the file being a .NET file and IOT decompile it to view you need to use a .NET decompiler, dot eek is the best I have used and its free!
+IOT solve this question I extracted the process in a Winfdos VM and inspected it with dotPeek, (you can run strings on a memory dump of the process and you will eventually find the answer however this method is more straight forward). Once you have used procdump to dump the process you can open the exectuatble in dot peek and inspect the program. But how did I know to use dotPeek? Well after looking through the virus total results you see reference to the file being a .NET file and IOT decompile it to view you need to use a .NET decompiler, dotPeek is the best I have used and its free!
 <p></p>
 <div align="center">
 <img src="https://github.com/Shadow-Admins/Cyber_Club/blob/556fbce2bf0f916fd2eea172b99a01fbbfb91617/Starting_Point/DFIR/Memory_Forensics/Volatility/images/hackfest-dotpeek.jpg"><br>
@@ -3932,6 +3932,44 @@ What is the Encryption password?
 <details>
     <summary>Walkthrough</summary>
 <p></p>
+IOT find the encryption password we can continue to use dotPeek as shown bellow and looking through the program we can see how the password is sent, this is what informs our grep.
+<p></p>
+<div align="center">
+<img src="https://github.com/Shadow-Admins/Cyber_Club/blob/cbe1e6184b3a582e182206d235fee0bc75a2beb3/Starting_Point/DFIR/Memory_Forensics/Volatility/images/hackfest-dotpeek2.png"><br>
+</div>
+<p></p>
+From this we can see the structure of the sent password being "COMPUTERNAME-USER PASSWORD"
+<p></p>
+Alternatively we can continue to read through the website that the thor-lite scan gave us which explains how the password is created and sent.
+<br>
+"Once the remote command and control (C2) server successfully receives the victim’s details, it then proceeds to create a custom key based on the username/hostname details and sends the key back to the infected host for further processing."
+<p></p>
+Now that we know this we can run strings and grep on the memory dump of crypt0r.exe IOT find our answer.
+<p></p>
+
+```
+❯ strings -el 3424.dmp | grep -i "LAB-VM-C57C-maro"
+LAB-VM-C57C-maro WtscbSEbLmfh2AJ
+http://www.bitsmasher.me/victimes.php?info=LAB-VM-C57C-maro WtscbSEbLmfh2AJ
+http://www.bitsmasher.me/victimes.php?info=LAB-VM-C57C-maro WtscbSEbLmfh2AJ
+http://www.bitsmasher.me/victimes.php?info=LAB-VM-C57C-maro WtscbSEbLmfh2AJ
+?info=LAB-VM-C57C-maro%20WtscbSEbLmfh2AJ
+?info=LAB-VM-C57C-maro%20WtscbSEbLmfh2AJ
+http://www.bitsmasher.me/victimes.php?info=LAB-VM-C57C-maro%20WtscbSEbLmfh2AJ
+http://www.bitsmasher.me/victimes.php?info=LAB-VM-C57C-maro%20WtscbSEbLmfh2AJ
+/victimes.php?info=LAB-VM-C57C-maro%20WtscbSEbLmfh2AJ
+/victimes.php?info=LAB-VM-C57C-maro%20WtscbSEbLmfh2AJ
+```
+
+<p></p>
+Here we can see the answer to this challenge.
+<p></p>
+<details>
+    <summary>Answer</summary>
+<p></p>
+WtscbSEbLmfh2AJ
+
+</details>
 </details>
 </details>
 
