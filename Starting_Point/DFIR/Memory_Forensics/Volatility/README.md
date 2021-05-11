@@ -3809,6 +3809,20 @@ Is the malware known ? what is its name ?
 <details>
     <summary>Walkthrough</summary>
 <p></p>
+For this challenge if we look at the VirusTotal website up the top we can see the name of the ransomware
+<p></p>
+<div align="center">
+<img src="https://github.com/Shadow-Admins/Cyber_Club/blob/main/Starting_Point/DFIR/Memory_Forensics/Volatility/images/HiddenTear.jpg"><br>
+</div>
+<p></p>
+This is also the answer to this challenge.
+<p></p>
+<details>
+    <summary>Answer</summary>
+<p></p>
+hidden tear
+
+</details>
 </details>
 </details>
 
@@ -3824,6 +3838,53 @@ What is the Bitcoin address of the attacker?
 <details>
     <summary>Walkthrough</summary>
 <p></p>
+The first hing we will do for this challenge is dump the process memory of crypt0r.exe so we can run strings on it and grep for the information we require. The command and output looks like this:
+<p></p>
+
+```
+❯ sudo volatility -f lab.raw --profile=Win7SP1x64 memdump -p 3424 -D exe
+[sudo] password for parrot: 
+Volatility Foundation Volatility Framework 2.6
+************************************************************************
+Writing crypt0r.exe [  3424] to 3424.dmp
+```
+
+<p></p>
+We can now search this file IOT gain our answer:
+<p></p>
+
+```
+❯ strings -el 3424.dmp | grep -i coin                                                                                                                         
+Send me some bitcoins                                                                                                                                         
+Send me some bitcoins                                                                                                                                         
+Send bitcoins to 13gwqwqH1h7UYFvyyuD9yjD1vg5yUmS682 to unlock !!                                                                                              
+Send me some bitcoins                                                                                                                                         
+Files has been encrypted ! Send me some bitcoins                                                                                                              
+storprop.dll,HdcCoInstaller                                                                                                                                   
+storprop.dll,HdcCoInstaller                                                                                                                                   
+streamci.dll,SwEnumCoInstaller                                                                                                                                
+SysClass.Dll,CriticalDeviceCoInstaller                                                                                                                        
+mmcico.dll,MediaClassCoInstaller                                                                                                                              
+SysClass.Dll,CriticalDeviceCoInstaller                                                                                                                        
+wlaninst.dll,WlanDeviceClassCoInstaller                                                                                                                       
+wwaninst.dll,WwanDeviceClassCoInstaller                                                                                                                       
+SysClass.Dll,CriticalDeviceCoInstaller                                                                                                                        
+SysClass.Dll,CriticalDeviceCoInstaller                                                                                                                        
+SysClass.Dll,CriticalDeviceCoInstaller                                                                                                                        
+SysClass.Dll,StorageCoInstaller                                                                                                                               
+WmiProp.dll,WmiPropCoInstaller                                                                                                                                
+SysClass.Dll,CriticalDeviceCoInstaller                                                                                                                       
+```
+
+<p></p>
+I only included the head of the output but we can see the answer for this challenge.
+<p></p>
+<details>
+    <summary>Answer</summary>
+<p></p>
+13gwqwqH1h7UYFvyyuD9yjD1vg5yUmS682
+
+</details>
 </details>
 </details>
 
@@ -3838,6 +3899,8 @@ What is the malware's control server ?
 <p></p>
 <details>
     <summary>Walkthrough</summary>
+<p></p>
+IOT solve this question I extracted the process in a Winfdos VM and inspected it with dotPeek, (you can run strings on a memory dump of the process and you will eventually find the answer however this method is more straight forward). Once you have used procdump to dump the process you can open the exectuatble in dot peek and inspect the program. But how did I know to use dotPeek? Well after looking through the virus total results you see reference to the file being a .NET file and IOT decompile it to view you need to use a .NET decompiler, dot eek is the best I have used and its free!
 <p></p>
 </details>
 </details>
