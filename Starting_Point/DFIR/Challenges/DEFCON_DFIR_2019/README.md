@@ -36,10 +36,31 @@ For the challenges I recommend you attempt them yourself and only go through the
     <summary>Are you ready for this?</summary>
 <p></p>
 On the homepage you will notice the Champlain College Digital Forensics Association's Logo. Can you decipher the hidden message?
+</details>
+
+<p></p>
+<hr>
+<p></p>
+
+<H2>Deadbox Forensics</H2>
+<p></p>
+<details>
+    <summary>Challenges</summary>
+<p></p>
+<details>
+    <summary>Hello, my name is...</summary>
+<p></p>
+What is the name of the examiner who created the E01?
+<p></p>
+<details>
+    <summary>Walkthrough</summary>
+<p></p>
+
+</details>
 
 
 
-
+</details>
 
 
 
