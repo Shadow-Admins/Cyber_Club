@@ -2530,24 +2530,13 @@ FLAG{8QUGzXSd2WXTHCe1ZW}
 </details>
 </details>
 
-<p></p>
-<hr>
-<p></p>
-
-
-
-
-
-
-
-
-
-
 
 
 <p></p>
 <hr>
 <p></p>
+
+
 
 <H3>Memory Forensics</H3>
 <p></p>
