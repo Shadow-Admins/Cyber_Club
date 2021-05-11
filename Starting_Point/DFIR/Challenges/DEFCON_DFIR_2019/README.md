@@ -921,26 +921,7 @@ https://github.com/Shadow-Admins/Cyber_Club/tree/main/Starting_Point/DFIR/Memory
     <summary>Challenges</details>
 <p></p>
 
-<details>
-    <summary>Who's That User?</summary>
-<p></p>
-What is the name of the user?
-<p></p>
-<details>
-    <summary>Walkthrough</summary>
-<p></p>
-
-<details>
-    <summary>Answer</summary>
-<p></p>
-
-</details>
-</details>
-</details>
-
-<p></p>
-<hr>
-<p></p>
+abcd
 
 
 
