@@ -907,9 +907,36 @@ Based on the bash history, what is the current working directory?
 <hr>
 <p></p>
 
-<H2>Memory Forensics</H2>
+<H3>Memory Forensics</H3>
 <p></p>
 https://github.com/Shadow-Admins/Cyber_Club/tree/main/Starting_Point/DFIR/Memory_Forensics/Volatility
+
+<p></p>
+<hr>
+<p></p>
+
+<H3>Triage VM Questions</H3>
+<p></p>
+<details>
+    <summary>Challenges</details>
+<p></p>
+
+<details>
+    <summary>Who's That User?</summary>
+<p></p>
+What is the name of the user?
+<p></p>
+<details>
+    <summary>Walkthrough</summary>
+<p></p>
+
+<details>
+    <summary>Answer</summary>
+<p></p>
+
+</details>
+</details>
+</details>
 
 <p></p>
 <hr>
@@ -930,10 +957,7 @@ https://github.com/Shadow-Admins/Cyber_Club/tree/main/Starting_Point/DFIR/Memory
 
 
 
-
-
-
-
+</details>
 
 
 
