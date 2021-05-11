@@ -2534,1470 +2534,7 @@ FLAG{8QUGzXSd2WXTHCe1ZW}
 <hr>
 <p></p>
 
-<H3>Memory Forensics</H3>
-<p></p>
-Is a series of challenges from the <a href="https://ctf.hackfest.tn/" rel="nofollow">Hackfest</a> from 2019, these challenges will use the file lab.raw
-<p></p>
-Challenge File: <a href="https://drive.google.com/file/d/1lPkhMQa4vFLyteN2p1yT27wVsZtMVFAI/view?usp=sharing" rel="nofollow">Google Drive</a>
-<p></p>
-The answers for these challenge do not have 'flag' infront of them and simply require subbmitting the answer into the answer box on the ctf site.
-<p></p>
-<b>Do the first challenge before extracting the file.</b>
-<p></p>
-<details>
-    <summary>Extracting the File</summary>
-<p></p>
-<b>Do the first challenge before extracting the file.</b>
-<p></p>
-When you download it the file comes as memlab_c5f3774eb6ce36405d9a2f8ecb45ef71b3a0a702660587a6b6a357b12d6171f6.7z you can either extract it through an archive manager or through CLI which I will explain now.
-<p></p>
-The first thing you will need is to install p7zip-full if you haven't already. To do this run this command:
-<p></p>
 
-```
-sudo apt install p7zip-full
-```
-
-Now that's installed you can run this command on the file:
-
-```
-p7zip -d memlab_c5f3774eb6ce36405d9a2f8ecb45ef71b3a0a702660587a6b6a357b12d6171f6.7z
-```
-
-Which will output this and extract lab.raw:
-
-```
-❯ p7zip -d memlab_c5f3774eb6ce36405d9a2f8ecb45ef71b3a0a702660587a6b6a357b12d6171f6.7z
-
-7-Zip (a) [64] 16.02 : Copyright (c) 1999-2016 Igor Pavlov : 2016-05-21
-p7zip Version 16.02 (locale=en_AU.UTF-8,Utf16=on,HugeFiles=on,64 bits,4 CPUs Intel(R) Core(TM) i7-7920HQ CPU @ 3.10GHz (906E9),ASM,AES-NI)
-
-Scanning the drive for archives:
-1 file, 392775032 bytes (375 MiB)
-
-Extracting archive: memlab_c5f3774eb6ce36405d9a2f8ecb45ef71b3a0a702660587a6b6a357b12d6171f6.7z
---
-Path = memlab_c5f3774eb6ce36405d9a2f8ecb45ef71b3a0a702660587a6b6a357b12d6171f6.7z
-Type = 7z
-Physical Size = 392775032
-Headers Size = 122
-Method = LZMA2:24
-Solid = -
-Blocks = 1
-
-Everything is Ok
-
-Size:       2147418112
-Compressed: 392775032
-```
-
-<p></p>
-Once we determine the image profile using <kbd>imageinfo</kbd> (refer to Getting your Foothold ) we can begin our analysis on lab.raw
-<p></p>
-</details>
-
-<details>
-    <summary>Challenges</summary>
-<p></p>
-<details>
-    <summary>Memory Forensics Lab - Question 1</summary>
-<p></p>
-<b>Overview:</b>
-<br>
-Memory forensic refers to the process of investigating a memory dump to locate malicious behaviors. The dump is a snapshot capture of RAM memory at a specific point of time; it can be a full physical memory dump, a crash dump or a hibernation file.
-<br>
-As investigator, this lab will guide you to extract useful artifacts from a given memory snapshot, including running processes, URLs, passwords, encryption keys, open sockets and active connections, open registry keys. That information can be accessed by obtaining and analyzing the attached memory dump.
-Memory dump acquisition for this lab has been performed using "DumpIt" program which has been already installed on the system where the memory dump has been acquired.
-<p></p>
-<b>Scenario:</b>
-<br>
-A machine has been compromised by a malware and important files have been encrypted. Our job as memory forensics experts is to determine how the malware went into the machine, understand its internal and attempt to recover the important file.
-<p></p>
-<b>Question:</b>
-<br>
-For verification purpose, what is the SHA256 sum of the attached file ?
-c5f377..
-<p></p>
-<details>
-    <summary>Walkthrough</summary>
-<p></p>
-To do this we run <kbd>sha256sum</kbd> on memlab_c5f3774eb6ce36405d9a2f8ecb45ef71b3a0a702660587a6b6a357b12d6171f6.7z the command and output looks like this:
-<p></p>
-
-```
-❯ sha256sum memlab_c5f3774eb6ce36405d9a2f8ecb45ef71b3a0a702660587a6b6a357b12d6171f6.7z                                                                                                        
-c5f3774eb6ce36405d9a2f8ecb45ef71b3a0a702660587a6b6a357b12d6171f6  memlab_c5f3774eb6ce36405d9a2f8ecb45ef71b3a0a702660587a6b6a357b12d6171f6.7z                                                  
-```
-
-<p></p>
-Which gives us the flag for this challenge.
-<p></p>
-<details>
-    <summary>Answer</summary>
-<p></p>
-c5f3774eb6ce36405d9a2f8ecb45ef71b3a0a702660587a6b6a357b12d6171f6
-
-</details>
-</details>
-</details>
-
-<p></p>
-<hr>
-<p></p>
-
-<details>
-    <summary>Memory Forensics Lab - Question 2</summary>
-<p></p>
- What is the Operating System of the machine being investigated?
-<p></p>
-<details>
-    <summary>Walkthrough</summary>
-<p></p>
-To get the flag for this challenge we weed to run the imageinfo option to discover what the image OS is. The command and output looks like this:
-<p></p>
-
-```
-sudo volatility -f lab.raw imageinfo
-```
-
-<p></p>
-Which outputs:
-<p></p>
-
-```
-❯ sudo volatility -f lab.raw imageinfo
-Volatility Foundation Volatility Framework 2.6
-INFO    : volatility.debug    : Determining profile based on KDBG search...
-          Suggested Profile(s) : Win7SP1x64, Win7SP0x64, Win2008R2SP0x64, Win2008R2SP1x64_23418, Win2008R2SP1x64, Win7SP1x64_23418
-                     AS Layer1 : WindowsAMD64PagedMemory (Kernel AS)
-                     AS Layer2 : FileAddressSpace (/home/parrot/ctf/hackfest/Memory_Forensics/lab.raw)
-                      PAE type : No PAE
-                           DTB : 0x187000L
-                          KDBG : 0xf80002846070L
-          Number of Processors : 1
-     Image Type (Service Pack) : 0
-                KPCR for CPU 0 : 0xfffff80002847d00L
-             KUSER_SHARED_DATA : 0xfffff78000000000L
-           Image date and time : 2019-12-06 19:54:14 UTC+0000
-     Image local date and time : 2019-12-06 11:54:14 -0800
-```
-
-<p></p>
-Looking through the output we go to the suggested profiles and use the first suggested profile. The flag is the whole name of the OS.
-<p></p>
-<details>
-    <summary>Answer</summary>
-<p></p>
-Windows 7
-
-</details>
-</details>
-</details>
-
-<p></p>
-<hr>
-<p></p>
-
-<details>
-    <summary>Memory Forensics Lab - Question 3</summary>
-<p></p>
- What is the computer Name ?
-<p></p>
-<details>
-    <summary>Walkthrough</summary>
-<p></p>
-There are two methods to obtain the flag for this challenge, the first and simpler way is using the envars option and the second is pulling the registry sub key that contains the computer name (I have written a better explaination of pulling registry subkeys in the Rick-GeneralInfo challenge). I will go over the envars method first. The command looks like this:
-<p></p>
-
-```
-sudo volatility -f lab.raw --profile=Win7SP1x64 envars | tee envars.txt
-```
-
-<p></p>
-You can see that I piped (|) the output to tee and a .txt file, this is so I can see the output (So I know what the file looks like, and I can better structure my grep command). Now that we have a .txt file we can run <kbd>grep</kbd> against the file ans search for the computer name. The command looks like this:
-<p></p>
-
-```
-cat envar.txt | grep -i computername
-```
-
-<p></p>
-Which outputs:
-<p></p>
-
-```
-❯ cat envars.txt| grep -i computername                                                                                                                                                        
-     380 wininit.exe          0x0000000000299ae0 COMPUTERNAME                   LAB-VM-C57C                                                                                                   
-     432 winlogon.exe         0x000000000036e490 COMPUTERNAME                   LAB-VM-C57C                                                                                                   
-     476 services.exe         0x0000000000111320 COMPUTERNAME                   LAB-VM-C57C                                                                                                   
-     484 lsass.exe            0x0000000000331320 COMPUTERNAME                   LAB-VM-C57C
-     492 lsm.exe              0x0000000000261320 COMPUTERNAME                   LAB-VM-C57C
-     596 svchost.exe          0x00000000002a1320 COMPUTERNAME                   LAB-VM-C57C
-     656 VBoxService.ex       0x0000000000071320 COMPUTERNAME                   LAB-VM-C57C
-     712 svchost.exe          0x0000000000211320 COMPUTERNAME                   LAB-VM-C57C
-     768 svchost.exe          0x0000000000121320 COMPUTERNAME                   LAB-VM-C57C
-     892 svchost.exe          0x0000000000441320 COMPUTERNAME                   LAB-VM-C57C
-     920 svchost.exe          0x00000000003e1320 COMPUTERNAME                   LAB-VM-C57C
-     340 svchost.exe          0x0000000000351320 COMPUTERNAME                   LAB-VM-C57C
-     372 svchost.exe          0x0000000000271320 COMPUTERNAME                   LAB-VM-C57C
-    1132 dwm.exe              0x0000000000371320 COMPUTERNAME                   LAB-VM-C57C
-    1144 explorer.exe         0x0000000003970b10 COMPUTERNAME                   LAB-VM-C57C
-    1200 spoolsv.exe          0x0000000000321320 COMPUTERNAME                   LAB-VM-C57C
-    1256 taskhost.exe         0x0000000000281320 COMPUTERNAME                   LAB-VM-C57C
-    1284 svchost.exe          0x0000000000291320 COMPUTERNAME                   LAB-VM-C57C
-    1404 svchost.exe          0x0000000000261320 COMPUTERNAME                   LAB-VM-C57C
-    1556 VBoxTray.exe         0x0000000000321320 COMPUTERNAME                   LAB-VM-C57C
-    1564 BitTorrent.exe       0x0000000000291320 COMPUTERNAME                   LAB-VM-C57C
-    1572 StikyNot.exe         0x0000000000151320 COMPUTERNAME                   LAB-VM-C57C
-    1608 SearchIndexer.       0x00000000001ea9e0 COMPUTERNAME                   LAB-VM-C57C
-    2160 bittorrentie.e       0x0000000000091320 COMPUTERNAME                   LAB-VM-C57C
-    2200 bittorrentie.e       0x0000000000581320 COMPUTERNAME                   LAB-VM-C57C
-    2268 GoogleCrashHan       0x0000000000161320 COMPUTERNAME                   LAB-VM-C57C
-    2276 GoogleCrashHan       0x0000000000411320 COMPUTERNAME                   LAB-VM-C57C
-    2488 wmpnetwk.exe         0x00000000000f3740 COMPUTERNAME                   LAB-VM-C57C
-    3052 cmd.exe              0x0000000000278ab0 COMPUTERNAME                   LAB-VM-C57C
-    2796 regedit.exe          0x0000000000111320 COMPUTERNAME                   LAB-VM-C57C
-    2396 chrome.exe           0x0000000000bf4e20 COMPUTERNAME                   LAB-VM-C57C
-    2876 chrome.exe           0x0000000000af1320 COMPUTERNAME                   LAB-VM-C57C
-    2856 chrome.exe           0x0000000000a61320 COMPUTERNAME                   LAB-VM-C57C
-    3032 chrome.exe           0x0000000000061320 COMPUTERNAME                   LAB-VM-C57C
-    1092 chrome.exe           0x0000000000b61320 COMPUTERNAME                   LAB-VM-C57C
-    3204 chrome.exe           0x0000000000b31320 COMPUTERNAME                   LAB-VM-C57C
-    3492 chrome.exe           0x0000000000a61320 COMPUTERNAME                   LAB-VM-C57C
-    3576 chrome.exe           0x0000000000941320 COMPUTERNAME                   LAB-VM-C57C
-    3688 WmiPrvSE.exe         0x0000000000361320 COMPUTERNAME                   LAB-VM-C57C
-    3960 sppsvc.exe           0x00000000002e1320 COMPUTERNAME                   LAB-VM-C57C
-    1960 svchost.exe          0x000000000039c3c0 COMPUTERNAME                   LAB-VM-C57C
-    1592 mirc.exe             0x0000000001631320 COMPUTERNAME                   LAB-VM-C57C
-    3660 WmiApSrv.exe         0x0000000000251320 COMPUTERNAME                   LAB-VM-C57C
-    1492 wuauclt.exe          0x0000000000291320 COMPUTERNAME                   LAB-VM-C57C
-    2128 SearchProtocol       0x0000000000301320 COMPUTERNAME                   LAB-VM-C57C
-    3424 crypt0r.exe          0x00000000003b1320 COMPUTERNAME                   LAB-VM-C57C
-    1528 SearchFilterHo       0x0000000000381320 COMPUTERNAME                   LAB-VM-C57C
-     376 notepad.exe          0x0000000000321320 COMPUTERNAME                   LAB-VM-C57C
-    3820 notepad.exe          0x00000000002a1320 COMPUTERNAME                   LAB-VM-C57C
-    3076 DumpIt.exe           0x0000000000251320 COMPUTERNAME                   LAB-VM-C57C
-```
-
-<p></p>
-Here we can see the computer name and the flag for this challenge.
-<p></p>
-I will now go over pulling the registry sub key that contains the computer name. First we need to discover where in the registry the computer name is held. A quick google shows:
-<p></p>
-"This key shows computer name in all Windows versions – Windows 7, 8 and 10. HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\ComputerName\ActiveComputerName"
-<p></p>
-Now that we know where the registry key is located we need to list the registry hives using the hivelist option. The command looks like this:
-<p></p>
-
-```
-sudo volatility -f lab.raw --profile=Win7SP1x64 hivelist
-```
-
-<p></p>
-Which outputs this:
-<p></p>
-
-```
-❯ sudo volatility -f lab.raw --profile=Win7SP1x64 hivelist
-Volatility Foundation Volatility Framework 2.6
-Virtual            Physical           Name
------------------- ------------------ ----
-0xfffff8a00000d010 0x000000002d5b3010 [no name]
-0xfffff8a000024010 0x000000002d4d8010 \REGISTRY\MACHINE\SYSTEM
-0xfffff8a00004e010 0x000000002d4c2010 \REGISTRY\MACHINE\HARDWARE
-0xfffff8a00011f010 0x000000002b229010 \SystemRoot\System32\Config\SECURITY
-0xfffff8a0001af010 0x000000002920a010 \SystemRoot\System32\Config\SOFTWARE
-0xfffff8a000dcd420 0x000000001e5d8420 \??\C:\Windows\ServiceProfiles\NetworkService\NTUSER.DAT
-0xfffff8a000e5a010 0x0000000021de6010 \??\C:\Windows\ServiceProfiles\LocalService\NTUSER.DAT
-0xfffff8a00100e3f0 0x000000001d5eb3f0 \??\C:\Users\maro\AppData\Local\Microsoft\Windows\UsrClass.dat
-0xfffff8a0014c7010 0x00000000211ba010 \??\C:\System Volume Information\Syscache.hve
-0xfffff8a0036ab010 0x000000002827d010 \SystemRoot\System32\Config\DEFAULT
-0xfffff8a0036bf010 0x00000000281ed010 \SystemRoot\System32\Config\SAM
-0xfffff8a005d2f420 0x0000000018fc8420 \??\C:\Users\maro\ntuser.dat
-0xfffff8a005dcc420 0x00000000290e8420 \Device\HarddiskVolume1\Boot\BCD
-```
-
-<p></p>
-We know from our research that the key is located in the SYSTEM hive, we will use this information in the next step using the printkey option. The command looks like this:
-<p></p>
-
-```
-sudo volatility -f lab.raw --profile=Win7SP1x64 printkey -o 0xfffff8a000024010
-```
-
-<p></p>
-which outputs:
-<p></p>
-
-```
-❯ sudo volatility -f lab.raw --profile=Win7SP1x64 printkey -o 0xfffff8a000024010
-Volatility Foundation Volatility Framework 2.6
-Legend: (S) = Stable   (V) = Volatile
-
-----------------------------
-Registry: \REGISTRY\MACHINE\SYSTEM
-Key name: CMI-CreateHive{2A7FB991-7BBE-4F9D-B91E-7CB51D4737F5} (S)
-Last updated: 2019-12-06 19:47:06 UTC+0000
-
-Subkeys:
-  (S) ControlSet001
-  (S) ControlSet002
-  (S) MountedDevices
-  (S) RNG
-  (S) Select
-  (S) Setup
-  (S) WPA
-  (V) CurrentControlSet
-
-Values:
-```
-
-<p></p>
-Here we can see the subkeys listed, we do this step so that we can see the ControlSet001 subkey which we need to use with the research we did earlier, the next command looks like this:
-<p></p>
-
-```
-sudo volatility -f lab.raw --profile=Win7SP1x64 printkey -o 0xfffff8a000024010 -K 'ControlSet001\Control\ComputerName\ComputerName'
-```
-
-<p></p>
-Which outputs this:
-<p></p>
-
-```
-❯ sudo volatility -f lab.raw --profile=Win7SP1x64 printkey -o 0xfffff8a000024010 -K 'ControlSet001\Control\ComputerName\ComputerName'
-Volatility Foundation Volatility Framework 2.6
-Legend: (S) = Stable   (V) = Volatile
-
-----------------------------
-Registry: \REGISTRY\MACHINE\SYSTEM
-Key name: ComputerName (S)
-Last updated: 2019-12-06 15:21:08 UTC+0000
-
-Subkeys:
-
-Values:
-REG_SZ                        : (S) mnmsrvc
-REG_SZ        ComputerName    : (S) LAB-VM-C57C
-```
-
-<p></p>
-Here we can see the computername in the output, giving us the answer.
-<p></p>
-<details>
-    <summary>Answer</summary>
-<p></p>
-LAB-VM-C57C
-
-</details>
-</details>
-</details>
-
-<p></p>
-<hr>
-<p></p>
-
-<details>
-    <summary>Memory Forensics Lab - Question 4</summary>
-<p></p>
-What is the user's system password ?
-<p></p>
-<details>
-    <summary>Walkthrough</summary>
-<p></p>
-</details>
-</details>
-
-<p></p>
-<hr>
-<p></p>
-
-<details>
-    <summary>Memory Forensics Lab - Question 5</summary>
-<p></p>
-What is the IP address of the machine?
-<p></p>
-<details>
-    <summary>Walkthrough</summary>
-<p></p>
-IOT get the flag for this challenge we need to list all the network connection, we will do this using the netscan option. The command looks like this:
-<p></p>
-
-```
-sudo volatility -f lab.raw --profile=Win7SP1x64 netscan
-```
-
-<p></p>
-Which outputs:
-<p></p>
-
-```
-❯ sudo volatility -f lab.raw --profile=Win7SP1x64 netscan                                                                                                                            [50/3469]
-Volatility Foundation Volatility Framework 2.6                                                                                                                                                
-Offset(P)          Proto    Local Address                  Foreign Address      State            Pid      Owner          Created                                                              
-0x7dc293f0         UDPv6    fe80::a0e4:262f:80eb:3d68:1900 *:*                                   1404     svchost.exe    2019-12-06 19:47:15 UTC+0000                                         
-0x7dc34d00         UDPv4    10.0.2.15:1900                 *:*                                   1404     svchost.exe    2019-12-06 19:47:15 UTC+0000                                         
-0x7dc6b460         UDPv4    0.0.0.0:3702                   *:*                                   340      svchost.exe    2019-12-06 19:47:17 UTC+0000                                         
-0x7dc6b460         UDPv6    :::3702                        *:*                                   340      svchost.exe    2019-12-06 19:47:17 UTC+0000                                         
-0x7dc71d00         UDPv4    127.0.0.1:64509                *:*                                   1404     svchost.exe    2019-12-06 19:47:15 UTC+0000                                         
-0x7dc782d0         UDPv4    10.0.2.15:64508                *:*                                   1404     svchost.exe    2019-12-06 19:47:15 UTC+0000                                         
-0x7dc79a40         UDPv6    fe80::a0e4:262f:80eb:3d68:64506 *:*                                   1404     svchost.exe    2019-12-06 19:47:15 UTC+0000                                        
-0x7dc7a380         UDPv4    127.0.0.1:1900                 *:*                                   1404     svchost.exe    2019-12-06 19:47:15 UTC+0000                                         
-0x7dcee460         UDPv4    0.0.0.0:3702                   *:*                                   1404     svchost.exe    2019-12-06 19:47:17 UTC+0000                                         
-0x7dcee460         UDPv6    :::3702                        *:*                                   1404     svchost.exe    2019-12-06 19:47:17 UTC+0000                                         
-0x7dcef010         UDPv4    0.0.0.0:57684                  *:*                                   340      svchost.exe    2019-12-06 19:47:18 UTC+0000                                         
-0x7dcf1550         UDPv4    0.0.0.0:63041                  *:*                                   340      svchost.exe    2019-12-06 19:47:16 UTC+0000                                         
-0x7dcf3bb0         UDPv4    0.0.0.0:63042                  *:*                                   340      svchost.exe    2019-12-06 19:47:16 UTC+0000                                         
-0x7dcf3bb0         UDPv6    :::63042                       *:*                                   340      svchost.exe    2019-12-06 19:47:16 UTC+0000                                         
-0x7dcfb9e0         UDPv4    0.0.0.0:57685                  *:*                                   340      svchost.exe    2019-12-06 19:47:18 UTC+0000                                         
-0x7dcfb9e0         UDPv6    :::57685                       *:*                                   340      svchost.exe    2019-12-06 19:47:18 UTC+0000                                         
-0x7dcfbb30         UDPv4    0.0.0.0:3702                   *:*                                   1404     svchost.exe    2019-12-06 19:47:17 UTC+0000                                         
-0x7dcfbcb0         UDPv4    0.0.0.0:3702                   *:*                                   340      svchost.exe    2019-12-06 19:47:17 UTC+0000                                         
-0x7dd48360         UDPv4    0.0.0.0:64770                  *:*                                   2160     bittorrentie.e 2019-12-06 19:47:41 UTC+0000                                         
-0x7dd48360         UDPv6    :::64770                       *:*                                   2160     bittorrentie.e 2019-12-06 19:47:41 UTC+0000                                         
-0x7dd484b0         UDPv4    127.0.0.1:55621                *:*                                   2160     bittorrentie.e 2019-12-06 19:47:41 UTC+0000                                         
-0x7dfd47e0         UDPv4    0.0.0.0:3702                   *:*                                   1404     svchost.exe    2019-12-06 19:47:17 UTC+0000                                         
-0x7dfe9010         UDPv4    10.0.2.15:6771                 *:*                                   1564     BitTorrent.exe 2019-12-06 19:47:13 UTC+0000                                         
-0x7dffd8f0         UDPv4    0.0.0.0:0                      *:*                                   372      svchost.exe    2019-12-06 19:47:13 UTC+0000                                         
-0x7dffd8f0         UDPv6    :::0                           *:*                                   372      svchost.exe    2019-12-06 19:47:13 UTC+0000                                         
-0x7e145b30         UDPv4    0.0.0.0:5355                   *:*                                   372      svchost.exe    2019-12-06 19:47:15 UTC+0000                                         
-0x7e1dc820         UDPv4    10.0.2.15:137                  *:*                                   4        System         2019-12-06 19:47:13 UTC+0000                                         
-0x7e27e240         UDPv4    0.0.0.0:46690                  *:*                                   1564     BitTorrent.exe 2019-12-06 19:47:11 UTC+0000                                         
-0x7e296c20         UDPv4    0.0.0.0:0                      *:*                                   656      VBoxService.ex 2019-12-06 19:54:14 UTC+0000                                         
-0x7e32a8b0         UDPv6    ::1:64507                      *:*                                   1404     svchost.exe    2019-12-06 19:47:15 UTC+0000                                         
-0x7e3612b0         UDPv4    127.0.0.1:6771                 *:*                                   1564     BitTorrent.exe 2019-12-06 19:47:13 UTC+0000                                         
-0x7e375b80         UDPv4    0.0.0.0:0                      *:*                                   1564     BitTorrent.exe 2019-12-06 19:47:31 UTC+0000                                         
-0x7e3d36d0         UDPv4    0.0.0.0:5353                   *:*                                   2396     chrome.exe     2019-12-06 19:48:01 UTC+0000
-0x7e3f75c0         UDPv4    0.0.0.0:3702                   *:*                                   1404     svchost.exe    2019-12-06 19:47:17 UTC+0000
-0x7e3f75c0         UDPv6    :::3702                        *:*                                   1404     svchost.exe    2019-12-06 19:47:17 UTC+0000
-0x7dc22010         TCPv4    0.0.0.0:49164                  0.0.0.0:0            LISTENING        484      lsass.exe      
-0x7dc22010         TCPv6    :::49164                       :::0                 LISTENING        484      lsass.exe      
-0x7dc47ce0         TCPv4    0.0.0.0:49164                  0.0.0.0:0            LISTENING        484      lsass.exe      
-0x7e0008b0         TCPv4    0.0.0.0:49154                  0.0.0.0:0            LISTENING        920      svchost.exe    
-0x7e0008b0         TCPv6    :::49154                       :::0                 LISTENING        920      svchost.exe    
-0x7e219360         TCPv4    0.0.0.0:135                    0.0.0.0:0            LISTENING        712      svchost.exe    
-0x7e228d30         TCPv4    0.0.0.0:135                    0.0.0.0:0            LISTENING        712      svchost.exe    
-0x7e228d30         TCPv6    :::135                         :::0                 LISTENING        712      svchost.exe    
-0x7e2322b0         TCPv4    0.0.0.0:49152                  0.0.0.0:0            LISTENING        380      wininit.exe    
-0x7e234e60         TCPv4    0.0.0.0:49152                  0.0.0.0:0            LISTENING        380      wininit.exe    
-0x7e234e60         TCPv6    :::49152                       :::0                 LISTENING        380      wininit.exe    
-0x7e281770         TCPv4    0.0.0.0:46690                  0.0.0.0:0            LISTENING        1564     BitTorrent.exe 
-0x7e2b8680         TCPv4    0.0.0.0:49153                  0.0.0.0:0            LISTENING        768      svchost.exe    
-0x7e2b8680         TCPv6    :::49153                       :::0                 LISTENING        768      svchost.exe    
-0x7e2bc480         TCPv4    0.0.0.0:49153                  0.0.0.0:0            LISTENING        768      svchost.exe    
-0x7e3406f0         TCPv4    0.0.0.0:49155                  0.0.0.0:0            LISTENING        476      services.exe   
-0x7e342a80         TCPv4    0.0.0.0:49155                  0.0.0.0:0            LISTENING        476      services.exe   
-0x7e342a80         TCPv6    :::49155                       :::0                 LISTENING        476      services.exe   
-0x7e365cd0         TCPv4    0.0.0.0:5357                   0.0.0.0:0            LISTENING        4        System         
-0x7e365cd0         TCPv6    :::5357                        :::0                 LISTENING        4        System         
-0x7e3fb280         TCPv4    0.0.0.0:49154                  0.0.0.0:0            LISTENING        920      svchost.exe    
-0x7dc0c980         TCPv4    10.0.2.15:49206                94.125.182.252:6697  ESTABLISHED      1592     mirc.exe       
-0x7dc49290         TCPv4    10.0.2.15:49219                193.70.38.49:80      CLOSE_WAIT       3424     crypt0r.exe    
-0x7dd3b510         TCPv6    -:0                            387b:4803:80fa:ffff:387b:4803:80fa:ffff:0 CLOSED           1564     BitTorrent.exe 
-0x7dd63010         TCPv4    -:0                            56.123.72.3:0        CLOSED           1564     BitTorrent.exe 
-0x7df76cf0         TCPv6    -:0                            385b:3003:80fa:ffff:d063:a302:80fa:ffff:0 CLOSED           340      svchost.exe    
-0x7df92cf0         TCPv4    -:0                            56.91.48.3:0         CLOSED           1564     BitTorrent.exe 
-0x7dfe24f0         TCPv4    10.0.2.15:49221                216.58.213.163:443   ESTABLISHED      3032     chrome.exe     
-0x7e113010         TCPv4    -:0                            56.123.72.3:0        CLOSED           3032     chrome.exe     
-0x7e1f0940         TCPv4    10.0.2.15:49203                50.28.34.67:443      CLOSE_WAIT       1592     mirc.exe       
-0x7e2d5010         TCPv4    10.0.2.15:49220                216.58.213.163:443   ESTABLISHED      3032     chrome.exe     
-0x7e4a9370         UDPv4    0.0.0.0:5353                   *:*                                   2396     chrome.exe     2019-12-06 19:48:01 UTC+0000
-0x7e4a9370         UDPv6    :::5353                        *:*                                   2396     chrome.exe     2019-12-06 19:48:01 UTC+0000
-0x7e62c950         UDPv4    0.0.0.0:5355                   *:*                                   372      svchost.exe    2019-12-06 19:47:15 UTC+0000
-0x7e62c950         UDPv6    :::5355                        *:*                                   372      svchost.exe    2019-12-06 19:47:15 UTC+0000
-0x7e64eec0         UDPv4    0.0.0.0:3702                   *:*                                   340      svchost.exe    2019-12-06 19:47:17 UTC+0000
-0x7e64eec0         UDPv6    :::3702                        *:*                                   340      svchost.exe    2019-12-06 19:47:17 UTC+0000
-0x7e655e40         UDPv4    0.0.0.0:3702                   *:*                                   340      svchost.exe    2019-12-06 19:47:17 UTC+0000
-0x7e705810         UDPv4    127.0.0.1:62228                *:*                                   1564     BitTorrent.exe 2019-12-06 19:47:12 UTC+0000
-0x7e440700         TCPv6    -:0                            387b:4803:80fa:ffff:387b:4803:80fa:ffff:0 CLOSED           1564     BitTorrent.exe 
-0x7ee02010         UDPv4    0.0.0.0:65081                  *:*                                   1404     svchost.exe    2019-12-06 19:47:11 UTC+0000
-0x7ee02010         UDPv6    :::65081                       *:*                                   1404     svchost.exe    2019-12-06 19:47:11 UTC+0000
-0x7ee967e0         UDPv6    ::1:1900                       *:*                                   1404     svchost.exe    2019-12-06 19:47:15 UTC+0000
-0x7eeba730         UDPv4    0.0.0.0:1900                   *:*                                   1564     BitTorrent.exe 2019-12-06 19:47:12 UTC+0000
-0x7eed1b70         UDPv4    10.0.2.15:138                  *:*                                   4        System         2019-12-06 19:47:13 UTC+0000
-0x7f1fc880         UDPv4    0.0.0.0:65080                  *:*                                   1404     svchost.exe    2019-12-06 19:47:11 UTC+0000
-0x7ee470f0         TCPv4    0.0.0.0:445                    0.0.0.0:0            LISTENING        4        System         
-0x7ee470f0         TCPv6    :::445                         :::0                 LISTENING        4        System         
-0x7fc88560         UDPv4    0.0.0.0:0                      *:*                                   656      VBoxService.ex 2019-12-06 19:54:29 UTC+0000
-0x7fcb3220         UDPv4    0.0.0.0:0                      *:*                                   3424     crypt0r.exe    2019-12-06 19:53:46 UTC+0000
-0x7fd10920         UDPv6    fe80::a0e4:262f:80eb:3d68:546  *:*                                   768      svchost.exe    2019-12-06 19:54:28 UTC+0000
-0x7fd50550         UDPv4    0.0.0.0:0                      *:*                                   3424     crypt0r.exe    2019-12-06 19:53:46 UTC+0000
-0x7fdadac0         UDPv4    0.0.0.0:0                      *:*                                   3424     crypt0r.exe    2019-12-06 19:53:46 UTC+0000
-0x7fdadac0         UDPv6    :::0                           *:*                                   3424     crypt0r.exe    2019-12-06 19:53:46 UTC+0000
-0x7fdafec0         UDPv4    0.0.0.0:0                      *:*                                   3424     crypt0r.exe    2019-12-06 19:53:46 UTC+0000
-0x7fdafec0         UDPv6    :::0                           *:*                                   3424     crypt0r.exe    2019-12-06 19:53:46 UTC+0000
-0x7fee1ce0         TCPv4    10.0.2.15:139                  0.0.0.0:0            LISTENING        4        System         
-0x7fd50cf0         TCPv4    10.0.2.15:49222                216.239.34.117:443   ESTABLISHED      3032     chrome.exe     
-0x7fd58cf0         TCPv4    10.0.2.15:49217                172.217.22.131:443   CLOSED           3032     chrome.exe     
-```
-
-<p></p>
-Normally I go stright to system and look at the local ip address as this normally shows the system ip. we can see that in the output.
-<p></p>
-
-```
-Offset(P)          Proto    Local Address                  Foreign Address      State            Pid      Owner          Created                                                              
-0x7e1dc820         UDPv4    10.0.2.15:137                  *:*                                   4        System         2019-12-06 19:47:13 UTC+0000                                         
-```
-
-<p></p>
-Which gives us the flag for this challenge.
-<p></p>
-<details>
-    <summary>Answer</summary>
-<p></p>
-10.0.2.15
-</details>
-</details>
-</details>
-
-<p></p>
-<hr>
-<p></p>
-
-<details>
-    <summary>Memory Forensics Lab - Question 6</summary>
-<p></p>
-What is the IRC client Software used by the user ?
-<p></p>
-<details>
-    <summary>Walkthrough</summary>
-<p></p>
-To get the flag for this challenge we will list all the processes running on the system and see if we can see anything, we will use pstree but any process listing option will work(again I pipe (|) to tee for later use). The command looks like this:
-<p></p>
-
-```
-sudo volatility -f lab.raw --profile=Win7SP1x64 pstree | tee pstree.txt
-```
-
-<p></p>
-We can see in the output:
-<p></p>
-
-```
-Name                                                  Pid   PPid   Thds   Hnds Time                                                                                                           
--------------------------------------------------- ------ ------ ------ ------ ----                                                                                                           
-. 0xfffffa80039879d0:mirc.exe                        1592   1144      9    424 2019-12-06 19:49:47 UTC+0000
-```
-
-<p></p>
-If we google this:
-<p></p>
-"mIRC is a popular Internet Relay Chat client used by individuals and organizations to communicate, share, play and work with each other on IRC networks around the world."
-<p></p>
-Which proves this is the answer for this challenge.
-<p></p>
-<details>
-    <summary>Answer</summary>
-<p></p>
-mirc
-</details>
-</details>
-</details>
-
-<p></p>
-<hr>
-<p></p>
-
-<details>
-    <summary>Memory Forensics Lab - Question 7</summary>
-<p></p>
-What is the user's IRC account Password ?
-<br>
-Hint: Clipboard contents are critical to forensic analysis. It often provides valuable forensic information, including user passwords.
-<p></p>
-<details>
-    <summary>Walkthrough</summary>
-<p></p>
-This challenge hint basically gives us the method to solve this question as there is a volatility optionaclled clipboard that prints out the clipboard history. The command and output looks like this:
-
-```
-❯ sudo volatility -f lab.raw --profile=Win7SP1x64 clipboard
-Volatility Foundation Volatility Framework 2.6
-Session    WindowStation Format                         Handle Object             Data                                              
----------- ------------- ------------------ ------------------ ------------------ --------------------------------------------------
-         1 WinSta0       CF_UNICODETEXT               0x2102fb 0xfffff900c23c6250 uFB646Vm9CscCwzR                                  
-         1 WinSta0       CF_TEXT                          0x10 ------------------                                                   
-         1 WinSta0       0x3306f1L              0x200000000000 ------------------                                                   
-         1 WinSta0       CF_TEXT                           0x1 ------------------                                                   
-         1 ------------- ------------------           0x3306f1 0xfffff900c2167350                                                   
-```
-
-<p></p>
-The data column gives us the flag for this question.
-<p></p>
-<details>
-    <summary>Answer</summary>
-<p></p>
-uFB646Vm9CscCwzR
-</details>
-</details>
-</details>
-
-<p></p>
-<hr>
-<p></p>
-
-<details>
-    <summary>Memory Forensics Lab - Question 8</summary>
-<p></p>
-What is the IRC server and channel ?
-<p></p>
-<details>
-    <summary>Walkthrough</summary>
-<p></p>
-This one requires alot of searching using grep. A good starting place is to do a filescan and then grep for mIRC. the initial command looks like this:
-<p></p>
-
-```
-sudo volatility -f lab.raw --profile=Win7SP1x64 filescan > filescan.txt
-```
-
-<p></p>
-This gives us a file we can now grep multiple times. We will now grep for mIRC. The command and output looks like this:
-<p></p>
-
-```
-❯ cat filescan.txt | grep -i mirc
-0x00000000059fdc50     16      0 R--rwd \Device\HarddiskVolume2\Users\maro\AppData\Roaming\mIRC\scripts\popups.ini
-0x00000000059fdf20     16      0 R--rwd \Device\HarddiskVolume2\Users\maro\AppData\Roaming\mIRC\scripts\aliases.ini
-0x000000007dd51920      2      1 R--rwd \Device\HarddiskVolume2\Users\maro\AppData\Roaming\mIRC
-0x000000007dea6a10     16      0 R--rw- \Device\HarddiskVolume2\Users\maro\AppData\Roaming\mIRC\logs\#infosec.freenode.log
-0x000000007dea8840      1      1 RW-rw- \Device\HarddiskVolume2\Users\maro\AppData\Roaming\mIRC\logs\bitsmasher.freenode.log
-0x000000007dfa3940     16      0 R----- \Device\HarddiskVolume2\Windows\Prefetch\MIRC.EXE-6DA58AAF.pf
-0x000000007e05e7e0     14      0 R--r-d \Device\HarddiskVolume2\Users\maro\Downloads\mirc.exe
-0x000000007e111c20      2      0 RW-rw- \Device\HarddiskVolume2\Users\maro\AppData\Roaming\mIRC\logs\#infosec.freenode.log
-0x000000007e18d8d0     16      0 RW-rw- \Device\HarddiskVolume2\Users\maro\AppData\Roaming\mIRC\logs\status.Freenode.log
-0x000000007e1c39e0     12      0 R--r-- \Device\HarddiskVolume2\Program Files (x86)\mIRC\mirc.exe
-0x000000007e277070     16      0 R--rw- \Device\HarddiskVolume2\Users\maro\AppData\Roaming\mIRC\logs\bitsmasher.freenode.log
-0x000000007e524950      2      1 R--rwd \Device\HarddiskVolume2\Users\maro\AppData\Roaming\mIRC
-0x000000007fc44f20     15      0 R--rwd \Device\HarddiskVolume2\Users\maro\AppData\Roaming\mIRC\logs\status.Freenode.log
-0x000000007fc836a0      1      1 RW-rw- \Device\HarddiskVolume2\Users\maro\AppData\Roaming\mIRC\logs\#infosec.freenode.log
-0x000000007fcd61e0      9      0 R--r-d \Device\HarddiskVolume2\Program Files (x86)\mIRC\mirc.exe
-0x000000007fcd6330     14      0 R--r-d \Device\HarddiskVolume2\Program Files (x86)\mIRC\uninstall.exe
-0x000000007fcd69d0     16      0 R--r-- \Device\HarddiskVolume2\Program Files (x86)\mIRC\uninstall.exe
-0x000000007fcd7730     15      0 R--rw- \Device\HarddiskVolume2\Users\maro\AppData\Roaming\mIRC\cacert.pem
-0x000000007fcd9490      2      1 R--rwd \Device\HarddiskVolume2\Users\maro\AppData\Roaming\mIRC\scripts
-0x000000007fd1f8a0      2      1 R--rwd \Device\HarddiskVolume2\Users\maro\AppData\Roaming\mIRC\logs
-0x000000007fd54f20      1      1 RW-rw- \Device\HarddiskVolume2\Users\maro\AppData\Roaming\mIRC\logs\status.Freenode.log
-0x000000007fee9470      1      1 R--rw- \Device\HarddiskVolume2\Program Files (x86)\mIRC
-0x000000007fee9c50     16      0 R--rwd \Device\HarddiskVolume2\Users\maro\AppData\Roaming\mIRC\urls.ini
-0x000000007feef8f0      2      1 R--rwd \Device\HarddiskVolume2\Users\maro\AppData\Roaming\mIRC\logs
-```
-
-<p></p>
-The interesting thing we can see here is all the log files. Lets isolate the log files using this command:
-<p></p>
-
-```
-❯ cat filescan.txt | grep -i mirc | grep -i log
-0x000000007dea6a10     16      0 R--rw- \Device\HarddiskVolume2\Users\maro\AppData\Roaming\mIRC\logs\#infosec.freenode.log
-0x000000007dea8840      1      1 RW-rw- \Device\HarddiskVolume2\Users\maro\AppData\Roaming\mIRC\logs\bitsmasher.freenode.log
-0x000000007e111c20      2      0 RW-rw- \Device\HarddiskVolume2\Users\maro\AppData\Roaming\mIRC\logs\#infosec.freenode.log
-0x000000007e18d8d0     16      0 RW-rw- \Device\HarddiskVolume2\Users\maro\AppData\Roaming\mIRC\logs\status.Freenode.log
-0x000000007e277070     16      0 R--rw- \Device\HarddiskVolume2\Users\maro\AppData\Roaming\mIRC\logs\bitsmasher.freenode.log
-0x000000007fc44f20     15      0 R--rwd \Device\HarddiskVolume2\Users\maro\AppData\Roaming\mIRC\logs\status.Freenode.log
-0x000000007fc836a0      1      1 RW-rw- \Device\HarddiskVolume2\Users\maro\AppData\Roaming\mIRC\logs\#infosec.freenode.log
-0x000000007fd1f8a0      2      1 R--rwd \Device\HarddiskVolume2\Users\maro\AppData\Roaming\mIRC\logs
-0x000000007fd54f20      1      1 RW-rw- \Device\HarddiskVolume2\Users\maro\AppData\Roaming\mIRC\logs\status.Freenode.log
-0x000000007feef8f0      2      1 R--rwd \Device\HarddiskVolume2\Users\maro\AppData\Roaming\mIRC\logs
-```
-
-<p></p>
-Now that we can see these log files we can dump them using the volatility option dumpfiles. The command looks like this:
-<p></p>
-
-```
-❯ sudo volatility -f lab.raw --profile=Win7SP1x64 dumpfiles -n -Q 0x000000007dea6a10,0x000000007dea8840,0x000000007e111c20,0x000000007e18d8d0,0x000000007e277070,0x000000007fc44f20,0x000000007fc836a0,0x000000007fd1f8a0,0x000000007fd54f20,0x000000007feef8f0 -D dump
-Volatility Foundation Volatility Framework 2.6
-DataSectionObject 0x7dea6a10   None   \Device\HarddiskVolume2\Users\maro\AppData\Roaming\mIRC\logs\#infosec.freenode.log
-SharedCacheMap 0x7dea6a10   None   \Device\HarddiskVolume2\Users\maro\AppData\Roaming\mIRC\logs\#infosec.freenode.log
-DataSectionObject 0x7dea8840   None   \Device\HarddiskVolume2\Users\maro\AppData\Roaming\mIRC\logs\bitsmasher.freenode.log
-DataSectionObject 0x7e18d8d0   None   \Device\HarddiskVolume2\Users\maro\AppData\Roaming\mIRC\logs\status.Freenode.log
-SharedCacheMap 0x7e18d8d0   None   \Device\HarddiskVolume2\Users\maro\AppData\Roaming\mIRC\logs\status.Freenode.log
-```
-
-<p></p>
-In this command the <kbd>-n</kbd> flag tells volatility to add the name of the file to the output, the <kbd>-Q</kbd> flag points to the physical address of the file we want to dump and the <kbd>-D</kbd> flag points to the directory we want to dump the files to. We can now cat the files to see what information is contained within.
-<p></p>
-Looking through these, status.Freenode.log is designed to lead you down a rabbit hole as the server/channels are about authours 'Tolkein' etc. however the #infosec and bitsmasher logs look more like the information we require.
-<p></p>
-
-```
-❯ cat file.None.0xfffffa8001a878f0.\#infosec.freenode.log.dat
-
-Session Start: Fri Dec 06 04:44:41 2019
-Session Ident: #infosec
-03[04:44] * Now talking in #infosec
-03[04:45] * bitsmasher (~bitdefeat@90.85.138.133) has joined #infosec
-03[05:22] * bitsmasher (~bitdefeat@90.85.138.133) has left #infosec
-Session Close: Fri Dec 06 05:23:09 2019
-
-Session Start: Fri Dec 06 05:24:27 2019
-Session Ident: #infosec
-03[05:24] * Now talking in #infosec
-Session Close: Fri Dec 06 05:25:15 2019
-
-Session Start: Fri Dec 06 05:25:46 2019
-Session Ident: #infosec
-03[05:25] * Now talking in #infosec
-
-Session Start: Fri Dec 06 06:42:42 2019
-Session Ident: #infosec
-03[06:42] * Now talking in #infosec
-03[06:43] * bitsmasher (~bitdefeat@90.85.138.133) has joined #infosec
-03[07:41] * drale2k (~drale2k@212-186-241-203.static.upcbusiness.at) has joined #infosec
-
-Session Start: Fri Dec 06 11:24:10 2019
-Session Ident: #infosec
-03[11:24] * Now talking in #infosec
-03[11:24] * bitsmasher (~bitdefeat@58.188.158.77.rev.sfr.net) has joined #infosec
-
-Session Start: Fri Dec 06 11:51:54 2019
-Session Ident: #infosec
-03[11:51] * Now talking in #infosec
-```
-
-<p></p>
-
-```
-❯ cat file.None.0xfffffa8001b60260.bitsmasher.freenode.log.dat
-
-Session Start: Fri Dec 06 04:45:49 2019
-Session Ident: bitsmasher
-[04:45] Session Ident: bitsmasher (freenode, codewaver) (~bitdefeat@90.85.138.133)
-[04:45] <bitsmasher> Hi !
-[04:46] <bitsmasher> Hello :)
-Session Close: Fri Dec 06 05:23:06 2019
-
-Session Start: Fri Dec 06 05:26:05 2019
-Session Ident: bitsmasher
-[05:26] Session Ident: bitsmasher (freenode, codewaver) (~bitdefeat@90.85.138.133)
-[05:26] <bitsmasher> Hi !
-01[05:26] <codewaver> Hi @bitsmasher 
-[05:27] <bitsmasher> I saw your message in the chatroom
-[05:27] <bitsmasher> Actually I have what you are looking for 
-[05:28] <bitsmasher> I have a ton eBooks about CyberSecurity available for download ! I can share it with you ...
-01[05:28] <codewaver> Ah That would be awesome 
-01[05:28] <codewaver> Could you kindely share the download link with me ?
-[05:29] <bitsmasher> sure ! here it is https://file.io/yBBkJc
-01[05:29] <codewaver> Appreciated !
-
-Session Start: Fri Dec 06 06:43:42 2019
-Session Ident: bitsmasher
-[06:43] <bitsmasher> :)
-
-Session Start: Fri Dec 06 11:51:56 2019
-Session Ident: bitsmasher
-```
-
-<p></p>
-Here we can see connection to a channel and the conversation that occured. We can use this information to inform our next grep on the process memory dump. First we need to dump the process memory using the volatility option memdump. The command and output looks like this:
-<p></p>
-
-```
-❯ sudo volatility -f lab.raw --profile=Win7SP1x64 memdump -p 1592 -D .
-Volatility Foundation Volatility Framework 2.6
-************************************************************************
-Writing mirc.exe [  1592] to 1592.dmp
-```
-
-<p></p>
-In this command you can see the <kbd>-p</kbd> flag points to the Pid we found from our pstree earlier in the challenge, the <kbd>-D</kbd> flag points to the directory we want to dump the file to.
-<p></p>
-We can now run strings and grep for the information we found in the log files.
-<p></p>
-To start with I ran this (excerpt from the output):
-<p></p>
-
-```
-strings -e l 1592.dmp | grep -B 5 -A 5 -i '#infosec'
-
---
-"ircsupport
-Beginner
-IRCAddicts
-Query: 1
-Channel: 1
-#infosec
-^TeenParty
-bitsmasher
-RTeenWorld
-bTeenLounge
-fSpeakEasy
---
-```
-
-<p></p>
-With this command strings uses the <kbd>-e l</kbd> flag to tell it to read unicode strings, the <kbd>-B</kbd> flag and <kbd>-A</kbd> flag tells grep to ooutput the 5 lines before and after #infosec and the <kbd>-i</kbd> flag tells grep to be case insensitive. This output lets us know we have found the channel. Now for the server, from here I changed my grep to different itterations of strings with and without the <kbd>-e</kbd> flag, and grep's for different itterations of infosec.freenode, .freenode etc.
-<p></p>
-
-```
-strings 1592.dmp | grep -i freenode | grep "#"
-```
-
-<p></p>
-Which outputs:
-<p></p>
-
-```
-❯ strings 1592.dmp | grep -i freenode | grep "#"
-dams.freenode.net 366 codewaver #infosec :End of /NAMES list.
-:adams.freenode.net 372 codewaver :- and everyone else who made this year's freenode #live conference amazing.
-:adams.freenode.net 366 codewaver #infosec :End of /NAMES list.
-:adams.freenode.net 372 codewaver :- and everyone else who made this year's freenode #live conference amazing.
-K&1:51] - #freenode and using the '/who freenode/staff/*' command. You may message
-#infosec.freenode.lnk
-#infosec.freenode.lnk
-[04:44] CHANTYPES=# EXCEPTS INVEX CHANMODES=eIbq,k,flj,CFLMPQScgimnprstuz CHANLIMIT=#:120 PREFIX=(ov)@+ MAXLIST=bqeI:100 MODES=4 NETWORK=freenode STATUSMSG=@+ CALLERID=g CASEMAPPING=rfc1459 are supported by this server
-[04:44] - #freenode and using the '/who freenode/staff/*' command. You may message
-[11:24] - and everyone else who made this year's freenode #live conference amazing.
-02[11:50] * Connect retry #1 chat.freenode.net (+6697) (dns pool)
-02[11:51] * Connect retry #2 chat.freenode.net (+6697) (dns pool)
-[11:51] CHANTYPES=# EXCEPTS INVEX CHANMODES=eIbq,k,flj,CFLMPQScgimnprstuz CHANLIMIT=#:120 PREFIX=(ov)@+ MAXLIST=bqeI:100 MODES=4 NETWORK=freenode STATUSMSG=@+ CALLERID=g CASEMAPPING=rfc1459 are supported by this server
-[11:51] - #freenode and using the '/who freenode/staff/*' command. You may message
-[11:51] - and everyone else who made this year's freenode #live conference amazing.
-```
-
-<p></p>
-The output from these searches led me to thinking that the flag should look a certain way and upon trying I was correct.
-<p></p>
-<details>
-    <summary>Answer</summary>
-<p></p>
-#infosec.freenode.com 1
-
-</details>
-</details>
-</details>
-
-<p></p>
-<hr>
-<p></p>
-
-<details>
-    <summary>Memory Forensics Lab - Question 9</summary>
-<p></p>
-What is the Nickname of the attacker ?
-<p></p>
-<details>
-    <summary>Walkthrough</summary>
-<p></p>
-This challenge is made easy for us from our last challenge and dumping the log files of the conversation, if we look at file.None.0xfffffa8001b60260.bitsmasher.freenode.log.dat we can see the two people in the conversation.
-<p></p>
-
-```
-<bitsmasher>
-<codewaver>
-```
-
-<p></p>
-Entering these names gives us the flag for this challenge.
-<p></p>
-<details>
-    <summary>Answer</summary>
-<p></p>
-bitsmasher
-
-</details>
-</details>
-</details>
-
-<p></p>
-<hr>
-<p></p>
-
-<details>
-    <summary>Memory Forensics Lab - Question 10</summary>
-<p></p>
-What is the suspicious URL visited by the victim ?
-<p></p>
-<details>
-    <summary>Walkthrough</summary>
-<p></p>
-Again the log dump we did in question 8 gives us the answer.
-<p></p>
-
-```
-❯ cat file.None.0xfffffa8001b60260.bitsmasher.freenode.log.dat
-
-Session Start: Fri Dec 06 04:45:49 2019
-Session Ident: bitsmasher
-[04:45] Session Ident: bitsmasher (freenode, codewaver) (~bitdefeat@90.85.138.133)
-[04:45] <bitsmasher> Hi !
-[04:46] <bitsmasher> Hello :)
-Session Close: Fri Dec 06 05:23:06 2019
-
-Session Start: Fri Dec 06 05:26:05 2019
-Session Ident: bitsmasher
-[05:26] Session Ident: bitsmasher (freenode, codewaver) (~bitdefeat@90.85.138.133)
-[05:26] <bitsmasher> Hi !
-01[05:26] <codewaver> Hi @bitsmasher 
-[05:27] <bitsmasher> I saw your message in the chatroom
-[05:27] <bitsmasher> Actually I have what you are looking for 
-[05:28] <bitsmasher> I have a ton eBooks about CyberSecurity available for download ! I can share it with you ...
-01[05:28] <codewaver> Ah That would be awesome 
-01[05:28] <codewaver> Could you kindely share the download link with me ?
-[05:29] <bitsmasher> sure ! here it is https://file.io/yBBkJc
-01[05:29] <codewaver> Appreciated !
-
-Session Start: Fri Dec 06 06:43:42 2019
-Session Ident: bitsmasher
-[06:43] <bitsmasher> :)
-
-Session Start: Fri Dec 06 11:51:56 2019
-Session Ident: bitsmasher
-```
-
-<p></p>
-Here we can see the download link the attacker gave.
-<p></p>
-<details>
-    <summary>Answer</summary>
-<p></p>
-https://file.io/yBBkJc
-
-</details>
-</details>
-</details>
-
-<p></p>
-<hr>
-<p></p>
-
-<details>
-    <summary>Memory Forensics Lab - Question 11</summary>
-<p></p>
-What is the file that has been downloaded ?
-<p></p>
-<details>
-    <summary>Walkthrough</summary>
-<p></p>
-For this challenge I started by running strings on the entire memory dump and appending it to a .txt file.
-<p></p>
-
-```
-strings -a -td lab.raw > lab_strings.txt
-```
-
-<p></p>
-Followed by:
-<p></p>
-
-```
-strings -a -td -el lab.raw >> lab_strings.txt
-```
-
-<p></p>
-You can see with these two commands that I used the -td flags to get the decimal offset and made a second pass with the -el flags in order to get (little endian) Unicode strings. Notice that the second pass appends (>>) to the existing file
-<p></p>
-Now that we have a strings file we can run <kbd>grep</kbd> on the file and search for the link previously given:
-<p></p>
-
-```
-❯ cat lab_strings.txt| grep https://file.io/yBBkJc
-597159888 https://file.io/yBBkJc
-1000960500 https://file.io/yBBkJc
-1000961060 https://file.io/yBBkJcor
-1353483076 [05:29] <bitsmasher> sure ! here it is https://file.io/yBBkJc
-1450428034 ure ! here it is https://file.io/yBBkJc
-1450530858 https://file.io/yBBkJcapplication/x-bittorrentapplication/x-bittorrentp
-1476252944 https://file.io/yBBkJc
-1476253584 https://file.io/yBBkJc
-1476253680 https://file.io/yBBkJc
-1476253776 https://file.io/yBBkJc
-1508595114 https://file.io/yBBkJc
-1508595179 https://file.io/yBBkJc
-1508595223 https://file.io/yBBkJc
-1508595333 https://file.io/yBBkJc
-1519366154 https://file.io/yBBkJc
-1519366219 https://file.io/yBBkJc
-1519366263 https://file.io/yBBkJc
-1519366373 https://file.io/yBBkJc
-1530919694 	8b670940-efa6-4223-a711-50a7470b6d13https://file.io/yBBkJchttps://file.io/yBBkJchttps://file.io/yBBkJchttps://file.io/yBBkJc0,1
-1559127851 mhttps://file.io/yBBkJcyragee
-1568852174 	8b670940-efa6-4223-a711-50a7470b6d13https://file.io/yBBkJchttps://file.io/yBBkJchttps://file.io/yBBkJchttps://file.io/yBBkJc0,1
-1572020886 https://file.io/yBBkJc
-1717557680 https://file.io/yBBkJc
-1725194080 https://file.io/yBBkJc
-1752996468 https://file.io/yBBkJc
-1832815400 https://file.io/yBBkJc
-1841253725 https://file.io/yBBkJc
-1841253753 https://file.io/yBBkJc*
-1841254309 https://file.io/yBBkJc
-1841254337 https://file.io/yBBkJc*
-1847009735 https://file.io/yBBkJc
-1847009763 https://file.io/yBBkJc*
-1851250250 https://file.io/yBBkJcapplication/x-bittorrentapplication/x-bittorrent
-1995644858 https://file.io/yBBkJcapplication/x-bittorrentapplication/x-bittorrent
-2008231913 9https://file.io/yBBkJc
-5706888 <bitsmasher> sure ! here it is https://file.io/yBBkJc
-381135264 <bitsmasher> sure ! here it is https://file.io/yBBkJc
-397106088 <bitsmasher> sure ! here it is https://file.io/yBBkJc
-725610818 05:29] <bitsmasher> sure ! here it is https://file.io/yBBkJc
-934812504 <bitsmasher> sure ! here it is https://file.io/yBBkJc
-1345086920 [05:29] <bitsmasher> sure ! here it is https://file.io/yBBkJc
-1411580464 [05:29] <bitsmasher> sure ! here it is https://file.io/yBBkJc
-1425714952 <bitsmasher> sure ! here it is https://file.io/yBBkJc
-1442803464 [05:29] <bitsmasher> sure ! here it is https://file.io/yBBkJc
-1573335680 https://file.io/yBBkJc
-1573335744 https://file.io/yBBkJc
-1573335808 https://file.io/yBBkJc
-```
-
-<p></p>
-From this output we can see reference to bittorrent, this informs our next search where we use the filescan.txt file we made at the start of the challenges and grep for .torrent.
-<p></p>
-
-```
-❯ cat filescan.txt | grep -i .torrent
-0x000000007de17f20     16      0 RW-rw- \Device\HarddiskVolume2\Users\maro\AppData\Roaming\BitTorrent\dht_feed.dat.new
-0x000000007de4f230     16      0 R--rw- \Device\HarddiskVolume2\Users\maro\AppData\Roaming\BitTorrent\settings.dat
-0x000000007deafca0      2      0 R--rw- \Device\HarddiskVolume2\Users\maro\AppData\Roaming\BitTorrent\dht.dat
-0x000000007deb64e0      2      0 R--rw- \Device\HarddiskVolume2\Users\maro\AppData\Roaming\BitTorrent\dht_feed.dat
-0x000000007df94c80     15      0 R--r-- \Device\HarddiskVolume2\Users\maro\AppData\Roaming\BitTorrent\updates\7.10.5_45272\bittorrentie.exe
-0x000000007dfa1390      3      1 ------ \Device\NamedPipe\BitTorrent_1564_0394AC28_1532450063
-0x000000007dfb08c0      3      1 ------ \Device\NamedPipe\BitTorrent_1564_0394ADF0_1564602137
-0x000000007dfb5c20      3      1 ------ \Device\NamedPipe\BitTorrent_1564_0394ADF0_1564602137
-0x000000007dfb9520     16      1 RW-r-- \Device\HarddiskVolume2\Users\maro\AppData\LocalLow\BitTorrent\BitTorrent_1564_0394ADF0_1564602137
-0x000000007dfc8e60      2      0 R--rw- \Device\HarddiskVolume2\Users\maro\AppData\Roaming\BitTorrent\rss.dat
-0x000000007dfca430     16      0 R--rwd \Device\HarddiskVolume2\Users\maro\AppData\Roaming\Microsoft\Windows\Start Menu\BitTorrent.lnk
-0x000000007dfce930      2      0 R--rw- \Device\HarddiskVolume2\Users\maro\AppData\Roaming\BitTorrent\CyberSecurity_Books_Courses_Tutorials.exe.torrent
-0x000000007e098d10     16      1 RW-r-- \Device\HarddiskVolume2\Users\maro\AppData\LocalLow\BitTorrent\BitTorrent_1564_0394AC28_1532450063
-0x000000007e0d53b0     16      0 R--rw- \Device\HarddiskVolume2\Users\maro\AppData\Roaming\BitTorrent\updates.dat
-0x000000007e1c0f20     15      0 R--r-d \Device\HarddiskVolume2\Users\maro\AppData\Roaming\BitTorrent\BitTorrent.exe
-0x000000007e1c2f20     12      0 R--r-- \Device\HarddiskVolume2\Users\maro\AppData\Roaming\BitTorrent\BitTorrent.exe
-0x000000007e1e9b40     16      0 RW-rw- \Device\HarddiskVolume2\Users\maro\AppData\Roaming\BitTorrent\settings.dat.new
-0x000000007e25ff20      3      1 ------ \Device\NamedPipe\BitTorrent_1564_0394AC28_1532450063
-0x000000007e261130     16      0 RW-rw- \Device\HarddiskVolume2\Users\maro\AppData\Roaming\BitTorrent\resume.dat.old
-0x000000007e27ca20     10      0 R--r-d \Device\HarddiskVolume2\Users\maro\AppData\Roaming\BitTorrent\updates\7.10.5_45272\bittorrentie.exe
-0x000000007e43e3a0     15      0 R--r-d \Device\HarddiskVolume2\Users\maro\AppData\Roaming\BitTorrent\maindoc.ico
-0x000000007e63e3d0     15      0 R--rw- \Device\HarddiskVolume2\Users\maro\Desktop\BitTorrent.lnk
-0x000000007fca4c40     15      0 R--rwd \Device\HarddiskVolume2\Users\maro\Downloads\BitTorrent.exe
-0x000000007fced7b0     16      0 RW-rw- \Device\HarddiskVolume2\Users\maro\AppData\Roaming\BitTorrent\resume.dat.new
-0x000000007fdaa4b0     14      0 R--r-- \Device\HarddiskVolume2\Windows\Prefetch\BITTORRENT.EXE-5495F912.pf
-```
-
-<p></p>
-This output showes us a book however its a .exe file which is a bit strange, giving us the answer for this challenge.
-<p></p>
-<details>
-    <summary>Answer</summary>
-<p></p>
-CyberSecurity_Books_Courses_Tutorials.exe.torrent
-
-</details>
-</details>
-</details>
-
-<p></p>
-<hr>
-<p></p>
-
-<details>
-    <summary>Memory Forensics Lab - Question 12</summary>
-<p></p>
-What is the torrent site ?
-<p></p>
-<details>
-    <summary>Walkthrough</summary>
-<p></p>
-This one took a while to figure out, to start with we grep our filescan.txt for "CyberSecurity_Books_Courses_Tutorials.exe.torrent"
-<p></p>
-
-```
-❯ cat filescan.txt | grep CyberSecurity_Books_Courses_Tutorials.exe.torrent
-0x000000007dfce930      2      0 R--rw- \Device\HarddiskVolume2\Users\maro\AppData\Roaming\BitTorrent\CyberSecurity_Books_Courses_Tutorials.exe.torrent
-```
-
-<p></p>
-Once we find the .torrent file we can use the volatility option dumpfile to dump the file.
-<p></p>
-
-```
-❯ sudo volatility -f lab.raw --profile=Win7SP1x64 dumpfiles -n -Q 0x000000007dfce930 -D .
-Volatility Foundation Volatility Framework 2.6
-DataSectionObject 0x7dfce930   None   \Device\HarddiskVolume2\Users\maro\AppData\Roaming\BitTorrent\CyberSecurity_Books_Courses_Tutorials.exe.torrent
-```
-
-<p></p>
-We can now cat this file.
-<p></p>
-
-```
-❯ cat file.None.0xfffffa80039ce230.CyberSecurity_Books_Courses_Tutorials.exe.torrent.dat
-d10:created by33:kimbatt.github.io/torrent-creator13:creation datei1575576825e4:infod6:lengthi100685e4:name41:CyberSecurity_Books_Courses_Tutorials.exe12:piece lengthi16384e6:pieces140:��EP��VE�-����J4��Zɨ�����Q��/Ò�-E�.bܔ�W��T$t?�<�S�ڊW)]m��*��r�ŅR�R���
-	������.n�a��C��7#�dZ
-                            �H`R�s�q2s���e�H#^+��j��ee%                                                                                                       
-```
-
-<p></p>
-From this output we can see a link to a github page, "kimbatt.github.io/torrent-creator" and if we navigate there we can see that this creates torrent files online.
-<p></p>
-Now that we know that we will dump the process memory of bittorrent that we saw running in pstree.
-<p></p>
-
-```
-❯ cat pstree.txt | grep -i torrent
-. 0xfffffa80037bf6c0:BitTorrent.exe                  1564   1144     22    494 2019-12-06 19:47:10 UTC+0000
-.. 0xfffffa80039b1b30:bittorrentie.e                 2200   1564      9    129 2019-12-06 19:47:11 UTC+0000
-.. 0xfffffa800347f060:bittorrentie.e                 2160   1564     14    323 2019-12-06 19:47:11 UTC+0000
-```
-
-<p></p>
-
-```
-❯ sudo volatility -f lab.raw --profile=Win7SP1x64 memdump -p 1564,2200,2160 -D bittorrent
-Volatility Foundation Volatility Framework 2.6
-************************************************************************
-Writing BitTorrent.exe [  1564] to 1564.dmp
-************************************************************************
-Writing bittorrentie.e [  2160] to 2160.dmp
-************************************************************************
-Writing bittorrentie.e [  2200] to 2200.dmp
-```
-
-<p></p>
-We now have the BitTorrent process memory dumped we can use strings and grep for .torrent
-<p></p>
-
-```
-strings bittorrent/* | grep .torrent 
-```
-
-<p></p>
-If we look at the output at the tail end we can see:
-<p></p>
-
-```
-application/x-bittorrent-appinst
-application/x-bittorrent-key&
-d10:created by33:bit.smasher.io/torrent-infected-k19:creation datei1575576825e4:infod6:lengthi100685e4:name41:CyberSecurity_Books_Courses_Tutorials.exe12:piece lengthi16384e6:pieces140:
-J1CyberSecurity_Books_Courses_Tutorials.exe.torrentP
-s/CyberSecurity_Books_Courses_Tutorials.exe.torrent
-d10:created by33:kimbatt.github.io/torrent-creator13:creation datei1575576825e4:infod6:lengthi100685e4:name41:CyberSecurity_Books_Courses_Tutorials.exe12:piece lengthi16384e6:pieces140:
-bittorrentie.exe
-bittorrentie.exe
-```
-
-<p></p>
-Here we can see the github we looked at before and above it we can see our attacker we found earlier. and the website which is the answer to this question.
-<p></p>
-<details>
-    <summary>Answer</summary>
-<p></p>
-bit.smasher.io/torrent-infected-k19
-</details>
-</details>
-</details>
-
-<p></p>
-<hr>
-<p></p>
-
-<details>
-    <summary>Memory Forensics Lab - Question 13</summary>
-<p></p>
-What is the malware process name ?
-<p></p>
-<details>
-    <summary>Walkthrough</summary>
-<p></p>
-For this challenge if we take the challenge question and see "process name" we can go straight to our pstree.txt and look for any strange process names one sticks out.
-<p></p>
-
-```
-❯ cat pstree.txt
-Name                                                  Pid   PPid   Thds   Hnds Time
--------------------------------------------------- ------ ------ ------ ------ ----
- 0xfffffa8001b9ab30:crypt0r.exe                      3424   3468     12    265 2019-12-06 19:53:45 UTC+0000
-```
-
-<p></p>
-This process doesnt look right, lets investigate it. First we will dump the process using this command.
-<p></p>
-
-```
-❯ sudo volatility -f lab.raw --profile=Win7SP1x64 procdump -p 3424 -D exe
-[sudo] password for parrot: 
-Volatility Foundation Volatility Framework 2.6
-Process(V)         ImageBase          Name                 Result
------------------- ------------------ -------------------- ------
-0xfffffa8001b9ab30 0x0000000001050000 crypt0r.exe          OK: executable.3424.exe
-```
-
-<p></p>
-We can now run this through a program called thor-lite. The command looks like this:
-<p></p>
-
-```
-~/Mytools/thor-lite/thor-lite-linux -p ~/ctf/hackfest/Memory_Forensics/exe --allreasons | tee thor.txt
-```
-
-<p></p>
-The important part of the output is this:
-<p></p>
-
-```
-> 3/3 > Running module 'Filesystem Checks' ------------------------------------
-Info: Filescan Starting module
-Info: Filescan The following paths will be scanned: /home/parrot/ctf/hackfest/Memory_Forensics/exe
-Info: Filescan Scanning /home/parrot/ctf/hackfest/Memory_Forensics/exe RECURSIVE
-Warning: Filescan Possibly Dangerous file found
-FILE: /home/parrot/ctf/hackfest/Memory_Forensics/exe/executable.3424.exe EXT: .exe SCORE: 75
-SIZE: 305664
-CREATED: Tue May 11 09:13:47.011 2021 CHANGED: Tue May 11 09:13:47.051 2021 MODIFIED: Tue May 11 09:13:47.051 2021 ACCESSED: Tue May 11 09:13:47.011 2021 PERMISSIONS: -rw-r--r-- OWNER: root
-MD5: 0633635245838db24ae8a34eeaa3d05d
-SHA1: 1d9e2edebb4044a336ac71121d0932a5527cdb78
-SHA256: d1b433eb609cdea1e16e02d50b18dcba1ad446fa0d29b6b5b00849d3f3b2bef7 TYPE: EXE FIRSTBYTES: 4d5a90000300000004000000ffff0000b8000000 / MZ
-REASON_1: YARA rule MAL_RANSOM_COVID19_Apr20_1 / Detects ransomware distributed in COVID-19 theme SUBSCORE_1: 75 REF_1: https://unit42.paloaltonetworks.com/covid-19-themed-cyber-attacks-target-government-and-medical-organizations/ MATCHED_1: Str1: { 60 2e 2e 2e af 34 34 34 b8 34 34 34 b8 34 34 34 } Str2: { 1f 07 1a 37 85 05 05 36 83 05 05 36 83 05 05 34 } TAGS_1: EXE, FILE, T1136 RULEDATE_1: 2020-04-15 SIGTYPE_1: internal
-Info: Filescan Finished module TOOK: 0 hours 0 mins 0 secs
-```
-
-<p></p>
-Here we can see that it has detected this file as ransomware if we follow the <a href="https://unit42.paloaltonetworks.com/covid-19-themed-cyber-attacks-target-government-and-medical-organizations/" rel="nofollow">link</a> we can read up on the malware information and how it works.
-<p></p>
-We can use another method to see if this is malware and this is by using the website <a href="https://www.virustotal.com/gui/" rel="nofollow">VirusTotal</a> with this page we upload the .exe and we are returned this:
-<p></p>
-<div align="center">
-<img src="https://github.com/Shadow-Admins/Cyber_Club/blob/main/Starting_Point/DFIR/Memory_Forensics/Volatility/images/VirusTotal.jpg"><br>
-</div>
-<p></p>
-This page tells us lots of information about the malware aswell. These results make me comfortable submitting this as the answer to this challenge.
-<p></p>
-<details>
-    <summary>Answer</summary>
-<p></p>
-crypt0r.exe
-
-</details>
-</details>
-</details>
-
-<p></p>
-<hr>
-<p></p>
-
-<details>
-    <summary>Memory Forensics Lab - Question 14</summary>
-<p></p>
-What is the type of this malware ?
-<p></p>
-<details>
-    <summary>Walkthrough</summary>
-<p></p>
-From our research from the previous question we have already found the answer to this question.
-<p></p>
-<details>
-    <summary>Answer</summary>
-<p></p>
-ransomware
-
-</details>
-</details>
-</details>
-
-<p></p>
-<hr>
-<p></p>
-
-<details>
-    <summary>Memory Forensics Lab - Question 15</summary>
-<p></p>
-Is the malware known ? what is its name ?
-<p></p>
-<details>
-    <summary>Walkthrough</summary>
-<p></p>
-For this challenge if we look at the VirusTotal website up the top we can see the name of the ransomware
-<p></p>
-<div align="center">
-<img src="https://github.com/Shadow-Admins/Cyber_Club/blob/main/Starting_Point/DFIR/Memory_Forensics/Volatility/images/HiddenTear.jpg"><br>
-</div>
-<p></p>
-This is also the answer to this challenge.
-<p></p>
-<details>
-    <summary>Answer</summary>
-<p></p>
-hidden tear
-
-</details>
-</details>
-</details>
-
-<p></p>
-<hr>
-<p></p>
-
-<details>
-    <summary>Memory Forensics Lab - Question 16</summary>
-<p></p>
-What is the Bitcoin address of the attacker?
-<p></p>
-<details>
-    <summary>Walkthrough</summary>
-<p></p>
-The first hing we will do for this challenge is dump the process memory of crypt0r.exe so we can run strings on it and grep for the information we require. The command and output looks like this:
-<p></p>
-
-```
-❯ sudo volatility -f lab.raw --profile=Win7SP1x64 memdump -p 3424 -D exe
-[sudo] password for parrot: 
-Volatility Foundation Volatility Framework 2.6
-************************************************************************
-Writing crypt0r.exe [  3424] to 3424.dmp
-```
-
-<p></p>
-We can now search this file IOT gain our answer:
-<p></p>
-
-```
-❯ strings -el 3424.dmp | grep -i coin                                                                                                                         
-Send me some bitcoins                                                                                                                                         
-Send me some bitcoins                                                                                                                                         
-Send bitcoins to 13gwqwqH1h7UYFvyyuD9yjD1vg5yUmS682 to unlock !!                                                                                              
-Send me some bitcoins                                                                                                                                         
-Files has been encrypted ! Send me some bitcoins                                                                                                              
-storprop.dll,HdcCoInstaller                                                                                                                                   
-storprop.dll,HdcCoInstaller                                                                                                                                   
-streamci.dll,SwEnumCoInstaller                                                                                                                                
-SysClass.Dll,CriticalDeviceCoInstaller                                                                                                                        
-mmcico.dll,MediaClassCoInstaller                                                                                                                              
-SysClass.Dll,CriticalDeviceCoInstaller                                                                                                                        
-wlaninst.dll,WlanDeviceClassCoInstaller                                                                                                                       
-wwaninst.dll,WwanDeviceClassCoInstaller                                                                                                                       
-SysClass.Dll,CriticalDeviceCoInstaller                                                                                                                        
-SysClass.Dll,CriticalDeviceCoInstaller                                                                                                                        
-SysClass.Dll,CriticalDeviceCoInstaller                                                                                                                        
-SysClass.Dll,StorageCoInstaller                                                                                                                               
-WmiProp.dll,WmiPropCoInstaller                                                                                                                                
-SysClass.Dll,CriticalDeviceCoInstaller                                                                                                                       
-```
-
-<p></p>
-I only included the head of the output but we can see the answer for this challenge.
-<p></p>
-<details>
-    <summary>Answer</summary>
-<p></p>
-13gwqwqH1h7UYFvyyuD9yjD1vg5yUmS682
-
-</details>
-</details>
-</details>
-
-<p></p>
-<hr>
-<p></p>
-
-<details>
-    <summary>Memory Forensics Lab - Question 17</summary>
-<p></p>
-What is the malware's control server ?
-<p></p>
-<details>
-    <summary>Walkthrough</summary>
-<p></p>
-IOT solve this question I extracted the process in a Winfdos VM and inspected it with dotPeek, (you can run strings on a memory dump of the process and you will eventually find the answer however this method is more straight forward). Once you have used procdump to dump the process you can open the exectuatble in dot peek and inspect the program. But how did I know to use dotPeek? Well after looking through the virus total results you see reference to the file being a .NET file and IOT decompile it to view you need to use a .NET decompiler, dotPeek is the best I have used and its free!
-<p></p>
-<div align="center">
-<img src="https://github.com/Shadow-Admins/Cyber_Club/blob/556fbce2bf0f916fd2eea172b99a01fbbfb91617/Starting_Point/DFIR/Memory_Forensics/Volatility/images/hackfest-dotpeek.jpg"><br>
-</div>
-<p></p>
-As you can see in the screenshot we can see the target url and entering this gives us the flag for this challenge.
-<p></p>
-<details>
-    <summary>Answer</summary>
-<p></p>
-
-```
-http://www.bitsmasher.me/victimes.php?info=
-```
-
-</details>
-</details>
-</details>
-
-<p></p>
-<hr>
-<p></p>
-
-<details>
-    <summary>Memory Forensics Lab - Question 18</summary>
-<p></p>
-What is the Encryption password?
-<p></p>
-<details>
-    <summary>Walkthrough</summary>
-<p></p>
-IOT find the encryption password we can continue to use dotPeek as shown bellow and looking through the program we can see how the password is sent, this is what informs our grep.
-<p></p>
-<div align="center">
-<img src="https://github.com/Shadow-Admins/Cyber_Club/blob/cbe1e6184b3a582e182206d235fee0bc75a2beb3/Starting_Point/DFIR/Memory_Forensics/Volatility/images/hackfest-dotpeek2.png"><br>
-</div>
-<p></p>
-From this we can see the structure of the sent password being "COMPUTERNAME-USER PASSWORD"
-<p></p>
-Alternatively we can continue to read through the website that the thor-lite scan gave us which explains how the password is created and sent.
-<br>
-"Once the remote command and control (C2) server successfully receives the victim’s details, it then proceeds to create a custom key based on the username/hostname details and sends the key back to the infected host for further processing."
-<p></p>
-Now that we know this we can run strings and grep on the memory dump of crypt0r.exe IOT find our answer.
-<p></p>
-
-```
-❯ strings -el 3424.dmp | grep -i "LAB-VM-C57C-maro"
-LAB-VM-C57C-maro WtscbSEbLmfh2AJ
-http://www.bitsmasher.me/victimes.php?info=LAB-VM-C57C-maro WtscbSEbLmfh2AJ
-http://www.bitsmasher.me/victimes.php?info=LAB-VM-C57C-maro WtscbSEbLmfh2AJ
-http://www.bitsmasher.me/victimes.php?info=LAB-VM-C57C-maro WtscbSEbLmfh2AJ
-?info=LAB-VM-C57C-maro%20WtscbSEbLmfh2AJ
-?info=LAB-VM-C57C-maro%20WtscbSEbLmfh2AJ
-http://www.bitsmasher.me/victimes.php?info=LAB-VM-C57C-maro%20WtscbSEbLmfh2AJ
-http://www.bitsmasher.me/victimes.php?info=LAB-VM-C57C-maro%20WtscbSEbLmfh2AJ
-/victimes.php?info=LAB-VM-C57C-maro%20WtscbSEbLmfh2AJ
-/victimes.php?info=LAB-VM-C57C-maro%20WtscbSEbLmfh2AJ
-```
-
-<p></p>
-Here we can see the answer to this challenge.
-<p></p>
-<details>
-    <summary>Answer</summary>
-<p></p>
-WtscbSEbLmfh2AJ
-
-</details>
-</details>
-</details>
-
-<p></p>
-<hr>
-<p></p>
-
-<details>
-    <summary>Memory Forensics Lab - Question 19</summary>
-<p></p>
-Recover the secret
-<p></p>
-<details>
-    <summary>Walkthrough</summary>
-<p></p>
-<p></p>
-The solution for this challenge is the same as the final challenge of the Rick series of challenges however I could not get the file to decrypt. Both series are very similar.
-</details>
-</details>
-
-
-
-
-
-
-
-
-</details>
 
 
 
@@ -7887,8 +6424,1474 @@ This series of challenges was very interesting and required a significant amount
 <hr>
 <p></p>
 
+<H3>Memory Forensics</H3>
+<p></p>
+Is a series of challenges from the <a href="https://ctf.hackfest.tn/" rel="nofollow">Hackfest</a> from 2019, these challenges will use the file lab.raw
+<p></p>
+Challenge File: <a href="https://drive.google.com/file/d/1lPkhMQa4vFLyteN2p1yT27wVsZtMVFAI/view?usp=sharing" rel="nofollow">Google Drive</a>
+<p></p>
+The answers for these challenge do not have 'flag' infront of them and simply require subbmitting the answer into the answer box on the ctf site.
+<p></p>
+<b>Do the first challenge before extracting the file.</b>
+<p></p>
+<details>
+    <summary>Extracting the File</summary>
+<p></p>
+<b>Do the first challenge before extracting the file.</b>
+<p></p>
+When you download it the file comes as memlab_c5f3774eb6ce36405d9a2f8ecb45ef71b3a0a702660587a6b6a357b12d6171f6.7z you can either extract it through an archive manager or through CLI which I will explain now.
+<p></p>
+The first thing you will need is to install p7zip-full if you haven't already. To do this run this command:
+<p></p>
+
+```
+sudo apt install p7zip-full
+```
+
+Now that's installed you can run this command on the file:
+
+```
+p7zip -d memlab_c5f3774eb6ce36405d9a2f8ecb45ef71b3a0a702660587a6b6a357b12d6171f6.7z
+```
+
+Which will output this and extract lab.raw:
+
+```
+❯ p7zip -d memlab_c5f3774eb6ce36405d9a2f8ecb45ef71b3a0a702660587a6b6a357b12d6171f6.7z
+
+7-Zip (a) [64] 16.02 : Copyright (c) 1999-2016 Igor Pavlov : 2016-05-21
+p7zip Version 16.02 (locale=en_AU.UTF-8,Utf16=on,HugeFiles=on,64 bits,4 CPUs Intel(R) Core(TM) i7-7920HQ CPU @ 3.10GHz (906E9),ASM,AES-NI)
+
+Scanning the drive for archives:
+1 file, 392775032 bytes (375 MiB)
+
+Extracting archive: memlab_c5f3774eb6ce36405d9a2f8ecb45ef71b3a0a702660587a6b6a357b12d6171f6.7z
+--
+Path = memlab_c5f3774eb6ce36405d9a2f8ecb45ef71b3a0a702660587a6b6a357b12d6171f6.7z
+Type = 7z
+Physical Size = 392775032
+Headers Size = 122
+Method = LZMA2:24
+Solid = -
+Blocks = 1
+
+Everything is Ok
+
+Size:       2147418112
+Compressed: 392775032
+```
+
+<p></p>
+Once we determine the image profile using <kbd>imageinfo</kbd> (refer to Getting your Foothold ) we can begin our analysis on lab.raw
+<p></p>
+</details>
+
+<details>
+    <summary>Challenges</summary>
+<p></p>
+<details>
+    <summary>Memory Forensics Lab - Question 1</summary>
+<p></p>
+<b>Overview:</b>
+<br>
+Memory forensic refers to the process of investigating a memory dump to locate malicious behaviors. The dump is a snapshot capture of RAM memory at a specific point of time; it can be a full physical memory dump, a crash dump or a hibernation file.
+<br>
+As investigator, this lab will guide you to extract useful artifacts from a given memory snapshot, including running processes, URLs, passwords, encryption keys, open sockets and active connections, open registry keys. That information can be accessed by obtaining and analyzing the attached memory dump.
+Memory dump acquisition for this lab has been performed using "DumpIt" program which has been already installed on the system where the memory dump has been acquired.
+<p></p>
+<b>Scenario:</b>
+<br>
+A machine has been compromised by a malware and important files have been encrypted. Our job as memory forensics experts is to determine how the malware went into the machine, understand its internal and attempt to recover the important file.
+<p></p>
+<b>Question:</b>
+<br>
+For verification purpose, what is the SHA256 sum of the attached file ?
+c5f377..
+<p></p>
+<details>
+    <summary>Walkthrough</summary>
+<p></p>
+To do this we run <kbd>sha256sum</kbd> on memlab_c5f3774eb6ce36405d9a2f8ecb45ef71b3a0a702660587a6b6a357b12d6171f6.7z the command and output looks like this:
+<p></p>
+
+```
+❯ sha256sum memlab_c5f3774eb6ce36405d9a2f8ecb45ef71b3a0a702660587a6b6a357b12d6171f6.7z                                                                                                        
+c5f3774eb6ce36405d9a2f8ecb45ef71b3a0a702660587a6b6a357b12d6171f6  memlab_c5f3774eb6ce36405d9a2f8ecb45ef71b3a0a702660587a6b6a357b12d6171f6.7z                                                  
+```
+
+<p></p>
+Which gives us the flag for this challenge.
+<p></p>
+<details>
+    <summary>Answer</summary>
+<p></p>
+c5f3774eb6ce36405d9a2f8ecb45ef71b3a0a702660587a6b6a357b12d6171f6
+
+</details>
+</details>
+</details>
+
+<p></p>
+<hr>
+<p></p>
+
+<details>
+    <summary>Memory Forensics Lab - Question 2</summary>
+<p></p>
+ What is the Operating System of the machine being investigated?
+<p></p>
+<details>
+    <summary>Walkthrough</summary>
+<p></p>
+To get the flag for this challenge we weed to run the imageinfo option to discover what the image OS is. The command and output looks like this:
+<p></p>
+
+```
+sudo volatility -f lab.raw imageinfo
+```
+
+<p></p>
+Which outputs:
+<p></p>
+
+```
+❯ sudo volatility -f lab.raw imageinfo
+Volatility Foundation Volatility Framework 2.6
+INFO    : volatility.debug    : Determining profile based on KDBG search...
+          Suggested Profile(s) : Win7SP1x64, Win7SP0x64, Win2008R2SP0x64, Win2008R2SP1x64_23418, Win2008R2SP1x64, Win7SP1x64_23418
+                     AS Layer1 : WindowsAMD64PagedMemory (Kernel AS)
+                     AS Layer2 : FileAddressSpace (/home/parrot/ctf/hackfest/Memory_Forensics/lab.raw)
+                      PAE type : No PAE
+                           DTB : 0x187000L
+                          KDBG : 0xf80002846070L
+          Number of Processors : 1
+     Image Type (Service Pack) : 0
+                KPCR for CPU 0 : 0xfffff80002847d00L
+             KUSER_SHARED_DATA : 0xfffff78000000000L
+           Image date and time : 2019-12-06 19:54:14 UTC+0000
+     Image local date and time : 2019-12-06 11:54:14 -0800
+```
+
+<p></p>
+Looking through the output we go to the suggested profiles and use the first suggested profile. The flag is the whole name of the OS.
+<p></p>
+<details>
+    <summary>Answer</summary>
+<p></p>
+Windows 7
+
+</details>
+</details>
+</details>
+
+<p></p>
+<hr>
+<p></p>
+
+<details>
+    <summary>Memory Forensics Lab - Question 3</summary>
+<p></p>
+ What is the computer Name ?
+<p></p>
+<details>
+    <summary>Walkthrough</summary>
+<p></p>
+There are two methods to obtain the flag for this challenge, the first and simpler way is using the envars option and the second is pulling the registry sub key that contains the computer name (I have written a better explaination of pulling registry subkeys in the Rick-GeneralInfo challenge). I will go over the envars method first. The command looks like this:
+<p></p>
+
+```
+sudo volatility -f lab.raw --profile=Win7SP1x64 envars | tee envars.txt
+```
+
+<p></p>
+You can see that I piped (|) the output to tee and a .txt file, this is so I can see the output (So I know what the file looks like, and I can better structure my grep command). Now that we have a .txt file we can run <kbd>grep</kbd> against the file ans search for the computer name. The command looks like this:
+<p></p>
+
+```
+cat envar.txt | grep -i computername
+```
+
+<p></p>
+Which outputs:
+<p></p>
+
+```
+❯ cat envars.txt| grep -i computername                                                                                                                                                        
+     380 wininit.exe          0x0000000000299ae0 COMPUTERNAME                   LAB-VM-C57C                                                                                                   
+     432 winlogon.exe         0x000000000036e490 COMPUTERNAME                   LAB-VM-C57C                                                                                                   
+     476 services.exe         0x0000000000111320 COMPUTERNAME                   LAB-VM-C57C                                                                                                   
+     484 lsass.exe            0x0000000000331320 COMPUTERNAME                   LAB-VM-C57C
+     492 lsm.exe              0x0000000000261320 COMPUTERNAME                   LAB-VM-C57C
+     596 svchost.exe          0x00000000002a1320 COMPUTERNAME                   LAB-VM-C57C
+     656 VBoxService.ex       0x0000000000071320 COMPUTERNAME                   LAB-VM-C57C
+     712 svchost.exe          0x0000000000211320 COMPUTERNAME                   LAB-VM-C57C
+     768 svchost.exe          0x0000000000121320 COMPUTERNAME                   LAB-VM-C57C
+     892 svchost.exe          0x0000000000441320 COMPUTERNAME                   LAB-VM-C57C
+     920 svchost.exe          0x00000000003e1320 COMPUTERNAME                   LAB-VM-C57C
+     340 svchost.exe          0x0000000000351320 COMPUTERNAME                   LAB-VM-C57C
+     372 svchost.exe          0x0000000000271320 COMPUTERNAME                   LAB-VM-C57C
+    1132 dwm.exe              0x0000000000371320 COMPUTERNAME                   LAB-VM-C57C
+    1144 explorer.exe         0x0000000003970b10 COMPUTERNAME                   LAB-VM-C57C
+    1200 spoolsv.exe          0x0000000000321320 COMPUTERNAME                   LAB-VM-C57C
+    1256 taskhost.exe         0x0000000000281320 COMPUTERNAME                   LAB-VM-C57C
+    1284 svchost.exe          0x0000000000291320 COMPUTERNAME                   LAB-VM-C57C
+    1404 svchost.exe          0x0000000000261320 COMPUTERNAME                   LAB-VM-C57C
+    1556 VBoxTray.exe         0x0000000000321320 COMPUTERNAME                   LAB-VM-C57C
+    1564 BitTorrent.exe       0x0000000000291320 COMPUTERNAME                   LAB-VM-C57C
+    1572 StikyNot.exe         0x0000000000151320 COMPUTERNAME                   LAB-VM-C57C
+    1608 SearchIndexer.       0x00000000001ea9e0 COMPUTERNAME                   LAB-VM-C57C
+    2160 bittorrentie.e       0x0000000000091320 COMPUTERNAME                   LAB-VM-C57C
+    2200 bittorrentie.e       0x0000000000581320 COMPUTERNAME                   LAB-VM-C57C
+    2268 GoogleCrashHan       0x0000000000161320 COMPUTERNAME                   LAB-VM-C57C
+    2276 GoogleCrashHan       0x0000000000411320 COMPUTERNAME                   LAB-VM-C57C
+    2488 wmpnetwk.exe         0x00000000000f3740 COMPUTERNAME                   LAB-VM-C57C
+    3052 cmd.exe              0x0000000000278ab0 COMPUTERNAME                   LAB-VM-C57C
+    2796 regedit.exe          0x0000000000111320 COMPUTERNAME                   LAB-VM-C57C
+    2396 chrome.exe           0x0000000000bf4e20 COMPUTERNAME                   LAB-VM-C57C
+    2876 chrome.exe           0x0000000000af1320 COMPUTERNAME                   LAB-VM-C57C
+    2856 chrome.exe           0x0000000000a61320 COMPUTERNAME                   LAB-VM-C57C
+    3032 chrome.exe           0x0000000000061320 COMPUTERNAME                   LAB-VM-C57C
+    1092 chrome.exe           0x0000000000b61320 COMPUTERNAME                   LAB-VM-C57C
+    3204 chrome.exe           0x0000000000b31320 COMPUTERNAME                   LAB-VM-C57C
+    3492 chrome.exe           0x0000000000a61320 COMPUTERNAME                   LAB-VM-C57C
+    3576 chrome.exe           0x0000000000941320 COMPUTERNAME                   LAB-VM-C57C
+    3688 WmiPrvSE.exe         0x0000000000361320 COMPUTERNAME                   LAB-VM-C57C
+    3960 sppsvc.exe           0x00000000002e1320 COMPUTERNAME                   LAB-VM-C57C
+    1960 svchost.exe          0x000000000039c3c0 COMPUTERNAME                   LAB-VM-C57C
+    1592 mirc.exe             0x0000000001631320 COMPUTERNAME                   LAB-VM-C57C
+    3660 WmiApSrv.exe         0x0000000000251320 COMPUTERNAME                   LAB-VM-C57C
+    1492 wuauclt.exe          0x0000000000291320 COMPUTERNAME                   LAB-VM-C57C
+    2128 SearchProtocol       0x0000000000301320 COMPUTERNAME                   LAB-VM-C57C
+    3424 crypt0r.exe          0x00000000003b1320 COMPUTERNAME                   LAB-VM-C57C
+    1528 SearchFilterHo       0x0000000000381320 COMPUTERNAME                   LAB-VM-C57C
+     376 notepad.exe          0x0000000000321320 COMPUTERNAME                   LAB-VM-C57C
+    3820 notepad.exe          0x00000000002a1320 COMPUTERNAME                   LAB-VM-C57C
+    3076 DumpIt.exe           0x0000000000251320 COMPUTERNAME                   LAB-VM-C57C
+```
+
+<p></p>
+Here we can see the computer name and the flag for this challenge.
+<p></p>
+I will now go over pulling the registry sub key that contains the computer name. First we need to discover where in the registry the computer name is held. A quick google shows:
+<p></p>
+"This key shows computer name in all Windows versions – Windows 7, 8 and 10. HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\ComputerName\ActiveComputerName"
+<p></p>
+Now that we know where the registry key is located we need to list the registry hives using the hivelist option. The command looks like this:
+<p></p>
+
+```
+sudo volatility -f lab.raw --profile=Win7SP1x64 hivelist
+```
+
+<p></p>
+Which outputs this:
+<p></p>
+
+```
+❯ sudo volatility -f lab.raw --profile=Win7SP1x64 hivelist
+Volatility Foundation Volatility Framework 2.6
+Virtual            Physical           Name
+------------------ ------------------ ----
+0xfffff8a00000d010 0x000000002d5b3010 [no name]
+0xfffff8a000024010 0x000000002d4d8010 \REGISTRY\MACHINE\SYSTEM
+0xfffff8a00004e010 0x000000002d4c2010 \REGISTRY\MACHINE\HARDWARE
+0xfffff8a00011f010 0x000000002b229010 \SystemRoot\System32\Config\SECURITY
+0xfffff8a0001af010 0x000000002920a010 \SystemRoot\System32\Config\SOFTWARE
+0xfffff8a000dcd420 0x000000001e5d8420 \??\C:\Windows\ServiceProfiles\NetworkService\NTUSER.DAT
+0xfffff8a000e5a010 0x0000000021de6010 \??\C:\Windows\ServiceProfiles\LocalService\NTUSER.DAT
+0xfffff8a00100e3f0 0x000000001d5eb3f0 \??\C:\Users\maro\AppData\Local\Microsoft\Windows\UsrClass.dat
+0xfffff8a0014c7010 0x00000000211ba010 \??\C:\System Volume Information\Syscache.hve
+0xfffff8a0036ab010 0x000000002827d010 \SystemRoot\System32\Config\DEFAULT
+0xfffff8a0036bf010 0x00000000281ed010 \SystemRoot\System32\Config\SAM
+0xfffff8a005d2f420 0x0000000018fc8420 \??\C:\Users\maro\ntuser.dat
+0xfffff8a005dcc420 0x00000000290e8420 \Device\HarddiskVolume1\Boot\BCD
+```
+
+<p></p>
+We know from our research that the key is located in the SYSTEM hive, we will use this information in the next step using the printkey option. The command looks like this:
+<p></p>
+
+```
+sudo volatility -f lab.raw --profile=Win7SP1x64 printkey -o 0xfffff8a000024010
+```
+
+<p></p>
+which outputs:
+<p></p>
+
+```
+❯ sudo volatility -f lab.raw --profile=Win7SP1x64 printkey -o 0xfffff8a000024010
+Volatility Foundation Volatility Framework 2.6
+Legend: (S) = Stable   (V) = Volatile
+
+----------------------------
+Registry: \REGISTRY\MACHINE\SYSTEM
+Key name: CMI-CreateHive{2A7FB991-7BBE-4F9D-B91E-7CB51D4737F5} (S)
+Last updated: 2019-12-06 19:47:06 UTC+0000
+
+Subkeys:
+  (S) ControlSet001
+  (S) ControlSet002
+  (S) MountedDevices
+  (S) RNG
+  (S) Select
+  (S) Setup
+  (S) WPA
+  (V) CurrentControlSet
+
+Values:
+```
+
+<p></p>
+Here we can see the subkeys listed, we do this step so that we can see the ControlSet001 subkey which we need to use with the research we did earlier, the next command looks like this:
+<p></p>
+
+```
+sudo volatility -f lab.raw --profile=Win7SP1x64 printkey -o 0xfffff8a000024010 -K 'ControlSet001\Control\ComputerName\ComputerName'
+```
+
+<p></p>
+Which outputs this:
+<p></p>
+
+```
+❯ sudo volatility -f lab.raw --profile=Win7SP1x64 printkey -o 0xfffff8a000024010 -K 'ControlSet001\Control\ComputerName\ComputerName'
+Volatility Foundation Volatility Framework 2.6
+Legend: (S) = Stable   (V) = Volatile
+
+----------------------------
+Registry: \REGISTRY\MACHINE\SYSTEM
+Key name: ComputerName (S)
+Last updated: 2019-12-06 15:21:08 UTC+0000
+
+Subkeys:
+
+Values:
+REG_SZ                        : (S) mnmsrvc
+REG_SZ        ComputerName    : (S) LAB-VM-C57C
+```
+
+<p></p>
+Here we can see the computername in the output, giving us the answer.
+<p></p>
+<details>
+    <summary>Answer</summary>
+<p></p>
+LAB-VM-C57C
+
+</details>
+</details>
+</details>
+
+<p></p>
+<hr>
+<p></p>
+
+<details>
+    <summary>Memory Forensics Lab - Question 4</summary>
+<p></p>
+What is the user's system password ?
+<p></p>
+<details>
+    <summary>Walkthrough</summary>
+<p></p>
+</details>
+</details>
+
+<p></p>
+<hr>
+<p></p>
+
+<details>
+    <summary>Memory Forensics Lab - Question 5</summary>
+<p></p>
+What is the IP address of the machine?
+<p></p>
+<details>
+    <summary>Walkthrough</summary>
+<p></p>
+IOT get the flag for this challenge we need to list all the network connection, we will do this using the netscan option. The command looks like this:
+<p></p>
+
+```
+sudo volatility -f lab.raw --profile=Win7SP1x64 netscan
+```
+
+<p></p>
+Which outputs:
+<p></p>
+
+```
+❯ sudo volatility -f lab.raw --profile=Win7SP1x64 netscan                                                                                                                            [50/3469]
+Volatility Foundation Volatility Framework 2.6                                                                                                                                                
+Offset(P)          Proto    Local Address                  Foreign Address      State            Pid      Owner          Created                                                              
+0x7dc293f0         UDPv6    fe80::a0e4:262f:80eb:3d68:1900 *:*                                   1404     svchost.exe    2019-12-06 19:47:15 UTC+0000                                         
+0x7dc34d00         UDPv4    10.0.2.15:1900                 *:*                                   1404     svchost.exe    2019-12-06 19:47:15 UTC+0000                                         
+0x7dc6b460         UDPv4    0.0.0.0:3702                   *:*                                   340      svchost.exe    2019-12-06 19:47:17 UTC+0000                                         
+0x7dc6b460         UDPv6    :::3702                        *:*                                   340      svchost.exe    2019-12-06 19:47:17 UTC+0000                                         
+0x7dc71d00         UDPv4    127.0.0.1:64509                *:*                                   1404     svchost.exe    2019-12-06 19:47:15 UTC+0000                                         
+0x7dc782d0         UDPv4    10.0.2.15:64508                *:*                                   1404     svchost.exe    2019-12-06 19:47:15 UTC+0000                                         
+0x7dc79a40         UDPv6    fe80::a0e4:262f:80eb:3d68:64506 *:*                                   1404     svchost.exe    2019-12-06 19:47:15 UTC+0000                                        
+0x7dc7a380         UDPv4    127.0.0.1:1900                 *:*                                   1404     svchost.exe    2019-12-06 19:47:15 UTC+0000                                         
+0x7dcee460         UDPv4    0.0.0.0:3702                   *:*                                   1404     svchost.exe    2019-12-06 19:47:17 UTC+0000                                         
+0x7dcee460         UDPv6    :::3702                        *:*                                   1404     svchost.exe    2019-12-06 19:47:17 UTC+0000                                         
+0x7dcef010         UDPv4    0.0.0.0:57684                  *:*                                   340      svchost.exe    2019-12-06 19:47:18 UTC+0000                                         
+0x7dcf1550         UDPv4    0.0.0.0:63041                  *:*                                   340      svchost.exe    2019-12-06 19:47:16 UTC+0000                                         
+0x7dcf3bb0         UDPv4    0.0.0.0:63042                  *:*                                   340      svchost.exe    2019-12-06 19:47:16 UTC+0000                                         
+0x7dcf3bb0         UDPv6    :::63042                       *:*                                   340      svchost.exe    2019-12-06 19:47:16 UTC+0000                                         
+0x7dcfb9e0         UDPv4    0.0.0.0:57685                  *:*                                   340      svchost.exe    2019-12-06 19:47:18 UTC+0000                                         
+0x7dcfb9e0         UDPv6    :::57685                       *:*                                   340      svchost.exe    2019-12-06 19:47:18 UTC+0000                                         
+0x7dcfbb30         UDPv4    0.0.0.0:3702                   *:*                                   1404     svchost.exe    2019-12-06 19:47:17 UTC+0000                                         
+0x7dcfbcb0         UDPv4    0.0.0.0:3702                   *:*                                   340      svchost.exe    2019-12-06 19:47:17 UTC+0000                                         
+0x7dd48360         UDPv4    0.0.0.0:64770                  *:*                                   2160     bittorrentie.e 2019-12-06 19:47:41 UTC+0000                                         
+0x7dd48360         UDPv6    :::64770                       *:*                                   2160     bittorrentie.e 2019-12-06 19:47:41 UTC+0000                                         
+0x7dd484b0         UDPv4    127.0.0.1:55621                *:*                                   2160     bittorrentie.e 2019-12-06 19:47:41 UTC+0000                                         
+0x7dfd47e0         UDPv4    0.0.0.0:3702                   *:*                                   1404     svchost.exe    2019-12-06 19:47:17 UTC+0000                                         
+0x7dfe9010         UDPv4    10.0.2.15:6771                 *:*                                   1564     BitTorrent.exe 2019-12-06 19:47:13 UTC+0000                                         
+0x7dffd8f0         UDPv4    0.0.0.0:0                      *:*                                   372      svchost.exe    2019-12-06 19:47:13 UTC+0000                                         
+0x7dffd8f0         UDPv6    :::0                           *:*                                   372      svchost.exe    2019-12-06 19:47:13 UTC+0000                                         
+0x7e145b30         UDPv4    0.0.0.0:5355                   *:*                                   372      svchost.exe    2019-12-06 19:47:15 UTC+0000                                         
+0x7e1dc820         UDPv4    10.0.2.15:137                  *:*                                   4        System         2019-12-06 19:47:13 UTC+0000                                         
+0x7e27e240         UDPv4    0.0.0.0:46690                  *:*                                   1564     BitTorrent.exe 2019-12-06 19:47:11 UTC+0000                                         
+0x7e296c20         UDPv4    0.0.0.0:0                      *:*                                   656      VBoxService.ex 2019-12-06 19:54:14 UTC+0000                                         
+0x7e32a8b0         UDPv6    ::1:64507                      *:*                                   1404     svchost.exe    2019-12-06 19:47:15 UTC+0000                                         
+0x7e3612b0         UDPv4    127.0.0.1:6771                 *:*                                   1564     BitTorrent.exe 2019-12-06 19:47:13 UTC+0000                                         
+0x7e375b80         UDPv4    0.0.0.0:0                      *:*                                   1564     BitTorrent.exe 2019-12-06 19:47:31 UTC+0000                                         
+0x7e3d36d0         UDPv4    0.0.0.0:5353                   *:*                                   2396     chrome.exe     2019-12-06 19:48:01 UTC+0000
+0x7e3f75c0         UDPv4    0.0.0.0:3702                   *:*                                   1404     svchost.exe    2019-12-06 19:47:17 UTC+0000
+0x7e3f75c0         UDPv6    :::3702                        *:*                                   1404     svchost.exe    2019-12-06 19:47:17 UTC+0000
+0x7dc22010         TCPv4    0.0.0.0:49164                  0.0.0.0:0            LISTENING        484      lsass.exe      
+0x7dc22010         TCPv6    :::49164                       :::0                 LISTENING        484      lsass.exe      
+0x7dc47ce0         TCPv4    0.0.0.0:49164                  0.0.0.0:0            LISTENING        484      lsass.exe      
+0x7e0008b0         TCPv4    0.0.0.0:49154                  0.0.0.0:0            LISTENING        920      svchost.exe    
+0x7e0008b0         TCPv6    :::49154                       :::0                 LISTENING        920      svchost.exe    
+0x7e219360         TCPv4    0.0.0.0:135                    0.0.0.0:0            LISTENING        712      svchost.exe    
+0x7e228d30         TCPv4    0.0.0.0:135                    0.0.0.0:0            LISTENING        712      svchost.exe    
+0x7e228d30         TCPv6    :::135                         :::0                 LISTENING        712      svchost.exe    
+0x7e2322b0         TCPv4    0.0.0.0:49152                  0.0.0.0:0            LISTENING        380      wininit.exe    
+0x7e234e60         TCPv4    0.0.0.0:49152                  0.0.0.0:0            LISTENING        380      wininit.exe    
+0x7e234e60         TCPv6    :::49152                       :::0                 LISTENING        380      wininit.exe    
+0x7e281770         TCPv4    0.0.0.0:46690                  0.0.0.0:0            LISTENING        1564     BitTorrent.exe 
+0x7e2b8680         TCPv4    0.0.0.0:49153                  0.0.0.0:0            LISTENING        768      svchost.exe    
+0x7e2b8680         TCPv6    :::49153                       :::0                 LISTENING        768      svchost.exe    
+0x7e2bc480         TCPv4    0.0.0.0:49153                  0.0.0.0:0            LISTENING        768      svchost.exe    
+0x7e3406f0         TCPv4    0.0.0.0:49155                  0.0.0.0:0            LISTENING        476      services.exe   
+0x7e342a80         TCPv4    0.0.0.0:49155                  0.0.0.0:0            LISTENING        476      services.exe   
+0x7e342a80         TCPv6    :::49155                       :::0                 LISTENING        476      services.exe   
+0x7e365cd0         TCPv4    0.0.0.0:5357                   0.0.0.0:0            LISTENING        4        System         
+0x7e365cd0         TCPv6    :::5357                        :::0                 LISTENING        4        System         
+0x7e3fb280         TCPv4    0.0.0.0:49154                  0.0.0.0:0            LISTENING        920      svchost.exe    
+0x7dc0c980         TCPv4    10.0.2.15:49206                94.125.182.252:6697  ESTABLISHED      1592     mirc.exe       
+0x7dc49290         TCPv4    10.0.2.15:49219                193.70.38.49:80      CLOSE_WAIT       3424     crypt0r.exe    
+0x7dd3b510         TCPv6    -:0                            387b:4803:80fa:ffff:387b:4803:80fa:ffff:0 CLOSED           1564     BitTorrent.exe 
+0x7dd63010         TCPv4    -:0                            56.123.72.3:0        CLOSED           1564     BitTorrent.exe 
+0x7df76cf0         TCPv6    -:0                            385b:3003:80fa:ffff:d063:a302:80fa:ffff:0 CLOSED           340      svchost.exe    
+0x7df92cf0         TCPv4    -:0                            56.91.48.3:0         CLOSED           1564     BitTorrent.exe 
+0x7dfe24f0         TCPv4    10.0.2.15:49221                216.58.213.163:443   ESTABLISHED      3032     chrome.exe     
+0x7e113010         TCPv4    -:0                            56.123.72.3:0        CLOSED           3032     chrome.exe     
+0x7e1f0940         TCPv4    10.0.2.15:49203                50.28.34.67:443      CLOSE_WAIT       1592     mirc.exe       
+0x7e2d5010         TCPv4    10.0.2.15:49220                216.58.213.163:443   ESTABLISHED      3032     chrome.exe     
+0x7e4a9370         UDPv4    0.0.0.0:5353                   *:*                                   2396     chrome.exe     2019-12-06 19:48:01 UTC+0000
+0x7e4a9370         UDPv6    :::5353                        *:*                                   2396     chrome.exe     2019-12-06 19:48:01 UTC+0000
+0x7e62c950         UDPv4    0.0.0.0:5355                   *:*                                   372      svchost.exe    2019-12-06 19:47:15 UTC+0000
+0x7e62c950         UDPv6    :::5355                        *:*                                   372      svchost.exe    2019-12-06 19:47:15 UTC+0000
+0x7e64eec0         UDPv4    0.0.0.0:3702                   *:*                                   340      svchost.exe    2019-12-06 19:47:17 UTC+0000
+0x7e64eec0         UDPv6    :::3702                        *:*                                   340      svchost.exe    2019-12-06 19:47:17 UTC+0000
+0x7e655e40         UDPv4    0.0.0.0:3702                   *:*                                   340      svchost.exe    2019-12-06 19:47:17 UTC+0000
+0x7e705810         UDPv4    127.0.0.1:62228                *:*                                   1564     BitTorrent.exe 2019-12-06 19:47:12 UTC+0000
+0x7e440700         TCPv6    -:0                            387b:4803:80fa:ffff:387b:4803:80fa:ffff:0 CLOSED           1564     BitTorrent.exe 
+0x7ee02010         UDPv4    0.0.0.0:65081                  *:*                                   1404     svchost.exe    2019-12-06 19:47:11 UTC+0000
+0x7ee02010         UDPv6    :::65081                       *:*                                   1404     svchost.exe    2019-12-06 19:47:11 UTC+0000
+0x7ee967e0         UDPv6    ::1:1900                       *:*                                   1404     svchost.exe    2019-12-06 19:47:15 UTC+0000
+0x7eeba730         UDPv4    0.0.0.0:1900                   *:*                                   1564     BitTorrent.exe 2019-12-06 19:47:12 UTC+0000
+0x7eed1b70         UDPv4    10.0.2.15:138                  *:*                                   4        System         2019-12-06 19:47:13 UTC+0000
+0x7f1fc880         UDPv4    0.0.0.0:65080                  *:*                                   1404     svchost.exe    2019-12-06 19:47:11 UTC+0000
+0x7ee470f0         TCPv4    0.0.0.0:445                    0.0.0.0:0            LISTENING        4        System         
+0x7ee470f0         TCPv6    :::445                         :::0                 LISTENING        4        System         
+0x7fc88560         UDPv4    0.0.0.0:0                      *:*                                   656      VBoxService.ex 2019-12-06 19:54:29 UTC+0000
+0x7fcb3220         UDPv4    0.0.0.0:0                      *:*                                   3424     crypt0r.exe    2019-12-06 19:53:46 UTC+0000
+0x7fd10920         UDPv6    fe80::a0e4:262f:80eb:3d68:546  *:*                                   768      svchost.exe    2019-12-06 19:54:28 UTC+0000
+0x7fd50550         UDPv4    0.0.0.0:0                      *:*                                   3424     crypt0r.exe    2019-12-06 19:53:46 UTC+0000
+0x7fdadac0         UDPv4    0.0.0.0:0                      *:*                                   3424     crypt0r.exe    2019-12-06 19:53:46 UTC+0000
+0x7fdadac0         UDPv6    :::0                           *:*                                   3424     crypt0r.exe    2019-12-06 19:53:46 UTC+0000
+0x7fdafec0         UDPv4    0.0.0.0:0                      *:*                                   3424     crypt0r.exe    2019-12-06 19:53:46 UTC+0000
+0x7fdafec0         UDPv6    :::0                           *:*                                   3424     crypt0r.exe    2019-12-06 19:53:46 UTC+0000
+0x7fee1ce0         TCPv4    10.0.2.15:139                  0.0.0.0:0            LISTENING        4        System         
+0x7fd50cf0         TCPv4    10.0.2.15:49222                216.239.34.117:443   ESTABLISHED      3032     chrome.exe     
+0x7fd58cf0         TCPv4    10.0.2.15:49217                172.217.22.131:443   CLOSED           3032     chrome.exe     
+```
+
+<p></p>
+Normally I go stright to system and look at the local ip address as this normally shows the system ip. we can see that in the output.
+<p></p>
+
+```
+Offset(P)          Proto    Local Address                  Foreign Address      State            Pid      Owner          Created                                                              
+0x7e1dc820         UDPv4    10.0.2.15:137                  *:*                                   4        System         2019-12-06 19:47:13 UTC+0000                                         
+```
+
+<p></p>
+Which gives us the flag for this challenge.
+<p></p>
+<details>
+    <summary>Answer</summary>
+<p></p>
+10.0.2.15
+</details>
+</details>
+</details>
+
+<p></p>
+<hr>
+<p></p>
+
+<details>
+    <summary>Memory Forensics Lab - Question 6</summary>
+<p></p>
+What is the IRC client Software used by the user ?
+<p></p>
+<details>
+    <summary>Walkthrough</summary>
+<p></p>
+To get the flag for this challenge we will list all the processes running on the system and see if we can see anything, we will use pstree but any process listing option will work(again I pipe (|) to tee for later use). The command looks like this:
+<p></p>
+
+```
+sudo volatility -f lab.raw --profile=Win7SP1x64 pstree | tee pstree.txt
+```
+
+<p></p>
+We can see in the output:
+<p></p>
+
+```
+Name                                                  Pid   PPid   Thds   Hnds Time                                                                                                           
+-------------------------------------------------- ------ ------ ------ ------ ----                                                                                                           
+. 0xfffffa80039879d0:mirc.exe                        1592   1144      9    424 2019-12-06 19:49:47 UTC+0000
+```
+
+<p></p>
+If we google this:
+<p></p>
+"mIRC is a popular Internet Relay Chat client used by individuals and organizations to communicate, share, play and work with each other on IRC networks around the world."
+<p></p>
+Which proves this is the answer for this challenge.
+<p></p>
+<details>
+    <summary>Answer</summary>
+<p></p>
+mirc
+</details>
+</details>
+</details>
+
+<p></p>
+<hr>
+<p></p>
+
+<details>
+    <summary>Memory Forensics Lab - Question 7</summary>
+<p></p>
+What is the user's IRC account Password ?
+<br>
+Hint: Clipboard contents are critical to forensic analysis. It often provides valuable forensic information, including user passwords.
+<p></p>
+<details>
+    <summary>Walkthrough</summary>
+<p></p>
+This challenge hint basically gives us the method to solve this question as there is a volatility optionaclled clipboard that prints out the clipboard history. The command and output looks like this:
+
+```
+❯ sudo volatility -f lab.raw --profile=Win7SP1x64 clipboard
+Volatility Foundation Volatility Framework 2.6
+Session    WindowStation Format                         Handle Object             Data                                              
+---------- ------------- ------------------ ------------------ ------------------ --------------------------------------------------
+         1 WinSta0       CF_UNICODETEXT               0x2102fb 0xfffff900c23c6250 uFB646Vm9CscCwzR                                  
+         1 WinSta0       CF_TEXT                          0x10 ------------------                                                   
+         1 WinSta0       0x3306f1L              0x200000000000 ------------------                                                   
+         1 WinSta0       CF_TEXT                           0x1 ------------------                                                   
+         1 ------------- ------------------           0x3306f1 0xfffff900c2167350                                                   
+```
+
+<p></p>
+The data column gives us the flag for this question.
+<p></p>
+<details>
+    <summary>Answer</summary>
+<p></p>
+uFB646Vm9CscCwzR
+</details>
+</details>
+</details>
+
+<p></p>
+<hr>
+<p></p>
+
+<details>
+    <summary>Memory Forensics Lab - Question 8</summary>
+<p></p>
+What is the IRC server and channel ?
+<p></p>
+<details>
+    <summary>Walkthrough</summary>
+<p></p>
+This one requires alot of searching using grep. A good starting place is to do a filescan and then grep for mIRC. the initial command looks like this:
+<p></p>
+
+```
+sudo volatility -f lab.raw --profile=Win7SP1x64 filescan > filescan.txt
+```
+
+<p></p>
+This gives us a file we can now grep multiple times. We will now grep for mIRC. The command and output looks like this:
+<p></p>
+
+```
+❯ cat filescan.txt | grep -i mirc
+0x00000000059fdc50     16      0 R--rwd \Device\HarddiskVolume2\Users\maro\AppData\Roaming\mIRC\scripts\popups.ini
+0x00000000059fdf20     16      0 R--rwd \Device\HarddiskVolume2\Users\maro\AppData\Roaming\mIRC\scripts\aliases.ini
+0x000000007dd51920      2      1 R--rwd \Device\HarddiskVolume2\Users\maro\AppData\Roaming\mIRC
+0x000000007dea6a10     16      0 R--rw- \Device\HarddiskVolume2\Users\maro\AppData\Roaming\mIRC\logs\#infosec.freenode.log
+0x000000007dea8840      1      1 RW-rw- \Device\HarddiskVolume2\Users\maro\AppData\Roaming\mIRC\logs\bitsmasher.freenode.log
+0x000000007dfa3940     16      0 R----- \Device\HarddiskVolume2\Windows\Prefetch\MIRC.EXE-6DA58AAF.pf
+0x000000007e05e7e0     14      0 R--r-d \Device\HarddiskVolume2\Users\maro\Downloads\mirc.exe
+0x000000007e111c20      2      0 RW-rw- \Device\HarddiskVolume2\Users\maro\AppData\Roaming\mIRC\logs\#infosec.freenode.log
+0x000000007e18d8d0     16      0 RW-rw- \Device\HarddiskVolume2\Users\maro\AppData\Roaming\mIRC\logs\status.Freenode.log
+0x000000007e1c39e0     12      0 R--r-- \Device\HarddiskVolume2\Program Files (x86)\mIRC\mirc.exe
+0x000000007e277070     16      0 R--rw- \Device\HarddiskVolume2\Users\maro\AppData\Roaming\mIRC\logs\bitsmasher.freenode.log
+0x000000007e524950      2      1 R--rwd \Device\HarddiskVolume2\Users\maro\AppData\Roaming\mIRC
+0x000000007fc44f20     15      0 R--rwd \Device\HarddiskVolume2\Users\maro\AppData\Roaming\mIRC\logs\status.Freenode.log
+0x000000007fc836a0      1      1 RW-rw- \Device\HarddiskVolume2\Users\maro\AppData\Roaming\mIRC\logs\#infosec.freenode.log
+0x000000007fcd61e0      9      0 R--r-d \Device\HarddiskVolume2\Program Files (x86)\mIRC\mirc.exe
+0x000000007fcd6330     14      0 R--r-d \Device\HarddiskVolume2\Program Files (x86)\mIRC\uninstall.exe
+0x000000007fcd69d0     16      0 R--r-- \Device\HarddiskVolume2\Program Files (x86)\mIRC\uninstall.exe
+0x000000007fcd7730     15      0 R--rw- \Device\HarddiskVolume2\Users\maro\AppData\Roaming\mIRC\cacert.pem
+0x000000007fcd9490      2      1 R--rwd \Device\HarddiskVolume2\Users\maro\AppData\Roaming\mIRC\scripts
+0x000000007fd1f8a0      2      1 R--rwd \Device\HarddiskVolume2\Users\maro\AppData\Roaming\mIRC\logs
+0x000000007fd54f20      1      1 RW-rw- \Device\HarddiskVolume2\Users\maro\AppData\Roaming\mIRC\logs\status.Freenode.log
+0x000000007fee9470      1      1 R--rw- \Device\HarddiskVolume2\Program Files (x86)\mIRC
+0x000000007fee9c50     16      0 R--rwd \Device\HarddiskVolume2\Users\maro\AppData\Roaming\mIRC\urls.ini
+0x000000007feef8f0      2      1 R--rwd \Device\HarddiskVolume2\Users\maro\AppData\Roaming\mIRC\logs
+```
+
+<p></p>
+The interesting thing we can see here is all the log files. Lets isolate the log files using this command:
+<p></p>
+
+```
+❯ cat filescan.txt | grep -i mirc | grep -i log
+0x000000007dea6a10     16      0 R--rw- \Device\HarddiskVolume2\Users\maro\AppData\Roaming\mIRC\logs\#infosec.freenode.log
+0x000000007dea8840      1      1 RW-rw- \Device\HarddiskVolume2\Users\maro\AppData\Roaming\mIRC\logs\bitsmasher.freenode.log
+0x000000007e111c20      2      0 RW-rw- \Device\HarddiskVolume2\Users\maro\AppData\Roaming\mIRC\logs\#infosec.freenode.log
+0x000000007e18d8d0     16      0 RW-rw- \Device\HarddiskVolume2\Users\maro\AppData\Roaming\mIRC\logs\status.Freenode.log
+0x000000007e277070     16      0 R--rw- \Device\HarddiskVolume2\Users\maro\AppData\Roaming\mIRC\logs\bitsmasher.freenode.log
+0x000000007fc44f20     15      0 R--rwd \Device\HarddiskVolume2\Users\maro\AppData\Roaming\mIRC\logs\status.Freenode.log
+0x000000007fc836a0      1      1 RW-rw- \Device\HarddiskVolume2\Users\maro\AppData\Roaming\mIRC\logs\#infosec.freenode.log
+0x000000007fd1f8a0      2      1 R--rwd \Device\HarddiskVolume2\Users\maro\AppData\Roaming\mIRC\logs
+0x000000007fd54f20      1      1 RW-rw- \Device\HarddiskVolume2\Users\maro\AppData\Roaming\mIRC\logs\status.Freenode.log
+0x000000007feef8f0      2      1 R--rwd \Device\HarddiskVolume2\Users\maro\AppData\Roaming\mIRC\logs
+```
+
+<p></p>
+Now that we can see these log files we can dump them using the volatility option dumpfiles. The command looks like this:
+<p></p>
+
+```
+❯ sudo volatility -f lab.raw --profile=Win7SP1x64 dumpfiles -n -Q 0x000000007dea6a10,0x000000007dea8840,0x000000007e111c20,0x000000007e18d8d0,0x000000007e277070,0x000000007fc44f20,0x000000007fc836a0,0x000000007fd1f8a0,0x000000007fd54f20,0x000000007feef8f0 -D dump
+Volatility Foundation Volatility Framework 2.6
+DataSectionObject 0x7dea6a10   None   \Device\HarddiskVolume2\Users\maro\AppData\Roaming\mIRC\logs\#infosec.freenode.log
+SharedCacheMap 0x7dea6a10   None   \Device\HarddiskVolume2\Users\maro\AppData\Roaming\mIRC\logs\#infosec.freenode.log
+DataSectionObject 0x7dea8840   None   \Device\HarddiskVolume2\Users\maro\AppData\Roaming\mIRC\logs\bitsmasher.freenode.log
+DataSectionObject 0x7e18d8d0   None   \Device\HarddiskVolume2\Users\maro\AppData\Roaming\mIRC\logs\status.Freenode.log
+SharedCacheMap 0x7e18d8d0   None   \Device\HarddiskVolume2\Users\maro\AppData\Roaming\mIRC\logs\status.Freenode.log
+```
+
+<p></p>
+In this command the <kbd>-n</kbd> flag tells volatility to add the name of the file to the output, the <kbd>-Q</kbd> flag points to the physical address of the file we want to dump and the <kbd>-D</kbd> flag points to the directory we want to dump the files to. We can now cat the files to see what information is contained within.
+<p></p>
+Looking through these, status.Freenode.log is designed to lead you down a rabbit hole as the server/channels are about authours 'Tolkein' etc. however the #infosec and bitsmasher logs look more like the information we require.
+<p></p>
+
+```
+❯ cat file.None.0xfffffa8001a878f0.\#infosec.freenode.log.dat
+
+Session Start: Fri Dec 06 04:44:41 2019
+Session Ident: #infosec
+03[04:44] * Now talking in #infosec
+03[04:45] * bitsmasher (~bitdefeat@90.85.138.133) has joined #infosec
+03[05:22] * bitsmasher (~bitdefeat@90.85.138.133) has left #infosec
+Session Close: Fri Dec 06 05:23:09 2019
+
+Session Start: Fri Dec 06 05:24:27 2019
+Session Ident: #infosec
+03[05:24] * Now talking in #infosec
+Session Close: Fri Dec 06 05:25:15 2019
+
+Session Start: Fri Dec 06 05:25:46 2019
+Session Ident: #infosec
+03[05:25] * Now talking in #infosec
+
+Session Start: Fri Dec 06 06:42:42 2019
+Session Ident: #infosec
+03[06:42] * Now talking in #infosec
+03[06:43] * bitsmasher (~bitdefeat@90.85.138.133) has joined #infosec
+03[07:41] * drale2k (~drale2k@212-186-241-203.static.upcbusiness.at) has joined #infosec
+
+Session Start: Fri Dec 06 11:24:10 2019
+Session Ident: #infosec
+03[11:24] * Now talking in #infosec
+03[11:24] * bitsmasher (~bitdefeat@58.188.158.77.rev.sfr.net) has joined #infosec
+
+Session Start: Fri Dec 06 11:51:54 2019
+Session Ident: #infosec
+03[11:51] * Now talking in #infosec
+```
+
+<p></p>
+
+```
+❯ cat file.None.0xfffffa8001b60260.bitsmasher.freenode.log.dat
+
+Session Start: Fri Dec 06 04:45:49 2019
+Session Ident: bitsmasher
+[04:45] Session Ident: bitsmasher (freenode, codewaver) (~bitdefeat@90.85.138.133)
+[04:45] <bitsmasher> Hi !
+[04:46] <bitsmasher> Hello :)
+Session Close: Fri Dec 06 05:23:06 2019
+
+Session Start: Fri Dec 06 05:26:05 2019
+Session Ident: bitsmasher
+[05:26] Session Ident: bitsmasher (freenode, codewaver) (~bitdefeat@90.85.138.133)
+[05:26] <bitsmasher> Hi !
+01[05:26] <codewaver> Hi @bitsmasher 
+[05:27] <bitsmasher> I saw your message in the chatroom
+[05:27] <bitsmasher> Actually I have what you are looking for 
+[05:28] <bitsmasher> I have a ton eBooks about CyberSecurity available for download ! I can share it with you ...
+01[05:28] <codewaver> Ah That would be awesome 
+01[05:28] <codewaver> Could you kindely share the download link with me ?
+[05:29] <bitsmasher> sure ! here it is https://file.io/yBBkJc
+01[05:29] <codewaver> Appreciated !
+
+Session Start: Fri Dec 06 06:43:42 2019
+Session Ident: bitsmasher
+[06:43] <bitsmasher> :)
+
+Session Start: Fri Dec 06 11:51:56 2019
+Session Ident: bitsmasher
+```
+
+<p></p>
+Here we can see connection to a channel and the conversation that occured. We can use this information to inform our next grep on the process memory dump. First we need to dump the process memory using the volatility option memdump. The command and output looks like this:
+<p></p>
+
+```
+❯ sudo volatility -f lab.raw --profile=Win7SP1x64 memdump -p 1592 -D .
+Volatility Foundation Volatility Framework 2.6
+************************************************************************
+Writing mirc.exe [  1592] to 1592.dmp
+```
+
+<p></p>
+In this command you can see the <kbd>-p</kbd> flag points to the Pid we found from our pstree earlier in the challenge, the <kbd>-D</kbd> flag points to the directory we want to dump the file to.
+<p></p>
+We can now run strings and grep for the information we found in the log files.
+<p></p>
+To start with I ran this (excerpt from the output):
+<p></p>
+
+```
+strings -e l 1592.dmp | grep -B 5 -A 5 -i '#infosec'
+
+--
+"ircsupport
+Beginner
+IRCAddicts
+Query: 1
+Channel: 1
+#infosec
+^TeenParty
+bitsmasher
+RTeenWorld
+bTeenLounge
+fSpeakEasy
+--
+```
+
+<p></p>
+With this command strings uses the <kbd>-e l</kbd> flag to tell it to read unicode strings, the <kbd>-B</kbd> flag and <kbd>-A</kbd> flag tells grep to ooutput the 5 lines before and after #infosec and the <kbd>-i</kbd> flag tells grep to be case insensitive. This output lets us know we have found the channel. Now for the server, from here I changed my grep to different itterations of strings with and without the <kbd>-e</kbd> flag, and grep's for different itterations of infosec.freenode, .freenode etc.
+<p></p>
+
+```
+strings 1592.dmp | grep -i freenode | grep "#"
+```
+
+<p></p>
+Which outputs:
+<p></p>
+
+```
+❯ strings 1592.dmp | grep -i freenode | grep "#"
+dams.freenode.net 366 codewaver #infosec :End of /NAMES list.
+:adams.freenode.net 372 codewaver :- and everyone else who made this year's freenode #live conference amazing.
+:adams.freenode.net 366 codewaver #infosec :End of /NAMES list.
+:adams.freenode.net 372 codewaver :- and everyone else who made this year's freenode #live conference amazing.
+K&1:51] - #freenode and using the '/who freenode/staff/*' command. You may message
+#infosec.freenode.lnk
+#infosec.freenode.lnk
+[04:44] CHANTYPES=# EXCEPTS INVEX CHANMODES=eIbq,k,flj,CFLMPQScgimnprstuz CHANLIMIT=#:120 PREFIX=(ov)@+ MAXLIST=bqeI:100 MODES=4 NETWORK=freenode STATUSMSG=@+ CALLERID=g CASEMAPPING=rfc1459 are supported by this server
+[04:44] - #freenode and using the '/who freenode/staff/*' command. You may message
+[11:24] - and everyone else who made this year's freenode #live conference amazing.
+02[11:50] * Connect retry #1 chat.freenode.net (+6697) (dns pool)
+02[11:51] * Connect retry #2 chat.freenode.net (+6697) (dns pool)
+[11:51] CHANTYPES=# EXCEPTS INVEX CHANMODES=eIbq,k,flj,CFLMPQScgimnprstuz CHANLIMIT=#:120 PREFIX=(ov)@+ MAXLIST=bqeI:100 MODES=4 NETWORK=freenode STATUSMSG=@+ CALLERID=g CASEMAPPING=rfc1459 are supported by this server
+[11:51] - #freenode and using the '/who freenode/staff/*' command. You may message
+[11:51] - and everyone else who made this year's freenode #live conference amazing.
+```
+
+<p></p>
+The output from these searches led me to thinking that the flag should look a certain way and upon trying I was correct.
+<p></p>
+<details>
+    <summary>Answer</summary>
+<p></p>
+#infosec.freenode.com 1
+
+</details>
+</details>
+</details>
+
+<p></p>
+<hr>
+<p></p>
+
+<details>
+    <summary>Memory Forensics Lab - Question 9</summary>
+<p></p>
+What is the Nickname of the attacker ?
+<p></p>
+<details>
+    <summary>Walkthrough</summary>
+<p></p>
+This challenge is made easy for us from our last challenge and dumping the log files of the conversation, if we look at file.None.0xfffffa8001b60260.bitsmasher.freenode.log.dat we can see the two people in the conversation.
+<p></p>
+
+```
+<bitsmasher>
+<codewaver>
+```
+
+<p></p>
+Entering these names gives us the flag for this challenge.
+<p></p>
+<details>
+    <summary>Answer</summary>
+<p></p>
+bitsmasher
+
+</details>
+</details>
+</details>
+
+<p></p>
+<hr>
+<p></p>
+
+<details>
+    <summary>Memory Forensics Lab - Question 10</summary>
+<p></p>
+What is the suspicious URL visited by the victim ?
+<p></p>
+<details>
+    <summary>Walkthrough</summary>
+<p></p>
+Again the log dump we did in question 8 gives us the answer.
+<p></p>
+
+```
+❯ cat file.None.0xfffffa8001b60260.bitsmasher.freenode.log.dat
+
+Session Start: Fri Dec 06 04:45:49 2019
+Session Ident: bitsmasher
+[04:45] Session Ident: bitsmasher (freenode, codewaver) (~bitdefeat@90.85.138.133)
+[04:45] <bitsmasher> Hi !
+[04:46] <bitsmasher> Hello :)
+Session Close: Fri Dec 06 05:23:06 2019
+
+Session Start: Fri Dec 06 05:26:05 2019
+Session Ident: bitsmasher
+[05:26] Session Ident: bitsmasher (freenode, codewaver) (~bitdefeat@90.85.138.133)
+[05:26] <bitsmasher> Hi !
+01[05:26] <codewaver> Hi @bitsmasher 
+[05:27] <bitsmasher> I saw your message in the chatroom
+[05:27] <bitsmasher> Actually I have what you are looking for 
+[05:28] <bitsmasher> I have a ton eBooks about CyberSecurity available for download ! I can share it with you ...
+01[05:28] <codewaver> Ah That would be awesome 
+01[05:28] <codewaver> Could you kindely share the download link with me ?
+[05:29] <bitsmasher> sure ! here it is https://file.io/yBBkJc
+01[05:29] <codewaver> Appreciated !
+
+Session Start: Fri Dec 06 06:43:42 2019
+Session Ident: bitsmasher
+[06:43] <bitsmasher> :)
+
+Session Start: Fri Dec 06 11:51:56 2019
+Session Ident: bitsmasher
+```
+
+<p></p>
+Here we can see the download link the attacker gave.
+<p></p>
+<details>
+    <summary>Answer</summary>
+<p></p>
+https://file.io/yBBkJc
+
+</details>
+</details>
+</details>
+
+<p></p>
+<hr>
+<p></p>
+
+<details>
+    <summary>Memory Forensics Lab - Question 11</summary>
+<p></p>
+What is the file that has been downloaded ?
+<p></p>
+<details>
+    <summary>Walkthrough</summary>
+<p></p>
+For this challenge I started by running strings on the entire memory dump and appending it to a .txt file.
+<p></p>
+
+```
+strings -a -td lab.raw > lab_strings.txt
+```
+
+<p></p>
+Followed by:
+<p></p>
+
+```
+strings -a -td -el lab.raw >> lab_strings.txt
+```
+
+<p></p>
+You can see with these two commands that I used the -td flags to get the decimal offset and made a second pass with the -el flags in order to get (little endian) Unicode strings. Notice that the second pass appends (>>) to the existing file
+<p></p>
+Now that we have a strings file we can run <kbd>grep</kbd> on the file and search for the link previously given:
+<p></p>
+
+```
+❯ cat lab_strings.txt| grep https://file.io/yBBkJc
+597159888 https://file.io/yBBkJc
+1000960500 https://file.io/yBBkJc
+1000961060 https://file.io/yBBkJcor
+1353483076 [05:29] <bitsmasher> sure ! here it is https://file.io/yBBkJc
+1450428034 ure ! here it is https://file.io/yBBkJc
+1450530858 https://file.io/yBBkJcapplication/x-bittorrentapplication/x-bittorrentp
+1476252944 https://file.io/yBBkJc
+1476253584 https://file.io/yBBkJc
+1476253680 https://file.io/yBBkJc
+1476253776 https://file.io/yBBkJc
+1508595114 https://file.io/yBBkJc
+1508595179 https://file.io/yBBkJc
+1508595223 https://file.io/yBBkJc
+1508595333 https://file.io/yBBkJc
+1519366154 https://file.io/yBBkJc
+1519366219 https://file.io/yBBkJc
+1519366263 https://file.io/yBBkJc
+1519366373 https://file.io/yBBkJc
+1530919694 	8b670940-efa6-4223-a711-50a7470b6d13https://file.io/yBBkJchttps://file.io/yBBkJchttps://file.io/yBBkJchttps://file.io/yBBkJc0,1
+1559127851 mhttps://file.io/yBBkJcyragee
+1568852174 	8b670940-efa6-4223-a711-50a7470b6d13https://file.io/yBBkJchttps://file.io/yBBkJchttps://file.io/yBBkJchttps://file.io/yBBkJc0,1
+1572020886 https://file.io/yBBkJc
+1717557680 https://file.io/yBBkJc
+1725194080 https://file.io/yBBkJc
+1752996468 https://file.io/yBBkJc
+1832815400 https://file.io/yBBkJc
+1841253725 https://file.io/yBBkJc
+1841253753 https://file.io/yBBkJc*
+1841254309 https://file.io/yBBkJc
+1841254337 https://file.io/yBBkJc*
+1847009735 https://file.io/yBBkJc
+1847009763 https://file.io/yBBkJc*
+1851250250 https://file.io/yBBkJcapplication/x-bittorrentapplication/x-bittorrent
+1995644858 https://file.io/yBBkJcapplication/x-bittorrentapplication/x-bittorrent
+2008231913 9https://file.io/yBBkJc
+5706888 <bitsmasher> sure ! here it is https://file.io/yBBkJc
+381135264 <bitsmasher> sure ! here it is https://file.io/yBBkJc
+397106088 <bitsmasher> sure ! here it is https://file.io/yBBkJc
+725610818 05:29] <bitsmasher> sure ! here it is https://file.io/yBBkJc
+934812504 <bitsmasher> sure ! here it is https://file.io/yBBkJc
+1345086920 [05:29] <bitsmasher> sure ! here it is https://file.io/yBBkJc
+1411580464 [05:29] <bitsmasher> sure ! here it is https://file.io/yBBkJc
+1425714952 <bitsmasher> sure ! here it is https://file.io/yBBkJc
+1442803464 [05:29] <bitsmasher> sure ! here it is https://file.io/yBBkJc
+1573335680 https://file.io/yBBkJc
+1573335744 https://file.io/yBBkJc
+1573335808 https://file.io/yBBkJc
+```
+
+<p></p>
+From this output we can see reference to bittorrent, this informs our next search where we use the filescan.txt file we made at the start of the challenges and grep for .torrent.
+<p></p>
+
+```
+❯ cat filescan.txt | grep -i .torrent
+0x000000007de17f20     16      0 RW-rw- \Device\HarddiskVolume2\Users\maro\AppData\Roaming\BitTorrent\dht_feed.dat.new
+0x000000007de4f230     16      0 R--rw- \Device\HarddiskVolume2\Users\maro\AppData\Roaming\BitTorrent\settings.dat
+0x000000007deafca0      2      0 R--rw- \Device\HarddiskVolume2\Users\maro\AppData\Roaming\BitTorrent\dht.dat
+0x000000007deb64e0      2      0 R--rw- \Device\HarddiskVolume2\Users\maro\AppData\Roaming\BitTorrent\dht_feed.dat
+0x000000007df94c80     15      0 R--r-- \Device\HarddiskVolume2\Users\maro\AppData\Roaming\BitTorrent\updates\7.10.5_45272\bittorrentie.exe
+0x000000007dfa1390      3      1 ------ \Device\NamedPipe\BitTorrent_1564_0394AC28_1532450063
+0x000000007dfb08c0      3      1 ------ \Device\NamedPipe\BitTorrent_1564_0394ADF0_1564602137
+0x000000007dfb5c20      3      1 ------ \Device\NamedPipe\BitTorrent_1564_0394ADF0_1564602137
+0x000000007dfb9520     16      1 RW-r-- \Device\HarddiskVolume2\Users\maro\AppData\LocalLow\BitTorrent\BitTorrent_1564_0394ADF0_1564602137
+0x000000007dfc8e60      2      0 R--rw- \Device\HarddiskVolume2\Users\maro\AppData\Roaming\BitTorrent\rss.dat
+0x000000007dfca430     16      0 R--rwd \Device\HarddiskVolume2\Users\maro\AppData\Roaming\Microsoft\Windows\Start Menu\BitTorrent.lnk
+0x000000007dfce930      2      0 R--rw- \Device\HarddiskVolume2\Users\maro\AppData\Roaming\BitTorrent\CyberSecurity_Books_Courses_Tutorials.exe.torrent
+0x000000007e098d10     16      1 RW-r-- \Device\HarddiskVolume2\Users\maro\AppData\LocalLow\BitTorrent\BitTorrent_1564_0394AC28_1532450063
+0x000000007e0d53b0     16      0 R--rw- \Device\HarddiskVolume2\Users\maro\AppData\Roaming\BitTorrent\updates.dat
+0x000000007e1c0f20     15      0 R--r-d \Device\HarddiskVolume2\Users\maro\AppData\Roaming\BitTorrent\BitTorrent.exe
+0x000000007e1c2f20     12      0 R--r-- \Device\HarddiskVolume2\Users\maro\AppData\Roaming\BitTorrent\BitTorrent.exe
+0x000000007e1e9b40     16      0 RW-rw- \Device\HarddiskVolume2\Users\maro\AppData\Roaming\BitTorrent\settings.dat.new
+0x000000007e25ff20      3      1 ------ \Device\NamedPipe\BitTorrent_1564_0394AC28_1532450063
+0x000000007e261130     16      0 RW-rw- \Device\HarddiskVolume2\Users\maro\AppData\Roaming\BitTorrent\resume.dat.old
+0x000000007e27ca20     10      0 R--r-d \Device\HarddiskVolume2\Users\maro\AppData\Roaming\BitTorrent\updates\7.10.5_45272\bittorrentie.exe
+0x000000007e43e3a0     15      0 R--r-d \Device\HarddiskVolume2\Users\maro\AppData\Roaming\BitTorrent\maindoc.ico
+0x000000007e63e3d0     15      0 R--rw- \Device\HarddiskVolume2\Users\maro\Desktop\BitTorrent.lnk
+0x000000007fca4c40     15      0 R--rwd \Device\HarddiskVolume2\Users\maro\Downloads\BitTorrent.exe
+0x000000007fced7b0     16      0 RW-rw- \Device\HarddiskVolume2\Users\maro\AppData\Roaming\BitTorrent\resume.dat.new
+0x000000007fdaa4b0     14      0 R--r-- \Device\HarddiskVolume2\Windows\Prefetch\BITTORRENT.EXE-5495F912.pf
+```
+
+<p></p>
+This output showes us a book however its a .exe file which is a bit strange, giving us the answer for this challenge.
+<p></p>
+<details>
+    <summary>Answer</summary>
+<p></p>
+CyberSecurity_Books_Courses_Tutorials.exe.torrent
+
+</details>
+</details>
+</details>
+
+<p></p>
+<hr>
+<p></p>
+
+<details>
+    <summary>Memory Forensics Lab - Question 12</summary>
+<p></p>
+What is the torrent site ?
+<p></p>
+<details>
+    <summary>Walkthrough</summary>
+<p></p>
+This one took a while to figure out, to start with we grep our filescan.txt for "CyberSecurity_Books_Courses_Tutorials.exe.torrent"
+<p></p>
+
+```
+❯ cat filescan.txt | grep CyberSecurity_Books_Courses_Tutorials.exe.torrent
+0x000000007dfce930      2      0 R--rw- \Device\HarddiskVolume2\Users\maro\AppData\Roaming\BitTorrent\CyberSecurity_Books_Courses_Tutorials.exe.torrent
+```
+
+<p></p>
+Once we find the .torrent file we can use the volatility option dumpfile to dump the file.
+<p></p>
+
+```
+❯ sudo volatility -f lab.raw --profile=Win7SP1x64 dumpfiles -n -Q 0x000000007dfce930 -D .
+Volatility Foundation Volatility Framework 2.6
+DataSectionObject 0x7dfce930   None   \Device\HarddiskVolume2\Users\maro\AppData\Roaming\BitTorrent\CyberSecurity_Books_Courses_Tutorials.exe.torrent
+```
+
+<p></p>
+We can now cat this file.
+<p></p>
+
+```
+❯ cat file.None.0xfffffa80039ce230.CyberSecurity_Books_Courses_Tutorials.exe.torrent.dat
+d10:created by33:kimbatt.github.io/torrent-creator13:creation datei1575576825e4:infod6:lengthi100685e4:name41:CyberSecurity_Books_Courses_Tutorials.exe12:piece lengthi16384e6:pieces140:��EP��VE�-����J4��Zɨ�����Q��/Ò�-E�.bܔ�W��T$t?�<�S�ڊW)]m��*��r�ŅR�R���
+	������.n�a��C��7#�dZ
+                            �H`R�s�q2s���e�H#^+��j��ee%                                                                                                       
+```
+
+<p></p>
+From this output we can see a link to a github page, "kimbatt.github.io/torrent-creator" and if we navigate there we can see that this creates torrent files online.
+<p></p>
+Now that we know that we will dump the process memory of bittorrent that we saw running in pstree.
+<p></p>
+
+```
+❯ cat pstree.txt | grep -i torrent
+. 0xfffffa80037bf6c0:BitTorrent.exe                  1564   1144     22    494 2019-12-06 19:47:10 UTC+0000
+.. 0xfffffa80039b1b30:bittorrentie.e                 2200   1564      9    129 2019-12-06 19:47:11 UTC+0000
+.. 0xfffffa800347f060:bittorrentie.e                 2160   1564     14    323 2019-12-06 19:47:11 UTC+0000
+```
+
+<p></p>
+
+```
+❯ sudo volatility -f lab.raw --profile=Win7SP1x64 memdump -p 1564,2200,2160 -D bittorrent
+Volatility Foundation Volatility Framework 2.6
+************************************************************************
+Writing BitTorrent.exe [  1564] to 1564.dmp
+************************************************************************
+Writing bittorrentie.e [  2160] to 2160.dmp
+************************************************************************
+Writing bittorrentie.e [  2200] to 2200.dmp
+```
+
+<p></p>
+We now have the BitTorrent process memory dumped we can use strings and grep for .torrent
+<p></p>
+
+```
+strings bittorrent/* | grep .torrent 
+```
+
+<p></p>
+If we look at the output at the tail end we can see:
+<p></p>
+
+```
+application/x-bittorrent-appinst
+application/x-bittorrent-key&
+d10:created by33:bit.smasher.io/torrent-infected-k19:creation datei1575576825e4:infod6:lengthi100685e4:name41:CyberSecurity_Books_Courses_Tutorials.exe12:piece lengthi16384e6:pieces140:
+J1CyberSecurity_Books_Courses_Tutorials.exe.torrentP
+s/CyberSecurity_Books_Courses_Tutorials.exe.torrent
+d10:created by33:kimbatt.github.io/torrent-creator13:creation datei1575576825e4:infod6:lengthi100685e4:name41:CyberSecurity_Books_Courses_Tutorials.exe12:piece lengthi16384e6:pieces140:
+bittorrentie.exe
+bittorrentie.exe
+```
+
+<p></p>
+Here we can see the github we looked at before and above it we can see our attacker we found earlier. and the website which is the answer to this question.
+<p></p>
+<details>
+    <summary>Answer</summary>
+<p></p>
+bit.smasher.io/torrent-infected-k19
+</details>
+</details>
+</details>
+
+<p></p>
+<hr>
+<p></p>
+
+<details>
+    <summary>Memory Forensics Lab - Question 13</summary>
+<p></p>
+What is the malware process name ?
+<p></p>
+<details>
+    <summary>Walkthrough</summary>
+<p></p>
+For this challenge if we take the challenge question and see "process name" we can go straight to our pstree.txt and look for any strange process names one sticks out.
+<p></p>
+
+```
+❯ cat pstree.txt
+Name                                                  Pid   PPid   Thds   Hnds Time
+-------------------------------------------------- ------ ------ ------ ------ ----
+ 0xfffffa8001b9ab30:crypt0r.exe                      3424   3468     12    265 2019-12-06 19:53:45 UTC+0000
+```
+
+<p></p>
+This process doesnt look right, lets investigate it. First we will dump the process using this command.
+<p></p>
+
+```
+❯ sudo volatility -f lab.raw --profile=Win7SP1x64 procdump -p 3424 -D exe
+[sudo] password for parrot: 
+Volatility Foundation Volatility Framework 2.6
+Process(V)         ImageBase          Name                 Result
+------------------ ------------------ -------------------- ------
+0xfffffa8001b9ab30 0x0000000001050000 crypt0r.exe          OK: executable.3424.exe
+```
+
+<p></p>
+We can now run this through a program called thor-lite. The command looks like this:
+<p></p>
+
+```
+~/Mytools/thor-lite/thor-lite-linux -p ~/ctf/hackfest/Memory_Forensics/exe --allreasons | tee thor.txt
+```
+
+<p></p>
+The important part of the output is this:
+<p></p>
+
+```
+> 3/3 > Running module 'Filesystem Checks' ------------------------------------
+Info: Filescan Starting module
+Info: Filescan The following paths will be scanned: /home/parrot/ctf/hackfest/Memory_Forensics/exe
+Info: Filescan Scanning /home/parrot/ctf/hackfest/Memory_Forensics/exe RECURSIVE
+Warning: Filescan Possibly Dangerous file found
+FILE: /home/parrot/ctf/hackfest/Memory_Forensics/exe/executable.3424.exe EXT: .exe SCORE: 75
+SIZE: 305664
+CREATED: Tue May 11 09:13:47.011 2021 CHANGED: Tue May 11 09:13:47.051 2021 MODIFIED: Tue May 11 09:13:47.051 2021 ACCESSED: Tue May 11 09:13:47.011 2021 PERMISSIONS: -rw-r--r-- OWNER: root
+MD5: 0633635245838db24ae8a34eeaa3d05d
+SHA1: 1d9e2edebb4044a336ac71121d0932a5527cdb78
+SHA256: d1b433eb609cdea1e16e02d50b18dcba1ad446fa0d29b6b5b00849d3f3b2bef7 TYPE: EXE FIRSTBYTES: 4d5a90000300000004000000ffff0000b8000000 / MZ
+REASON_1: YARA rule MAL_RANSOM_COVID19_Apr20_1 / Detects ransomware distributed in COVID-19 theme SUBSCORE_1: 75 REF_1: https://unit42.paloaltonetworks.com/covid-19-themed-cyber-attacks-target-government-and-medical-organizations/ MATCHED_1: Str1: { 60 2e 2e 2e af 34 34 34 b8 34 34 34 b8 34 34 34 } Str2: { 1f 07 1a 37 85 05 05 36 83 05 05 36 83 05 05 34 } TAGS_1: EXE, FILE, T1136 RULEDATE_1: 2020-04-15 SIGTYPE_1: internal
+Info: Filescan Finished module TOOK: 0 hours 0 mins 0 secs
+```
+
+<p></p>
+Here we can see that it has detected this file as ransomware if we follow the <a href="https://unit42.paloaltonetworks.com/covid-19-themed-cyber-attacks-target-government-and-medical-organizations/" rel="nofollow">link</a> we can read up on the malware information and how it works.
+<p></p>
+We can use another method to see if this is malware and this is by using the website <a href="https://www.virustotal.com/gui/" rel="nofollow">VirusTotal</a> with this page we upload the .exe and we are returned this:
+<p></p>
+<div align="center">
+<img src="https://github.com/Shadow-Admins/Cyber_Club/blob/main/Starting_Point/DFIR/Memory_Forensics/Volatility/images/VirusTotal.jpg"><br>
+</div>
+<p></p>
+This page tells us lots of information about the malware aswell. These results make me comfortable submitting this as the answer to this challenge.
+<p></p>
+<details>
+    <summary>Answer</summary>
+<p></p>
+crypt0r.exe
+
+</details>
+</details>
+</details>
+
+<p></p>
+<hr>
+<p></p>
+
+<details>
+    <summary>Memory Forensics Lab - Question 14</summary>
+<p></p>
+What is the type of this malware ?
+<p></p>
+<details>
+    <summary>Walkthrough</summary>
+<p></p>
+From our research from the previous question we have already found the answer to this question.
+<p></p>
+<details>
+    <summary>Answer</summary>
+<p></p>
+ransomware
+
+</details>
+</details>
+</details>
+
+<p></p>
+<hr>
+<p></p>
+
+<details>
+    <summary>Memory Forensics Lab - Question 15</summary>
+<p></p>
+Is the malware known ? what is its name ?
+<p></p>
+<details>
+    <summary>Walkthrough</summary>
+<p></p>
+For this challenge if we look at the VirusTotal website up the top we can see the name of the ransomware
+<p></p>
+<div align="center">
+<img src="https://github.com/Shadow-Admins/Cyber_Club/blob/main/Starting_Point/DFIR/Memory_Forensics/Volatility/images/HiddenTear.jpg"><br>
+</div>
+<p></p>
+This is also the answer to this challenge.
+<p></p>
+<details>
+    <summary>Answer</summary>
+<p></p>
+hidden tear
+
+</details>
+</details>
+</details>
+
+<p></p>
+<hr>
+<p></p>
+
+<details>
+    <summary>Memory Forensics Lab - Question 16</summary>
+<p></p>
+What is the Bitcoin address of the attacker?
+<p></p>
+<details>
+    <summary>Walkthrough</summary>
+<p></p>
+The first hing we will do for this challenge is dump the process memory of crypt0r.exe so we can run strings on it and grep for the information we require. The command and output looks like this:
+<p></p>
+
+```
+❯ sudo volatility -f lab.raw --profile=Win7SP1x64 memdump -p 3424 -D exe
+[sudo] password for parrot: 
+Volatility Foundation Volatility Framework 2.6
+************************************************************************
+Writing crypt0r.exe [  3424] to 3424.dmp
+```
+
+<p></p>
+We can now search this file IOT gain our answer:
+<p></p>
+
+```
+❯ strings -el 3424.dmp | grep -i coin                                                                                                                         
+Send me some bitcoins                                                                                                                                         
+Send me some bitcoins                                                                                                                                         
+Send bitcoins to 13gwqwqH1h7UYFvyyuD9yjD1vg5yUmS682 to unlock !!                                                                                              
+Send me some bitcoins                                                                                                                                         
+Files has been encrypted ! Send me some bitcoins                                                                                                              
+storprop.dll,HdcCoInstaller                                                                                                                                   
+storprop.dll,HdcCoInstaller                                                                                                                                   
+streamci.dll,SwEnumCoInstaller                                                                                                                                
+SysClass.Dll,CriticalDeviceCoInstaller                                                                                                                        
+mmcico.dll,MediaClassCoInstaller                                                                                                                              
+SysClass.Dll,CriticalDeviceCoInstaller                                                                                                                        
+wlaninst.dll,WlanDeviceClassCoInstaller                                                                                                                       
+wwaninst.dll,WwanDeviceClassCoInstaller                                                                                                                       
+SysClass.Dll,CriticalDeviceCoInstaller                                                                                                                        
+SysClass.Dll,CriticalDeviceCoInstaller                                                                                                                        
+SysClass.Dll,CriticalDeviceCoInstaller                                                                                                                        
+SysClass.Dll,StorageCoInstaller                                                                                                                               
+WmiProp.dll,WmiPropCoInstaller                                                                                                                                
+SysClass.Dll,CriticalDeviceCoInstaller                                                                                                                       
+```
+
+<p></p>
+I only included the head of the output but we can see the answer for this challenge.
+<p></p>
+<details>
+    <summary>Answer</summary>
+<p></p>
+13gwqwqH1h7UYFvyyuD9yjD1vg5yUmS682
+
+</details>
+</details>
+</details>
+
+<p></p>
+<hr>
+<p></p>
+
+<details>
+    <summary>Memory Forensics Lab - Question 17</summary>
+<p></p>
+What is the malware's control server ?
+<p></p>
+<details>
+    <summary>Walkthrough</summary>
+<p></p>
+IOT solve this question I extracted the process in a Winfdos VM and inspected it with dotPeek, (you can run strings on a memory dump of the process and you will eventually find the answer however this method is more straight forward). Once you have used procdump to dump the process you can open the exectuatble in dot peek and inspect the program. But how did I know to use dotPeek? Well after looking through the virus total results you see reference to the file being a .NET file and IOT decompile it to view you need to use a .NET decompiler, dotPeek is the best I have used and its free!
+<p></p>
+<div align="center">
+<img src="https://github.com/Shadow-Admins/Cyber_Club/blob/556fbce2bf0f916fd2eea172b99a01fbbfb91617/Starting_Point/DFIR/Memory_Forensics/Volatility/images/hackfest-dotpeek.jpg"><br>
+</div>
+<p></p>
+As you can see in the screenshot we can see the target url and entering this gives us the flag for this challenge.
+<p></p>
+<details>
+    <summary>Answer</summary>
+<p></p>
+
+```
+http://www.bitsmasher.me/victimes.php?info=
+```
+
+</details>
+</details>
+</details>
+
+<p></p>
+<hr>
+<p></p>
+
+<details>
+    <summary>Memory Forensics Lab - Question 18</summary>
+<p></p>
+What is the Encryption password?
+<p></p>
+<details>
+    <summary>Walkthrough</summary>
+<p></p>
+IOT find the encryption password we can continue to use dotPeek as shown bellow and looking through the program we can see how the password is sent, this is what informs our grep.
+<p></p>
+<div align="center">
+<img src="https://github.com/Shadow-Admins/Cyber_Club/blob/cbe1e6184b3a582e182206d235fee0bc75a2beb3/Starting_Point/DFIR/Memory_Forensics/Volatility/images/hackfest-dotpeek2.png"><br>
+</div>
+<p></p>
+From this we can see the structure of the sent password being "COMPUTERNAME-USER PASSWORD"
+<p></p>
+Alternatively we can continue to read through the website that the thor-lite scan gave us which explains how the password is created and sent.
+<br>
+"Once the remote command and control (C2) server successfully receives the victim’s details, it then proceeds to create a custom key based on the username/hostname details and sends the key back to the infected host for further processing."
+<p></p>
+Now that we know this we can run strings and grep on the memory dump of crypt0r.exe IOT find our answer.
+<p></p>
+
+```
+❯ strings -el 3424.dmp | grep -i "LAB-VM-C57C-maro"
+LAB-VM-C57C-maro WtscbSEbLmfh2AJ
+http://www.bitsmasher.me/victimes.php?info=LAB-VM-C57C-maro WtscbSEbLmfh2AJ
+http://www.bitsmasher.me/victimes.php?info=LAB-VM-C57C-maro WtscbSEbLmfh2AJ
+http://www.bitsmasher.me/victimes.php?info=LAB-VM-C57C-maro WtscbSEbLmfh2AJ
+?info=LAB-VM-C57C-maro%20WtscbSEbLmfh2AJ
+?info=LAB-VM-C57C-maro%20WtscbSEbLmfh2AJ
+http://www.bitsmasher.me/victimes.php?info=LAB-VM-C57C-maro%20WtscbSEbLmfh2AJ
+http://www.bitsmasher.me/victimes.php?info=LAB-VM-C57C-maro%20WtscbSEbLmfh2AJ
+/victimes.php?info=LAB-VM-C57C-maro%20WtscbSEbLmfh2AJ
+/victimes.php?info=LAB-VM-C57C-maro%20WtscbSEbLmfh2AJ
+```
+
+<p></p>
+Here we can see the answer to this challenge.
+<p></p>
+<details>
+    <summary>Answer</summary>
+<p></p>
+WtscbSEbLmfh2AJ
+
+</details>
+</details>
+</details>
+
+<p></p>
+<hr>
+<p></p>
+
+<details>
+    <summary>Memory Forensics Lab - Question 19</summary>
+<p></p>
+Recover the secret
+<p></p>
+<details>
+    <summary>Walkthrough</summary>
+<p></p>
+<p></p>
+The solution for this challenge is the same as the final challenge of the Rick series of challenges however I could not get the file to decrypt. Both series are very similar.
+</details>
+</details>
 
 
+
+
+
+
+
+
+</details>
+
+<p></p>
+<hr>
+<p></p>
 
 
 <H3>MEMLABS</H3>
