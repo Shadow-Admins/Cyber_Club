@@ -3985,6 +3985,8 @@ Recover the secret
 <details>
     <summary>Walkthrough</summary>
 <p></p>
+<p></p>
+The solution for this challenge is the same as the final challenge of the Rick series of challenges however I could not get the file to decrypt. Both series are very similar.
 </details>
 </details>
 
