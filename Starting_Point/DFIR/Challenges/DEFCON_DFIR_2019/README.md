@@ -657,37 +657,255 @@ Duanes Challenge: Duane Dunston had his passwords hijacked. Karen hid them C:\Us
 </details>
 </details>
 
-<p></p>
-<hr>
-<p></p>
-
-
-
-
-
-
-
-
-
-
 
 
 
 </details>
 
+<p></p>
+<hr>
+<p></p>
+
+<H3>Linux Forensics</H3>
+<p></p>
+<details>
+    <summary>Challenges</summary>
+<p></p>
+
+<details>
+    <summary>red star</summary>
+<p></p>
+What distribution of Linux is being used on this machine?
+<p></p>
+<details>
+    <summary>Walkthrough</summary>
+<p></p>
+
+<details>
+    <summary>Answer</summary>
+<p></p>
+
+</details>
+</details>
+</details>
+
+<p></p>
+<hr>
+<p></p>
+
+<details>
+    <summary>abc123</summary>
+<p></p>
+What is the MD5 hash of the apache access.log?
+<p></p>
+<details>
+    <summary>Walkthrough</summary>
+<p></p>
+
+<details>
+    <summary>Answer</summary>
+<p></p>
+
+</details>
+</details>
+</details>
+
+<p></p>
+<hr>
+<p></p>
+
+<details>
+    <summary>Radiohead - No Surprises</summary>
+<p></p>
+It is believed that a credential dumping tool was downloaded? What is the file name of the download?
+<p></p>
+<details>
+    <summary>Walkthrough</summary>
+<p></p>
+
+<details>
+    <summary>Answer</summary>
+<p></p>
+
+</details>
+</details>
+</details>
+
+<p></p>
+<hr>
+<p></p>
+
+<details>
+    <summary>super duper secret</summary>
+<p></p>
+There was a super secret file created, what is the absolute path?
+<p></p>
+<details>
+    <summary>Walkthrough</summary>
+<p></p>
+
+<details>
+    <summary>Answer</summary>
+<p></p>
+
+</details>
+</details>
+</details>
+
+<p></p>
+<hr>
+<p></p>
+
+<details>
+    <summary>this is a hard one</summary>
+<p></p>
+What program used didyouthinkwedmakeiteasy.jpg during execution?
+<p></p>
+<details>
+    <summary>Walkthrough</summary>
+<p></p>
+
+<details>
+    <summary>Answer</summary>
+<p></p>
+
+</details>
+</details>
+</details>
+
+<p></p>
+<hr>
+<p></p>
+
+<details>
+    <summary>overachiever</summary>
+<p></p>
+What is the third goal from the checklist Karen created?
+<p></p>
+<details>
+    <summary>Walkthrough</summary>
+<p></p>
+
+<details>
+    <summary>Answer</summary>
+<p></p>
+
+</details>
+</details>
+</details>
+
+<p></p>
+<hr>
+<p></p>
+
+<details>
+    <summary>attack helicopter</summary>
+<p></p>
+How many times was apache run?
+<p></p>
+<details>
+    <summary>Walkthrough</summary>
+<p></p>
+
+<details>
+    <summary>Answer</summary>
+<p></p>
+
+</details>
+</details>
+</details>
+
+<p></p>
+<hr>
+<p></p>
+
+<details>
+    <summary>oh no some1 call ic3</summary>
+<p></p>
+It is believed this machine was used to attack another, what file proves this?
+<p></p>
+<details>
+    <summary>Walkthrough</summary>
+<p></p>
+
+<details>
+    <summary>Answer</summary>
+<p></p>
+
+</details>
+</details>
+</details>
+
+<p></p>
+<hr>
+<p></p>
+
+<details>
+    <summary>scripters prevail</summary>
+<p></p>
+Within the Documents file path, it is believed that Karen was taunting a fellow computer expert through a bash script. Who was Karen taunting?
+<p></p>
+<details>
+    <summary>Walkthrough</summary>
+<p></p>
+
+<details>
+    <summary>Answer</summary>
+<p></p>
+
+</details>
+</details>
+</details>
+
+<p></p>
+<hr>
+<p></p>
+
+<details>
+    <summary>the who</summary>
+<p></p>
+A user su'd to root at 11:26 multiple times. Who was it?
+<p></p>
+<details>
+    <summary>Walkthrough</summary>
+<p></p>
+
+<details>
+    <summary>Answer</summary>
+<p></p>
+
+</details>
+</details>
+</details>
+
+<p></p>
+<hr>
+<p></p>
+
+<details>
+    <summary>/</summary>
+<p></p>
+Based on the bash history, what is the current working directory?
+<p></p>
+<details>
+    <summary>Walkthrough</summary>
+<p></p>
+
+<details>
+    <summary>Answer</summary>
+<p></p>
+
+</details>
+</details>
+</details>
 
 
 
+</details>
 
-
-
-
-
-
-
-
-
-
+<p></p>
+<hr>
+<p></p>
 
 
 
