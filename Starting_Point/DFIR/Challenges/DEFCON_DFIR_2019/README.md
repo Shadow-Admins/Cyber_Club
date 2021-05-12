@@ -922,63 +922,6 @@ a
     <summary>Challenges</summary>
 <p></p>
 
-```
-3 part challenge                                                                                                                                              
--------------------------------------------------------------------------------------------------                                                             
-Challenge designed as a series, first DCO are given a compromised system memory dump, DCO figure out whats happening on the system and hand it off to OCO,    
-OCO conduct boot to root on attacker system, attacker uploads malware to the original system, DCO then have to investigate the malware.                       
-                                                                                                                                                              
-This challenge attempts to replicate the process of hand off of work between parties working together.                                                        
-                                                                                                                                                              
-                                                                                                                                                              
-part 1 - Memory Forensics                                                                                                                                     
--------------------------------------------------------------------------------------------------                                                             
-Outline: you are given a memory dump and told that this computer has been compromised somehow.                                                                
-                                                                                                                                                              
-chal 1 - what is the md5 hash of the memory dump? (md5sum mem.mem)                                                                                            
-chal 2 - what is the memory profile of the dump? (most likely Win7SP1x64, possibly a win10 profile?) (dependant on if I can get win10 image to work, will     
-        require download of win10 profile IOT run analysis)                                                                                                   
-chal 3 - does the pc have an ip address? (netscan, system ip address)                                                                                         
-chal 4 - what is the pcname? (envars or pull registry key for computername)                                                                                   
-chal 5 - what is the users password? (requires hash dump and NTLM password crack)                                                                             
-chal 6 - how did the attacker get the pc's password? (bash bunny password dump attack) (will have to identify this occuring, ? memdump of process and then    
-        identify that a bashbunny was used, bash bunny running lasagnia IOT dump passwords)                                                                   
-chal 7 - what time did the attack occur? (run timeliner and serach for the attack time)                                                                       
-chal 8 - identify the Pid of the process that dumped the password. (pstree - dependant on Pid of the bashbunny)                                               
-chal 9 - ? a .dll challenge associated with the .dll from the password dump (dlllist followed by dll dump IOT get flag from dll analysis)                     
-chal 10 - the computers webcam was on and captured a picture of the attacker, you have been given a folder of suspects can you identify the attacker?         
-        (use facial recognition software to identify the attacker from a folder of facial images)                                                             
-chal 11 - a strange device was found plugged into the back of the pc, it seems to have been capturing network activity, analyse the packet capture and        
-        identify where the network activity is being sent to (packet squirel or lan turtle)                                                                   
-chal 12 - something was installed on the computer during the attack, identify what was installed (trojan horse, back door?)                                   
-chal 13 - what is the md5 hash of the installed trojan on the pc?          
-chal 14 - VAD challenge start and end location that is from the trojan Pid
-chal 15 - what was written in notepad.exe at the time of the attack?
-chal 16 -  What is the shortname of the file at file record ........?
-
-Part 2 - Boot to Root on attackers machine, running kali linux
--------------------------------------------------------------------------------------------------------------
-Outline: DCO hand off the found IP address to OCO who then conduct an attack on the system
-
-Chal 1 - nmap scan ip identify how many ports are open
-chal 2 - ? ftp break in
-chal 3 - dirty sock priv esc?
-chals - add more
-
-Part 3 - Malware analysis
--------------------------------------------------------------------------------------------------------------
-Outline: The attacker noticed his machine was being attacked and in a last ditch effort installed malware on the system
-
-chal 1 - what is the Pid of the malware that is running? (pstree)
-chal 2 - what is the md5 hash of the malware? (procdump --> md5sum)
-chal 3 - extract the graphics from the malware (dump malware, use foremost, get image, image error use hex edit to add magic bytes, colour shift to get flag)
-chal 4 - is the malware known? (hidden tear, thor-lite or virus total)
-chal 5 - what is the type of malware? (ransomware)
-chal 6 - what is the bit coin address? (strings -el | grep coin)
-chal 7 - what is the malwares control server? (strings -el | grep or use .NET decomiler to locate)
-chal 8 - what is the encryption password? (.NET decompiler, PCNAME-USER PASSWORD)
-chal 9 - decrypt the secret password decryptor using previously found password) 
-```
 
 
 
