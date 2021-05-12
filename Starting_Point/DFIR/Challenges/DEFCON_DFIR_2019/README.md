@@ -919,7 +919,13 @@ https://github.com/Shadow-Admins/Cyber_Club/tree/main/Starting_Point/DFIR/Memory
 <p></p>
 a
 <details>
-    <summary>b</summary>
+    <summary>Challenges</summary>
 <p></p>
-c
+
+
+
+
+
+
+
 </details>
