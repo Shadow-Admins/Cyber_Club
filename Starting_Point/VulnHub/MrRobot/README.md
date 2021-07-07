@@ -6,40 +6,27 @@ Mr Robot is a vulnerable VM that can be downloaded from <a href="https://www.vul
 <p></p>
 Mr Robot is a themed box on the TV show also called Mr Robot, it contains 3 flags (web flag, user flag and root flag) and has different ways of completing the box to achieve the same outcome. Doing this box you will cover the following areas:
 <p></p>
-<H6>Enumeration</H6>
+<H5>Enumeration</H5>
 - Network Scanning (Nmap)
-<H4>Web Recon</H4>
-<br>
+<H5>Web Recon</H5>
 - Recon (Nikto,gobuster,dirb,uniscan)
 <br>
 - Web directory traversal/file access
-<br>
-<H4>Breaking into a badly configured login page</H4>
-<br>
+<H5>Breaking into a badly configured login page</H5>
 - Setting up a dictionary file for username and password enumeration/cracking
 <br>
 - WordPress password cracking (wpscan,hydra)
-<br>
-<H4>Generating Backdoors</H4>
-<br>
+<H5>Generating Backdoors</H5>
 - Generate PHP Backdoor (Msfvenom)
 <br>
 - Upload and execute a backdoor
-<br>
-<H4>Catching the reverse conection on your host</H4>
-<br>
+<H5>Catching the reverse conection on your host</H5>
 - Reverse connection (Metasploit)
-<br>
-<H4>Identifying and cracking a hash</H4>
-<br>
+<H5>Identifying and cracking a hash</H5>
 - Getting a hash and decrypting it
-<br>
-<H4>Getting a TTY shell</H4>
-<br>
+<H5>Getting a TTY shell</H5>
 - Import python one-liner for proper TTY shell
-<br>
-<H4>Privilege Escalation</H4>
-<br>
+<H5>Privilege Escalation</H5>
 - One liner, WinPEAS,
 <br>
 - binary, dirtysock
