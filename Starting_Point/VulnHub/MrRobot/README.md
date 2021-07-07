@@ -6,7 +6,7 @@ Mr Robot is a vulnerable VM that can be downloaded from <a href="https://www.vul
 <p></p>
 Mr Robot is a themed box on the TV show also called Mr Robot, it contains 3 flags (web flag, user flag and root flag) and has different ways of completing the box to achieve the same outcome. Doing this box you will cover the following areas:
 <p></p>
-<H3>Enumeration</H3>
+<H4>Enumeration</H4>
 <br>
 - Network Scanning (Nmap)
 <br>
@@ -16,31 +16,31 @@ Mr Robot is a themed box on the TV show also called Mr Robot, it contains 3 flag
 <br>
 - Web directory traversal/file access
 <br>
-<H3>Breaking into a badly configured login page</H3>
+<H4>Breaking into a badly configured login page</H4>
 <br>
 - Setting up a dictionary file for username and password enumeration/cracking
 <br>
 - WordPress password cracking (wpscan,hydra)
 <br>
-<H3>Generating Backdoors</H3>
+<H4>Generating Backdoors</H4>
 <br>
 - Generate PHP Backdoor (Msfvenom)
 <br>
 - Upload and execute a backdoor
 <br>
-<H3>Catching the reverse conection on your host</H3>
+<H4>Catching the reverse conection on your host</H4>
 <br>
 - Reverse connection (Metasploit)
 <br>
-<H3>Identifying and cracking a hash</H3>
+<H4>Identifying and cracking a hash</H4>
 <br>
 - Getting a hash and decrypting it
 <br>
-<H3>Getting a TTY shell</H3>
+<H4>Getting a TTY shell</H4>
 <br>
 - Import python one-liner for proper TTY shell
 <br>
-<H3>Privilege Escalation</H3>
+<H4>Privilege Escalation</H4>
 <br>
 - One liner, WinPEAS,
 <br>
