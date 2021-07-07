@@ -6,7 +6,7 @@ Mr Robot is a vulnerable VM that can be downloaded from <a href="https://www.vul
 <p></p>
 Mr Robot is a themed box on the TV show also called Mr Robot, it contains 3 flags (web flag, user flag and root flag) and has different ways of completing the box to achieve the same outcome. Doing this box you will cover the following areas:
 <p></p>
-<H5>Enumeration</H5>
+<H6>Enumeration</H6>
 - Network Scanning (Nmap)
 <H4>Web Recon</H4>
 <br>
