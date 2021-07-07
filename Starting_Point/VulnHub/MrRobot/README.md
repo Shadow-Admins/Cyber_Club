@@ -30,22 +30,14 @@ Mr Robot is a themed box on the TV show also called Mr Robot, it contains 3 flag
 - One liner, WinPEAS,
 <br>
 - binary, dirtysock
-
-
-<br>
-- Memory Forensics
-<br>
-- Forensics
-<br>
-- Network
-<br>
-- Stenography
 <p></p>
-All challenges have the following flag format:
+All flags have the following flag format:
 <p></p>
-CTF{ANSWER}
+key-1-of-3.txt
+<br>
+And when opened look like a random string of characters eg. ABCDENOASFINEAUINFAOPDSNFRUENPANFD
 <p></p>
-Bellow are write-ups for all challenges.
+As stated before one flag is located on the website itself, one is located in the user folder and the final is located in the root folder.
 <p></p>
 <details>
     <summary>Challenges</summary>
