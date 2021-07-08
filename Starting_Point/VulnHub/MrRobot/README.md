@@ -50,11 +50,26 @@ Now that you have the .ova file you need open it in either <a href="https://www.
 <div align="center">
 <img src="https://github.com/Shadow-Admins/Cyber_Club/blob/56b950dbe5882e192d4736c6eb9cf2feddcdccc4/Starting_Point/VulnHub/MrRobot/images/open.png"><br>
 </div>
-<br>
-
-
-
-
+<p></p>
+This will then direct you to the import screen, give the VM a name and store it in a folder on your system somewhere.
+<p></p>
+<div align="center">
+<img src="https://github.com/Shadow-Admins/Cyber_Club/blob/b5ce8bd80aeae75809411b402e4912ebb4af4e93/Starting_Point/VulnHub/MrRobot/images/import.png"><br>
+</div>
+<p></p>
+This will then import the machine and you will be able to see it on the left hand panel once completed, the last thing you need to do is confirm the network settings. Below you can see that I have highlighted the network setting for the VM, it should be bridged.
+<p></p>
+<div align="center">
+<img src="https://github.com/Shadow-Admins/Cyber_Club/blob/9c8d067e1e74ed9477deaf36fcd537aab721cf73/Starting_Point/VulnHub/MrRobot/images/bridged.png"><br>
+</div>
+<p></p>
+If it isn't set as bridged you can click on the network which will bring you into network settings as displayed below.
+<p></p>
+<div align="center">
+<img src="https://github.com/Shadow-Admins/Cyber_Club/blob/9c8d067e1e74ed9477deaf36fcd537aab721cf73/Starting_Point/VulnHub/MrRobot/images/network.png"><br>
+</div>
+<p></p>
+You can now start your Mr Robot VM and your penetration VM and start hacking.
 
 </details>
 
