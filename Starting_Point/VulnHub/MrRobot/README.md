@@ -405,6 +405,31 @@ The http enumeration is also extremely helpful as it has carried out the job of 
 ```
 
 <p></p>
+From this output we can see our website enumeration is done and we can see that there are a couple of files and a wordpress hosted.
+<p></p>
+Since we ran the script to do enumeration for us we don't need to carry out any further enumeration ie. gobuster, dirb, uniscan however I will include them for your information below.
+<p></p>
+<details>
+    <summary>Enumeration</summary>
+<p></p>
+We will start with uniscan:
+<p></p>
+Uniscan is a default scanner that comes with ParrotOS and kali, it has a very simple GUI interface:
+<p></p>
+<div align="center">
+<img src="https://github.com/Shadow-Admins/Cyber_Club/blob/17c7433328d45f62ef541af78f404d6556d848be/Starting_Point/VulnHub/MrRobot/images/adapter2.png"><br>
+</div>
+<p></p>
+
+
+
+
+
+</details>
+
+
+
+
 
 
 
