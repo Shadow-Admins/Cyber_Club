@@ -450,6 +450,531 @@ firefox /usr/share/uniscan/reports/192.168.125.132 &
 
 <p></p>
 My report looks like <a href="https://github.com/Shadow-Admins/Cyber_Club/blob/main/Starting_Point/VulnHub/MrRobot/files/192.168.125.132.html" rel="nofollow">this</a>.
+To see it correctly you would need to copy the code into a .html file then open it with firefox.
+The report information is:
+
+```
+####################################
+# Uniscan project                  #
+# http://uniscan.sourceforge.net/  #
+####################################
+V. 6.3
+
+
+Scan date: 8-7-2021 14:58:19
+===================================================================================================
+| Domain: http://192.168.125.132/
+| Server: Apache
+| IP: 192.168.125.132
+===================================================================================================
+===================================================================================================
+| Looking for Drupal plugins/modules
+| 
+===================================================================================================
+| WEB SERVICES
+| 
+===================================================================================================
+| FAVICON.ICO
+| 
+| Web service Found (favicon.ico): Zero byte favicon
+===================================================================================================
+| ERROR INFORMATION
+| 
+|          Page not found | user&#039;s Blog!    Skip to content    user&#039;s Blog! Just another WordPress site Menu and widgets         Search for:    Recent CommentsArchives  Categories No categories Meta Log in Entries RSS Comments RSS WordPress.org          Oops! That page can&rsquo;t be found.   It looks like nothing was found at this location. Maybe try a search?   Search for:           Proudly powered by WordPress   
+|  400 Bad Request Bad Request Your browser sent a request that this server could not understand. 
+===================================================================================================
+| TYPE ERROR
+| 
+===================================================================================================
+| SERVER MOBILE
+| 
+===================================================================================================
+| LANGUAGE
+| 
+===================================================================================================
+| INTERESTING STRINGS IN HTML
+| 
+===================================================================================================
+| WHOIS
+| 
+| 
+| 
+| #
+| 
+| # ARIN WHOIS data and services are subject to the Terms of Use
+| 
+| # available at: https://www.arin.net/resources/registry/whois/tou/
+| 
+| #
+| 
+| # If you see inaccuracies in the results, please report at
+| 
+| # https://www.arin.net/resources/registry/whois/inaccuracy_reporting/
+| 
+| #
+| 
+| # Copyright 1997-2021, American Registry for Internet Numbers, Ltd.
+| 
+| #
+| 
+| 
+| 
+| 
+| 
+| NetRange:       192.168.0.0 - 192.168.255.255
+| 
+| CIDR:           192.168.0.0/16
+| 
+| NetName:        PRIVATE-ADDRESS-CBLK-RFC1918-IANA-RESERVED
+| 
+| NetHandle:      NET-192-168-0-0-1
+| 
+| Parent:         NET192 (NET-192-0-0-0-0)
+| 
+| NetType:        IANA Special Use
+| 
+| OriginAS:       
+| 
+| Organization:   Internet Assigned Numbers Authority (IANA)
+| 
+| RegDate:        1994-03-15
+| 
+| Updated:        2013-08-30
+| 
+| Comment:        These addresses are in use by many millions of independently operated networks, which might be as small as a single computer connected to a home gateway, and are automatically configured in hundreds of millions of devices.  They are only intended for use within a private context  and traffic that needs to cross the Internet will need to use a different, unique address.
+| 
+| Comment:        
+| 
+| Comment:        These addresses can be used by anyone without any need to coordinate with IANA or an Internet registry.  The traffic from these addresses does not come from ICANN or IANA.  We are not the source of activity you may see on logs or in e-mail records.  Please refer to http://www.iana.org/abuse/answers
+| 
+| Comment:        
+| 
+| Comment:        These addresses were assigned by the IETF, the organization that develops Internet protocols, in the Best Current Practice document, RFC 1918 which can be found at:
+| 
+| Comment:        http://datatracker.ietf.org/doc/rfc1918
+| 
+| Ref:            https://rdap.arin.net/registry/ip/192.168.0.0
+| 
+| 
+| 
+| 
+| 
+| 
+| 
+| OrgName:        Internet Assigned Numbers Authority
+| 
+| OrgId:          IANA
+| 
+| Address:        12025 Waterfront Drive
+| 
+| Address:        Suite 300
+| 
+| City:           Los Angeles
+| 
+| StateProv:      CA
+| 
+| PostalCode:     90292
+| 
+| Country:        US
+| 
+| RegDate:        
+| 
+| Updated:        2012-08-31
+| 
+| Ref:            https://rdap.arin.net/registry/entity/IANA
+| 
+| 
+| 
+| 
+| 
+| OrgAbuseHandle: IANA-IP-ARIN
+| 
+| OrgAbuseName:   ICANN
+| 
+| OrgAbusePhone:  +1-310-301-5820 
+| 
+| OrgAbuseEmail:  abuse@iana.org
+| 
+| OrgAbuseRef:    https://rdap.arin.net/registry/entity/IANA-IP-ARIN
+| 
+| 
+| 
+| OrgTechHandle: IANA-IP-ARIN
+| 
+| OrgTechName:   ICANN
+| 
+| OrgTechPhone:  +1-310-301-5820 
+| 
+| OrgTechEmail:  abuse@iana.org
+| 
+| OrgTechRef:    https://rdap.arin.net/registry/entity/IANA-IP-ARIN
+| 
+| 
+| 
+| 
+| 
+| #
+| 
+| # ARIN WHOIS data and services are subject to the Terms of Use
+| 
+| # available at: https://www.arin.net/resources/registry/whois/tou/
+| 
+| #
+| 
+| # If you see inaccuracies in the results, please report at
+| 
+| # https://www.arin.net/resources/registry/whois/inaccuracy_reporting/
+| 
+| #
+| 
+| # Copyright 1997-2021, American Registry for Internet Numbers, Ltd.
+| 
+| #
+| 
+| 
+| 
+===================================================================================================
+| BANNER GRABBING: 
+===================================================================================================
+===================================================================================================
+| PING
+| 
+| PING 192.168.125.132 (192.168.125.132) 56(84) bytes of data.
+| 64 bytes from 192.168.125.132: icmp_seq=1 ttl=64 time=0.313 ms
+| 64 bytes from 192.168.125.132: icmp_seq=2 ttl=64 time=1.24 ms
+| 64 bytes from 192.168.125.132: icmp_seq=3 ttl=64 time=0.346 ms
+| 64 bytes from 192.168.125.132: icmp_seq=4 ttl=64 time=0.420 ms
+| 
+| --- 192.168.125.132 ping statistics ---
+| 4 packets transmitted, 4 received, 0% packet loss, time 3036ms
+| rtt min/avg/max/mdev = 0.313/0.580/1.242/0.384 ms
+===================================================================================================
+| TRACEROUTE
+| 
+| traceroute to 192.168.125.132 (192.168.125.132), 30 hops max, 60 byte packets
+|  1  * * *
+|  2  * * *
+|  3  * * *
+|  4  * * *
+|  5  * * *
+|  6  * * *
+|  7  * * *
+|  8  * * *
+|  9  * * *
+| 10  * * *
+| 11  * * *
+| 12  * * *
+| 13  * * *
+| 14  * * *
+| 15  * * *
+| 16  * * *
+| 17  * * *
+| 18  * * *
+| 19  * * *
+| 20  * * *
+| 21  * * *
+| 22  * * *
+| 23  * * *
+| 24  * * *
+| 25  * * *
+| 26  * * *
+| 27  * * *
+| 28  * * *
+| 29  * * *
+| 30  * * *
+===================================================================================================
+| NSLOOKUP
+| 
+| Server:		192.168.191.2
+| Address:	192.168.191.2#53
+| 
+| ** server can't find 132.125.168.192.in-addr.arpa: NXDOMAIN
+===================================================================================================
+| NMAP
+| 
+| Starting Nmap 7.91 ( https://nmap.org ) at 2021-07-08 14:58 AEST
+| NSE: Loaded 153 scripts for scanning.
+| NSE: Script Pre-scanning.
+| Initiating NSE at 14:58
+| Completed NSE at 14:58, 0.00s elapsed
+| Initiating NSE at 14:58
+| Completed NSE at 14:58, 0.00s elapsed
+| Initiating NSE at 14:58
+| Completed NSE at 14:58, 0.00s elapsed
+| Initiating ARP Ping Scan at 14:58
+| Scanning 192.168.125.132 [1 port]
+| Completed ARP Ping Scan at 14:58, 0.07s elapsed (1 total hosts)
+| Initiating Parallel DNS resolution of 1 host. at 14:58
+| Completed Parallel DNS resolution of 1 host. at 14:59, 6.53s elapsed
+| Initiating SYN Stealth Scan at 14:59
+| Scanning 192.168.125.132 [1000 ports]
+| Discovered open port 443/tcp on 192.168.125.132
+| Discovered open port 80/tcp on 192.168.125.132
+| Completed SYN Stealth Scan at 14:59, 4.59s elapsed (1000 total ports)
+| Initiating Service scan at 14:59
+| Scanning 2 services on 192.168.125.132
+| Completed Service scan at 14:59, 12.03s elapsed (2 services on 1 host)
+| Initiating OS detection (try #1) against 192.168.125.132
+| NSE: Script scanning 192.168.125.132.
+| Initiating NSE at 14:59
+| Completed NSE at 14:59, 0.26s elapsed
+| Initiating NSE at 14:59
+| Completed NSE at 14:59, 0.04s elapsed
+| Initiating NSE at 14:59
+| Completed NSE at 14:59, 0.00s elapsed
+| Nmap scan report for 192.168.125.132
+| Host is up (0.0017s latency).
+| Not shown: 997 filtered ports
+| PORT    STATE  SERVICE  VERSION
+| 22/tcp  closed ssh
+| 80/tcp  open   http     Apache httpd
+| |_http-favicon: Unknown favicon MD5: D41D8CD98F00B204E9800998ECF8427E
+| | http-methods: 
+| |_  Supported Methods: GET HEAD POST OPTIONS
+| |_http-server-header: Apache
+| |_http-title: Site doesn't have a title (text/html).
+| 443/tcp open   ssl/http Apache httpd
+| |_http-favicon: Unknown favicon MD5: D41D8CD98F00B204E9800998ECF8427E
+| | http-methods: 
+| |_  Supported Methods: GET HEAD POST OPTIONS
+| |_http-server-header: Apache
+| |_http-title: Site doesn't have a title (text/html).
+| | ssl-cert: Subject: commonName=www.example.com
+| | Issuer: commonName=www.example.com
+| | Public Key type: rsa
+| | Public Key bits: 1024
+| | Signature Algorithm: sha1WithRSAEncryption
+| | Not valid before: 2015-09-16T10:45:03
+| | Not valid after:  2025-09-13T10:45:03
+| | MD5:   3c16 3b19 87c3 42ad 6634 c1c9 d0aa fb97
+| |_SHA-1: ef0c 5fa5 931a 09a5 687c a2c2 80c4 c792 07ce f71b
+| MAC Address: 00:0C:29:43:37:0E (VMware)
+| Device type: general purpose
+| Running: Linux 3.X|4.X
+| OS CPE: cpe:/o:linux:linux_kernel:3 cpe:/o:linux:linux_kernel:4
+| OS details: Linux 3.10 - 4.11
+| Uptime guess: 0.126 days (since Thu Jul  8 11:58:29 2021)
+| Network Distance: 1 hop
+| TCP Sequence Prediction: Difficulty=254 (Good luck!)
+| IP ID Sequence Generation: All zeros
+| 
+| TRACEROUTE
+| HOP RTT     ADDRESS
+| 1   1.75 ms 192.168.125.132
+| 
+| NSE: Script Post-scanning.
+| Initiating NSE at 14:59
+| Completed NSE at 14:59, 0.00s elapsed
+| Initiating NSE at 14:59
+| Completed NSE at 14:59, 0.00s elapsed
+| Initiating NSE at 14:59
+| Completed NSE at 14:59, 0.00s elapsed
+| Read data files from: /usr/bin/../share/nmap
+| OS and Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+| Nmap done: 1 IP address (1 host up) scanned in 25.52 seconds
+|            Raw packets sent: 2029 (90.970KB) | Rcvd: 19 (1.130KB)
+===================================================================================================
+|
+| Directory check:
+| [+] CODE: 200 URL: http://192.168.125.132/Image/
+| [+] CODE: 200 URL: http://192.168.125.132/admin/
+| [+] CODE: 200 URL: http://192.168.125.132/feed/
+| [+] CODE: 200 URL: http://192.168.125.132/image/
+| [+] CODE: 200 URL: http://192.168.125.132/login/
+| [+] CODE: 200 URL: http://192.168.125.132/rss/
+| [+] CODE: 200 URL: http://192.168.125.132/wp-login/
+| [+] CODE: 200 URL: http://192.168.125.132/wp-admin/
+===================================================================================================
+|                                                                                                   
+| File check:
+| [+] CODE: 200 URL: http://192.168.125.132/admin/index.html
+| [+] CODE: 200 URL: http://192.168.125.132/admin/index.php
+| [+] CODE: 200 URL: http://192.168.125.132/favicon.ico
+| [+] CODE: 200 URL: http://192.168.125.132/index.html
+| [+] CODE: 200 URL: http://192.168.125.132/index.html%20
+| [+] CODE: 200 URL: http://192.168.125.132/index.php
+| [+] CODE: 200 URL: http://192.168.125.132/license.txt
+| [+] CODE: 200 URL: http://192.168.125.132/readme
+| [+] CODE: 200 URL: http://192.168.125.132/readme.html
+| [+] CODE: 200 URL: http://192.168.125.132/robots.txt
+| [+] CODE: 200 URL: http://192.168.125.132/search/htx/sqlqhit.asp
+| [+] CODE: 200 URL: http://192.168.125.132/search/sqlqhit.asp
+| [+] CODE: 200 URL: http://192.168.125.132/search/htx/SQLQHit.asp
+| [+] CODE: 200 URL: http://192.168.125.132/search/SQLQHit.asp
+| [+] CODE: 200 URL: http://192.168.125.132/sitemap.xml
+===================================================================================================
+|
+| Check robots.txt:
+|
+| Check sitemap.xml:
+===================================================================================================
+|
+| Crawler Started:
+| Plugin name: FCKeditor upload test v.1 Loaded.
+| Plugin name: Timthumb <= 1.32 vulnerability v.1 Loaded.
+| Plugin name: Upload Form Detect v.1.1 Loaded.
+| Plugin name: Code Disclosure v.1.1 Loaded.
+| Plugin name: E-mail Detection v.1.1 Loaded.
+| Plugin name: External Host Detect v.1.2 Loaded.
+| Plugin name: phpinfo() Disclosure v.1 Loaded.
+| Plugin name: Web Backdoor Disclosure v.1.1 Loaded.
+| [+] Crawling finished, 53 URL's found!
+|
+| FCKeditor File Upload:
+|
+| Timthumb:
+|
+| File Upload Forms:
+|
+| Source Code Disclosure:
+|
+| E-mails:
+|
+| External hosts:
+| [+] External Host Found: http://gmpg.org
+| [+] External Host Found: https://wordpress.org
+| [+] External Host Found: http://browsehappy.com
+|
+| PHPinfo() Disclosure:
+|
+| Web Backdoors:
+|
+| Ignored Files: 
+| http://192.168.125.132/wp-includes/js/comment-reply.min.js?ver=4.3.1
+| http://192.168.125.132/wp-includes/js/jquery/jquery-migrate.min.js?ver=1.2.1
+| http://192.168.125.132/wp-content/themes/twentyfifteen/js/skip-link-focus-fix.js?ver=20141010
+| http://192.168.125.132/wp-content/themes/twentyfifteen/css/ie7.css?ver=20141010
+| http://192.168.125.132/wp-content/themes/twentyfifteen/css/ie.css?ver=20141010
+| http://192.168.125.132/wp-admin/css/login.min.css?ver=4.3.1
+| http://192.168.125.132/wp-includes/js/jquery/jquery.js?ver=1.11.3
+| http://192.168.125.132/wp-content/themes/twentyfifteen/js/functions.js?ver=20150330
+| http://192.168.125.132/wp-content/themes/twentyfifteen/js/keyboard-image-navigation.js?ver=20141010
+| http://192.168.125.132/wp-includes/wlwmanifest.xml
+===================================================================================================
+| Dynamic tests:
+| Plugin name: Learning New Directories v.1.2 Loaded.
+| Plugin name: FCKedior tests v.1.1 Loaded.
+| Plugin name: Timthumb <= 1.32 vulnerability v.1 Loaded.
+| Plugin name: Find Backup Files v.1.2 Loaded.
+| Plugin name: Blind SQL-injection tests v.1.3 Loaded.
+| Plugin name: Local File Include tests v.1.1 Loaded.
+| Plugin name: PHP CGI Argument Injection v.1.1 Loaded.
+| Plugin name: Remote Command Execution tests v.1.1 Loaded.
+| Plugin name: Remote File Include tests v.1.2 Loaded.
+| Plugin name: SQL-injection tests v.1.2 Loaded.
+| Plugin name: Cross-Site Scripting tests v.1.2 Loaded.
+| Plugin name: Web Shell Finder v.1.3 Loaded.
+| [+] 1 New directories added
+|                                                                                                   
+|                                                                                                   
+| FCKeditor tests:
+|                                                                                                   
+|                                                                                                   
+| Timthumb < 1.33 vulnerability:
+|                                                                                                   
+|                                                                                                   
+| Backup Files:
+|                                                                                                   
+|                                                                                                   
+| Blind SQL Injection:
+|                                                                                                   
+|                                                                                                   
+| Local File Include:
+|                                                                                                   
+|                                                                                                   
+| PHP CGI Argument Injection:
+|                                                                                                   
+|                                                                                                   
+| Remote Command Execution:
+|                                                                                                   
+|                                                                                                   
+| Remote File Include:
+|                                                                                                   
+|                                                                                                   
+| SQL Injection:
+|                                                                                                   
+|                                                                                                   
+| Cross-Site Scripting (XSS):
+|                                                                                                   
+|                                                                                                   
+| Web Shell Finder:
+===================================================================================================
+| Static tests:
+| Plugin name: Local File Include tests v.1.1 Loaded.
+| Plugin name: Remote Command Execution tests v.1.1 Loaded.
+| Plugin name: Remote File Include tests v.1.1 Loaded.
+|                                                                                                   
+|                                                                                                   
+| Local File Include:
+|                                                                                                   
+|                                                                                                   
+| Remote Command Execution:
+|                                                                                                   
+|                                                                                                   
+| Remote File Include:
+===================================================================================================
+Scan end date: 8-7-2021 15:2:46
+
+
+
+HTML report saved in: report/192.168.125.132.html
+```
+
+<p></p>
+Above is the log file view which can be accessed through the uniscan GUI.
+Some interesting parts are:
+<p></p>
+
+```
+===================================================================================================
+|
+| Directory check:
+| [+] CODE: 200 URL: http://192.168.125.132/Image/
+| [+] CODE: 200 URL: http://192.168.125.132/admin/
+| [+] CODE: 200 URL: http://192.168.125.132/feed/
+| [+] CODE: 200 URL: http://192.168.125.132/image/
+| [+] CODE: 200 URL: http://192.168.125.132/login/
+| [+] CODE: 200 URL: http://192.168.125.132/rss/
+| [+] CODE: 200 URL: http://192.168.125.132/wp-login/
+| [+] CODE: 200 URL: http://192.168.125.132/wp-admin/
+===================================================================================================
+|                                                                                                   
+| File check:
+| [+] CODE: 200 URL: http://192.168.125.132/admin/index.html
+| [+] CODE: 200 URL: http://192.168.125.132/admin/index.php
+| [+] CODE: 200 URL: http://192.168.125.132/favicon.ico
+| [+] CODE: 200 URL: http://192.168.125.132/index.html
+| [+] CODE: 200 URL: http://192.168.125.132/index.html%20
+| [+] CODE: 200 URL: http://192.168.125.132/index.php
+| [+] CODE: 200 URL: http://192.168.125.132/license.txt
+| [+] CODE: 200 URL: http://192.168.125.132/readme
+| [+] CODE: 200 URL: http://192.168.125.132/readme.html
+| [+] CODE: 200 URL: http://192.168.125.132/robots.txt
+| [+] CODE: 200 URL: http://192.168.125.132/search/htx/sqlqhit.asp
+| [+] CODE: 200 URL: http://192.168.125.132/search/sqlqhit.asp
+| [+] CODE: 200 URL: http://192.168.125.132/search/htx/SQLQHit.asp
+| [+] CODE: 200 URL: http://192.168.125.132/search/SQLQHit.asp
+| [+] CODE: 200 URL: http://192.168.125.132/sitemap.xml
+===================================================================================================
+| 
+| Ignored Files: 
+| http://192.168.125.132/wp-includes/js/comment-reply.min.js?ver=4.3.1
+| http://192.168.125.132/wp-includes/js/jquery/jquery-migrate.min.js?ver=1.2.1
+| http://192.168.125.132/wp-content/themes/twentyfifteen/js/skip-link-focus-fix.js?ver=20141010
+| http://192.168.125.132/wp-content/themes/twentyfifteen/css/ie7.css?ver=20141010
+| http://192.168.125.132/wp-content/themes/twentyfifteen/css/ie.css?ver=20141010
+| http://192.168.125.132/wp-admin/css/login.min.css?ver=4.3.1
+| http://192.168.125.132/wp-includes/js/jquery/jquery.js?ver=1.11.3
+| http://192.168.125.132/wp-content/themes/twentyfifteen/js/functions.js?ver=20150330
+| http://192.168.125.132/wp-content/themes/twentyfifteen/js/keyboard-image-navigation.js?ver=20141010
+| http://192.168.125.132/wp-includes/wlwmanifest.xml
+===================================================================================================
+```
+
+<p></p>
+Here we can see a list of directories, files and ignored files.
+
+
 
 
 </details>
