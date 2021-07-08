@@ -198,9 +198,213 @@ PORT    STATE SERVICE
 ```
 
 <p></p>
+Looking through the results we can identify our own ip address <kbd>192.168.125.134</kbd> and one other ip <kbd>192.168.125.132</kbd> we can therefore determine that the second ip is our target VM. Time for further enumeration with nmap. This time the command will look like this:
+<p></p>
+
+```
+sudo nmap -e eth1 -A -vvv --script vuln -oN nmap.txt 192.168.125.132
+```
+
+<p></p>
+For this command, we use the <kbd>-e</kbd> flag to direct nmap to our desired network interface, ,<kbd>-A</kbd> to run all scripts, <kbd>-vvv</kbd> to give very verbose output, <kbd>--script vuln</kbd> to run the vulnerability script against the machine, this is extremely helpful and does a lot of enumeration for us which we can see in the output, <kbd>-oN nmap.txt</kbd> outputs the scan to a text file se we can refer to it later and finally the ip address we wish to scan.
+This command outputs the following:
+<p></p>
 
 
+```
+# Nmap 7.91 scan initiated Thu Jul  8 13:41:13 2021 as: nmap -e eth1 -A -vvv --script vuln -oN nmap.txt 192.168.125.132
+Nmap scan report for 192.168.125.132
+Host is up, received arp-response (0.0019s latency).
+Scanned at 2021-07-08 13:41:24 AEST for 94s
+Not shown: 997 filtered ports
+Reason: 997 no-responses
+PORT    STATE  SERVICE  REASON         VERSION
+22/tcp  closed ssh      reset ttl 64
+80/tcp  open   http     syn-ack ttl 64 Apache httpd
+| http-csrf: 
+| Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=192.168.125.132
+|   Found the following possible CSRF vulnerabilities: 
+|     
+|     Path: http://192.168.125.132:80/js/BASE_URL+%22/live/%22);this.firstBoot?(this.firstBoot=!1,this.track.omni("Email
+|     Form id: 
+|     Form action: http://192.168.125.132/
+|     
+|     Path: http://192.168.125.132:80/js/BASE_URL+%22/live/%22);this.firstBoot?(this.firstBoot=!1,this.track.omni("Email
+|     Form id: 
+|     Form action: http://192.168.125.132/
+|     
+|     Path: http://192.168.125.132:80/js/rs;if(s.useForcedLinkTracking||s.bcf){if(!s."+"forcedLinkTrackingTimeout)s.forcedLinkTrackingTimeout=250;setTimeout('if(window.s_c_il)window.s_c_il['+s._in+'].bcr()',s.forcedLinkTrackingTimeout);}else
+|     Form id: 
+|     Form action: http://192.168.125.132/
+|     
+|     Path: http://192.168.125.132:80/js/rs;if(s.useForcedLinkTracking||s.bcf){if(!s."+"forcedLinkTrackingTimeout)s.forcedLinkTrackingTimeout=250;setTimeout('if(window.s_c_il)window.s_c_il['+s._in+'].bcr()',s.forcedLinkTrackingTimeout);}else
+|     Form id: 
+|     Form action: http://192.168.125.132/
+|     
+|     Path: http://192.168.125.132:80/js/u;c.appendChild(o);'+(n?'o.c=0;o.i=setTimeout(f2,100)':'')+'}}catch(e){o=0}return
+|     Form id: 
+|     Form action: http://192.168.125.132/
+|     
+|     Path: http://192.168.125.132:80/js/u;c.appendChild(o);'+(n?'o.c=0;o.i=setTimeout(f2,100)':'')+'}}catch(e){o=0}return
+|     Form id: 
+|     Form action: http://192.168.125.132/
+|     
+|     Path: http://192.168.125.132:80/js/vendor/null,this.tags.length=0%7d,t.get=function()%7bif(0==this.tags.length)return
+|     Form id: 
+|     Form action: http://192.168.125.132/
+|     
+|     Path: http://192.168.125.132:80/js/vendor/null,this.tags.length=0%7d,t.get=function()%7bif(0==this.tags.length)return
+|     Form id: 
+|     Form action: http://192.168.125.132/
+|     
+|     Path: http://192.168.125.132:80/js/BASE_URL+%22/live/
+|     Form id: 
+|     Form action: http://192.168.125.132/
+|     
+|     Path: http://192.168.125.132:80/js/BASE_URL+%22/live/
+|     Form id: 
+|     Form action: http://192.168.125.132/
+|     
+|     Path: http://192.168.125.132:80/wp-login.php
+|     Form id: loginform
+|_    Form action: http://192.168.125.132/wp-login.php
+|_http-dombased-xss: Couldn't find any DOM based XSS.
+| http-enum: 
+|   /admin/: Possible admin folder
+|   /admin/index.html: Possible admin folder
+|   /wp-login.php: Possible admin folder
+|   /robots.txt: Robots file
+|   /feed/: Wordpress version: 4.3.1
+|   /wp-includes/images/rss.png: Wordpress version 2.2 found.
+|   /wp-includes/js/jquery/suggest.js: Wordpress version 2.5 found.
+|   /wp-includes/images/blank.gif: Wordpress version 2.6 found.
+|   /wp-includes/js/comment-reply.js: Wordpress version 2.7 found.
+|   /wp-login.php: Wordpress login page.
+|   /wp-admin/upgrade.php: Wordpress login page.
+|   /readme.html: Interesting, a readme.
+|   /0/: Potentially interesting folder
+|_  /image/: Potentially interesting folder
+|_http-jsonp-detection: Couldn't find any JSONP endpoints.
+|_http-litespeed-sourcecode-download: Request with null byte did not work. This web server might not be vulnerable
+|_http-server-header: Apache
+|_http-stored-xss: Couldn't find any stored XSS vulnerabilities.
+443/tcp open   ssl/http syn-ack ttl 64 Apache httpd
+| http-csrf: 
+| Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=192.168.125.132
+|   Found the following possible CSRF vulnerabilities: 
+|     
+|     Path: https://192.168.125.132:443/js/BASE_URL
+|     Form id: 
+|     Form action: https://192.168.125.132:443/
+|     
+|     Path: https://192.168.125.132:443/js/BASE_URL
+|     Form id: 
+|     Form action: https://192.168.125.132:443/
+|     
+|     Path: https://192.168.125.132:443/js/vendor/null,this.tags.length=0%7d,t.get=function()%7bif(0==this.tags.length)return
+|     Form id: 
+|     Form action: https://192.168.125.132:443/
+|     
+|     Path: https://192.168.125.132:443/js/vendor/null,this.tags.length=0%7d,t.get=function()%7bif(0==this.tags.length)return
+|     Form id: 
+|     Form action: https://192.168.125.132:443/
+|     
+|     Path: https://192.168.125.132:443/js/u;c.appendChild(o);'+(n?'o.c=0;o.i=setTimeout(f2,100)':'')+'}}catch(e){o=0}return
+|     Form id: 
+|     Form action: https://192.168.125.132:443/
+|     
+|     Path: https://192.168.125.132:443/js/u;c.appendChild(o);'+(n?'o.c=0;o.i=setTimeout(f2,100)':'')+'}}catch(e){o=0}return
+|     Form id: 
+|     Form action: https://192.168.125.132:443/
+|     
+|     Path: https://192.168.125.132:443/js/rs;if(s.useForcedLinkTracking||s.bcf){if(!s."
+|     Form id: 
+|     Form action: https://192.168.125.132:443/
+|     
+|     Path: https://192.168.125.132:443/js/rs;if(s.useForcedLinkTracking||s.bcf){if(!s."
+|     Form id: 
+|     Form action: https://192.168.125.132:443/
+|     
+|     Path: https://192.168.125.132:443/wp-login.php
+|     Form id: loginform
+|_    Form action: https://192.168.125.132:443/wp-login.php
+|_http-dombased-xss: Couldn't find any DOM based XSS.
+| http-enum: 
+|   /admin/: Possible admin folder
+|   /admin/index.html: Possible admin folder
+|   /wp-login.php: Possible admin folder
+|   /robots.txt: Robots file
+|   /feed/: Wordpress version: 4.3.1
+|   /wp-includes/images/rss.png: Wordpress version 2.2 found.
+|   /wp-includes/js/jquery/suggest.js: Wordpress version 2.5 found.
+|   /wp-includes/images/blank.gif: Wordpress version 2.6 found.
+|   /wp-includes/js/comment-reply.js: Wordpress version 2.7 found.
+|   /wp-login.php: Wordpress login page.
+|   /wp-admin/upgrade.php: Wordpress login page.
+|   /readme.html: Interesting, a readme.
+|   /0/: Potentially interesting folder
+|_  /image/: Potentially interesting folder
+|_http-jsonp-detection: Couldn't find any JSONP endpoints.
+|_http-litespeed-sourcecode-download: Request with null byte did not work. This web server might not be vulnerable
+|_http-server-header: Apache
+|_http-stored-xss: Couldn't find any stored XSS vulnerabilities.
+|_sslv2-drown: 
+MAC Address: 00:0C:29:43:37:0E (VMware)
+Device type: general purpose
+Running: Linux 3.X|4.X
+OS CPE: cpe:/o:linux:linux_kernel:3 cpe:/o:linux:linux_kernel:4
+OS details: Linux 3.10 - 4.11
+TCP/IP fingerprint:
+OS:SCAN(V=7.91%E=4%D=7/8%OT=80%CT=22%CU=%PV=Y%DS=1%DC=D%G=N%M=000C29%TM=60E
+OS:67442%P=x86_64-pc-linux-gnu)SEQ(SP=105%GCD=1%ISR=108%TI=Z%CI=I%II=I%TS=8
+OS:)OPS(O1=M5B4ST11NW7%O2=M5B4ST11NW7%O3=M5B4NNT11NW7%O4=M5B4ST11NW7%O5=M5B
+OS:4ST11NW7%O6=M5B4ST11)WIN(W1=7120%W2=7120%W3=7120%W4=7120%W5=7120%W6=7120
+OS:)ECN(R=Y%DF=Y%TG=40%W=7210%O=M5B4NNSNW7%CC=Y%Q=)T1(R=Y%DF=Y%TG=40%S=O%A=
+OS:S+%F=AS%RD=0%Q=)T2(R=N)T3(R=N)T4(R=Y%DF=Y%TG=40%W=0%S=A%A=Z%F=R%O=%RD=0%
+OS:Q=)T5(R=Y%DF=Y%TG=40%W=0%S=Z%A=S+%F=AR%O=%RD=0%Q=)T6(R=Y%DF=Y%TG=40%W=0%
+OS:S=A%A=Z%F=R%O=%RD=0%Q=)T7(R=N)U1(R=N)IE(R=Y%DFI=N%TG=40%CD=S)
 
+Uptime guess: 0.072 days (since Thu Jul  8 11:59:55 2021)
+Network Distance: 1 hop
+TCP Sequence Prediction: Difficulty=261 (Good luck!)
+IP ID Sequence Generation: All zeros
+
+TRACEROUTE
+HOP RTT     ADDRESS
+1   1.89 ms 192.168.125.132
+
+Read data files from: /usr/bin/../share/nmap
+OS and Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+# Nmap done at Thu Jul  8 13:42:58 2021 -- 1 IP address (1 host up) scanned in 105.32 seconds
+```
+
+<p></p>
+Looking through the results we can see a lot of interesting information and a lot of enumeration that has been done for us just by using the vuln script.
+<br>
+We can see there are 3 ports, 22 (ssh), 80 (http), 443 (https).
+<br>
+The http enumeration is also extremely helpful as it has carried out the job of gobuster or dirb.
+<p></p>
+
+```
+| http-enum: 
+|   /admin/: Possible admin folder
+|   /admin/index.html: Possible admin folder
+|   /wp-login.php: Possible admin folder
+|   /robots.txt: Robots file
+|   /feed/: Wordpress version: 4.3.1
+|   /wp-includes/images/rss.png: Wordpress version 2.2 found.
+|   /wp-includes/js/jquery/suggest.js: Wordpress version 2.5 found.
+|   /wp-includes/images/blank.gif: Wordpress version 2.6 found.
+|   /wp-includes/js/comment-reply.js: Wordpress version 2.7 found.
+|   /wp-login.php: Wordpress login page.
+|   /wp-admin/upgrade.php: Wordpress login page.
+|   /readme.html: Interesting, a readme.
+|   /0/: Potentially interesting folder
+|_  /image/: Potentially interesting folder
+```
+
+<p></p>
 
 
 
