@@ -159,12 +159,19 @@ The process is basically identical for Virtual Box however I prefer using VMWare
 </details>
 
 
-
+<hr>
 <p></p>
 <H2>Walkthrough</H2>
 <p></p>
 <details>
     <summary></summary>
 <p></p>
+
+
+
+
+
+
+
 
 </details>
