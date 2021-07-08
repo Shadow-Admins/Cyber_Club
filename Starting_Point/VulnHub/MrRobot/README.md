@@ -39,9 +39,14 @@ And when opened look like a random string of characters eg. ABCDENOASFINEAUINFAO
 <p></p>
 As stated before one flag is located on the website itself, one is located in the user folder and the final is located in the root folder.
 <p></p>
+<H2>Locally Hosting the VM</H2>
 <details>
-    <summary>Challenges</summary>
+    <summary></summary>
 <p></p>
+
+
+</details>
+
 <details>
     <summary>Reverse Engineering</summary>
 <p></p>
