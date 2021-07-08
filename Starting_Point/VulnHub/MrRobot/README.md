@@ -405,7 +405,7 @@ The http enumeration is also extremely helpful as it has carried out the job of 
 ```
 
 <p></p>
-From this output we can see our website enumeration is done and we can see that there are a couple of files and a wordpress hosted.
+From this output we can see our website enumeration is done and we can see that there are a couple of files and a wordpress (version 4.3.1) hosted.
 <p></p>
 Since we ran the script to do enumeration for us we don't need to carry out any further enumeration ie. gobuster, dirb, uniscan however I will include them for your information below.
 <p></p>
@@ -1223,7 +1223,7 @@ Now that we have done initial enumeration we can start looking at the website be
 <img src="https://github.com/Shadow-Admins/Cyber_Club/blob/e4ed451224096481e6e6cf68d9cbcfbf83041721/Starting_Point/VulnHub/MrRobot/images/website.png"><br>
 </div>
 <p></p>
-This website is basically a interactive command line, you could spend ages looking through each input and the information that returns however this is a honypot and we should start looking at the files and directories we found from our enumeration.
+This website is basically a interactive command line, you could spend ages looking through each input and the information that returns (you can also try Remote Code Execution (RCE) however I couldn't get RCE to work) however this is a honypot and we should start looking at the files and directories we found from our enumeration.
 <p></p>
 Lets go down the list, to start with we will go to /admin/
 <p></p>
@@ -1263,7 +1263,8 @@ This is a bit of a joke as it redirects you to /admin/index.html and puts you in
 ```
 
 <p></p>
-This turns out to be a dead end, 
+This turns out to be a dead end, so we will try the next item on our list /wp-login.php.
+<p></p>
 
 
 
