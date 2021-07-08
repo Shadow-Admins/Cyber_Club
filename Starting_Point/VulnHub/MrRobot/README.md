@@ -1265,6 +1265,17 @@ This is a bit of a joke as it redirects you to /admin/index.html and puts you in
 <p></p>
 This turns out to be a dead end, so we will try the next item on our list /wp-login.php.
 <p></p>
+<div align="center">
+<img src="https://github.com/Shadow-Admins/Cyber_Club/blob/f1339d44d8be1ebf4103e9709008b3577ac0577f/Starting_Point/VulnHub/MrRobot/images/wp-login.png"><br>
+</div>
+<p></p>
+We can see that we have found a login page, this is important and getting access to this will be the first stage to accessing the target box, for now we wont do anything more but we will come back later.
+<p></p>
+Next on our list is /robots.txt
+
+
+
+
 
 
 
