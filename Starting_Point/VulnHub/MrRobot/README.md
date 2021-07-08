@@ -415,7 +415,9 @@ Since we ran the script to do enumeration for us we don't need to carry out any 
 <details>
     <summary>Enumeration</summary>
 <p></p>
-We will start with uniscan:
+
+<details>
+    <summary>uniscan</summary>
 <p></p>
 Uniscan is a default scanner that comes with ParrotOS and kali, it has a very simple GUI interface:
 <p></p>
@@ -441,7 +443,7 @@ You can see that i have imputed the target ip address and selected the following
 <p></p>
 Uniscan creates a .html report in /usr/share/uniscan/reports/IPADDRESS.html
 <p></p>
-YOu can view this report by running:
+You can view this report by running:
 <p></p>
 
 ```
@@ -972,7 +974,15 @@ Some interesting parts are:
 ```
 
 <p></p>
-Here we can see a list of directories, files and ignored files.
+Here we can see a list of directories, files and ignored files. Again, all of this information will help us when it comes to looking at the website.
+<p></p>
+</details>
+<p></p>
+<details>
+    <summary>gobuster</summary>
+<p></p>
+</details>
+
 
 
 
