@@ -1225,8 +1225,45 @@ Now that we have done initial enumeration we can start looking at the website be
 <p></p>
 This website is basically a interactive command line, you could spend ages looking through each input and the information that returns however this is a honypot and we should start looking at the files and directories we found from our enumeration.
 <p></p>
+Lets go down the list, to start with we will go to /admin/
+<p></p>
+This is a bit of a joke as it redirects you to /admin/index.html and puts you into an infinite redirect loop looking at the page source informaton (right click on the web page then click page source) we can see the back end.
 
+```
+<!doctype html>
+<!--
+\   //~~\ |   |    /\  |~~\|~~  |\  | /~~\~~|~~    /\  |  /~~\ |\  ||~~
+ \ /|    ||   |   /__\ |__/|--  | \ ||    | |     /__\ | |    || \ ||--
+  |  \__/  \_/   /    \|  \|__  |  \| \__/  |    /    \|__\__/ |  \||__
+-->
+<html class="no-js" lang="">
+  <head>
+    
 
+    <link rel="stylesheet" href="css/A.main-600a9791.css.pagespeed.cf.D0r67Hwe2q.css">
+
+    <script src="js/vendor/vendor-48ca455c.js.pagespeed.jm.V7Qfw6bd5C.js"></script>
+
+    <script>var USER_IP='208.185.115.6';var BASE_URL='index.html';var RETURN_URL='index.html';var REDIRECT=false;window.log=function(){log.history=log.history||[];log.history.push(arguments);if(this.console){console.log(Array.prototype.slice.call(arguments));}};</script>
+
+  </head>
+  <body>
+    <!--[if lt IE 9]>
+      <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    
+
+    <!-- Google Plus confirmation -->
+    <div id="app"></div>
+
+    
+    <script src="js/s_code.js.pagespeed.jm.I78cfHQpbQ.js"></script>
+    <script src="js/main-acba06a5.js.pagespeed.jm.YdSb2z1rih.js"></script>
+</body>
+</html>
+```
+
+<p></p>
+This turns out to be a dead end, 
 
 
 
