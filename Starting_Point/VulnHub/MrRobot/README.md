@@ -48,29 +48,33 @@ The first thing you need to do is download the mrRobot.ova file from <a href="ht
 Now that you have the .ova file you need open it in either <a href="https://www.virtualbox.org/" rel="nofollow">Virtual Box</a> or <a href="https://www.vmware.com/au/products/workstation-player.html" rel="nofollow">VMWare</a>.
 <p></p>
 <div align="center">
-<img src="https://github.com/Shadow-Admins/Cyber_Club/blob/56b950dbe5882e192d4736c6eb9cf2feddcdccc4/Starting_Point/VulnHub/MrRobot/images/open.png"><br>
+<img src="https://github.com/Shadow-Admins/Cyber_Club/blob/2429ae9e3f58140ed5905513114b710f0153067e/Starting_Point/VulnHub/MrRobot/images/open.png"><br>
 </div>
 <p></p>
 This will then direct you to the import screen, give the VM a name and store it in a folder on your system somewhere.
 <p></p>
 <div align="center">
-<img src="https://github.com/Shadow-Admins/Cyber_Club/blob/b5ce8bd80aeae75809411b402e4912ebb4af4e93/Starting_Point/VulnHub/MrRobot/images/import.png"><br>
+<img src="https://github.com/Shadow-Admins/Cyber_Club/blob/2429ae9e3f58140ed5905513114b710f0153067e/Starting_Point/VulnHub/MrRobot/images/import.png"><br>
 </div>
 <p></p>
-This will then import the machine and you will be able to see it on the left hand panel once completed, the last thing you need to do is confirm the network settings. Below you can see that I have highlighted the network setting for the VM, it should be bridged.
+This will then import the machine and you will be able to see it on the left hand panel once completed, the last thing you need to do is confirm the network settings. Below you can see that I have highlighted the network setting for the VM, it should be host only.
 <p></p>
 <div align="center">
-<img src="https://github.com/Shadow-Admins/Cyber_Club/blob/9c8d067e1e74ed9477deaf36fcd537aab721cf73/Starting_Point/VulnHub/MrRobot/images/bridged.png"><br>
+<img src="https://github.com/Shadow-Admins/Cyber_Club/blob/2429ae9e3f58140ed5905513114b710f0153067e/Starting_Point/VulnHub/MrRobot/images/bridged.png"><br>
 </div>
 <p></p>
-If it isn't set as bridged you can click on the network which will bring you into network settings as displayed below.
+If it isn't set as host only you can click on the network which will bring you into network settings as displayed below.
 <p></p>
 <div align="center">
-<img src="https://github.com/Shadow-Admins/Cyber_Club/blob/9c8d067e1e74ed9477deaf36fcd537aab721cf73/Starting_Point/VulnHub/MrRobot/images/network.png"><br>
+<img src="https://github.com/Shadow-Admins/Cyber_Club/blob/2429ae9e3f58140ed5905513114b710f0153067e/Starting_Point/VulnHub/MrRobot/images/network.png"><br>
 </div>
 <p></p>
 You can now start your Mr Robot VM and your penetration VM and start hacking.
-<br>
+<p></p>
+<div align="center">
+<img src="https://github.com/Shadow-Admins/Cyber_Club/blob/2429ae9e3f58140ed5905513114b710f0153067e/Starting_Point/VulnHub/MrRobot/images/logon.png"><br>
+</div>
+<p></p>
 The process is basically identical for Virtual Box however I prefer using VMWare.
 
 </details>
