@@ -46,7 +46,7 @@ As stated before one flag is located on the website itself, one is located in th
 The first thing you need to do is download the mrRobot.ova file from <a href="https://www.vulnhub.com/entry/mr-robot-1,151/" rel="nofollow">VulnHub</a> (<a href="https://download.vulnhub.com/mrrobot/mrRobot.ova" rel="nofollow">Download link</a>).
 <br>
 Now that you have the .ova file you need open it in either <a href="https://www.virtualbox.org/" rel="nofollow">Virtual Box</a> or <a href="https://www.vmware.com/au/products/workstation-player.html" rel="nofollow">VMWare</a>.
-<br>
+<p></p>
 <div align="center">
 <img src="https://github.com/Shadow-Admins/Cyber_Club/blob/56b950dbe5882e192d4736c6eb9cf2feddcdccc4/Starting_Point/VulnHub/MrRobot/images/open.png"><br>
 </div>
@@ -70,28 +70,18 @@ If it isn't set as bridged you can click on the network which will bring you int
 </div>
 <p></p>
 You can now start your Mr Robot VM and your penetration VM and start hacking.
+<br>
+The process is basically identical for Virtual Box however I prefer using VMWare.
 
 </details>
 
-<details>
-    <summary>Reverse Engineering</summary>
+
+
+<p></p>
+<H2>Walkthrough</H2>
 <p></p>
 <details>
-    <summary>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    <summary></summary>
+<p></p>
 
 </details>
