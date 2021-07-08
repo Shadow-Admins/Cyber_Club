@@ -452,7 +452,12 @@ firefox /usr/share/uniscan/reports/192.168.125.132 &
 
 <p></p>
 My report looks like <a href="https://github.com/Shadow-Admins/Cyber_Club/blob/main/Starting_Point/VulnHub/MrRobot/files/192.168.125.132.html" rel="nofollow">this</a>.
-To see it correctly you would need to copy the code into a .html file then open it with firefox.
+To see it correctly you would need to copy the code into a .html file then open it with firefox to look like this.
+<p></p>
+<div align="center">
+<img src="https://github.com/Shadow-Admins/Cyber_Club/blob/acd6c27914258430c5418614a4129b71f690d48d/Starting_Point/VulnHub/MrRobot/images/uniscan.png"><br>
+</div>
+<p></p>
 The report information is:
 
 ```
@@ -1211,6 +1216,9 @@ Above you can see the directory and file results.
 
 </details>
 </details>
+<p></p>
+Now that we have done initial enumeration we can start looking at the website being hosted.
+<p></p>
 
 
 
