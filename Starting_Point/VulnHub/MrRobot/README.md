@@ -57,13 +57,13 @@ This will then direct you to the import screen, give the VM a name and store it 
 <img src="https://github.com/Shadow-Admins/Cyber_Club/blob/2429ae9e3f58140ed5905513114b710f0153067e/Starting_Point/VulnHub/MrRobot/images/import.png"><br>
 </div>
 <p></p>
-This will then import the machine and you will be able to see it on the left hand panel once completed, the last thing you need to do is confirm the network settings. Below you can see that I have highlighted the network setting for the VM, it should be host only.
+This will then import the machine and you will be able to see it on the left hand panel once completed, the last thing you need to do is confirm the network settings. Below you can see that I have highlighted the network setting for the VM, it should be Host-only.
 <p></p>
 <div align="center">
 <img src="https://github.com/Shadow-Admins/Cyber_Club/blob/2429ae9e3f58140ed5905513114b710f0153067e/Starting_Point/VulnHub/MrRobot/images/bridged.png"><br>
 </div>
 <p></p>
-If it isn't set as host only you can click on the network which will bring you into network settings as displayed below.
+If it isn't set as Host-only you can click on the network which will bring you into network settings as displayed below.
 <p></p>
 <div align="center">
 <img src="https://github.com/Shadow-Admins/Cyber_Club/blob/2429ae9e3f58140ed5905513114b710f0153067e/Starting_Point/VulnHub/MrRobot/images/network.png"><br>
