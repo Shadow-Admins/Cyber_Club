@@ -1217,7 +1217,11 @@ Above you can see the directory and file results.
 </details>
 </details>
 <p></p>
-Now that we have done initial enumeration we can start looking at the website being hosted.
+Now that we have done initial enumeration we can start looking at the website being hosted. Going into firefox and going to the ip address we are presented with the following page.
+<p></p>
+<div align="center">
+<img src="https://github.com/Shadow-Admins/Cyber_Club/blob/e4ed451224096481e6e6cf68d9cbcfbf83041721/Starting_Point/VulnHub/MrRobot/images/website.png"><br>
+</div>
 <p></p>
 
 
