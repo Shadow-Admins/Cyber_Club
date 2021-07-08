@@ -981,6 +981,116 @@ Here we can see a list of directories, files and ignored files. Again, all of th
 <details>
     <summary>gobuster</summary>
 <p></p>
+Gobuster is another prepackaged program which can be used for many things bellow is the help file.
+<p></p>
+
+```
+❯ gobuster -h
+Usage:
+  gobuster [command]
+
+Available Commands:
+  dir         Uses directory/file enumeration mode
+  dns         Uses DNS subdomain enumeration mode
+  fuzz        Uses fuzzing mode
+  help        Help about any command
+  s3          Uses aws bucket enumeration mode
+  version     shows the current version
+  vhost       Uses VHOST enumeration mode
+
+Flags:
+      --delay duration    Time each thread waits between requests (e.g. 1500ms)
+  -h, --help              help for gobuster
+      --no-error          Don't display errors
+  -z, --no-progress       Don't display progress
+  -o, --output string     Output file to write results to (defaults to stdout)
+  -p, --pattern string    File containing replacement patterns
+  -q, --quiet             Don't print the banner and other noise
+  -t, --threads int       Number of concurrent threads (default 10)
+  -v, --verbose           Verbose output (errors)
+  -w, --wordlist string   Path to the wordlist
+
+Use "gobuster [command] --help" for more information about a command.
+```
+
+<p></p>
+For this situation we are going to use the <kbd>dir</kbd> command to enumerate directories and files, the command looks like this:
+<p></p>
+
+```
+gobuster dir -u http://192.168.125.132 -w /usr/share/wordlists/SecLists/Discovery/Web-Content/raft-large-files.txt
+```
+
+<p></p>
+In this command u can see we use the <kbd>dir</kbd> command followed by the <kbd>-u</kbd> command to point gobuster at the url, we then use the <kbd>-w</kbd> command to point gobuster to our desired wordlist. Here you can see I have used the raft-large-files.txt wordlist from <a href="https://github.com/danielmiessler/SecLists" rel="nofollow">SecLists</a>. (I strongly recommend downloading this git it contains tons of wordlists that can be used for multiple things)
+<p></p>
+This command outputs this:
+<p></p>
+
+```
+❯ gobuster dir -u http://192.168.125.132 -w /usr/share/wordlists/SecLists/Discovery/Web-Content/raft-large-files.txt
+===============================================================
+Gobuster v3.1.0
+by OJ Reeves (@TheColonial) & Christian Mehlmauer (@firefart)
+===============================================================
+[+] Url:                     http://192.168.125.132
+[+] Method:                  GET
+[+] Threads:                 10
+[+] Wordlist:                /usr/share/wordlists/SecLists/Discovery/Web-Content/raft-large-files.txt
+[+] Negative Status codes:   404
+[+] User Agent:              gobuster/3.1.0
+[+] Timeout:                 10s
+===============================================================
+2021/07/08 15:31:07 Starting gobuster in directory enumeration mode
+===============================================================
+/xmlrpc.php           (Status: 405) [Size: 42]
+/index.php            (Status: 301) [Size: 0] [--> http://192.168.125.132/]
+/wp-login.php         (Status: 200) [Size: 2685]                           
+/wp-register.php      (Status: 301) [Size: 0] [--> http://192.168.125.132/wp-login.php?action=register]
+/index.html           (Status: 200) [Size: 1188]                                                       
+/favicon.ico          (Status: 200) [Size: 0]                                                          
+/readme.html          (Status: 200) [Size: 64]                                                         
+/.htaccess            (Status: 403) [Size: 218]                                                        
+/license.txt          (Status: 200) [Size: 309]                                                        
+/robots.txt           (Status: 200) [Size: 41]                                                         
+/wp-commentsrss2.php  (Status: 301) [Size: 0] [--> http://192.168.125.132/comments/feed/]              
+/wp-config.php        (Status: 200) [Size: 0]                                                          
+/sitemap.xml          (Status: 200) [Size: 0]                                                          
+/.                    (Status: 200) [Size: 1188]                                                       
+/wp-settings.php      (Status: 500) [Size: 0]                                                          
+/wp-app.php           (Status: 403) [Size: 0]                                                          
+/wp-rss.php           (Status: 301) [Size: 0] [--> http://192.168.125.132/feed/]                       
+/wp-rss2.php          (Status: 301) [Size: 0] [--> http://192.168.125.132/feed/]                       
+/wp-cron.php          (Status: 200) [Size: 0]                                                          
+/wp-rdf.php           (Status: 301) [Size: 0] [--> http://192.168.125.132/feed/rdf/]                   
+/wp-atom.php          (Status: 301) [Size: 0] [--> http://192.168.125.132/feed/atom/]                  
+/wp-feed.php          (Status: 301) [Size: 0] [--> http://192.168.125.132/feed/]                       
+/wp-links-opml.php    (Status: 200) [Size: 227]                                                        
+/.html                (Status: 403) [Size: 214]                                                        
+/sitemap.xml.gz       (Status: 200) [Size: 0]                                                          
+/wp-load.php          (Status: 200) [Size: 0]                                                          
+/wp-signup.php        (Status: 302) [Size: 0] [--> http://192.168.125.132/wp-login.php?action=register]
+/wp-activate.php      (Status: 302) [Size: 0] [--> http://192.168.125.132/wp-login.php?action=register]
+/.htpasswd            (Status: 403) [Size: 218]                                                        
+/.htm                 (Status: 403) [Size: 213]                                                        
+/.htpasswds           (Status: 403) [Size: 219]                                                        
+Progress: 2110 / 37043 (5.70%)                                                                        [ERROR] 2021/07/08 15:31:19 [!] Get "http://192.168.125.132/wp-mail.php": context deadline exceeded (Client.Timeout exceeded while awaiting headers)
+/.htgroup             (Status: 403) [Size: 217]                                                        
+/.htaccess.bak        (Status: 403) [Size: 222]                                                        
+/.htuser              (Status: 403) [Size: 216]                                                        
+/.ht                  (Status: 403) [Size: 212]                                                        
+/.htc                 (Status: 403) [Size: 213]                                                        
+/.htaccess.old        (Status: 403) [Size: 222]                                                        
+/.htacess             (Status: 403) [Size: 217]                                                        
+Progress: 25362 / 37043 (68.47%)                                                                      [ERROR] 2021/07/08 15:34:13 [!] parse "http://192.168.125.132/directory\t\te.g.": net/url: invalid control character in URL
+                                                                                                       
+===============================================================
+2021/07/08 15:36:00 Finished
+===============================================================
+```
+
+<p></p>
+The above output shows us the files and directories.
 </details>
 
 
