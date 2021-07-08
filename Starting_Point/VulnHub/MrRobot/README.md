@@ -426,14 +426,30 @@ Uniscan is a default scanner that comes with ParrotOS and kali, it has a very si
 You can see that i have imputed the target ip address and selected the following options:
 <br>
 - Check Directory
+<br>
 - Check Files
+<br>
 - Check /robots.txt
+<br>
 - Dynamic tests
+<br>
 - Static tests
+<br>
 - Web Fingerprint
+<br>
 - Server Fingerprint
+<p></p>
+Uniscan creates a .html report in /usr/share/uniscan/reports/IPADDRESS.html
+<p></p>
+YOu can view this report by running:
+<p></p>
 
+```
+firefox /usr/share/uniscan/reports/192.168.125.132 &
+```
 
+<p></p>
+My report looks like <a href="https://github.com/Shadow-Admins/Cyber_Club/blob/main/Starting_Point/VulnHub/MrRobot/files/192.168.125.132.html" rel="nofollow">this</a>.
 
 
 </details>
