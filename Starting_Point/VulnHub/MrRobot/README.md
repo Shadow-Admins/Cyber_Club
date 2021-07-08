@@ -1092,11 +1092,124 @@ Progress: 25362 / 37043 (68.47%)                                                
 <p></p>
 The above output shows us the files and directories.
 </details>
+<p></p>
+<details>
+    <summary>dirb</summary>
+<p></p>
+dirb is another prepackaged program just like gobuster, the help file looks like this:
+<p></p>
 
+```
+❯ dirb
 
+-----------------
+DIRB v2.22    
+By The Dark Raver
+-----------------
 
+dirb <url_base> [<wordlist_file(s)>] [options]
 
+========================= NOTES =========================
+ <url_base> : Base URL to scan. (Use -resume for session resuming)
+ <wordlist_file(s)> : List of wordfiles. (wordfile1,wordfile2,wordfile3...)
 
+======================== HOTKEYS ========================
+ 'n' -> Go to next directory.
+ 'q' -> Stop scan. (Saving state for resume)
+ 'r' -> Remaining scan stats.
+
+======================== OPTIONS ========================
+ -a <agent_string> : Specify your custom USER_AGENT.
+ -b : Use path as is.
+ -c <cookie_string> : Set a cookie for the HTTP request.
+ -E <certificate> : path to the client certificate.
+ -f : Fine tunning of NOT_FOUND (404) detection.
+ -H <header_string> : Add a custom header to the HTTP request.
+ -i : Use case-insensitive search.
+ -l : Print "Location" header when found.
+ -N <nf_code>: Ignore responses with this HTTP code.
+ -o <output_file> : Save output to disk.
+ -p <proxy[:port]> : Use this proxy. (Default port is 1080)
+ -P <proxy_username:proxy_password> : Proxy Authentication.
+ -r : Don't search recursively.
+ -R : Interactive recursion. (Asks for each directory)
+ -S : Silent Mode. Don't show tested words. (For dumb terminals)
+ -t : Don't force an ending '/' on URLs.
+ -u <username:password> : HTTP Authentication.
+ -v : Show also NOT_FOUND pages.
+ -w : Don't stop on WARNING messages.
+ -X <extensions> / -x <exts_file> : Append each word with this extensions.
+ -z <millisecs> : Add a milliseconds delay to not cause excessive Flood.
+
+======================== EXAMPLES =======================
+ dirb http://url/directory/ (Simple Test)
+ dirb http://url/ -X .html (Test files with '.html' extension)
+ dirb http://url/ /usr/share/dirb/wordlists/vulns/apache.txt (Test with apache.txt wordlist)
+ dirb https://secure_url/ (Simple Test with SSL)
+```
+
+<p></p>
+The command we will use is:
+<p></p>
+
+```
+dirb http://192.168.125.132 /usr/share/wordlists/SecLists/Discovery/Web-Content/raft-large-files.txt
+```
+
+<p></p>
+Which outputs:
+<p></p>
+
+```
+❯ dirb http://192.168.125.132 /usr/share/wordlists/SecLists/Discovery/Web-Content/raft-large-files.txt
+
+-----------------
+DIRB v2.22    
+By The Dark Raver
+-----------------
+
+START_TIME: Thu Jul  8 15:50:43 2021
+URL_BASE: http://192.168.125.132/
+WORDLIST_FILES: /usr/share/wordlists/SecLists/Discovery/Web-Content/raft-large-files.txt
+
+-----------------
+
+GENERATED WORDS: 37025                                                         
+
+---- Scanning URL: http://192.168.125.132/ ----
++ http://192.168.125.132/index.php (CODE:301|SIZE:0)                                                                                                                                         
++ http://192.168.125.132/xmlrpc.php (CODE:405|SIZE:42)                                                                                                                                       
++ http://192.168.125.132/wp-login.php (CODE:200|SIZE:2685)                                                                                                                                   
++ http://192.168.125.132/wp-register.php (CODE:301|SIZE:0)                                                                                                                                   
++ http://192.168.125.132/index.html (CODE:200|SIZE:1104)                                                                                                                                     
++ http://192.168.125.132/favicon.ico (CODE:200|SIZE:0)                                                                                                                                       
++ http://192.168.125.132/readme.html (CODE:200|SIZE:64)                                                                                                                                      
++ http://192.168.125.132/license.txt (CODE:200|SIZE:309)                                                                                                                                     
++ http://192.168.125.132/robots.txt (CODE:200|SIZE:41)                                                                                                                                       
++ http://192.168.125.132/wp-commentsrss2.php (CODE:301|SIZE:0)                                                                                                                               
++ http://192.168.125.132/wp-config.php (CODE:200|SIZE:0)                                                                                                                                     
++ http://192.168.125.132/sitemap.xml (CODE:200|SIZE:0)                                                                                                                                       
++ http://192.168.125.132/wp-settings.php (CODE:500|SIZE:0)                                                                                                                                   
++ http://192.168.125.132/. (CODE:200|SIZE:1188)                                                                                                                                              
++ http://192.168.125.132/wp-app.php (CODE:403|SIZE:0)                                                                                                                                        
++ http://192.168.125.132/wp-rss.php (CODE:301|SIZE:0)                                                                                                                                        
++ http://192.168.125.132/wp-rss2.php (CODE:301|SIZE:0)                                                                                                                                       
++ http://192.168.125.132/wp-mail.php (CODE:500|SIZE:3064)                                                                                                                                    
++ http://192.168.125.132/wp-cron.php (CODE:200|SIZE:0)                                                                                                                                       
++ http://192.168.125.132/wp-rdf.php (CODE:301|SIZE:0)                                                                                                                                        
++ http://192.168.125.132/wp-atom.php (CODE:301|SIZE:0)                                                                                                                                       
++ http://192.168.125.132/wp-feed.php (CODE:301|SIZE:0)                                                                                                                                       
++ http://192.168.125.132/wp-links-opml.php (CODE:200|SIZE:227)                                                                                                                               
++ http://192.168.125.132/sitemap.xml.gz (CODE:200|SIZE:0)                                                                                                                                    
++ http://192.168.125.132/wp-load.php (CODE:200|SIZE:0)                                                                                                                                       
++ http://192.168.125.132/wp-signup.php (CODE:302|SIZE:0)                                                                                                                                     
++ http://192.168.125.132/wp-activate.php (CODE:302|SIZE:0)                                                                                                                                   
+```
+
+<p></p>
+Above you can see the directory and file results.
+
+</details>
 </details>
 
 
