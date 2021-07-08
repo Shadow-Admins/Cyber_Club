@@ -47,7 +47,10 @@ The first thing you need to do is download the mrRobot.ova file from <a href="ht
 <br>
 Now that you have the .ova file you need open it in either <a href="https://www.virtualbox.org/" rel="nofollow">Virtual Box</a> or <a href="https://www.vmware.com/au/products/workstation-player.html" rel="nofollow">VMWare</a>.
 <br>
-
+<div align="center">
+<img src="https://github.com/Shadow-Admins/Cyber_Club/blob/56b950dbe5882e192d4736c6eb9cf2feddcdccc4/Starting_Point/VulnHub/MrRobot/images/open.png" width="600"><br>
+</div>
+<br>
 
 
 
