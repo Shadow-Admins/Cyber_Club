@@ -166,8 +166,38 @@ The process is basically identical for Virtual Box however I prefer using VMWare
 <details>
     <summary></summary>
 <p></p>
+Our first step in this box is to enumerate the network IOT locate the VM. We do this using <kbd>nmap</kbd> however there are some additional flags and steps we use. The command we will run first is:
+<p></p>
 
+```
+nmap -e eth1 -T5 192.168.125.0/24
+```
 
+<p></p>
+Looking at this command we used the <kbd>-e</kbd> flag to let nmap know which interface we want to use for the scan, the <kbd>-T5</kbd> flag tells nmap to do the fastest scan possible and the network we scanned against was the network we identified when we ran <kbd>ifconfig</kbd>.
+<br>
+This command returns:
+<p></p>
+
+```
+❯ nmap -e eth1 -T5 192.168.125.0/24
+Starting Nmap 7.91 ( https://nmap.org ) at 2021-07-08 13:29 AEST
+Nmap scan report for 192.168.125.132
+Host is up (0.016s latency).
+Not shown: 997 filtered ports
+PORT    STATE  SERVICE
+22/tcp  closed ssh
+80/tcp  open   http
+443/tcp open   https
+
+Nmap scan report for 192.168.125.134
+Host is up (0.035s latency).
+Not shown: 999 closed ports
+PORT    STATE SERVICE
+111/tcp open  rpcbind
+```
+
+<p></p>
 
 
 
