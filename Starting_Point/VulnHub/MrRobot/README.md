@@ -1223,7 +1223,8 @@ Now that we have done initial enumeration we can start looking at the website be
 <img src="https://github.com/Shadow-Admins/Cyber_Club/blob/e4ed451224096481e6e6cf68d9cbcfbf83041721/Starting_Point/VulnHub/MrRobot/images/website.png"><br>
 </div>
 <p></p>
-
+This website is basically a interactive command line, you could spend ages looking through each input and the information that returns however this is a honypot and we should start looking at the files and directories we found from our enumeration.
+<p></p>
 
 
 
