@@ -455,7 +455,7 @@ My report looks like <a href="https://github.com/Shadow-Admins/Cyber_Club/blob/m
 To see it correctly you would need to copy the code into a .html file then open it with firefox to look like this.
 <p></p>
 <div align="center">
-<img src="https://github.com/Shadow-Admins/Cyber_Club/blob/acd6c27914258430c5418614a4129b71f690d48d/Starting_Point/VulnHub/MrRobot/images/uniscan.png"><br>
+<img src="https://github.com/Shadow-Admins/Cyber_Club/blob/4196fbf8efbffb56164027ae43bc4d0ca5eae580/Starting_Point/VulnHub/MrRobot/images/uniscanreport.png"><br>
 </div>
 <p></p>
 The report information is:
