@@ -1272,9 +1272,19 @@ This turns out to be a dead end, so we will try the next item on our list /wp-lo
 We can see that we have found a login page, this is important and getting access to this will be the first stage to accessing the target box, for now we wont do anything more but we will come back later.
 <p></p>
 Next on our list is /robots.txt
-
-
-
+<p></p>
+<div align="center">
+<img src="https://github.com/Shadow-Admins/Cyber_Club/blob/42cb81f89c32aa6b5ae62ee8ca27aa5bf9974e42/Starting_Point/VulnHub/MrRobot/images/robots.png"><br>
+</div>
+<p></p>
+This is a pretty big find for us we can see two files being referenced, fsocity.dic and key-1-of-3.txt... We have found our first key file! but how do we access it and what is a robots.txt file anyway?
+<br>
+A robots.txt file tells search engine crawlers which URLs the crawler can access on your site. This is used mainly to avoid overloading your site with requests.
+<br>
+Ok so we now know what a robots.txt file is for (this is a go to file whenever enumerating a website!) how do we access the files it is referencing? It's pretty simple, we will just put the file name after the ip address ie. 192.168.125.132/fsocity.dic...
+<p></p>
+We will start with the key file since it is our first flag we have found!
+<p></p>
 
 
 
