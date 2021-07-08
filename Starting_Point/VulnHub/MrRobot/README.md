@@ -409,6 +409,9 @@ From this output we can see our website enumeration is done and we can see that 
 <p></p>
 Since we ran the script to do enumeration for us we don't need to carry out any further enumeration ie. gobuster, dirb, uniscan however I will include them for your information below.
 <p></p>
+
+
+
 <details>
     <summary>Enumeration</summary>
 <p></p>
@@ -417,10 +420,18 @@ We will start with uniscan:
 Uniscan is a default scanner that comes with ParrotOS and kali, it has a very simple GUI interface:
 <p></p>
 <div align="center">
-<img src="https://github.com/Shadow-Admins/Cyber_Club/blob/17c7433328d45f62ef541af78f404d6556d848be/Starting_Point/VulnHub/MrRobot/images/adapter2.png"><br>
+<img src="https://github.com/Shadow-Admins/Cyber_Club/blob/acd6c27914258430c5418614a4129b71f690d48d/Starting_Point/VulnHub/MrRobot/images/uniscan.png"><br>
 </div>
 <p></p>
-
+You can see that i have imputed the target ip address and selected the following options:
+<br>
+- Check Directory
+- Check Files
+- Check /robots.txt
+- Dynamic tests
+- Static tests
+- Web Fingerprint
+- Server Fingerprint
 
 
 
