@@ -1495,8 +1495,18 @@ Finally we need to use the burp proxy so using the tabs at the top navigate to t
 <img src="https://github.com/Shadow-Admins/Cyber_Club/blob/8baac8906c626ac8a6a7fe866c6e171f9a13875e/Starting_Point/VulnHub/MrRobot/images/burpproxy.png"><br>
 </div>
 <p></p>
-
-
+Now that we have our proxy in firefox configured and Burp Suite up and running we can send our login request to burp and capture the traffic. Switch back to your web browser, turn the foxy proxy burp profile on (you can see in my toolbar there is a green burp on my foxy proxy), enter test into both the username and password and press login.
+<p></p>
+<div align="center">
+<img src="https://github.com/Shadow-Admins/Cyber_Club/blob/092dfd0dc511d5f8aa87c766ee31755da23a06a7/Starting_Point/VulnHub/MrRobot/images/wpburptest.png"><br>
+</div>
+<p></p>
+You should notice when you press log in nothing happens, its like the web page has frozen. Switch back to burp and you should see that the traffic has been captured, what is occuring is that burp suit is holding the request and it is waiting for you to actually send it (burp suit is a very big program and is a fairly steep learning curve so I would recomment doing a course on it, TryHackMe has a good one). Lets have a look at the internet traffic captured.
+<p></p>
+<div align="center">
+<img src="https://github.com/Shadow-Admins/Cyber_Club/blob/092dfd0dc511d5f8aa87c766ee31755da23a06a7/Starting_Point/VulnHub/MrRobot/images/wpburptest.png"><br>
+</div>
+<p></p>
 
 
 
