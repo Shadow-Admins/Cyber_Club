@@ -1456,9 +1456,46 @@ Finally click save and you can see that your proxy has been created, now wheneve
 Now that we have foxy proxy set up and we can redirect our traffic to burp we can start burp and have a look. Look for it in your applications menu, I am using Parrot so this is where it is located for me, however if you are using kali or some other distro it may be located somewhere else.
 <p></p>
 <div align="center">
-<img src="https://github.com/Shadow-Admins/Cyber_Club/blob/18702bff313bf3952c16b4b81fe5c92084fe2674/Starting_Point/VulnHub/MrRobot/images/foxyfinished.png"><br>
+<img src="https://github.com/Shadow-Admins/Cyber_Club/blob/8baac8906c626ac8a6a7fe866c6e171f9a13875e/Starting_Point/VulnHub/MrRobot/images/burpmenu.png"><br>
 </div>
 <p></p>
+Once we start it I am presented with a JRE popup, igonore this and click ok.
+<p></p>
+<div align="center">
+<img src="https://github.com/Shadow-Admins/Cyber_Club/blob/8baac8906c626ac8a6a7fe866c6e171f9a13875e/Starting_Point/VulnHub/MrRobot/images/burpJRE.png"><br>
+</div>
+<p></p>
+Next an update pop up appears, I ignore this and click close as occasionally updating things will break dependancies on linux.
+<p></p>
+<div align="center">
+<img src="https://github.com/Shadow-Admins/Cyber_Club/blob/8baac8906c626ac8a6a7fe866c6e171f9a13875e/Starting_Point/VulnHub/MrRobot/images/burpupdate.png"><br>
+</div>
+<p></p>
+We are then given the project creation window, since we are using burp free we can only create a tempory project so click next.
+<p></p>
+<div align="center">
+<img src="https://github.com/Shadow-Admins/Cyber_Club/blob/8baac8906c626ac8a6a7fe866c6e171f9a13875e/Starting_Point/VulnHub/MrRobot/images/burptemp.png"><br>
+</div>
+<p></p>
+Next we are asked about configuration settings, we are just going to use burp defaults so click start.
+<p></p>
+<div align="center">
+<img src="https://github.com/Shadow-Admins/Cyber_Club/blob/8baac8906c626ac8a6a7fe866c6e171f9a13875e/Starting_Point/VulnHub/MrRobot/images/burpdefaults.png"><br>
+</div>
+<p></p>
+We are then taken to the burp dashboard.
+<p></p>
+<div align="center">
+<img src="https://github.com/Shadow-Admins/Cyber_Club/blob/8baac8906c626ac8a6a7fe866c6e171f9a13875e/Starting_Point/VulnHub/MrRobot/images/burpdashboard.png"><br>
+</div>
+<p></p>
+Finally we need to use the burp proxy so using the tabs at the top navigate to the proxy tab.
+<p></p>
+<div align="center">
+<img src="https://github.com/Shadow-Admins/Cyber_Club/blob/8baac8906c626ac8a6a7fe866c6e171f9a13875e/Starting_Point/VulnHub/MrRobot/images/burpproxy.png"><br>
+</div>
+<p></p>
+
 
 
 
