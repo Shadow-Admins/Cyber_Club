@@ -2905,7 +2905,12 @@ cat key-2-of-3.txt
 <p></p>
 Giving us the second flag, 822c73956184f694993bede3eb39f959
 <p></p>
-
+Here is my screen grab for reference.
+<p></p>
+<div align="center">
+<img src="https://github.com/Shadow-Admins/Cyber_Club/blob/e013fb58f5002d89c977e8cec0e9d6eb86f3d11f/Starting_Point/VulnHub/MrRobot/images/insidereverse.png"><br>
+</div>
+<p></p>
 
 
 
