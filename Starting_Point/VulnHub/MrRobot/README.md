@@ -1678,6 +1678,108 @@ Usage: wpscan [options]
 ```
 
 <p></p>
+To start with I will show you how to do a quick enumeration of the whole wp site using wpscan. The command looks like this:
+<p></p>
+
+```
+wpscan --url 192.168.125.132 -e p
+```
+
+<p></p>
+Simple right, <kbd>--url</kbd> pointing to the url, and <kbd>-e p</kbd> for popular plugins and this returns:
+<p></p>
+
+```
+❯ wpscan --url 192.168.125.132 -e p                                                                                                                                                  [138/311]
+_______________________________________________________________                                                                                                                               
+         __          _______   _____                                                                                                                                                          
+         \ \        / /  __ \ / ____|                                                                                                                                                         
+          \ \  /\  / /| |__) | (___   ___  __ _ _ __ ®                                                                                                                                        
+           \ \/  \/ / |  ___/ \___ \ / __|/ _` | '_ \                                                                                                                                         
+            \  /\  /  | |     ____) | (__| (_| | | | |                                                                                                                                        
+             \/  \/   |_|    |_____/ \___|\__,_|_| |_|                                                                                                                                        
+                                                                                                                                                                                              
+         WordPress Security Scanner by the WPScan Team                                                                                                                                        
+                         Version 3.8.17                                                                                                                                                       
+       Sponsored by Automattic - https://automattic.com/                                                                                                                                      
+       @_WPScan_, @ethicalhack3r, @erwan_lr, @firefart                                                                                                                                        
+_______________________________________________________________                                                                                                                               
+                                                                                                                                                                                              
+[+] URL: http://192.168.125.132/ [192.168.125.132]
+[+] Started: Sat Jul 10 09:49:26 2021
+
+Interesting Finding(s):
+
+[+] Headers
+ | Interesting Entries:
+ |  - Server: Apache
+ |  - X-Mod-Pagespeed: 1.9.32.3-4523
+ | Found By: Headers (Passive Detection)
+ | Confidence: 100%
+
+[+] robots.txt found: http://192.168.125.132/robots.txt
+ | Found By: Robots Txt (Aggressive Detection)
+ | Confidence: 100%
+
+[+] XML-RPC seems to be enabled: http://192.168.125.132/xmlrpc.php
+ | Found By: Direct Access (Aggressive Detection)
+ | Confidence: 100%
+ | References:
+ |  - http://codex.wordpress.org/XML-RPC_Pingback_API
+ |  - https://www.rapid7.com/db/modules/auxiliary/scanner/http/wordpress_ghost_scanner/
+|  - https://www.rapid7.com/db/modules/auxiliary/dos/http/wordpress_xmlrpc_dos/
+ |  - https://www.rapid7.com/db/modules/auxiliary/scanner/http/wordpress_xmlrpc_login/
+ |  - https://www.rapid7.com/db/modules/auxiliary/scanner/http/wordpress_pingback_access/
+
+[+] The external WP-Cron seems to be enabled: http://192.168.125.132/wp-cron.php
+ | Found By: Direct Access (Aggressive Detection)
+ | Confidence: 60%
+ | References:
+ |  - https://www.iplocation.net/defend-wordpress-from-ddos
+ |  - https://github.com/wpscanteam/wpscan/issues/1299
+
+[+] WordPress version 4.3.1 identified (Insecure, released on 2015-09-15).
+ | Found By: Emoji Settings (Passive Detection) 
+ |  - http://192.168.125.132/2239985.html, Match: 'wp-includes\/js\/wp-emoji-release.min.js?ver=4.3.1'
+ | Confirmed By: Meta Generator (Passive Detection)
+ |  - http://192.168.125.132/2239985.html, Match: 'WordPress 4.3.1'
+
+[+] WordPress theme in use: twentyfifteen
+ | Location: http://192.168.125.132/wp-content/themes/twentyfifteen/
+ | Last Updated: 2021-03-09T00:00:00.000Z
+ | Readme: http://192.168.125.132/wp-content/themes/twentyfifteen/readme.txt
+ | [!] The version is out of date, the latest version is 2.9
+ | Style URL: http://192.168.125.132/wp-content/themes/twentyfifteen/style.css?ver=4.3.1
+ | Style Name: Twenty Fifteen
+ | Style URI: https://wordpress.org/themes/twentyfifteen/
+ | Description: Our 2015 default theme is clean, blog-focused, and designed for clarity. Twenty Fifteen's simple, st...
+ | Author: the WordPress team
+ | Author URI: https://wordpress.org/
+ |
+ | Found By: Css Style In 404 Page (Passive Detection)
+ |
+ | Version: 1.3 (80% confidence)
+ | Found By: Style (Passive Detection)
+ |  - http://192.168.125.132/wp-content/themes/twentyfifteen/style.css?ver=4.3.1, Match: 'Version: 1.3'
+
+[+] Enumerating Most Popular Plugins (via Passive Methods)
+
+[i] No plugins Found.
+
+[!] No WPScan API Token given, as a result vulnerability data has not been output.
+[!] You can get a free API token with 25 daily requests by registering at https://wpscan.com/register
+
+[+] Finished: Sat Jul 10 09:49:29 2021
+[+] Requests Done: 33
+[+] Cached Requests: 6
+[+] Data Sent: 15.083 KB
+[+] Data Received: 235.795 KB
+[+] Memory used: 218.227 MB
+[+] Elapsed time: 00:00:02
+```
+<p></p>
+As you can see we found a very important piece of information, that this version of wp is vulnerable! lets use wpscan to further enumerate this site.
+<p></p>
 You should be able to see the <kbd>-e</kbd> flag for enumeration. we are going to use this against the user's blog to enumerate usernames. To do this the command looks like this:
 <p></p>
 
