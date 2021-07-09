@@ -1296,12 +1296,59 @@ key1 = 073403c8a58a1f80d943455fb30724b9
 Now lets look at that dictionary file we saw in the robots.txt. Again we will navigate to it by placing it after the ip address.
 <p></p>
 <div align="center">
-<img src="https://github.com/Shadow-Admins/Cyber_Club/blob/d10b9fd05a6cf4624b29de91f9181271cc954f68/Starting_Point/VulnHub/MrRobot/images/key1.png"><br>
+<img src="https://github.com/Shadow-Admins/Cyber_Club/blob/0e2a6fa7502bbe783e5953321b4ba25ed2491edc/Starting_Point/VulnHub/MrRobot/images/fsocity.png"><br>
 </div>
 <p></p>
+When we navigate to this we are presented with a download box, we will download the dictionary so we can use it later... (in ctf's being given a dictionary file will normally be used for some kind of brute force attack)
+<p></p>
+The rest of the directories and files we enumerated aren't really of much use to us but feel free to look at the rest if you want. For now we are going to have a look at this dictionary file and see if we can improve it.
+<p></p>
+If we run wc (word count) against the .dic file we find out how many lines of text it contains.
+<p></p>
 
+```
+❯ wc fsocity.dic
+ 858160  858160 7245381 fsocity.dic
+```
 
+<p></p>
+This is telling us that there are 858160 lines within the file, using this to brute force something would take a considerable amount of time. Lets see if we can improve the efficiency of this dictionary file. To do this we will ensure that there are no duplicated lines within the file using the command below.
+<p></p>
 
+```
+cat fsocity.dic | sort | uniq > uniq.dic
+```
+
+<p></p>
+In this command we read the .dic file then piped (|) it to <kbd>sort</kbd> then piping it to <kbd>uniq</kbd> and outputting that to a new file. We can see what this has achieved by running <kbd>wc</kbd> on our new file.
+<p></p>
+
+```
+❯ wc uniq.dic
+11451 11451 96747 uniq.dic
+```
+
+<p></p>
+We can see that it has brought the line number down to 11451 by getting rid of all the duplicate lines. This is much more efficient than the 858160 lines we had previously. We are going to make one more file now using a modification of our previous command.
+<p></p>
+
+```
+cat fsocity.dic | sort | uniq -u > single.dic
+```
+
+<p></p>
+In this command we have outputted the lines that didnt have a duplicate within the file. We can run <kbd>wc</kbd> on this new file and see what we have produced.
+<p></p>
+
+```
+❯ wc single.dic
+ 10  10 156 single.dic
+```
+
+<p></p>
+As we can see we have created a file with only 10 lines!, this means these 10 lines weren't repeated throughout the etire file. People have asked me why I created this file and didn't just use the uniq.dic file, I think it is easier to run a 10line bruteforce then move onto the 11K file because I think its more likely that a password or username wouldn't be repeated, overall it will save me time.
+<p></p>
+Now that we have setup our .dic file for bruteforcing we can start investigating the login page we found earlier.
 
 
 
