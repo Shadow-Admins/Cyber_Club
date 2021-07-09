@@ -1561,6 +1561,24 @@ Hydra (https://github.com/vanhauser-thc/thc-hydra) finished at 2021-07-09 12:12:
 ```
 
 <p></p>
+We can see we got 3 positive returns from our username enumeration, we can now use this username to bruteforce the password of the login. I will show below how to do this using both hydra and wpscan.
+<p></p>
+To use hydra we need to find out what the 'fail condition' is for hydra. To do this we will put the username 'elliot' in the login form and the password test.
+<p></p>
+<div align="center">
+<img src="https://github.com/Shadow-Admins/Cyber_Club/blob/cbc871b6a3741e70480fb88d9e74cf8268c74085/Starting_Point/VulnHub/MrRobot/images/wpburp.png"><br>
+</div>
+<p></p>
+
+
+
+
+
+
+
+
+
+
 
 
 
