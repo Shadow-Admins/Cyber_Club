@@ -1574,7 +1574,7 @@ We can see we got 3 positive returns from our username enumeration, we can now u
 <p></p>
 Manual enumeration of the user name using the login page took a fair bit of work, however it taught us the basics of hydra and burp. We will use hydra again to brute force the password but for now we will go through user enumeration using that blog page we found at /0/.
 <p></p>
-To do the alternate method of user enumeration we are going to use wpscan. The wpscan help pageg looks like this:
+To do the alternate method of user enumeration we are going to use wpscan. The wpscan help page looks like this:
 <p></p>
 
 ```
@@ -1678,7 +1678,7 @@ Usage: wpscan [options]
 ```
 
 <p></p>
-You should be able to see the <kbd>-e</kbd> flag for enumeration. we are going to use this agains the users blog to enumerate usernames. To do this the command looks like this:
+You should be able to see the <kbd>-e</kbd> flag for enumeration. we are going to use this against the user's blog to enumerate usernames. To do this the command looks like this:
 <p></p>
 
 ```
@@ -2638,6 +2638,22 @@ msf6 exploit(multi/handler) > exploit
 ```
 
 <p></p>
+This is my screen grab for reference.
+<p></p>
+<div align="center">
+<img src="https://github.com/Shadow-Admins/Cyber_Club/blob/e013fb58f5002d89c977e8cec0e9d6eb86f3d11f/Starting_Point/VulnHub/MrRobot/images/insidereverse.png"><br>
+</div>
+<p></p>
+<div align="center">
+<img src="https://github.com/Shadow-Admins/Cyber_Club/blob/e013fb58f5002d89c977e8cec0e9d6eb86f3d11f/Starting_Point/VulnHub/MrRobot/images/insidereverse.png"><br>
+</div>
+<p></p>
+
+
+
+
+
+
 This is now running and will hang untill a conection is initiated with it. We will now run the reverse shell script we uploaded to the site previously.
 <br>
 To do this we need to navigate to the following webpage:
@@ -2893,7 +2909,7 @@ cat key-2-of-3.txt
 ```
 
 <p></p>
-Giving us the second flag, 22c73956184f694993bede3eb39f959
+Giving us the second flag, 822c73956184f694993bede3eb39f959
 <p></p>
 
 
