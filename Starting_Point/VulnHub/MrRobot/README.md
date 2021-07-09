@@ -1910,13 +1910,26 @@ Trying elliot / uHack Time: 00:00:00 <==========================================
 <p></p>
 This achieved the brute force in 4 seconds. Proof that refining .dic files for brute forcing is essential if time is important.
 <p></p>
+Point to note is that you could have used wpscan to brute force the whole page using the following command:
+<p></p>
+
+```
+wpscan --url 192.168.125.132/wp-login.php -U uniq.dic -P uniq.dic
+```
+
+<p></p>
+However this would have taken a considerable amount of time.
+<p></p>
 Now that we have the username and password we can log in and have a look around.
 <p></p>
 <div align="center">
 <img src="https://github.com/Shadow-Admins/Cyber_Club/blob/028594f702f228020091207f020f8475f4224c8b/Starting_Point/VulnHub/MrRobot/images/inside.png"><br>
 </div>
 <p></p>
-
+A quick google for 'wordpress 4.3.1 exploit' and 'wordpress 4.3.1 backdoor' turned up a lot of results! It turns out this version is very insecure.
+<p></p>
+If you have a quick look at this <a href="https://pentaroot.com/exploit-wordpress-backdoor-theme-pages/" rel="nofollow">site</a> you will see how a backdoor can be placed, we will now go through this process (with some modifications for learning).
+<p></p>
 
 
 
