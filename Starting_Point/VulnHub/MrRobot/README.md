@@ -1285,6 +1285,23 @@ Ok so we now know what a robots.txt file is for (this is a go to file whenever e
 <p></p>
 We will start with the key file since it is our first flag we have found!
 <p></p>
+<div align="center">
+<img src="https://github.com/Shadow-Admins/Cyber_Club/blob/d10b9fd05a6cf4624b29de91f9181271cc954f68/Starting_Point/VulnHub/MrRobot/images/key1.png"><br>
+</div>
+<p></p>
+We can see this redirects us to another page with the key text on it.
+<p></p>
+key1 = 073403c8a58a1f80d943455fb30724b9
+<p></p>
+Now lets look at that dictionary file we saw in the robots.txt. Again we will navigate to it by placing it after the ip address.
+<p></p>
+<div align="center">
+<img src="https://github.com/Shadow-Admins/Cyber_Club/blob/d10b9fd05a6cf4624b29de91f9181271cc954f68/Starting_Point/VulnHub/MrRobot/images/key1.png"><br>
+</div>
+<p></p>
+
+
+
 
 
 
