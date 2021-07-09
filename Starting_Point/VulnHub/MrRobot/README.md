@@ -1353,11 +1353,25 @@ Now that we have setup our .dic file for bruteforcing we can start investigating
 We will start by looking at what returns we get when we submit text through the login box, we will enter 'test' in both the username and password box and see what we get.
 <p></p>
 <div align="center">
-<img src="https://github.com/Shadow-Admins/Cyber_Club/blob/0e2a6fa7502bbe783e5953321b4ba25ed2491edc/Starting_Point/VulnHub/MrRobot/images/fsocity.png"><br>
+<img src="https://github.com/Shadow-Admins/Cyber_Club/blob/e1f87870686d3884514f2093ca35c0fe199e561e/Starting_Point/VulnHub/MrRobot/images/userandpass.png"><br>
 </div>
 <p></p>
-
-
+We can see that we are given a return of "invalid username" next we will try only the username.
+<p></p>
+<div align="center">
+<img src="https://github.com/Shadow-Admins/Cyber_Club/blob/e1f87870686d3884514f2093ca35c0fe199e561e/Starting_Point/VulnHub/MrRobot/images/useronly.png"><br>
+</div>
+<p></p>
+This time we get a return of "the password field is empty". Finally we will try only the password.
+<p></p>
+<div align="center">
+<img src="https://github.com/Shadow-Admins/Cyber_Club/blob/e1f87870686d3884514f2093ca35c0fe199e561e/Starting_Point/VulnHub/MrRobot/images/passonly.png"><br>
+</div>
+<p></p>
+This time we are told that "the username field is empty".
+<p></p>
+The important information we can pull from our tests is from our first test. The page returning "invalid username" hints to us that this is a badly configured login page. If the page is telling us that the username is invalid it gives us an in for enumerating usernames because if the username is correct we would assume it would accept it and then tell us that the password is incorrect. A properly configured login page would always return "username or password are incorrect" we will test this theory now using a tool called hydra.
+<p></p>
 
 
 
