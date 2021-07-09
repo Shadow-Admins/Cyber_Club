@@ -1911,7 +1911,11 @@ Trying elliot / uHack Time: 00:00:00 <==========================================
 This achieved the brute force in 4 seconds. Proof that refining .dic files for brute forcing is essential if time is important.
 <p></p>
 Now that we have the username and password we can log in and have a look around.
-
+<p></p>
+<div align="center">
+<img src="https://github.com/Shadow-Admins/Cyber_Club/blob/028594f702f228020091207f020f8475f4224c8b/Starting_Point/VulnHub/MrRobot/images/inside.png"><br>
+</div>
+<p></p>
 
 
 
