@@ -2903,7 +2903,7 @@ cat key-2-of-3.txt
 ```
 
 <p></p>
-Giving us the second flag, 822c73956184f694993bede3eb39f959
+Giving us the second flag (user flag), 822c73956184f694993bede3eb39f959
 <p></p>
 Here is my screen grab for reference.
 <p></p>
@@ -2911,6 +2911,38 @@ Here is my screen grab for reference.
 <img src="https://github.com/Shadow-Admins/Cyber_Club/blob/fab818561aef543a8c8c71cbf735a82190bab531/Starting_Point/VulnHub/MrRobot/images/term3.png"><br>
 </div>
 <p></p>
+So now we have got 2/3 flag we will move onto getting the root flag, which is located in the /root folder, lets see if we can cd into that directory.
+<p></p>
+
+```
+robot@linux:~$ cd /root
+cd /root
+bash: cd: /root: Permission denied
+```
+
+<p></p>
+Its never that easy, so we will move onto the Privilege Escalation (priv esc) stage of this box. The first thing you should always try is this command:
+<p></p>
+
+```
+sudo -l
+```
+
+<p></p>
+Which outputs:
+<p></p>
+
+```
+robot@linux:~$ sudo -l
+sudo -l
+[sudo] password for robot: abcdefghijklmnopqrstuvwxyz
+
+Sorry, user robot may not run sudo on linux.
+```
+
+<p></p>
+
+
 
 
 
