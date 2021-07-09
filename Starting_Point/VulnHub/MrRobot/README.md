@@ -1301,7 +1301,7 @@ Now lets look at that dictionary file we saw in the robots.txt. Again we will na
 <p></p>
 When we navigate to this we are presented with a download box, we will download the dictionary so we can use it later... (in ctf's being given a dictionary file will normally be used for some kind of brute force attack)
 <p></p>
-The rest of the directories and files we enumerated aren't really of much use to us but feel free to look at the rest if you want. For now we are going to have a look at this dictionary file and see if we can improve it.
+Now we are going to have a look at this dictionary file and see if we can improve it.
 <p></p>
 If we run wc (word count) against the .dic file we find out how many lines of text it contains.
 <p></p>
@@ -1348,7 +1348,19 @@ In this command we have outputted the lines that didnt have a duplicate within t
 <p></p>
 As we can see we have created a file with only 10 lines!, this means these 10 lines weren't repeated throughout the etire file. People have asked me why I created this file and didn't just use the uniq.dic file, I think it is easier to run a 10 line bruteforce then move onto the 11K file because I think its more likely that a password or username wouldn't be repeated, overall it will save me time.
 <p></p>
-Now that we have setup our .dic file for bruteforcing we can start investigating the login page we found earlier.
+Now that we have setup our .dic file for bruteforcing we will return to it after completing our exploration of our enumerated files and directories. The last page we are going to look at is the /0/ directory.
+<p></p>
+Navigating to /0/ we are presented with a users blog.
+<p></p>
+<div align="center">
+<img src="https://github.com/Shadow-Admins/Cyber_Club/blob/e1f87870686d3884514f2093ca35c0fe199e561e/Starting_Point/VulnHub/MrRobot/images/userandpass.png"><br>
+</div>
+<p></p>
+
+
+
+
+
 <p></p>
 We will start by looking at what returns we get when we submit text through the login box, we will enter 'test' in both the username and password box and see what we get.
 <p></p>
