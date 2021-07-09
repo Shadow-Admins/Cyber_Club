@@ -2641,20 +2641,14 @@ msf6 exploit(multi/handler) > exploit
 This is my screen grab for reference.
 <p></p>
 <div align="center">
-<img src="https://github.com/Shadow-Admins/Cyber_Club/blob/e013fb58f5002d89c977e8cec0e9d6eb86f3d11f/Starting_Point/VulnHub/MrRobot/images/insidereverse.png"><br>
+<img src="https://github.com/Shadow-Admins/Cyber_Club/blob/c17dbea242c12351b1d9649a1e22137269f3fa31/Starting_Point/VulnHub/MrRobot/images/term1.png"><br>
 </div>
 <p></p>
 <div align="center">
-<img src="https://github.com/Shadow-Admins/Cyber_Club/blob/e013fb58f5002d89c977e8cec0e9d6eb86f3d11f/Starting_Point/VulnHub/MrRobot/images/insidereverse.png"><br>
+<img src="https://github.com/Shadow-Admins/Cyber_Club/blob/c17dbea242c12351b1d9649a1e22137269f3fa31/Starting_Point/VulnHub/MrRobot/images/term2.png"><br>
 </div>
 <p></p>
-
-
-
-
-
-
-This is now running and will hang untill a conection is initiated with it. We will now run the reverse shell script we uploaded to the site previously.
+Now we have the exploit running it will hang untill a conection is initiated with it. We will now run the reverse shell script we uploaded to the site previously.
 <br>
 To do this we need to navigate to the following webpage:
 <p></p>
