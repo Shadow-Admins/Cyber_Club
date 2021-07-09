@@ -1453,6 +1453,16 @@ Finally click save and you can see that your proxy has been created, now wheneve
 <img src="https://github.com/Shadow-Admins/Cyber_Club/blob/18702bff313bf3952c16b4b81fe5c92084fe2674/Starting_Point/VulnHub/MrRobot/images/foxyfinished.png"><br>
 </div>
 <p></p>
+Now that we have foxy proxy set up and we can redirect our traffic to burp we can start burp and have a look. Look for it in your applications menu, I am using Parrot so this is where it is located for me, however if you are using kali or some other distro it may be located somewhere else.
+<p></p>
+<div align="center">
+<img src="https://github.com/Shadow-Admins/Cyber_Club/blob/18702bff313bf3952c16b4b81fe5c92084fe2674/Starting_Point/VulnHub/MrRobot/images/foxyfinished.png"><br>
+</div>
+<p></p>
+
+
+
+
 
 
 
