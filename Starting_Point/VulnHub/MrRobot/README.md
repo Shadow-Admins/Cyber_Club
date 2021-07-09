@@ -1346,9 +1346,22 @@ In this command we have outputted the lines that didnt have a duplicate within t
 ```
 
 <p></p>
-As we can see we have created a file with only 10 lines!, this means these 10 lines weren't repeated throughout the etire file. People have asked me why I created this file and didn't just use the uniq.dic file, I think it is easier to run a 10line bruteforce then move onto the 11K file because I think its more likely that a password or username wouldn't be repeated, overall it will save me time.
+As we can see we have created a file with only 10 lines!, this means these 10 lines weren't repeated throughout the etire file. People have asked me why I created this file and didn't just use the uniq.dic file, I think it is easier to run a 10 line bruteforce then move onto the 11K file because I think its more likely that a password or username wouldn't be repeated, overall it will save me time.
 <p></p>
 Now that we have setup our .dic file for bruteforcing we can start investigating the login page we found earlier.
+<p></p>
+We will start by looking at what returns we get when we submit text through the login box, we will enter 'test' in both the username and password box and see what we get.
+<p></p>
+<div align="center">
+<img src="https://github.com/Shadow-Admins/Cyber_Club/blob/0e2a6fa7502bbe783e5953321b4ba25ed2491edc/Starting_Point/VulnHub/MrRobot/images/fsocity.png"><br>
+</div>
+<p></p>
+
+
+
+
+
+
 
 
 
