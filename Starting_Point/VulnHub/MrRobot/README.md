@@ -3345,6 +3345,40 @@ find / -perm -u=s -type f 2>/dev/null
 ```
 
 <p></p>
+or
+<p></p>
+
+```
+find / -perm -4000 2>/dev/null
+```
+
+<p></p>
+Which outputs:
+<p></p>
+
+```
+robot@linux:/tmp$ find / -perm -4000 2>/dev/null
+find / -perm -4000 2>/dev/null
+/bin/ping
+/bin/umount
+/bin/mount
+/bin/ping6
+/bin/su
+/usr/bin/passwd
+/usr/bin/newgrp
+/usr/bin/chsh
+/usr/bin/chfn
+/usr/bin/gpasswd
+/usr/bin/sudo
+/usr/local/bin/nmap
+/usr/lib/openssh/ssh-keysign
+/usr/lib/eject/dmcrypt-get-device
+/usr/lib/vmware-tools/bin32/vmware-user-suid-wrapper
+/usr/lib/vmware-tools/bin64/vmware-user-suid-wrapper
+/usr/lib/pt_chown
+```
+
+<p></p>
 So we could have found that nmap binary straight away. Now using the nmap binary is the easiest and most straight forward way to escalate so I will go over the more difficult way which is exploiting the linux version.
 <p></p>
 To start with if we google for this exploit and do a bit of research you may end up at this <a href="https://dirtycow.ninja/" rel="nofollow">page</a> which tells us about the exploit. We can also use a tool called linux-exploit-suggester-2.pl which you can get from <a href="https://github.com/jondonas/linux-exploit-suggester-2" rel="nofollow">here</a> to get this you ren the following command:
@@ -3519,7 +3553,6 @@ And there you have the exploit, now that we have looked at how to find and obtai
 
 
 <a href="https://book.hacktricks.xyz/" rel="nofollow">HackTricks</a>
-
 
 
 </details>
