@@ -41,6 +41,8 @@ And when opened look like a random string of characters eg. ABCDENOASFINEAUINFAO
 <p></p>
 As stated before one flag is located on the website itself, one is located in the user folder and the final is located in the root folder.
 <p></p>
+I have written this write up as very begginer oriented with step-by-step walkthroughs to each stage of the process have a read you might learn something.
+<p></p>
 <H2>Locally Hosting the VM</H2>
 <details>
     <summary></summary>
