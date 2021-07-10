@@ -1,3 +1,4 @@
+```
                      ▄▄▄▄▄▄▄▄▄▄▄▄▄▄
              ▄▄▄▄▄▄▄             ▄▄▄▄▄▄▄▄▄
       ▄▄▄▄▄▄▄      ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄
@@ -1339,3 +1340,4 @@ passwd
 
 ╔══════════╣ Searching specific hashes inside files - less false positives (limit 70)
 
+```
