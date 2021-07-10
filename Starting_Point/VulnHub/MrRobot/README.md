@@ -3253,6 +3253,10 @@ chmod +x linpeas.sh
 <p></p>
 And if we rerun the command now we can see that it works!
 <p></p>
+<div align="center">
+<img src="https://github.com/Shadow-Admins/Cyber_Club/blob/9669dc6005c0762eeeb6d9aa8e54305d49d6d142/Starting_Point/VulnHub/MrRobot/images/peas.png"><br>
+</div>
+<p></p>
 
 
 
