@@ -19,6 +19,8 @@ Mr Robot is a themed box on the TV show also called Mr Robot, it contains 3 flag
 <H5>Generating Backdoors</H5>
 - Generate PHP Backdoor (Msfvenom)
 <br>
+- Using pre-configured php backdoor
+<br>
 - Upload and execute a backdoor
 <H5>Catching the reverse conection on your host</H5>
 - Reverse connection (Metasploit)
@@ -27,9 +29,9 @@ Mr Robot is a themed box on the TV show also called Mr Robot, it contains 3 flag
 <H5>Getting a TTY shell</H5>
 - Import python one-liner for proper TTY shell
 <H5>Privilege Escalation</H5>
-- One liner, WinPEAS,
+- One liner, linPEAS, linux-exploit-suggester-2
 <br>
-- binary, dirtysock
+- binary, dirtycow
 <p></p>
 All flags have the following flag format:
 <p></p>
