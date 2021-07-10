@@ -3899,10 +3899,15 @@ cat key-3-of-3.txt
 ```
 
 <p></p>
-
-
-
-<a href="https://book.hacktricks.xyz/" rel="nofollow">HackTricks</a>
+Here's a screen grab for reference.
+<p></p>
+<div align="center">
+<img src="https://github.com/Shadow-Admins/Cyber_Club/blob/65473f63bd49e2ed1e858a481a8925a021234cd1/Starting_Point/VulnHub/MrRobot/images/root.png"><br>
+</div>
+<p></p>
+We have successfully completed a full boot to root using multiple methods. Its always good to have alternate ways to complete tasks as a lot of the time your usual toolset wont be available or will be blocked.
+<p></p>
+Hope you enjoyed.
 
 
 </details>
