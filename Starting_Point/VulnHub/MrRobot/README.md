@@ -3847,10 +3847,17 @@ key 3-of-3.txt = 04787ddef27c3dee1ee161b21670b4e4
 A screen grab for reference.
 <p></p>
 <div align="center">
-<img src="https://github.com/Shadow-Admins/Cyber_Club/blob/9669dc6005c0762eeeb6d9aa8e54305d49d6d142/Starting_Point/VulnHub/MrRobot/images/peas.png"><br>
+<img src="https://github.com/Shadow-Admins/Cyber_Club/blob/f47ca6675d84ea0295e7e97b11c0e76be93751ae/Starting_Point/VulnHub/MrRobot/images/dirtycow.png"><br>
 </div>
 <p></p>
-
+As you can see my session crashed right at the end so you need to work fast!
+<p></p>
+Now that we have gone over the most difficult way to priv esc I will go over the very simple way using nmap, because nmap is a binary our go to place for information is <a href="https://gtfobins.github.io/" rel="nofollow">GTFObins</a> (another essential site to bookmark!) if we go there and search for nmap we find the following site.
+<p></p>
+<div align="center">
+<img src="https://github.com/Shadow-Admins/Cyber_Club/blob/f47ca6675d84ea0295e7e97b11c0e76be93751ae/Starting_Point/VulnHub/MrRobot/images/dirtycow.png"><br>
+</div>
+<p></p>
 
 
 
