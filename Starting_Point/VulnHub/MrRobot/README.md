@@ -3257,7 +3257,22 @@ And if we rerun the command now we can see that it works!
 <img src="https://github.com/Shadow-Admins/Cyber_Club/blob/9669dc6005c0762eeeb6d9aa8e54305d49d6d142/Starting_Point/VulnHub/MrRobot/images/peas.png"><br>
 </div>
 <p></p>
+<a href="https://github.com/Shadow-Admins/Cyber_Club/blob/cbc44a1032d4808ebeef79bf95eff03b86dcacb3/Starting_Point/VulnHub/MrRobot/files/lin.txt" rel="nofollow">This</a> is my output.
+<p></p>
+The important thing obout linpeas is the legend at the top of the script.
+<p></p>
 
+```
+ LEGEND:                                                                                                                                                                                      
+  RED/YELLOW: 95% a PE vector                                                                                                                                                                 
+  RED: You should take a look to it                                                                                                                                                           
+  LightCyan: Users with console                                                                                                                                                               
+  Blue: Users without console & mounted devs                                                                                                                                                  
+  Green: Common things (users, groups, SUID/SGID, mounts, .sh scripts, cronjobs)                                                                                                              
+  LightMagenta: Your username                                                                                                                                                                 
+```
+
+<p></p>
 
 
 
