@@ -3133,7 +3133,7 @@ Looking at the file permissions of the robot folder we see a bunch of letters at
 <img src="https://github.com/Shadow-Admins/Cyber_Club/blob/c2eb66cb782730f78f70efa36bdd205f5e2d69b8/Starting_Point/VulnHub/MrRobot/images/file-permission-syntax-explained.jpg"><br>
 </div>
 <p></p>
-And since this folder belongs to root we can't write to it, easy fix just change to the /tmp directory (generally you can always work in this directory with now issues). How do I know that this will work? Remeber when I said HackTricks was essential (I hope I am hammering this home), if you went through that check list you would have come up with this command:
+And since this folder belongs to root we can't write to it, easy fix just change to the /tmp directory (generally you can always work in this directory with no issues). How do I know that this will work? Remeber when I said HackTricks was essential (I hope I am hammering this home), if you went through that check list you would have come up with this command:
 <p></p>
 
 ```
@@ -3141,7 +3141,7 @@ find / '(' -type f -or -type d ')' '(' '(' -user $USER ')' -or '(' -perm -o=w ')
 ```
 
 <p></p>
-This command finds all the files or directories the user ownd or anybody can write to, and if we look at the output we can see the /tmp directory is included.
+This command finds all the files or directories the user owns or anybody can write to, and if we look at the output we can see the /tmp directory is included.
 <p></p>
 
 ```
