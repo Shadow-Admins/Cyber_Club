@@ -3233,6 +3233,27 @@ Now that we have successfully pulled linpeas.sh across it is time to use it to e
 ```
 
 <p></p>
+This is the same as normally running a script however you can see that I have piped (|) it to <kbd>tee</kbd> and named an output text file in this case lin.txt. I pipe to tee as this both displays the output on the screen as it is occuring while also writting to a file that I can review later, this saves me needing to rerun the script each time. THis outputs:
+<p></p>
+
+```
+robot@linux:/tmp$ ./linpeas.sh | tee lin.txt
+./linpeas.sh | tee lin.txt
+bash: ./linpeas.sh: Permission denied
+```
+
+<p></p>
+Permission denied, this is an easy fix. This occured because currently the file doesnt have execute permissions which we can add by running the following command:
+<p></p>
+
+```
+chmod +x linpeas.sh
+```
+
+<p></p>
+And if we rerun the command now we can see that it works!
+<p></p>
+
 
 
 
