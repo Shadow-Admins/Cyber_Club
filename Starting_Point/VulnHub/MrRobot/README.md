@@ -22,7 +22,7 @@ Mr Robot is an easy to intermediate themed box on the TV show also called Mr Rob
 - Using pre-configured php backdoor
 <br>
 - Upload and execute a backdoor
-<H5>Catching the reverse conection on your host</H5>
+<H5>Catching the reverse connection on your host</H5>
 - Reverse connection (Metasploit)
 <H5>Identifying and cracking a hash</H5>
 - Getting a hash and decrypting it
@@ -41,7 +41,7 @@ And when opened look like a random string of characters eg. ABCDENOASFINEAUINFAO
 <p></p>
 As stated before one flag is located on the website itself, one is located in the user folder and the final is located in the root folder.
 <p></p>
-I have written this write up as very begginer oriented with step-by-step walkthroughs to each stage of the process have a read you might learn something.
+I have written this write up as very beginner oriented with step-by-step walkthroughs to each stage of the process have a read you might learn something.
 <p></p>
 <H2>Locally Hosting the VM</H2>
 <details>
