@@ -131,8 +131,10 @@ The process is basically identical for Virtual Box however I prefer using VMWare
 <p></p>
 <hr>
 <p></p>
+<H2>Walkthroughs</H2>
+<p></p>
 <details>
-    <summary>Walkthroughs</summary>
+    <summary></summary>
 <p></p>
 <H2>Easy Boxes</H2>
 <p></p>
