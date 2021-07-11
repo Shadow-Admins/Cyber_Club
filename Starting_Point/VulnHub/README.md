@@ -144,7 +144,7 @@ The process is basically identical for Virtual Box however I prefer using VMWare
 <p></p>
 Basic Pentesting: 1 is an easy box designed for beginners It contains one flag in the /root directory meaning this box needs a full priv esc carried out IOT complete it. This box has multiple ways of achieving the task ranging from easy methods to more intermediate.
 <p></p>
-<a href="https://github.com/Shadow-Admins/Cyber_Club/blob/34568092d83a3f4bb6886080bff54eab1a58d798/Starting_Point/VulnHub/BasicPentesting1/README.md" rel="nofollow">Walkthrough</a>
+<a href="https://github.com/Shadow-Admins/Cyber_Club/tree/main/Starting_Point/VulnHub/BasicPentesting1" rel="nofollow">Walkthrough</a>
 
 <p></p>
 <hr>
