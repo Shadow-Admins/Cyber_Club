@@ -139,10 +139,12 @@ The process is basically identical for Virtual Box however I prefer using VMWare
 <H3>Mr Robot</H3>
 <p></p>
 <div align="center">
-<img src="https://github.com/Shadow-Admins/Cyber_Club/blob/ea3cf3e76b754f9e3979be6323b2c4e83380db82/Starting_Point/VulnHub/images/vulnhub.png"><br>
+<img src="https://github.com/Shadow-Admins/Cyber_Club/blob/a86587ed8a8cab600b902e768476426cb52efee6/Starting_Point/VulnHub/images/mrRobot.jpg"><br>
 </div>
 <p></p>
-
+Mr Robot is an easy to intermediate themed box on the TV show also called Mr Robot, it contains 3 flags (web flag, user flag and root flag) and has different ways of completing the box to achieve the same outcome.
+<p></p>
+<a href="https://github.com/Shadow-Admins/Cyber_Club/blob/914427a43cf5c0edf3b4fbb3ccb9d2b40444813e/Starting_Point/VulnHub/MrRobot/README.md" rel="nofollow">Walkthrough</a>
 
 
 
