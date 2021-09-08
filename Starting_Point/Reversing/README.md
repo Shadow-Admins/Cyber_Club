@@ -19,6 +19,16 @@ There are two forms of reverse engineering. Under the first, the source code is 
     <summary></summary>
 <p></p>
 <details>
+    <summary>Try Hack Me</summary>
+<p></p>
+<a href="https://github.com/Shadow-Admins/Cyber_Club/blob/d4e6c186cedba8482ca3125110e45d9c25b89f01/Starting_Point/Reversing/Challenges/CSC_2020/Fishing_Sweepstakes/README.md" rel="nofollow">Fishing Sweepstakes</a>
+<p></p>
+Reversing ELF is an introduction to reverse engineering binaries hosted on <a href="https://tryhackme.com/room/reverselfiles" rel="nofollow">Try Hack Me</a>
+<p></p>
+<hr>
+</details>
+<p></p>
+<details>
     <summary>CSC</summary>
 <p></p>
 <details>
