@@ -22,7 +22,7 @@ Ghidra is a software reverse engineering (SRE) framework created and maintained 
 Navigating to the above site takes us to Ghidra's home page, from here we need to click on the "Download from GitHub" link.
 <p></p>
 <div align="center">
-<img src="https://github.com/Shadow-Admins/Cyber_Club/blob/2429ae9e3f58140ed5905513114b710f0153067e/Starting_Point/VulnHub/MrRobot/images/open.png"><br>
+<img src="https://github.com/Shadow-Admins/Cyber_Club/blob/main/Starting_Point/Reversing/Challenges/Try_Hack_Me/Reversing_ELF/images/ghidra_webpage.png"><br>
 </div>
 <p></p>
 
