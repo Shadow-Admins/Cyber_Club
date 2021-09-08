@@ -26,7 +26,11 @@ Navigating to the above site takes us to Ghidra's home page, from here we need t
 </div>
 <p></p>
 Clicking on this link takes us to the Ghidra GitHub "Releases" page, at the time of this write up you can see that the latest Ghidra version is '10.0.2'. From here you want to download the .zip file in my case 'ghidra_10.0.2_PUBLIC_20210804.zip'. (Whenever I install or download new tools I always use the '/opt' directory, this is actually what this directory is for.)
-
+p></p>
+<div align="center">
+<img src="https://github.com/Shadow-Admins/Cyber_Club/blob/main/Starting_Point/Reversing/Challenges/Try_Hack_Me/Reversing_ELF/images/ghidra_releases.png"><br>
+</div>
+<p></p>
 
 
 
