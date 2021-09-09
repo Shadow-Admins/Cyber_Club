@@ -461,6 +461,7 @@ What is the flag?
 flag{if_i_submit_this_flag_then_i_will_get_points}
 </details>
 </details>
+</details>
 <p></p>
 <hr>
 <p></p>
