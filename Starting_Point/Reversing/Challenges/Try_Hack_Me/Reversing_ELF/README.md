@@ -292,6 +292,7 @@ Which prints the flag for us, giving us the answer.
 flag{not_that_kind_of_elf}
 </details>
 </details>
+</details>
 <p></p>
 <hr>
 <p></p>
