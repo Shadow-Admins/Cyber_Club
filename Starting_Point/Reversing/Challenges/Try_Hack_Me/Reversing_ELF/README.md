@@ -56,7 +56,27 @@ Once you have extracted the folder you can 'cd' into the directory and you can s
 To add an alias so you can run ghidra from anywhere you will do the following.
 <p></p>
 Navigate to your home directory indicated by the <kbd>~</kbd> symbol (this can be easy done simply by entering <kbd>cd</kbd> with no directory listed).
-Once you are in your home directory you need to list all files which can be done by entering <kbd>ls -a</kbd>. Depending on your flavour of linux you will see a fair few files.
+Once you are in your home directory you need to list all files which can be done by entering <kbd>ls -a</kbd>. Depending on your flavour of linux you will see a fair few files (you can see my directory listing below).
+<p></p>
+<div align="center">
+<img src="https://github.com/Shadow-Admins/Cyber_Club/blob/main/Starting_Point/Reversing/Challenges/Try_Hack_Me/Reversing_ELF/images/home_directory.png"><br>
+</div>
+<p></p>
+The file you are looking for is either '.zshrc' or '.bashrc' (your shell configuration files) depending on what you are currently using (hopefully you are using .zsh by now, if you would like to know the differences between the two shells check out this <a href="https://linuxhint.com/differences_between_bash_zsh/" rel="nofollow">site</a>. You can tell that my terminal probably looks significantly different to yours, thats because I am using Z shell with oh-my-zsh, p10k and colourls).
+<p></p>
+Once you have found the 'rc' file you need use a terminal editor (nano, vim) to edit it. I will use <kbd>nano</kbd> using the following command:
+<p></p>
+
+```
+nano .zshrc
+```
+
+<p></p>
+Now that we are editing the file we need to scroll until we find the 'alias' section. You can see mine bellow:
+
+
+
+
 
 
 </details>
