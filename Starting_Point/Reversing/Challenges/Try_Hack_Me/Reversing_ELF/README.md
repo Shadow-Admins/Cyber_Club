@@ -617,7 +617,72 @@ What is the password?
 <details>
     <summary>Walkthrough</summary>
 <p></p>
+This is the first challenge where we will start debugging and decompiling to get our answers. As I stated at the start I will walkthrough using GDB/Ghidra first followed by r2. To begin we will attempt to run the binary.
+<p></p>
 
+```
+./crackme4
+Usage : ./crackme4 password
+This time the string is hidden and we used strcmp
+```
+
+<p></p>
+We can see this binary takes and argument 'password' and we are also given a hint that 'the string is hidden using strcmp'
+<p></p>
+We can find out what the strcmp function does by using the <kbd>man strcmp</kbd> command, which returns:
+<p></p>
+
+```
+STRCMP(3)                                                             Linux Programmer's Manual                                                                       STRCMP(3)
+
+NAME
+       strcmp, strncmp - compare two strings
+
+SYNOPSIS
+       #include <string.h>
+
+       int strcmp(const char *s1, const char *s2);
+
+       int strncmp(const char *s1, const char *s2, size_t n);
+
+DESCRIPTION
+       The strcmp() function compares the two strings s1 and s2.  The locale is not taken into account (for a locale-aware comparison, see strcoll(3)).  The comparison is done using un‐
+       signed characters.
+
+       strcmp() returns an integer indicating the result of the comparison, as follows:
+
+       • 0, if the s1 and s2 are equal;
+
+       • a negative value if s1 is less than s2;
+
+       • a positive value if s1 is greater than s2.
+
+       The strncmp() function is similar, except it compares only the first (at most) n bytes of s1 and s2.
+
+RETURN VALUE
+       The strcmp() and strncmp() functions return an integer less than, equal to, or greater than zero if s1 (or the first n bytes thereof) is found, respectively, to be less than,  to
+       match, or be greater than s2.
+
+```
+
+<p></p>
+This will become apparent once we begin debugging the binary.
+<p></p>
+<details>
+    <summary>GDB/Ghidra</summary>
+<p></p>
+
+
+</details>
+<p></p>
+<hr>
+<p></p>
+<details>
+    <summary>r2</summary>
+<p></p>
+
+
+</details>
 
 
 
