@@ -8,7 +8,7 @@ For the walkthroughs found bellow I will first run through the challenges using 
 <p></p>
 <hr>
 <p></p>
-<H2>Getting Set Up<H2>
+<H2>Getting Set Up</H2>
 <details>
     <summary></summary>
 <p></p>
