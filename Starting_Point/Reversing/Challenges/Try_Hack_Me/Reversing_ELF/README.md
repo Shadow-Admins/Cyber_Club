@@ -455,9 +455,11 @@ We can see that the password was accepted and that the flag was returned.
     <summary>Answer</summary>
 <p></p>
 What is the password?
+<br>
 super_secret_password
-
+<p></p>
 What is the flag?
+<br>
 flag{if_i_submit_this_flag_then_i_will_get_points}
 </details>
 </details>
@@ -468,11 +470,137 @@ flag{if_i_submit_this_flag_then_i_will_get_points}
 <details>
     <summary>Crackme3</summary>
 <p></p>
+The third challenge we are given is:
+<p></p>
+Use basic reverse engineering skills to obtain the flag
+<p></p>
+What is the flag?
+<p></p>
+<details>
+    <summary>Walkthrough</summary>
+<p></p>
+This challenge is very much like the previous challenge with one slight twist. To start with we will attempt to run the binary.
+<p></p>
 
+```
+./crackme3
+Usage: ./crackme3 PASSWORD
+```
 
+<p></p>
+You can see from the return that the binary needs an argument 'PASSWORD' passed to it. We can test this by passing 'test' to the binary.
+<p></p>
 
+```
+./crackme3 test
+Come on, even my aunt Mildred got this one!
+```
 
+<p></p>
+Here we can see that we recieved a return but not the flag, we will run strings on the binary and see what is returned.
+<p></p>
 
+```
+strings crackme3
+
+/lib/ld-linux.so.2
+__gmon_start__
+libc.so.6
+_IO_stdin_used
+puts
+strlen
+malloc
+stderr
+fwrite
+fprintf
+strcmp
+__libc_start_main
+GLIBC_2.0
+PTRh
+iD$$
+D$,;D$ 
+UWVS
+[^_]
+Usage: %s PASSWORD
+malloc failed
+ZjByX3kwdXJfNWVjMG5kX2xlNTVvbl91bmJhc2U2NF80bGxfN2gzXzdoMW5nNQ==
+Correct password!
+Come on, even my aunt Mildred got this one!
+ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/
+;*2$"8
+GCC: (Ubuntu/Linaro 4.6.3-1ubuntu5) 4.6.3
+.shstrtab
+.interp
+.note.ABI-tag
+.note.gnu.build-id
+.gnu.hash
+.dynsym
+.dynstr
+.gnu.version
+.gnu.version_r
+.rel.dyn
+.rel.plt
+.init
+.text
+.fini
+.rodata
+.eh_frame_hdr
+.eh_frame
+.ctors
+.dtors
+.jcr
+.dynamic
+.got
+.got.plt
+.data
+.bss
+.comment
+```
+
+<p></p>
+And you should notice this section:
+<p></p>
+
+```
+Usage: %s PASSWORD
+malloc failed
+ZjByX3kwdXJfNWVjMG5kX2xlNTVvbl91bmJhc2U2NF80bGxfN2gzXzdoMW5nNQ==
+Correct password!
+Come on, even my aunt Mildred got this one!
+ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/
+```
+
+<p></p>
+The top long string should look familiar (if you have done a few CTFs) this is base64, we can decode this in our terminal using the following command.
+<p></p>
+
+```
+echo ZjByX3kwdXJfNWVjMG5kX2xlNTVvbl91bmJhc2U2NF80bGxfN2gzXzdoMW5nNQ== | base64 -d
+f0r_y0ur_5ec0nd_le55on_unbase64_4ll_7h3_7h1ng5%
+```
+
+<p></p>
+In this command we are echoing the base64 string so we can pass it using a pipe <kbd>|</kbd> into <kbd>base64 -d</kbd> which will decode the string.
+<br>
+We can now see if this will be accepted as the password.
+<p></p>
+
+```
+./crackme3 f0r_y0ur_5ec0nd_le55on_unbase64_4ll_7h3_7h1ng5
+Correct password!
+```
+
+<p></p>
+We can see that the flag was accepted!
+<p></p>
+<details>
+    <summary>Answer</summary>
+<p></p>
+What is the password?
+<br>
+f0r_y0ur_5ec0nd_le55on_unbase64_4ll_7h3_7h1ng5
+</details>
+</details>
 </details>
 
 
