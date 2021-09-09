@@ -255,7 +255,7 @@ chmod +x crackme*
 ```
 
 <p></p>
-What this command is doing is adding the <kbd>x</kbd> flag, the <kbd>crackme*</kbd> is using the <kbd>*</kbd> wildcard to say apply this to everyfile starting with 'crackme' regardless of what comes after that ie. 1,2,3 etc.
+What this command is doing is adding the <kbd>x</kbd> flag, the <kbd>crackme*</kbd> is using the <kbd>*</kbd> wildcard to say apply this to everyfile starting with 'crackme' regardless of what comes after that ie. 1,2,3 etc. if you dont do it this way you can allow each binary to execute as you get to it ie <kbd>chmod +x crackme3</kbd>.
 <p></p>
 If we 'long list' again we can see the changes have occured.
 <p></p>
@@ -291,6 +291,191 @@ Which prints the flag for us, giving us the answer.
 <p></p>
 flag{not_that_kind_of_elf}
 </details>
+<p></p>
+<hr>
+<p></p>
+<details>
+    <summary>Crackme2</summary>
+<p></p>
+The second challenge we are given is:
+<p></p>
+Find the super-secret password! and use it to obtain the flag
+<p></p>
+What is the super secret password?
+<p></p>
+What is the flag?
+<p></p>
+<details>
+    <summary>Walkthrough</summary>
+<p></p>
+For this challenge we need to obtain 2 peices of information. This is still very early in the series and focuses on very basic things, to do this challenge we need to run strings on the program to see what strings of text are visable. But to start we will attempt to run the binary.
+<p></p>
+
+```
+./crackme2
+Usage: ./crackme2 password
+```
+
+<p></p>
+We can see that the binary needs a password argument passed to it when its run, we can try this by passing 'test' to the binary.
+<p></p>
+
+```
+./crackme2 test
+Access denied.
+```
+
+<p></p>
+Now we know how the binary functions we can start interogating it. To start we will run <kbd>strings</kbd> on the binary. You can see the output below.
+<p></p>
+
+```
+strings crackme2
+
+/lib/ld-linux.so.2
+libc.so.6
+_IO_stdin_used
+puts
+printf
+memset
+strcmp
+__libc_start_main
+/usr/local/lib:$ORIGIN
+__gmon_start__
+GLIBC_2.0
+PTRh 
+j3jA
+[^_]
+UWVS
+t$,U
+[^_]
+Usage: %s password
+super_secret_password
+Access denied.
+Access granted.
+;*2$"(
+GCC: (Ubuntu 5.4.0-6ubuntu1~16.04.9) 5.4.0 20160609
+crtstuff.c
+__JCR_LIST__
+deregister_tm_clones
+__do_global_dtors_aux
+completed.7209
+__do_global_dtors_aux_fini_array_entry
+frame_dummy
+__frame_dummy_init_array_entry
+conditional1.c
+giveFlag
+__FRAME_END__
+__JCR_END__
+__init_array_end
+_DYNAMIC
+__init_array_start
+__GNU_EH_FRAME_HDR
+_GLOBAL_OFFSET_TABLE_
+__libc_csu_fini
+strcmp@@GLIBC_2.0
+_ITM_deregisterTMCloneTable
+__x86.get_pc_thunk.bx
+printf@@GLIBC_2.0
+_edata
+__data_start
+puts@@GLIBC_2.0
+__gmon_start__
+__dso_handle
+_IO_stdin_used
+__libc_start_main@@GLIBC_2.0
+__libc_csu_init
+memset@@GLIBC_2.0
+_fp_hw
+__bss_start
+main
+_Jv_RegisterClasses
+__TMC_END__
+_ITM_registerTMCloneTable
+.symtab
+.strtab
+.shstrtab
+.interp
+.note.ABI-tag
+.note.gnu.build-id
+.gnu.hash
+.dynsym
+.dynstr
+.gnu.version
+.gnu.version_r
+.rel.dyn
+.rel.plt
+.init
+.plt.got
+.text
+.fini
+.rodata
+.eh_frame_hdr
+.eh_frame
+.init_array
+.fini_array
+.jcr
+.dynamic
+.got.plt
+.data
+.bss
+.comment
+```
+
+<p></p>
+Looking through the output you should note these lines:
+<p></p>
+
+```
+UWVS
+t$,U
+[^_]
+Usage: %s password
+super_secret_password
+Access denied.
+Access granted.
+```
+
+<p></p>
+Here we can see what looks like a password and we can now pass that to the binary in the command line.
+<p></p>
+
+```
+./crackme2 super_secret_password
+Access granted.
+flag{if_i_submit_this_flag_then_i_will_get_points}
+```
+
+<p></p>
+We can see that the password was accepted and that the flag was returned.
+<p></p>
+<details>
+    <summary>Answer</summary>
+<p></p>
+What is the password?
+super_secret_password
+
+What is the flag?
+flag{if_i_submit_this_flag_then_i_will_get_points}
+</details>
+
+
+
+
+</details>
+
+
+
+up
+
+
+
+
+
+
+
+
+
 
 
 
