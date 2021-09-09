@@ -89,7 +89,7 @@ alias ghidra='sudo /opt/<YOUR_GHIDRA_FOLDER>/ghidraRun'
 <p></p>
 Once you have entered this line you can exit and save .zshrc (if youre using nano the command is: <kbd>Ctrl+x</kbd> then <kbd>y</kbd> to save finally <kbd>Enter</kbd> to save as the current name '.zshrc')
 <p></p>
-Now that you have updated your '.zshrc' or '.bashrc' file you now need to tell your terminal to use this updated file as the 'source' we do this through the following command or by exiting your terminal and starting a new terminal.
+Now that you have updated your '.zshrc' or '.bashrc' file you now need to tell your terminal to use this updated file as the 'source' we do this through the following command or by exiting your terminal and starting a new terminal.       ghidraRun 
 <p></p>
 
 ```
@@ -101,6 +101,30 @@ You have now sucessfully added a persistant alias to your shell config file. Thi
 <p></p>
 Regardless of where you are located in your system now you can enter <kbd>ghidra</kbd> and it will run!
 </details>
+<p></p>
+<hr>
+<p></p>
+<H3>Radare2 (R2)</H3>
+<p></p>
+The next program we will install is Radare2 commonly known as 'r2'.
+<p></p>
+<a href="https://github.com/radareorg/radare2" rel="nofollow">https://github.com/radareorg/radare2</a>
+<p></p>
+r2 is a rewrite from scratch of radare. It provies a set of libraries, tools and plugins to ease reverse engineering tasks.
+<p></p>
+The radare project started as a simple command-line hexadecimal editor focused on forensics, over time more features were added to support a scriptable command-line low level tool to edit from local hard drives, kernel memory, programs, remote gdb servers and be able to analyze, emulate, debug, modify and disassemble any binary.
+<p></p>
+Navigating to the above link will take you to the r2 GitHub page. Scrolling down you can see the install instructions.
+<p></p>
+<div align="center">
+<img src="https://github.com/Shadow-Admins/Cyber_Club/blob/main/Starting_Point/Reversing/Challenges/Try_Hack_Me/Reversing_ELF/images/zshrc_alias.png"><br>
+</div>
+<p></p>
+
+
+
+
+
 
 
 
