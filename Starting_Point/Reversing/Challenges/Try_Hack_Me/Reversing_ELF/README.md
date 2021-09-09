@@ -196,7 +196,9 @@ $ sudo apt-get install libc6-dbg gdb valgrind
 <p></p>
 Once that completes attempt to run GDB again and you should be ready to go!
 </details>
-
+<p></p>
+<hr>
+<p></p>
 <H2>Challenges</H2>
 <details>
     <summary></summary>
@@ -205,11 +207,89 @@ Once that completes attempt to run GDB again and you should be ready to go!
     <summary>Crackme1</summary>
 <p></p>
 The first challenge we are given is:
+<p></p>
+Let's start with a basic warmup, can you run the binary?
+<p></p>
+What is the flag?
+<p></p>
+<details>
+    <summary>Walkthrough</summary>
+<p></p>
+This challenge is simple, and is an introduction to 'file permissions' to start with if you are using the zip file I provided you need to unzip it, we do this in the command line using the following command:
+<p></p>
+
+```
+unzip Reverse_ELF.zip
+```
+
+<p></p>
+Once you have done this we use 'long list' to view the file permissions.
+<p></p>
+
+```
+ls -l
+  rw-r--r--   1   parrot   parrot      7 KiB   Thu Sep  2 09:29:02 2021    crackme1 
+  rw-r--r--   1   parrot   parrot      5 KiB   Thu Sep  2 09:29:12 2021    crackme2 
+  rw-r--r--   1   parrot   parrot      9 KiB   Thu Sep  2 09:29:18 2021    crackme3 
+  rw-r--r--   1   parrot   parrot      8 KiB   Wed Aug 25 13:53:44 2021    crackme4 
+  rw-r--r--   1   parrot   parrot      8 KiB   Thu Sep  2 09:29:26 2021    crackme5 
+  rw-r--r--   1   parrot   parrot      8 KiB   Thu Sep  2 09:29:34 2021    crackme6 
+  rw-r--r--   1   parrot   parrot      6 KiB   Thu Sep  2 09:29:40 2021    crackme7 
+  rw-r--r--   1   parrot   parrot      5 KiB   Thu Sep  2 09:11:54 2021    crackme8 
+  rw-r--r--   1   parrot   parrot     24 KiB   Thu Sep  2 09:53:41 2021    Reverse_Elf.zip 
+  rwxrwxrwx   1   parrot   parrot      4 KiB   Sat Sep  4 13:14:45 2021    tasks.txt 
+```
+
+<p></p>
+The important thing to note is the first column which exaplins the file permissions of each file.
+<p></p>
+<div align="center">
+<img src="https://github.com/Shadow-Admins/Cyber_Club/blob/main/Starting_Point/Reversing/Challenges/Try_Hack_Me/Reversing_ELF/images/radre2_github.png"><br>
+</div>
+<p></p>
+
+
+</details>
 
 
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<details>
+    <summary>GDB/Ghidra</summary>
+<p></p>
+
+
+</details>
+<p></p>
+<hr>
+<p></p>
+<details>
+    <summary>r2</summary>
+<p></p>
+
+
+</details>
 
 
 
