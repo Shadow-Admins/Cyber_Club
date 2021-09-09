@@ -244,9 +244,60 @@ ls -l
 The important thing to note is the first column which exaplins the file permissions of each file.
 <p></p>
 <div align="center">
-<img src="https://github.com/Shadow-Admins/Cyber_Club/blob/main/Starting_Point/Reversing/Challenges/Try_Hack_Me/Reversing_ELF/images/radre2_github.png"><br>
+<img src="https://github.com/Shadow-Admins/Cyber_Club/blob/main/Starting_Point/Reversing/Challenges/Try_Hack_Me/Reversing_ELF/images/file-permission-syntax-explained.jpg"><br>
 </div>
 <p></p>
+Here we can see that the files have read & write for the 'user' then read for 'group' and 'others. What we need to do is give execute permissions to to the crackme1 binary (we can go a step further and give execute permissions to all files at once) To do this we need to use the following command:
+<p></p>
+
+```
+chmod +x crackme*
+```
+
+<p></p>
+What this command is doing is adding the <kbd>x</kbd> flag, the <kbd>crackme*</kbd> is using the <kbd>*</kbd> wildcard to say apply this to everyfile starting with 'crackme' regardless of what comes after that ie. 1,2,3 etc.
+<p></p>
+If we 'long list' again we can see the changes have occured.
+<p></p>
+
+```
+ls -l
+  rwxr-xr-x   1   parrot   parrot      7 KiB   Thu Sep  2 09:29:02 2021    crackme1 
+  rwxr-xr-x   1   parrot   parrot      5 KiB   Thu Sep  2 09:29:12 2021    crackme2 
+  rwxr-xr-x   1   parrot   parrot      9 KiB   Thu Sep  2 09:29:18 2021    crackme3 
+  rwxr-xr-x   1   parrot   parrot      8 KiB   Wed Aug 25 13:53:44 2021    crackme4 
+  rwxr-xr-x   1   parrot   parrot      8 KiB   Thu Sep  2 09:29:26 2021    crackme5 
+  rwxr-xr-x   1   parrot   parrot      8 KiB   Thu Sep  2 09:29:34 2021    crackme6 
+  rwxr-xr-x   1   parrot   parrot      6 KiB   Thu Sep  2 09:29:40 2021    crackme7 
+  rwxr-xr-x   1   parrot   parrot      5 KiB   Thu Sep  2 09:11:54 2021    crackme8 
+  rw-r--r--   1   parrot   parrot     24 KiB   Thu Sep  2 09:53:41 2021    Reverse_Elf.zip 
+  rwxrwxrwx   1   parrot   parrot      4 KiB   Sat Sep  4 13:14:45 2021    tasks.txt 
+```
+
+<p></p>
+Now that we have made the binary executable we can run it using the following command.
+<p></p>
+
+```
+./crackme1
+flag{not_that_kind_of_elf}
+```
+
+<p></p>
+Which prints the flag for us, giving us the answer.
+<p></p>
+<details>
+    <summary>Answer</summary>
+<p></p>
+flag{not_that_kind_of_elf}
+</details>
+
+
+
+
+
+
+
 
 
 </details>
