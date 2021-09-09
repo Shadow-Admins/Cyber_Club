@@ -671,6 +671,84 @@ This will become apparent once we begin debugging the binary.
 <details>
     <summary>GDB/Ghidra</summary>
 <p></p>
+To start using GDB to debug the binary we use the following command:
+<p></p>
+
+```
+gdb crackme4
+```
+
+<p></p>
+Which outputs:
+<p></p>
+
+```
+gdb crackme4
+GNU gdb (Debian 10.1-1.7) 10.1.90.20210103-git
+Copyright (C) 2021 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+Type "show copying" and "show warranty" for details.
+This GDB was configured as "x86_64-linux-gnu".
+Type "show configuration" for configuration details.
+For bug reporting instructions, please see:
+<https://www.gnu.org/software/gdb/bugs/>.
+Find the GDB manual and other documentation resources online at:
+    <http://www.gnu.org/software/gdb/documentation/>.
+
+For help, type "help".
+Type "apropos word" to search for commands related to "word"...
+GEF for linux ready, type `gef' to start, `gef config' to configure
+96 commands loaded for GDB 10.1.90.20210103-git using Python engine 3.9
+[+] Configuration from '/home/parrot/.gef.rc' restored
+Reading symbols from crackme4...
+(No debugging symbols found in crackme4)
+gef➤  
+```
+
+<p></p>
+Now that we have the binary loaded with gdb the first thing we want to do is list the functions of the binary, functions are sets of 'instructions' the binary uses to run. To show the functions in gdb we use the following command:
+<p></p>
+
+```
+info func
+```
+
+<p></p>
+'func' is short for functions (which can also be used), this command outputs:
+<p></p>
+
+```
+gef➤  info func
+All defined functions:
+
+Non-debugging symbols:
+0x00000000004004b0  _init
+0x00000000004004e0  puts@plt
+0x00000000004004f0  __stack_chk_fail@plt
+0x0000000000400500  printf@plt
+0x0000000000400510  __libc_start_main@plt
+0x0000000000400520  strcmp@plt
+0x0000000000400530  __gmon_start__@plt
+0x0000000000400540  _start
+0x0000000000400570  deregister_tm_clones
+0x00000000004005a0  register_tm_clones
+0x00000000004005e0  __do_global_dtors_aux
+0x0000000000400600  frame_dummy
+0x000000000040062d  get_pwd
+0x000000000040067a  compare_pwd
+0x0000000000400716  main
+0x0000000000400760  __libc_csu_init
+0x00000000004007d0  __libc_csu_fini
+0x00000000004007d4  _fini
+```
+
+<p></p>
+
+
+
+
 
 
 </details>
