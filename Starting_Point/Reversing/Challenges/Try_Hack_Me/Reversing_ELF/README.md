@@ -602,6 +602,43 @@ f0r_y0ur_5ec0nd_le55on_unbase64_4ll_7h3_7h1ng5
 </details>
 </details>
 </details>
+<p></p>
+<hr>
+<p></p>
+<details>
+    <summary>Crackme4</summary>
+<p></p>
+The fourth challenge we are given is:
+<p></p>
+Analyze and find the password for the binary?
+<p></p>
+What is the password?
+<p></p>
+<details>
+    <summary>Walkthrough</summary>
+<p></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</details>
+</details>
 
 
 
