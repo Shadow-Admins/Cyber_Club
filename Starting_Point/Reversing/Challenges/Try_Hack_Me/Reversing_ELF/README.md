@@ -6,8 +6,11 @@ All Challenge Files: <a href="https://drive.google.com/file/d/1Ia8cUnWHgCGtAKBzn
 <p></p>
 For the walkthroughs found bellow I will first run through the challenges using GDB/Ghidra followed by how to use R2 (Radare2) to do the challenge. As this is an introduction its important for you to find a tool that you like as you continue to learn RE. Note there are many other tools that you can use for RE these are just three that I will demonstrate.
 <p></p>
+<hr>
+<p></p>
+<H2>Getting Set Up<H2>
 <details>
-    <summary>Getting Set Up</summary>
+    <summary></summary>
 <p></p>
 The first thing we will go through is ensuring we have the tools we need to carry out the challenges.
 <p></p>
@@ -26,11 +29,37 @@ Navigating to the above site takes us to Ghidra's home page, from here we need t
 </div>
 <p></p>
 Clicking on this link takes us to the Ghidra GitHub "Releases" page, at the time of this write up you can see that the latest Ghidra version is '10.0.2'. From here you want to download the .zip file in my case 'ghidra_10.0.2_PUBLIC_20210804.zip'. (Whenever I install or download new tools I always use the '/opt' directory, this is actually what this directory is for.)
-p></p>
+<p></p>
 <div align="center">
 <img src="https://github.com/Shadow-Admins/Cyber_Club/blob/main/Starting_Point/Reversing/Challenges/Try_Hack_Me/Reversing_ELF/images/ghidra_releases.png"><br>
 </div>
 <p></p>
+Now that you have downloaded the zip folder you can either use the GUI to unzip and extract the contents or use the command line:
+<p></p>
+
+```
+unzip -d ghidra_10.0.2_PUBLIC_20210804.zip
+```
+
+<p></p>
+Once you have extracted the folder you can 'cd' into the directory and you can see that there is a shell script called 'ghidraRun'. using the following command you can run Ghidra.
+<p></p>
+
+```
+./ghidraRun
+```
+
+<p></p>
+<details>
+    <summary>Optional: adding an alias so you can run Ghidra anywhere</summary>
+<p></p>
+To add an alias so you can run ghidra from anywhere you will do the following.
+<p></p>
+Navigate to your home directory indicated by the <kbd>~</kbd> symbol (this can be easy done simply by entering <kbd>cd</kbd> with no directory listed).
+Once you are in your home directory you need to list all files which can be done by entering <kbd>ls -a</kbd>. Depending on your flavour of linux you will see a fair few files.
+
+
+</details>
 
 
 
