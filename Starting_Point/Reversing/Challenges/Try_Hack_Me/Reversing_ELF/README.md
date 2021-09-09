@@ -117,11 +117,21 @@ The radare project started as a simple command-line hexadecimal editor focused o
 Navigating to the above link will take you to the r2 GitHub page. Scrolling down you can see the install instructions.
 <p></p>
 <div align="center">
-<img src="https://github.com/Shadow-Admins/Cyber_Club/blob/main/Starting_Point/Reversing/Challenges/Try_Hack_Me/Reversing_ELF/images/zshrc_alias.png"><br>
+<img src="https://github.com/Shadow-Admins/Cyber_Club/blob/main/Starting_Point/Reversing/Challenges/Try_Hack_Me/Reversing_ELF/images/radre2_github.png"><br>
 </div>
 <p></p>
+This is an easy program to install. First we <kbd>cd /opt</kbd>, then we enter the listed commands:
+<p></p>
 
+```
+git clone https://github.com/radareorg/radare2
+radare2/sys/install.sh
+```
 
+<p></p>
+This will clone the git repository of r2 into your '/opt' directory then run the install script.
+<p></p>
+You have now installed r2, you can run it from anywhere by entering 'r2' into your command line.
 
 
 
