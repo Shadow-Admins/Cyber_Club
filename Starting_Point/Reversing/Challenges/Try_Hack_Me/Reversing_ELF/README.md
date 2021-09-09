@@ -50,8 +50,9 @@ Once you have extracted the folder you can 'cd' into the directory and you can s
 ```
 
 <p></p>
+<H3>OPTIONAL: adding an alias so you can run Ghidra anywhere</H3>
 <details>
-    <summary><H3>Optional: adding an alias so you can run Ghidra anywhere</H3></summary>
+    <summary></summary>
 <p></p>
 To add an alias so you can run ghidra from anywhere you will do the following.
 <p></p>
