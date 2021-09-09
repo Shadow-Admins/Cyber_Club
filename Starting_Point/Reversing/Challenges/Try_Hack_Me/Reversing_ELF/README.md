@@ -18,7 +18,7 @@ To start with we will install Ghidra (new releases of Kali linux come with Ghidr
 <p></p>
 <H3>Ghidra</H3> 
 <p></p>
-https://ghidra-sre.org/
+<a href="https://ghidra-sre.org/" rel="nofollow">https://ghidra-sre.org/</a>
 <p></p>
 Ghidra is a software reverse engineering (SRE) framework created and maintained by the National Security Agency Research Directorate. This framework includes a suite of full-featured, high-end software analysis tools that enable users to analyze compiled code on a variety of platforms including Windows, macOS, and Linux. Capabilities include disassembly, assembly, decompilation, graphing, and scripting, along with hundreds of other features. Ghidra supports a wide variety of processor instruction sets and executable formats and can be run in both user-interactive and automated modes. Users may also develop their own Ghidra extension components and/or scripts using Java or Python.
 <p></p>
