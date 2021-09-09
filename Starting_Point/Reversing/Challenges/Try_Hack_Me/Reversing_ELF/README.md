@@ -72,13 +72,33 @@ nano .zshrc
 ```
 
 <p></p>
-Now that we are editing the file we need to scroll until we find the 'alias' section. You can see mine bellow:
+Now that we are editing the file we need to scroll until we find the 'alias' section. You can see mine bellow.
+<p></p>
+<div align="center">
+<img src="https://github.com/Shadow-Admins/Cyber_Club/blob/main/Starting_Point/Reversing/Challenges/Try_Hack_Me/Reversing_ELF/images/zshrc_alias.png"><br>
+</div>
+<p></p>
+Now that you have found where your aliases are stored you need to add a line at the bottom, you can see my alias I have created but will be dependant on the version of ghidra you have.
+<p></p>
 
+```
+alias ghidra='sudo /opt/<YOUR_GHIDRA_FOLDER>/ghidraRun'
+```
 
+<p></p>
+Once you have entered this line you can exit and save .zshrc (if youre using nano the command is: <kbd>Ctrl+x</kbd> then <kbd>y</kbd> to save finally <kbd>Enter</kbd> to save as the current name '.zshrc')
+<p></p>
+Now that you have updated your '.zshrc' or '.bashrc' file you now need to tell your terminal to use this updated file as the 'source' we do this through the following command or by exiting your terminal and starting a new terminal.
+<p></p>
 
+```
+source .zshrc
+```
 
-
-
+<p></p>
+You have now sucessfully added a persistant alias to your shell config file. This alias will stay regardless of shutdown/restart unlike using command line to set a temporary alias.
+<p></p>
+Regardless of where you are located in your system now you can enter <kbd>ghidra</kbd> and it will run!
 </details>
 
 
