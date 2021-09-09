@@ -104,7 +104,7 @@ Regardless of where you are located in your system now you can enter <kbd>ghidra
 <p></p>
 <hr>
 <p></p>
-<H3>Radare2 (R2)</H3>
+<H3>Radare2 (r2)</H3>
 <p></p>
 The next program we will install is Radare2 commonly known as 'r2'.
 <p></p>
@@ -132,12 +132,69 @@ radare2/sys/install.sh
 This will clone the git repository of r2 into your '/opt' directory then run the install script.
 <p></p>
 You have now installed r2, you can run it from anywhere by entering 'r2' into your command line.
+<p></p>
+<hr>
+<p></p>
+<H3>GDB</H3>
+<p></p>
+<a href="https://www.gnu.org/software/gdb/" rel="nofollow">https://www.gnu.org/software/gdb/</a>
+<p></p>
+The final program we will check to see if its intalled (if you're using linux it is likely already installed) and if it isnt we will go through the process of installing it.
+<p></p>
+To check if GDB is installed enter the following command:
+<p></p>
 
+```
+# gdb
+```
 
+<p></p>
+Which should output:
+<p></p>
 
+```
+# gdb                                                                                                                                         ⇣5.97 KiB/s ⇡0.61 KiB/s 192.168.191.128   ─╯
+GNU gdb (Debian 10.1-1.7) 10.1.90.20210103-git
+Copyright (C) 2021 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+Type "show copying" and "show warranty" for details.
+This GDB was configured as "x86_64-linux-gnu".
+Type "show configuration" for configuration details.
+For bug reporting instructions, please see:
+<https://www.gnu.org/software/gdb/bugs/>.
+Find the GDB manual and other documentation resources online at:
+    <http://www.gnu.org/software/gdb/documentation/>.
 
+For help, type "help".
+Type "apropos word" to search for commands related to "word".
+GEF for linux ready, type `gef' to start, `gef config' to configure
+96 commands loaded for GDB 10.1.90.20210103-git using Python engine 3.9
+[+] Configuration from '/home/parrot/.gef.rc' restored
+gef➤  
+```
 
+<p></p>
+Use <kbd>q</kbd> to exit GDB if it runs.
+(note: you can see that my gdb command input says 'gef' thats because I have the 'gef' plugin installed) If you see an output like the one above, GDB is already installed and you dont need to do anything. If you get a return such as:
+<p></p>
 
+```
+# gdb
+zsh: command not found: gdb
+```
+
+<p></p>
+You will need to install gdb, luckily this is very easy to do and can be done through the command line using the following commands:
+<p></p>
+
+```
+$ sudo apt-get install libc6-dbg gdb valgrind 
+```
+
+<p></p>
+Once that completes attempt to run GDB again and you should be ready to go!
 </details>
 
 <H2>Challenges</H2>
