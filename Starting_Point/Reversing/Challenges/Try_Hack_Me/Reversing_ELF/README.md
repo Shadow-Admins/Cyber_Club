@@ -745,8 +745,48 @@ Non-debugging symbols:
 ```
 
 <p></p>
+Now that we can see all the functions we can disassemble the 'main' function. This is always where we should start when examining a binary, it is the main set of intructions that occur when a binary executes. To do this we use the command:
+<p></p>
 
+```
+disass main
+```
 
+<p></p>
+disass is short for disasseble (which you can also use) and the function we want to disassemble in this case the 'main' function. Which outputs:
+<p></p>
+
+```
+gef➤  disass main
+Dump of assembler code for function main:
+   0x0000000000400716 <+0>:	    push   rbp
+   0x0000000000400717 <+1>:	    mov    rbp,rsp
+   0x000000000040071a <+4>:	    sub    rsp,0x10
+   0x000000000040071e <+8>:	    mov    DWORD PTR [rbp-0x4],edi
+   0x0000000000400721 <+11>:	mov    QWORD PTR [rbp-0x10],rsi
+   0x0000000000400725 <+15>:	cmp    DWORD PTR [rbp-0x4],0x2
+   0x0000000000400729 <+19>:	je     0x400746 <main+48>
+   0x000000000040072b <+21>:	mov    rax,QWORD PTR [rbp-0x10]
+   0x000000000040072f <+25>:	mov    rax,QWORD PTR [rax]
+   0x0000000000400732 <+28>:	mov    rsi,rax
+   0x0000000000400735 <+31>:	mov    edi,0x400810
+   0x000000000040073a <+36>:	mov    eax,0x0
+   0x000000000040073f <+41>:	call   0x400500 <printf@plt>
+   0x0000000000400744 <+46>:	jmp    0x400759 <main+67>
+   0x0000000000400746 <+48>:	mov    rax,QWORD PTR [rbp-0x10]
+   0x000000000040074a <+52>:	add    rax,0x8
+   0x000000000040074e <+56>:	mov    rax,QWORD PTR [rax]
+   0x0000000000400751 <+59>:	mov    rdi,rax
+   0x0000000000400754 <+62>:	call   0x40067a <compare_pwd>
+   0x0000000000400759 <+67>:	mov    eax,0x0
+   0x000000000040075e <+72>:	leave  
+   0x000000000040075f <+73>:	ret    
+End of assembler dump.
+```
+
+<p></p>
+This is our first exposure to 'assembly code' which is essentially human readable 'machine code' This is one of the downfalls of gdb in that there isnt decomiled code vissable (r2 adds this which we will see later) hence we use Ghidra when we use GDB.
+<p></p>
 
 
 
